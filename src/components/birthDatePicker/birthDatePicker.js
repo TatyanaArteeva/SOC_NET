@@ -20,9 +20,11 @@ const BirthDatePicker = ({dataBirth}) => {
                   selected={startDate} 
                   onChange={(date) =>{
                   setStartDate(date);
-                  console.log(date)
                     if (date != null) {
-                     dataBirth(date.toLocaleDateString('ru'));
+                     dataBirth(new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0]);
+
+                    //  new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0]
+
                     }
                   }} 
                   placeholderText="Укажите вашу дату рождения" 

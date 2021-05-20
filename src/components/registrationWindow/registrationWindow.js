@@ -4,7 +4,7 @@ import BirthDatePicker from '../birthDatePicker/birthDatePicker';
 import {closeModalRegistration, loginMainPage} from '../../actions';
 import './registrationWindow.css';
 import MainPage from '../main_page/mainPage';
-import Service from '../../service/service';
+import WithService from '../hoc/hoc';
 
 class RegistrationWindow extends Component{
     constructor(props){
@@ -14,10 +14,10 @@ class RegistrationWindow extends Component{
             lastName: '',
             email: '',
             password: '',
-            birthday: ''
+            birthDate: null
         }
 
-        const service=new Service();
+        const {Service} = this.props;
 
         this.valueFirstName=(event)=>{
             this.setState({
@@ -45,9 +45,9 @@ class RegistrationWindow extends Component{
 
         this.postFormRegistration=(event)=>{
             event.preventDefault();
-            service.loginPage('http://localhost:3000/registration', this.state)
+            Service.registrationPage('http://localhost:8080/api/account/registration', this.state)
                 .then(res=>{
-                    if(res.status===201){
+                    if(res.status===200){
                         console.log("Переходим на основную страницу")
                         this.props.loginMainPage()
                     }else{
@@ -59,9 +59,18 @@ class RegistrationWindow extends Component{
     }
     render(){
         this.valueBirtDay=()=>{
-            this.setState({
-                birthday: this.props.birthDay
-            })
+            if(this.props.birthDay.length===0){
+                this.setState({
+                    birthDate: null
+                })
+            }else{
+                this.setState({
+                    birthDate: this.props.birthDay
+                })
+            }
+            
+
+            console.log(this.props.birthDay.length)
         }
         
         if(this.props.mainPage){
@@ -100,4 +109,4 @@ const mapDispatchToProps = {
     loginMainPage
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(RegistrationWindow);
+export default WithService()(connect (mapStateToProps, mapDispatchToProps)(RegistrationWindow));
