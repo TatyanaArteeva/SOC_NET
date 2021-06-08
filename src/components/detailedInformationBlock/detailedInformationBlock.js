@@ -12,18 +12,16 @@ class DetailedInformationBlock extends Component{
             phone: '',
             familyStatus: '',
             employment: '',
-            personal: ''
-
+            description: ''
         }
 
         const {Service} = this.props;
 
         this.recepionInformation=()=>{
-            Service.getCurrentUserStatus('/api/status')
+            Service.getUserAccountId(this.props.id)
                 .then(res=>{
                     if(res.status===200){
-                        this.props.userAccesses(res.data.accesses);
-                        this.props.userInformation(res.data.currentAccount)
+                        this.props.userInformation(res.data)
                     }
                 }).then(res=>{
                     this.setState({
@@ -32,11 +30,9 @@ class DetailedInformationBlock extends Component{
                         phone: this.props.information.phone,
                         familyStatus: this.props.information.familyStatus,
                         employment: this.props.information.employment,
-                        personal: this.props.information.personal
+                        description: this.props.information.description
                     })
-                })
-                    
-                    
+                })    
         }
 
         this.componentDidMount=()=>{
@@ -57,7 +53,7 @@ class DetailedInformationBlock extends Component{
                 <div className="profile_information__phone">Мой номер телефона: {this.state.phone}</div>
                 <div className="profile_information__familyStatus">Семейное положение: {this.state.familyStatus}</div>
                 <div className="profile_information__education">Место учебы или работы: {this.state.employment}</div>
-                <div className="profile_information__personal">Обо мне: {this.state.personal}</div> 
+                <div className="profile_information__personal">Обо мне: {this.state.description}</div> 
             </div>
         )
     }
@@ -66,7 +62,8 @@ class DetailedInformationBlock extends Component{
 
 const mapStateToProps=(state)=>{
     return{
-        information: state.userInformation
+        information: state.userInformation,
+        id: state.userId
     }
 }
 

@@ -1,12 +1,14 @@
 const path = require("path");
+// const { SourceMapDevToolPlugin } = require("webpack");
 
 module.exports = {
   mode: "development",
   entry:  "./src/index.js",
   output: {
     filename: "main.js",
-    // path: path.resolve(__dirname, './public')
+    sourceMapFilename: "[name].js.map"
   },
+  devtool: "source-map",
   devServer: {
     contentBase: path.join(__dirname, "public"),
     compress: true,
@@ -31,27 +33,31 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            // cacheDirectory: true,
             plugins: ['@babel/plugin-transform-runtime']
-        }
+          },
         }
       },
       {
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true
-            }
-          }
-        ]
+        test: /\.(css|scss|sass)$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ["file-loader"]
-      }
+      },
+      // {
+      //   test: /\.js$/,
+      //   enforce: 'pre',
+      //   use: ['source-map-loader'],
+      //   plugins: [
+      //     new SourceMapDevToolPlugin({
+      //       filename: "[file].map"
+      //     }),
+      //   ],
+      // },
     ]
-  }
+  },
 };
+
+
+// Запуск dev-server-а : npm run start:dev

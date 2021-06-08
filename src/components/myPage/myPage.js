@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-// import './myPage.scss';
+import './myPage.scss';
 import {Link, HashRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import DetailedInformationBlock from '../detailedInformationBlock/detailedInformationBlock';
 import WithService from '../hoc/hoc';
-import { userAccesses, userInformation} from '../../actions';
+import { userInformation} from '../../actions';
+import PhotoUser from '../photoUser/photoUser';
 
 class MyPage extends Component{
     constructor(props){
@@ -17,7 +18,7 @@ class MyPage extends Component{
         }
 
         const {Service} = this.props;
-
+        
         this.detailedInformation=()=>{
             this.setState(({btnDetailedInformation})=>({
                 btnDetailedInformation: !btnDetailedInformation
@@ -25,11 +26,10 @@ class MyPage extends Component{
         }
 
         this.recepionInformation=()=>{
-            Service.getCurrentUserStatus('/api/status')
+            Service.getUserAccountId(this.props.id)
                 .then(res=>{
                     if(res.status===200){
-                        this.props.userAccesses(res.data.accesses);
-                        this.props.userInformation(res.data.currentAccount)
+                        this.props.userInformation(res.data)
                     }
                 }).then(res=>{
                     this.setState({
@@ -51,14 +51,12 @@ class MyPage extends Component{
 
     
     render(){
-        console.log(this.props.information)
-        // const {firstName, lastName, birthDate} =this.props.userInformation
+
         const blockDetailedInformation=this.state.btnDetailedInformation? <DetailedInformationBlock/> : null;
-    
         return(
             <div>
                 <div className="profile">
-                    <div className="profile_photo">Здесь будет фото</div>
+                    <div className="profile_photo"><PhotoUser/></div>
                         <div className="profile_information">
                             <HashRouter>
                                 <Link to="/modification"><div className="profile_editing">Редактировать</div></Link>
@@ -80,12 +78,12 @@ class MyPage extends Component{
 
 const mapStateToProps=(state)=>{
     return{
-        information: state.userInformation
+        information: state.userInformation,
+        id: state.userId
     }
 }
 
 const mapDispatchToProps = {
-    userAccesses,
     userInformation
 }
 

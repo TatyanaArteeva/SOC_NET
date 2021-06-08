@@ -41,8 +41,33 @@ class Service {
         return res
     }
 
-    getCurrentUserStatus = async (url) =>{
+    getCurrentUserStatus = async (url) => {
         const res = await this.currentUserStatus(url);
+
+        return res
+    }
+
+    userAccount= async (url, data) => {
+        const res= await axios.post(url, data);
+
+        return res
+    }
+
+    postUserAccount= async (url, data) => {
+        const res= await this.userAccount(url, data);
+
+        return res
+    }
+
+
+    userAccountId= async (id) => {
+        const res= await axios.get(id);
+
+        return res
+    }
+
+    getUserAccountId= async (id) => {
+        const res= await this.userAccountId(`/api/account/${id}`);
 
         return res
     }
@@ -53,7 +78,19 @@ class Service {
         return res
     }
 
-    logoutRequest= async (url) =>{
+    modificationUser= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    postModificationUser= async (url, data) => {
+        const res= await this.modificationUser(url, data);
+
+        return res
+    }
+
+    logoutRequest= async (url) => {
         const res= await this.exitPage(url);
         return res
     }
