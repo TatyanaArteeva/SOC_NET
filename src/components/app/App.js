@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+// import './App.css';
 import '../login_page/login_page';
 import LoginPage from '../login_page/login_page';
 import MainPage from '../main_page/mainPage';
@@ -11,7 +11,7 @@ class App extends Component{
     
     componentDidMount(){
       const {Service}=this.props;
-      Service.getCurrentUserStatus('http://localhost:8080/api/status')
+      Service.getCurrentUserStatus('/api/status')
         .then(res=>{
           if(res.status===200){
             this.props.userId(res.data.currentAccount.id);
@@ -20,14 +20,16 @@ class App extends Component{
         }).then(res=>{
           this.props.displayingContentPages()
         }).catch(err=>{
-          this.props.displayingLoginAndRegistrationPage()
+          this.props.displayingLoginAndRegistrationPage();
         })
     }
 
     render(){
-      const{showLoginAndRegistrationPage, showContentPage}=this.props
+      const{showLoginAndRegistrationPage, showContentPage}=this.props;
+      
       const loginAndRegistration=showLoginAndRegistrationPage ? <LoginPage/> : null;
       const contentPages=showContentPage ? <MainPage/> : null;
+
       return (
         <div className="App">
           {loginAndRegistration}
@@ -42,7 +44,8 @@ class App extends Component{
 const mapStateToProps=(state)=>{
   return{
     showLoginAndRegistrationPage: state.loginAndRegistrationPage,
-    showContentPage: state.contentPages
+    showContentPage: state.contentPages,
+    logoutStatus: state.logout
   }
 }
 

@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import RegistrationWindow from '../registrationWindow/registrationWindow';
-import './login_page.css';
+// import './login_page.css';
 import {connect} from 'react-redux';
-import {openModalRegistration, loginMainPage, errorWindowLoginOpen, errorWindowLoginClose, userId, userAccesses} from '../../actions';
+import {openModalRegistration, loginMainPage, errorWindowLoginOpen, errorWindowLoginClose, userId, userAccesses, closeWindowMessageRegistration, userInformation} from '../../actions';
 import MainPage from '../main_page/mainPage';
 import WithService from '../hoc/hoc';
+import { withRouter } from "react-router";
 
 
 class LoginPage extends Component  {
-
+    
     constructor(props){
         super(props);
         this.state={
@@ -46,14 +47,15 @@ class LoginPage extends Component  {
             for(let key in this.state){
                 formData.append(key, this.state[key])
             }
-            Service.loginPage('http://localhost:8080/api/login', formData)
+            Service.loginPage('/api/login', formData)
             .then(res=>{
                 if(res.status===200){
-                    Service.getCurrentUserStatus('http://localhost:8080/api/status')
+                    Service.getCurrentUserStatus('/api/status')
                     .then(res=>{
                         if(res.status===200){
                             this.props.userId(res.data.currentAccount.id);
-                            this.props.userAccesses(res.data.accesses)
+                            this.props.userAccesses(res.data.accesses);
+                            this.props.userInformation(res.data.currentAccount)
                         }
                     }).then(res=>{
                         this.props.loginMainPage()
@@ -64,6 +66,10 @@ class LoginPage extends Component  {
     }
 
     render(){
+        
+        if(this.props.logoutStatus && this.props.location.hash.length!==0 && !this.props.mainPage){
+                this.props.history.push({hash: ""})
+        }
 
         if(this.props.mainPage){
             return <MainPage/>
@@ -72,6 +78,14 @@ class LoginPage extends Component  {
         const {registrationWindow, openModalRegistration, loginErrorWindow}=this.props;
 
         const regWin=registrationWindow ? <RegistrationWindow/> : null;
+
+        const windowRegistrationMessage=this.props.registrationOk? 
+        <div className ="registrationWindow">
+            Вы успешно зарегестрированы, пожалуйста, войдите на страницу!
+            <div onClick={()=>{this.props.closeWindowMessageRegistration()}}>Закрыть!</div>
+        </div> 
+        : null;
+
         const errorWindowLogin=loginErrorWindow? <div>Введен неправильный логин или пароль</div> : null;
         return(
                 <div className = "login_page">
@@ -89,6 +103,7 @@ class LoginPage extends Component  {
                         <hr/>
                     </form>
                     {regWin}
+                    {windowRegistrationMessage}
                     <button onClick = { ()=> openModalRegistration() }>Создать аккаунт</button>
                 </div>
         )
@@ -100,7 +115,10 @@ const mapStateToProps = (state) => {
     return {
         registrationWindow: state.windowRegistrationOpen,
         mainPage: state.loginMainPage,
-        loginErrorWindow: state.loginErrorWindow
+        loginErrorWindow: state.loginErrorWindow,
+        idUser: state.userId,
+        registrationOk:state.registrationSuccessful,
+        logoutStatus: state.logout
     }
 }
 
@@ -110,7 +128,9 @@ const mapDispatchToProps = {
     errorWindowLoginOpen,
     errorWindowLoginClose,
     userId,
-    userAccesses  
+    userAccesses,
+    closeWindowMessageRegistration  ,
+    userInformation
 }
 
-export default WithService()(connect(mapStateToProps, mapDispatchToProps)(LoginPage));
+export default  withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(LoginPage)));

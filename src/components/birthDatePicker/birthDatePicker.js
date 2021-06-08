@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {dataBirth} from '../../actions';
 
 const BirthDatePicker = ({dataBirth}) => {
-    const [startDate, setStartDate] = useState();
+    const [startDate, setStartDate] = useState()
 
     registerLocale("ru", ru);
     
@@ -19,15 +19,13 @@ const BirthDatePicker = ({dataBirth}) => {
                   filterDate={futureDays}
                   selected={startDate} 
                   onChange={(date) =>{
+                    console.log(date)
                   setStartDate(date);
                     if (date != null) {
                      dataBirth(new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0]);
-
-                    //  new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0]
-
                     }
                   }} 
-                  placeholderText="Укажите вашу дату рождения" 
+                  placeholderText="Укажите вашу дату рождения"
                   isClearable
                   locale={ru}
       />

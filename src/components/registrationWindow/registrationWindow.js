@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import BirthDatePicker from '../birthDatePicker/birthDatePicker';
-import {closeModalRegistration, loginMainPage} from '../../actions';
-import './registrationWindow.css';
-import MainPage from '../main_page/mainPage';
+import {closeModalRegistration, loginMainPage, registrationSuccessful} from '../../actions';
+// import './registrationWindow.css';
+// import MainPage from '../main_page/mainPage';
 import WithService from '../hoc/hoc';
 
 class RegistrationWindow extends Component{
@@ -45,11 +45,12 @@ class RegistrationWindow extends Component{
 
         this.postFormRegistration=(event)=>{
             event.preventDefault();
-            Service.registrationPage('http://localhost:8080/api/account/registration', this.state)
+            Service.registrationPage('/api/account/registration', this.state)
                 .then(res=>{
                     if(res.status===200){
-                        console.log("Переходим на основную страницу")
-                        this.props.loginMainPage()
+                        console.log(res.status)
+                        this.props.registrationSuccessful();
+                        this.props.closeModalRegistration()
                     }else{
                         console.log("Что-то пошло не так!")
                     }
@@ -68,15 +69,8 @@ class RegistrationWindow extends Component{
                     birthDate: this.props.birthDay
                 })
             }
-            
-
-            console.log(this.props.birthDay.length)
         }
         
-        if(this.props.mainPage){
-            return <MainPage/>
-        }
-
         return(
             <div className ="registrationWindow">
                 <form onSubmit={this.postFormRegistration}>
@@ -100,13 +94,14 @@ class RegistrationWindow extends Component{
 const mapStateToProps = (state) => {
     return {
         birthDay: state.birth,
-        mainPage: state.loginMainPage
+        mainPage: state.loginMainPage.mainPage
     }
 }
 
 const mapDispatchToProps = {
     closeModalRegistration,
-    loginMainPage
+    loginMainPage,
+    registrationSuccessful
 }
 
 export default WithService()(connect (mapStateToProps, mapDispatchToProps)(RegistrationWindow));

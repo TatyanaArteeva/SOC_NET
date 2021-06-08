@@ -24,9 +24,9 @@ class Service {
 
     postRegistration = async (url, data)=>{
         const res= await axios.post(url, data);
-        if(res.status !== 200){
-            new Error(`Что-то пошло не так! статус: ${res.status}`)
-        }
+        // if(res.status !== 200){
+        //     new Error(`Что-то пошло не так! статус: ${res.status}`)
+        // }
         return res
     }
 
@@ -44,6 +44,17 @@ class Service {
     getCurrentUserStatus = async (url) =>{
         const res = await this.currentUserStatus(url);
 
+        return res
+    }
+
+    exitPage= async (url) =>{
+        const res= await axios.post(url);
+
+        return res
+    }
+
+    logoutRequest= async (url) =>{
+        const res= await this.exitPage(url);
         return res
     }
     

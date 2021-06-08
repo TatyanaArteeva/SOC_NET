@@ -14,6 +14,14 @@ export const closeModalRegistration=()=>{
     return ({type: 'CLOSE_MODAL_REGISTRATION'})
 }
 
+export const registrationSuccessful=()=>{
+    return ({type: 'REGISTRATION_SUCCESSFUL'})
+}
+
+export const closeWindowMessageRegistration  =()=>{
+    return ({type: 'CLOSE_WINDOW__MESSAGE_REGISTRATION'})
+}
+
 export const dataBirth=(dataRegistration)=>{
     return({type: 'DATA_BIRDTH', data: dataRegistration})
 }
@@ -36,4 +44,12 @@ export const userId=(id)=>{
 
 export const userAccesses=(accesses)=>{
     return({type: 'USER_ACCSESSES', accesses: accesses})
+}
+
+export const logout=()=>{
+    return({type: 'LOGOUT'})
+}
+
+export const userInformation=(information)=>{
+    return({type: 'USER_INFORMATION', information: information})
 }
