@@ -3063,6 +3063,56 @@ ___CSS_LOADER_EXPORT___.push([module.i, "/* CSS variables. */\n:root {\n  --Phon
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.scss":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.scss ***!
+  \**************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".ModalWindowForMessageUser {\n  width: 200px;\n  height: 200px;\n}", "",{"version":3,"sources":["webpack://./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;AACJ","sourcesContent":[".ModalWindowForMessageUser {\r\n    width: 200px;\r\n    height: 200px;\r\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.scss":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.scss ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".ModalWindowForOptonMainPhoto {\n  position: absolute;\n  background: blueviolet;\n  width: 200px;\n  height: 200px;\n}", "",{"version":3,"sources":["webpack://./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.scss"],"names":[],"mappings":"AAAA;EACI,kBAAA;EACA,sBAAA;EACA,YAAA;EACA,aAAA;AACJ","sourcesContent":[".ModalWindowForOptonMainPhoto {\r\n    position: absolute;\r\n    background: blueviolet;\r\n    width: 200px;\r\n    height: 200px;\r\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/app/App.scss":
 /*!******************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/app/App.scss ***!
@@ -3132,6 +3182,31 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.i, ".profile {\n  width: 100%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n}\n\n.profile_photo {\n  width: 400px;\n  height: 350px;\n  background: blue;\n}\n\n.profile_name {\n  max-width: 300px;\n  min-height: 50px;\n}\n\n.profile_information {\n  width: 600px;\n  min-height: 300px;\n  margin-left: 50px;\n  background: red;\n}\n\n.profile_information_title {\n  width: 200px;\n  height: 50px;\n}\n\n.profile_information__birthday {\n  width: 100px;\n}\n\n.profile_information__city {\n  width: 100px;\n}\n\n.profile_information__familyStatus {\n  width: 100px;\n}\n\n.profile_information__education {\n  width: 100px;\n}\n\n.profile_information__personal {\n  width: 100px;\n}\n\n.profile_editing {\n  width: 100px;\n}\n\n.profile_photos {\n  width: 100%;\n  height: 300px;\n  background: green;\n}\n\n.profile_publicMessages {\n  width: 70%;\n  background: orange;\n  margin: 0 auto;\n  min-height: 200px;\n}", "",{"version":3,"sources":["webpack://./src/components/myPage/myPage.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,aAAA;EACA,mBAAA;EACA,8BAAA;EACA,eAAA;AACJ;;AAEA;EACI,YAAA;EACA,aAAA;EACA,gBAAA;AACJ;;AAEA;EACI,gBAAA;EACA,gBAAA;AACJ;;AAEA;EACI,YAAA;EACA,iBAAA;EACA,iBAAA;EACA,eAAA;AACJ;;AAEA;EACI,YAAA;EACA,YAAA;AACJ;;AAEA;EACI,YAAA;AACJ;;AAEA;EACI,YAAA;AACJ;;AAEA;EACI,YAAA;AACJ;;AAEA;EACI,YAAA;AACJ;;AAEA;EACI,YAAA;AACJ;;AAEA;EACI,YAAA;AACJ;;AAEA;EACI,WAAA;EACA,aAAA;EACA,iBAAA;AACJ;;AAEA;EACI,UAAA;EACA,kBAAA;EACA,cAAA;EACA,iBAAA;AACJ","sourcesContent":[".profile{\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    flex-wrap: wrap;\r\n}\r\n\r\n.profile_photo {\r\n    width: 400px;\r\n    height: 350px;\r\n    background: blue;\r\n}\r\n\r\n.profile_name {\r\n    max-width: 300px;\r\n    min-height: 50px;\r\n}\r\n\r\n.profile_information {\r\n    width: 600px;\r\n    min-height: 300px;\r\n    margin-left: 50px;\r\n    background: red\r\n}\r\n\r\n.profile_information_title {\r\n    width: 200px;\r\n    height: 50px;\r\n}\r\n\r\n.profile_information__birthday {\r\n    width: 100px;\r\n}\r\n\r\n.profile_information__city {\r\n    width: 100px;\r\n}\r\n\r\n.profile_information__familyStatus {\r\n    width: 100px;\r\n}\r\n\r\n.profile_information__education {\r\n    width: 100px;\r\n}\r\n\r\n.profile_information__personal {\r\n    width: 100px;\r\n}\r\n\r\n.profile_editing {\r\n    width: 100px;\r\n}\r\n\r\n.profile_photos {\r\n    width: 100%;\r\n    height: 300px;\r\n    background: green;\r\n}\r\n\r\n.profile_publicMessages{\r\n    width: 70%;\r\n    background: orange;\r\n    margin: 0 auto;\r\n    min-height: 200px;\r\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/photoUser/photoUser.scss":
+/*!******************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/photoUser/photoUser.scss ***!
+  \******************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".photo {\n  width: 300px;\n  height: 250px;\n  margin: 20px 45px;\n  border: 2px solid black;\n}\n\n.photoUser {\n  width: 100%;\n  height: 100%;\n}\n\n.add_photo {\n  display: block;\n  width: 70px;\n  height: 40px;\n  margin: 0 auto;\n}\n\n.modal {\n  position: absolute;\n  width: 300px;\n  height: 200px;\n}", "",{"version":3,"sources":["webpack://./src/components/photoUser/photoUser.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,iBAAA;EACA,uBAAA;AACJ;;AAEA;EACI,WAAA;EACA,YAAA;AACJ;;AAGA;EACI,cAAA;EACA,WAAA;EACA,YAAA;EACA,cAAA;AAAJ;;AAGA;EACI,kBAAA;EACA,YAAA;EACA,aAAA;AAAJ","sourcesContent":[".photo {\r\n    width: 300px;\r\n    height: 250px;\r\n    margin: 20px 45px;\r\n    border: 2px solid black;\r\n}\r\n\r\n.photoUser {\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n}\r\n\r\n.add_photo {\r\n    display: block;\r\n    width: 70px;\r\n    height: 40px;\r\n    margin: 0 auto;\r\n}\r\n\r\n.modal {\r\n    position: absolute;\r\n    width: 300px;\r\n    height: 200px;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -26942,6 +27017,17 @@ if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js");
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/react-beforeunload-component/dist/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-beforeunload-component/dist/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t(__webpack_require__(/*! react */ "./node_modules/react/index.js")):undefined}("undefined"!=typeof self?self:this,(function(e){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=2)}([function(e,t,n){e.exports=n(3)()},function(t,n){t.exports=e},function(e,t,n){"use strict";n.r(t);var r=n(1),o=n.n(r),a=n(0),i=n.n(a);function u(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(e)))return;var n=[],r=!0,o=!1,a=void 0;try{for(var i,u=e[Symbol.iterator]();!(r=(i=u.next()).done)&&(n.push(i.value),!t||n.length!==t);r=!0);}catch(e){o=!0,a=e}finally{try{r||null==u.return||u.return()}finally{if(o)throw a}}return n}(e,t)||function(e,t){if(!e)return;if("string"==typeof e)return c(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);"Object"===n&&e.constructor&&(n=e.constructor.name);if("Map"===n||"Set"===n)return Array.from(n);if("Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))return c(e,t)}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function c(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function f(e){return(f="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}var l=!1,s=function(e,t){var n=!1,r=""===e.target?e:e.target;if(r.attributes)for(var o=function(e,r,o){"object"===f(t)?t.findIndex((function(t){return t===r[e].nodeName}))>-1&&(n=!0):r[e].nodeName===t&&(n=!0)},a=0,i=r.attributes,u=i.length;a<u;a++)o(a,i);return n},d=function(e){var t=e.ignoreChildrenLinks,n=void 0!==t&&t,a=e.ignoreBeforeunloadDocument,i=void 0!==a&&a,c=e.blockRoute,f=void 0===c||c,d=e.children,p=e.modalComponentHandler,y=e.beforeUnload,b=e.beforeUnloadSendBeacon,m=e.alertMessage,v=void 0===m?"Are you sure you want to leave? Changes will not be saved.":m,g=Object(r.useRef)(),h=u(Object(r.useState)(!1),2),S=h[0],O=h[1],j=u(Object(r.useState)({}),2),E=j[0],w=j[1],T=function(e){e&&e.preventDefault&&e.preventDefault(),O(!1)},x=function(e){var t=E.event.target||E.event.srcElement;e&&e.preventDefault&&e.preventDefault(),O(!1);var n=function(e){e.setAttribute("ignoretemp","true"),e.click()};return console.log(y),y?y((function(){n(t)})):n(t)},_=function(e){if(O(!1),f&&!l)return e.preventDefault(),e.returnValue=v,v;l=!1},B=function(e){if(s(e,"ignoretemp"))!function(e){(e.target||e.srcElement).removeAttribute("ignoreTemp")}(e),w({});else if(f&&e.target.href!==window.location.href)return e.preventDefault(),s(e,["custom-ignore","ignore"])?(l=!0,(n=(t=e).target||t.srcElement).setAttribute("ignoretemp","true"),void n.click()):(w({event:e}),O(!0));var t,n;return!0},k=function(){return navigator.sendBeacon(b.path,b.data)},A=p||function(){var e=confirm(v);O(!1),!0===e?x():T()};return Object(r.useEffect)((function(){return function(){var e=document.getElementsByTagName("a");if(e)for(var t=0;t<e.length;t++)s(e[t],"href")&&e[t].addEventListener("click",B,!1);if(n&&g.current){var r=g.current.getElementsByTagName("a");if(r)for(var o=0;o<r.length;o++)r[o].setAttribute("ignore","true")}if(i||window.addEventListener("beforeunload",_),b){if(!navigator.sendBeacon)throw"sendBeacon not supported | remove beforeUnloadSendBeacon ";window.addEventListener("unload",k)}}(),function(){!function(){var e=document.getElementsByTagName("a");if(e)for(var t=0;t<e.length;t++)e[t].removeEventListener("click",B,!1);i||window.removeEventListener("beforeunload",_),b&&navigator.sendBeacon&&window.removeEventListener("unload",k)}()}})),o.a.createElement(o.a.Fragment,null,S?A({handleModalLeave:x,handleModalCancel:T}):null,o.a.createElement("span",{ref:g},d))};d.propTypes={ignoreChildrenLinks:i.a.bool,blockRoute:i.a.bool,ignoreBeforeunloadDocument:i.a.bool,children:i.a.any.isRequired,alertMessage:i.a.string,modalComponentHandler:i.a.any,beforeUnload:i.a.func,beforeUnloadSendBeacon:i.a.object},t.default=d},function(e,t,n){"use strict";var r=n(4);function o(){}function a(){}a.resetWarningCache=o,e.exports=function(){function e(e,t,n,o,a,i){if(i!==r){var u=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw u.name="Invariant Violation",u}}function t(){return e}e.isRequired=e;var n={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,elementType:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t,checkPropTypes:a,resetWarningCache:o};return n.PropTypes=n,n}},function(e,t,n){"use strict";e.exports="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED"}])}));
 
 /***/ }),
 
@@ -66827,7 +66913,7 @@ module.exports = g;
 /*!******************************!*\
   !*** ./src/actions/index.js ***!
   \******************************/
-/*! exports provided: displayingLoginAndRegistrationPage, displayingContentPages, openModalRegistration, closeModalRegistration, registrationSuccessful, closeWindowMessageRegistration, dataBirth, loginMainPage, errorWindowLoginOpen, errorWindowLoginClose, userId, userAccesses, logout, userInformation */
+/*! exports provided: displayingLoginAndRegistrationPage, displayingContentPages, openModalRegistration, closeModalRegistration, registrationSuccessful, closeWindowMessageRegistration, dataBirth, loginMainPage, errorWindowLoginOpen, errorWindowLoginClose, userId, userEmail, userAccesses, logout, userInformation, modalWindowForUserNotificationOpen, modalWindowForUserNotificationClose, modalWindowForMainPhotoOptionsOpen, modalWindowForMainPhotoOptionsClose, modalWindowForModificationMainPhotoOpen, modalWindowForModificationMainPhotoClose, modalWindowForQuestonRemovePhotoOpen, modalWindowForQuestonRemovePhotoClose */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66843,9 +66929,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errorWindowLoginOpen", function() { return errorWindowLoginOpen; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errorWindowLoginClose", function() { return errorWindowLoginClose; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userId", function() { return userId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userEmail", function() { return userEmail; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userAccesses", function() { return userAccesses; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userInformation", function() { return userInformation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalWindowForUserNotificationOpen", function() { return modalWindowForUserNotificationOpen; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalWindowForUserNotificationClose", function() { return modalWindowForUserNotificationClose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalWindowForMainPhotoOptionsOpen", function() { return modalWindowForMainPhotoOptionsOpen; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalWindowForMainPhotoOptionsClose", function() { return modalWindowForMainPhotoOptionsClose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalWindowForModificationMainPhotoOpen", function() { return modalWindowForModificationMainPhotoOpen; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalWindowForModificationMainPhotoClose", function() { return modalWindowForModificationMainPhotoClose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalWindowForQuestonRemovePhotoOpen", function() { return modalWindowForQuestonRemovePhotoOpen; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalWindowForQuestonRemovePhotoClose", function() { return modalWindowForQuestonRemovePhotoClose; });
 var displayingLoginAndRegistrationPage = function displayingLoginAndRegistrationPage() {
   return {
     type: 'DISPLAING_LOGIN_AND_REGISTRATION_PAGE'
@@ -66903,6 +66998,12 @@ var userId = function userId(id) {
     id: id
   };
 };
+var userEmail = function userEmail(email) {
+  return {
+    type: 'USER_EMAIL',
+    email: email
+  };
+};
 var userAccesses = function userAccesses(accesses) {
   return {
     type: 'USER_ACCSESSES',
@@ -66920,6 +67021,259 @@ var userInformation = function userInformation(information) {
     information: information
   };
 };
+var modalWindowForUserNotificationOpen = function modalWindowForUserNotificationOpen() {
+  return {
+    type: 'MODAL_WINDOW_FOR_USER_NOTIFICATION_OPEN'
+  };
+};
+var modalWindowForUserNotificationClose = function modalWindowForUserNotificationClose() {
+  return {
+    type: 'MODAL_WINDOW_FOR_USER_NOTIFICATION_CLOSE'
+  };
+};
+var modalWindowForMainPhotoOptionsOpen = function modalWindowForMainPhotoOptionsOpen() {
+  return {
+    type: 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_OPEN'
+  };
+};
+var modalWindowForMainPhotoOptionsClose = function modalWindowForMainPhotoOptionsClose() {
+  return {
+    type: 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_CLOSE'
+  };
+};
+var modalWindowForModificationMainPhotoOpen = function modalWindowForModificationMainPhotoOpen() {
+  return {
+    type: 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_OPEN'
+  };
+};
+var modalWindowForModificationMainPhotoClose = function modalWindowForModificationMainPhotoClose() {
+  return {
+    type: 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_CLOSE'
+  };
+};
+var modalWindowForQuestonRemovePhotoOpen = function modalWindowForQuestonRemovePhotoOpen() {
+  return {
+    type: 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_OPEN'
+  };
+};
+var modalWindowForQuestonRemovePhotoClose = function modalWindowForQuestonRemovePhotoClose() {
+  return {
+    type: 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_CLOSE'
+  };
+};
+
+/***/ }),
+
+/***/ "./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.js":
+/*!*******************************************************************************!*\
+  !*** ./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ModalWindowForMessageUser_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalWindowForMessageUser.scss */ "./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.scss");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions */ "./src/actions/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+
+
+var ModalWindowForMessageUser = function ModalWindowForMessageUser(_ref) {
+  var message = _ref.message,
+      modalWindowForUserNotificationClose = _ref.modalWindowForUserNotificationClose,
+      id = _ref.id;
+
+  var _useHistory = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useHistory"])(),
+      push = _useHistory.push;
+
+  var idLink = "/".concat(id);
+
+  function closeModalWindow() {
+    modalWindowForUserNotificationClose();
+    push({
+      pathname: "".concat(idLink)
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "ModalWindowForMessageUser"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: closeModalWindow
+  }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, message));
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    id: state.userId
+  };
+};
+
+var mapDispatchToProps = {
+  modalWindowForUserNotificationClose: _actions__WEBPACK_IMPORTED_MODULE_3__["modalWindowForUserNotificationClose"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(ModalWindowForMessageUser));
+
+/***/ }),
+
+/***/ "./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.scss":
+/*!*********************************************************************************!*\
+  !*** ./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.scss ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_ModalWindowForMessageUser_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./ModalWindowForMessageUser.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_ModalWindowForMessageUser_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_ModalWindowForMessageUser_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.js":
+/*!*************************************************************************************!*\
+  !*** ./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.js ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ModalWindowForOptonMainPhoto_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalWindowForOptonMainPhoto.scss */ "./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.scss");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions */ "./src/actions/index.js");
+
+
+
+
+
+var ModalWindowForOptonMainPhoto = function ModalWindowForOptonMainPhoto(_ref) {
+  var modalWindowForMainPhotoOptionsClose = _ref.modalWindowForMainPhotoOptionsClose,
+      modalWindowForModificationMainPhotoOpen = _ref.modalWindowForModificationMainPhotoOpen,
+      modalWindowForModificationMainPhotoClose = _ref.modalWindowForModificationMainPhotoClose,
+      modalWindowForMainPhotoModification = _ref.modalWindowForMainPhotoModification,
+      modalWindowQuestonRemovePhoto = _ref.modalWindowQuestonRemovePhoto,
+      modalWindowForQuestonRemovePhotoOpen = _ref.modalWindowForQuestonRemovePhotoOpen,
+      modalWindowForQuestonRemovePhotoClose = _ref.modalWindowForQuestonRemovePhotoClose;
+
+  function modalWindowModificationMainPhoto() {
+    modalWindowForModificationMainPhotoOpen();
+  }
+
+  function modalWindowForOptonsMainPhotoClose() {
+    modalWindowForMainPhotoOptionsClose();
+  }
+
+  function modalWindowForQuestonRemovePhoto() {
+    modalWindowForQuestonRemovePhotoOpen();
+  }
+
+  var modalModification = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "ModalWindowForOptonMainPhoto"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    onClick: modalWindowForModificationMainPhotoClose
+  }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0432\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0444\u043E\u0442\u043E \u0434\u043B\u044F \u0441\u0432\u043E\u0435\u0433\u043E \u043F\u0440\u043E\u0444\u0438\u043B\u044F!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    name: "mainPhoto",
+    type: "file",
+    accept: "image/jpeg,image/png"
+  })));
+  var modalQuestonRemovePhoto = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "ModalWindowForOptonMainPhoto"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u0412\u044B \u0443\u0432\u0435\u0440\u0435\u043D\u044B, \u0447\u0442\u043E \u0445\u043E\u0442\u0438\u0442\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u044C \u0444\u043E\u0442\u043E?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0444\u043E\u0442\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: modalWindowForQuestonRemovePhotoClose
+  }, "\u041E\u0442\u043C\u0435\u043D\u0430")));
+
+  if (modalWindowForMainPhotoModification) {
+    return modalModification;
+  }
+
+  if (modalWindowQuestonRemovePhoto) {
+    return modalQuestonRemovePhoto;
+  }
+
+  var removePhoto = null;
+  var a = "yes";
+
+  if (a === "yes") {
+    removePhoto = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: modalWindowForQuestonRemovePhoto
+    }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0444\u043E\u0442\u043E");
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "ModalWindowForOptonMainPhoto"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    onClick: modalWindowForOptonsMainPhotoClose
+  }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: modalWindowModificationMainPhoto
+  }, "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0444\u043E\u0442\u043E"), removePhoto));
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    modalWindowForMainPhotoModification: state.modalWindowForMainPhotoModification,
+    modalWindowQuestonRemovePhoto: state.modalWindowQuestonRemovePhoto
+  };
+};
+
+var mapDispatchToProps = {
+  modalWindowForMainPhotoOptionsClose: _actions__WEBPACK_IMPORTED_MODULE_3__["modalWindowForMainPhotoOptionsClose"],
+  modalWindowForModificationMainPhotoOpen: _actions__WEBPACK_IMPORTED_MODULE_3__["modalWindowForModificationMainPhotoOpen"],
+  modalWindowForModificationMainPhotoClose: _actions__WEBPACK_IMPORTED_MODULE_3__["modalWindowForModificationMainPhotoClose"],
+  modalWindowForQuestonRemovePhotoOpen: _actions__WEBPACK_IMPORTED_MODULE_3__["modalWindowForQuestonRemovePhotoOpen"],
+  modalWindowForQuestonRemovePhotoClose: _actions__WEBPACK_IMPORTED_MODULE_3__["modalWindowForQuestonRemovePhotoClose"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(ModalWindowForOptonMainPhoto));
+
+/***/ }),
+
+/***/ "./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.scss":
+/*!***************************************************************************************!*\
+  !*** ./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.scss ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_ModalWindowForOptonMainPhoto_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./ModalWindowForOptonMainPhoto.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_ModalWindowForOptonMainPhoto_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_ModalWindowForOptonMainPhoto_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -67188,16 +67542,14 @@ var DetailedInformationBlock = /*#__PURE__*/function (_Component) {
       phone: '',
       familyStatus: '',
       employment: '',
-      personal: ''
+      description: ''
     };
     var Service = _this.props.Service;
 
     _this.recepionInformation = function () {
-      Service.getCurrentUserStatus('/api/status').then(function (res) {
+      Service.getUserAccountId(_this.props.id).then(function (res) {
         if (res.status === 200) {
-          _this.props.userAccesses(res.data.accesses);
-
-          _this.props.userInformation(res.data.currentAccount);
+          _this.props.userInformation(res.data);
         }
       }).then(function (res) {
         _this.setState({
@@ -67206,7 +67558,7 @@ var DetailedInformationBlock = /*#__PURE__*/function (_Component) {
           phone: _this.props.information.phone,
           familyStatus: _this.props.information.familyStatus,
           employment: _this.props.information.employment,
-          personal: _this.props.information.personal
+          description: _this.props.information.description
         });
       });
     };
@@ -67234,7 +67586,7 @@ var DetailedInformationBlock = /*#__PURE__*/function (_Component) {
         className: "profile_information__education"
       }, "\u041C\u0435\u0441\u0442\u043E \u0443\u0447\u0435\u0431\u044B \u0438\u043B\u0438 \u0440\u0430\u0431\u043E\u0442\u044B: ", this.state.employment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "profile_information__personal"
-      }, "\u041E\u0431\u043E \u043C\u043D\u0435: ", this.state.personal));
+      }, "\u041E\u0431\u043E \u043C\u043D\u0435: ", this.state.description));
     }
   }]);
 
@@ -67243,7 +67595,8 @@ var DetailedInformationBlock = /*#__PURE__*/function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    information: state.userInformation
+    information: state.userInformation,
+    id: state.userId
   };
 };
 
@@ -67547,12 +67900,16 @@ var LoginPage = /*#__PURE__*/function (_Component) {
       Service.loginPage('/api/login', formData).then(function (res) {
         if (res.status === 200) {
           Service.getCurrentUserStatus('/api/status').then(function (res) {
+            console.log(res);
+
             if (res.status === 200) {
               _this.props.userId(res.data.currentAccount.id);
 
               _this.props.userAccesses(res.data.accesses);
 
               _this.props.userInformation(res.data.currentAccount);
+
+              _this.props.userEmail(res.data.currentAccount.email);
             }
           }).then(function (res) {
             _this.props.loginMainPage();
@@ -67648,7 +68005,8 @@ var mapDispatchToProps = {
   userId: _actions__WEBPACK_IMPORTED_MODULE_9__["userId"],
   userAccesses: _actions__WEBPACK_IMPORTED_MODULE_9__["userAccesses"],
   closeWindowMessageRegistration: _actions__WEBPACK_IMPORTED_MODULE_9__["closeWindowMessageRegistration"],
-  userInformation: _actions__WEBPACK_IMPORTED_MODULE_9__["userInformation"]
+  userInformation: _actions__WEBPACK_IMPORTED_MODULE_9__["userInformation"],
+  userEmail: _actions__WEBPACK_IMPORTED_MODULE_9__["userEmail"]
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_12__["withRouter"])(Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_11__["default"])()(Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(mapStateToProps, mapDispatchToProps)(LoginPage))));
 
@@ -67834,6 +68192,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
 /* harmony import */ var react_phone_number_input_style_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-phone-number-input/style.css */ "./node_modules/react-phone-number-input/style.css");
 /* harmony import */ var react_phone_number_input_input__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-phone-number-input/input */ "./node_modules/react-phone-number-input/input/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_beforeunload_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-beforeunload-component */ "./node_modules/react-beforeunload-component/dist/index.js");
+/* harmony import */ var react_beforeunload_component__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_beforeunload_component__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _ModalWindowForMessageUser_ModalWindowForMessageUser__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../ModalWindowForMessageUser/ModalWindowForMessageUser */ "./src/components/ModalWindowForMessageUser/ModalWindowForMessageUser.js");
+
+
+
 
 
 
@@ -67852,18 +68217,17 @@ __webpack_require__.r(__webpack_exports__);
 var Modification = function Modification(_ref) {
   var Service = _ref.Service,
       userInformation = _ref.userInformation,
-      id = _ref.id;
+      id = _ref.id,
+      modalWindowForUserNotificationOpen = _ref.modalWindowForUserNotificationOpen,
+      modalWindowForUserNotificationClose = _ref.modalWindowForUserNotificationClose,
+      modalWindowUserNotificationTrue = _ref.modalWindowUserNotificationTrue;
+  var idLink = "/".concat(id);
 
-  // firstName: null,
-  // lastName: null,
-  // sex: null,
-  // birthDate: null,
-  // city: null,
-  // familyStatus: null,
-  // phone: null,
-  // employment: null,
-  // personal: null,
-  // id: null
+  var _useHistory = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["useHistory"])(),
+      push = _useHistory.push;
+
+  Object(react_datepicker__WEBPACK_IMPORTED_MODULE_7__["registerLocale"])("ru", date_fns_locale_ru__WEBPACK_IMPORTED_MODULE_8__["default"]);
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_useState, 2),
       firstName = _useState2[0],
@@ -67909,6 +68273,11 @@ var Modification = function Modification(_ref) {
       birthDate = _useState18[0],
       setBirthtDate = _useState18[1];
 
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(),
+      _useState20 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_useState19, 2),
+      email = _useState20[0],
+      setEmail = _useState20[1];
+
   var newFormatDate = null;
   Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
     var information = /*#__PURE__*/function () {
@@ -67919,32 +68288,31 @@ var Modification = function Modification(_ref) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return Service.getCurrentUserStatus('/api/status');
+                return Service.getUserAccountId(id);
 
               case 2:
                 res = _context.sent;
-                setFirstName(res.data.currentAccount.firstName);
-                setLastName(res.data.currentAccount.lastName);
-                setSex(res.data.currentAccount.sex);
-                setCity(res.data.currentAccount.city);
-                setFamilyStatus(res.data.currentAccount.familyStatus);
-                setPhone(res.data.currentAccount.phone); // setPhone(res.data.currentAccount.phone)
-
-                setEmployment(res.data.currentAccount.employment);
-                setDescription(res.data.currentAccount.description);
+                setFirstName(res.data.firstName);
+                setLastName(res.data.lastName);
+                setSex(res.data.sex);
+                setCity(res.data.city);
+                setFamilyStatus(res.data.familyStatus);
+                setPhone(res.data.phone);
+                setEmployment(res.data.employment);
+                setDescription(res.data.description);
+                setEmail(res.data.email);
                 newDate = null;
 
-                if (res.data.currentAccount.birthDate !== undefined && res.data.currentAccount.birthDate !== null && res.data.currentAccount.birthDate !== "Информация отсутствует") {
-                  dateTime = new Date(res.data.currentAccount.birthDate).getTime();
-                  dateTimeZone = new Date(res.data.currentAccount.birthDate).getTimezoneOffset() * 60 * 1000;
+                if (res.data.birthDate !== undefined && res.data.birthDate !== null && res.data.birthDate !== "Информация отсутствует") {
+                  dateTime = new Date(res.data.birthDate).getTime();
+                  dateTimeZone = new Date(res.data.birthDate).getTimezoneOffset() * 60 * 1000;
                   dateNewTimeZone = new Date(dateTime + dateTimeZone).toISOString();
                   dateBirth = Object(date_fns_parseISO__WEBPACK_IMPORTED_MODULE_9__["default"])(dateNewTimeZone);
                   newDate = dateBirth;
                 }
 
-                console.log(newDate);
                 setBirthtDate(newDate);
-                userInformation(res.data.currentAccount);
+                userInformation(res.data);
 
               case 16:
               case "end":
@@ -67961,51 +68329,59 @@ var Modification = function Modification(_ref) {
 
     information();
   }, []);
-  Object(react_datepicker__WEBPACK_IMPORTED_MODULE_7__["registerLocale"])("ru", date_fns_locale_ru__WEBPACK_IMPORTED_MODULE_8__["default"]);
 
   var futureDays = function futureDays(date) {
     return date <= new Date();
   };
 
   function valueFirstName(event) {
-    setFirstName(event.target.value);
-    console.log(firstName);
+    setFirstName(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
   }
 
   function valueLastName(event) {
-    setLastName(event.target.value);
-    console.log(lastName);
+    setLastName(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
   }
 
   function valueSex(event) {
     setSex(event.target.value);
-    console.log(sex);
   }
 
   function valueCity(event) {
-    setCity(event.target.value);
-    console.log(city);
+    setCity(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
   }
 
   function valueDescription(event) {
-    setDescription(event.target.value);
-    console.log(description);
+    setDescription(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
   }
 
-  function dataCollection() {
-    valueFirstName();
-    valueLastName();
-    valueSex();
-    valueCity();
-    valueDescription();
+  function valueFamilyStatus(event) {
+    setFamilyStatus(event.target.value);
   }
 
-  function postModificationForm() {
+  function valueEmployment(event) {
+    setEmployment(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
+  }
+
+  var partner = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_3___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, "\u0417\u0434\u0435\u0441\u044C \u0431\u0443\u0434\u0443\u0442 \u043F\u0430\u0440\u0442\u043D\u0435\u0440\u044B"));
+  var selectionPartner = null;
+
+  if (familyStatus !== null && familyStatus !== "Не выбрано" && familyStatus !== undefined && familyStatus.length > 0) {
+    selectionPartner = partner;
+  } else {
+    selectionPartner = null;
+  }
+
+  function postModificationForm(event) {
+    if (birthDate !== null && birthDate !== undefined) {
+      newFormatDate = new Date(birthDate.getTime() - birthDate.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
+    }
+
+    event.preventDefault();
     var modificationAccount = {
-      birthDate: birthDate,
+      birthDate: newFormatDate,
       city: city,
       description: description,
-      email: '',
+      email: email,
       employment: employment,
       familyStatus: familyStatus,
       firstName: firstName,
@@ -68014,9 +68390,32 @@ var Modification = function Modification(_ref) {
       phone: phone,
       sex: sex
     };
+
+    function closeModalWindowAndTransitionMyPage() {
+      modalWindowForUserNotificationClose();
+      push({
+        pathname: "".concat(idLink)
+      });
+    }
+
+    Service.postModificationUser('api/account', modificationAccount).then(function (res) {
+      if (res.status === 200) {
+        modalWindowForUserNotificationOpen(); // push({
+        //     pathname: `${idLink}`
+        // });
+      }
+    }).then(function (res) {
+      setTimeout(closeModalWindowAndTransitionMyPage, 3000);
+    });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("form", {
+  var modalWindowUserNotification = modalWindowUserNotificationTrue ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_ModalWindowForMessageUser_ModalWindowForMessageUser__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    message: "Изменения успешно сохранены!"
+  }) : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_beforeunload_component__WEBPACK_IMPORTED_MODULE_14___default.a, {
+    blockRoute: true,
+    alertMessage: "Вы уверены, что хотите уйти со страницы? Изменения не будут сохранены!"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("form", {
     onSubmit: postModificationForm
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, "\u041C\u043E\u0451 \u0438\u043C\u044F:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("input", {
     onChange: valueFirstName,
@@ -68032,15 +68431,15 @@ var Modification = function Modification(_ref) {
     placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0441\u0432\u043E\u044E \u0444\u0430\u043C\u0438\u043B\u0438\u044E",
     value: lastName
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, "\u041C\u043E\u0439 \u043F\u043E\u043B:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, " \u0416\u0435\u043D\u0441\u043A\u0438\u0439", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("input", {
-    value: "\u0416\u0435\u043D\u0441\u043A\u0438\u0439",
+    value: "FEMALE",
     onClick: valueSex,
-    checked: sex === "Женский" ? true : false,
+    checked: sex === "FEMALE" ? true : false,
     type: "radio",
     name: "sex"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, " \u041C\u0443\u0436\u0441\u043A\u043E\u0439", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("input", {
-    value: "\u041C\u0443\u0436\u0441\u043A\u043E\u0439",
+    value: "MALE",
     onClick: valueSex,
-    checked: sex === "Мужской" ? true : false,
+    checked: sex === "MALE" ? true : false,
     type: "radio",
     name: "sex"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, "\u041C\u043E\u0439 \u0434\u0435\u043D\u044C \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_7___default.a, {
@@ -68048,10 +68447,6 @@ var Modification = function Modification(_ref) {
     filterDate: futureDays,
     selected: birthDate,
     onChange: function onChange(date) {
-      if (date !== null && date !== undefined) {
-        newFormatDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
-      }
-
       setBirthtDate(date);
     },
     placeholderText: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0432\u0430\u0448\u0443 \u0434\u0430\u0442\u0443 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F",
@@ -68064,36 +68459,38 @@ var Modification = function Modification(_ref) {
     placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0441\u0432\u043E\u0439 \u0433\u043E\u0440\u043E\u0434 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F",
     value: city
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, "\u041C\u043E\u0451 \u0441\u0435\u043C\u0435\u0439\u043D\u043E\u0435 \u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("select", {
-    // onChange={this.valueFamilyStatus} 
+    onChange: valueFamilyStatus,
+    value: familyStatus,
     name: "familyStatus"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u041D\u0435 \u0437\u0430\u043C\u0443\u0436\u0435\u043C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412\u0441\u0442\u0440\u0435\u0447\u0430\u044E\u0441\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0417\u0430\u043C\u0443\u0436\u0435\u043C/\u0416\u0435\u043D\u0430\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412 \u0433\u0440\u0430\u0436\u0434\u0430\u043D\u0441\u043A\u043E\u043C \u0431\u0440\u0430\u043A\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412\u043B\u044E\u0431\u043B\u0435\u043D\u0430(\u0430)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412\u0441\u0451 \u0441\u043B\u043E\u0436\u043D\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u043C \u043F\u043E\u0438\u0441\u043A\u0435"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, " \u041C\u043E\u0439 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_phone_number_input_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u041D\u0435 \u0437\u0430\u043C\u0443\u0436\u0435\u043C/ \u041D\u0435 \u0436\u0435\u043D\u0430\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412\u0441\u0442\u0440\u0435\u0447\u0430\u044E\u0441\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0417\u0430\u043C\u0443\u0436\u0435\u043C/\u0416\u0435\u043D\u0430\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412 \u0433\u0440\u0430\u0436\u0434\u0430\u043D\u0441\u043A\u043E\u043C \u0431\u0440\u0430\u043A\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412\u043B\u044E\u0431\u043B\u0435\u043D\u0430(\u0430)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412\u0441\u0451 \u0441\u043B\u043E\u0436\u043D\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", null, "\u0412 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u043C \u043F\u043E\u0438\u0441\u043A\u0435"))), selectionPartner, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, " \u041C\u043E\u0439 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_phone_number_input_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
     placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0441\u0432\u043E\u0439 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430",
     value: phone,
     onChange: setPhone
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, "\u041C\u043E\u0451 \u043C\u0435\u0441\u0442\u043E \u0440\u0430\u0431\u043E\u0442\u044B \u0438\u043B\u0438 \u0443\u0447\u0451\u0431\u044B:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("input", {
-    // onChange={valueEmployment} 
+    onChange: valueEmployment,
     type: "text",
     name: "employment",
-    placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435, \u0447\u0435\u043C \u0432\u044B \u0441\u0435\u0439\u0447\u0430\u0441 \u0437\u0430\u043D\u0438\u043C\u0430\u0435\u0442\u0435\u0441\u044C" // value={employment} 
-
+    placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435, \u0432\u0430\u0448\u0435 \u043C\u0435\u0441\u0442\u043E \u0440\u0430\u0431\u043E\u0442\u044B \u0438\u043B\u0438 \u0443\u0447\u0451\u0431\u044B",
+    value: employment
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("label", null, "\u041E\u0431\u043E \u043C\u043D\u0435:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("textarea", {
     onChange: valueDescription,
     name: "description",
     placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435, \u0447\u0435\u043C \u0432\u044B \u0443\u0432\u043B\u0435\u043A\u0430\u0435\u0442\u0435\u0441\u044C \u0432 \u0441\u0432\u043E\u0431\u043E\u0434\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F",
     value: description
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
-    onClick: dataCollection
-  }, "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", null, "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"))), modalWindowUserNotification);
 };
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    id: state.userId
+    id: state.userId,
+    modalWindowUserNotificationTrue: state.modalWindowForUserNotification
   };
 };
 
 var mapDispatchToProps = {
-  userInformation: _actions__WEBPACK_IMPORTED_MODULE_6__["userInformation"]
+  userInformation: _actions__WEBPACK_IMPORTED_MODULE_6__["userInformation"],
+  modalWindowForUserNotificationOpen: _actions__WEBPACK_IMPORTED_MODULE_6__["modalWindowForUserNotificationOpen"],
+  modalWindowForUserNotificationClose: _actions__WEBPACK_IMPORTED_MODULE_6__["modalWindowForUserNotificationClose"]
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_5__["default"])()(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(Modification)));
 
@@ -68126,6 +68523,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _detailedInformationBlock_detailedInformationBlock__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../detailedInformationBlock/detailedInformationBlock */ "./src/components/detailedInformationBlock/detailedInformationBlock.js");
 /* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../actions */ "./src/actions/index.js");
+/* harmony import */ var _photoUser_photoUser__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../photoUser/photoUser */ "./src/components/photoUser/photoUser.js");
 
 
 
@@ -68135,6 +68533,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -68175,9 +68574,7 @@ var MyPage = /*#__PURE__*/function (_Component) {
     _this.recepionInformation = function () {
       Service.getUserAccountId(_this.props.id).then(function (res) {
         if (res.status === 200) {
-          _this.props.userAccesses(res.data.accesses);
-
-          _this.props.userInformation(res.data.currentAccount);
+          _this.props.userInformation(res.data);
         }
       }).then(function (res) {
         _this.setState({
@@ -68198,14 +68595,12 @@ var MyPage = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(MyPage, [{
     key: "render",
     value: function render() {
-      console.log(this.props.information); // const {firstName, lastName, birthDate} =this.props.userInformation
-
       var blockDetailedInformation = this.state.btnDetailedInformation ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_detailedInformationBlock_detailedInformationBlock__WEBPACK_IMPORTED_MODULE_9__["default"], null) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "profile_photo"
-      }, "\u0417\u0434\u0435\u0441\u044C \u0431\u0443\u0434\u0435\u0442 \u0444\u043E\u0442\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_photoUser_photoUser__WEBPACK_IMPORTED_MODULE_12__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "profile_information"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Link"], {
         to: "/modification"
@@ -68238,7 +68633,6 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = {
-  userAccesses: _actions__WEBPACK_IMPORTED_MODULE_11__["userAccesses"],
   userInformation: _actions__WEBPACK_IMPORTED_MODULE_11__["userInformation"]
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_10__["default"])()(Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(mapStateToProps, mapDispatchToProps)(MyPage)));
@@ -68270,6 +68664,94 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_myPage_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./src/components/photoUser/photoUser.js":
+/*!***********************************************!*\
+  !*** ./src/components/photoUser/photoUser.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _photoUser_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./photoUser.scss */ "./src/components/photoUser/photoUser.scss");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions */ "./src/actions/index.js");
+/* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
+/* harmony import */ var _ModalWindowForOptonMainPhoto_ModalWindowForOptonMainPhoto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto */ "./src/components/ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto.js");
+
+
+
+
+
+
+
+var PhotoUser = function PhotoUser(_ref) {
+  var Service = _ref.Service,
+      id = _ref.id,
+      modalWindowForMainPhotoOptionsOpen = _ref.modalWindowForMainPhotoOptionsOpen,
+      modalWindowForMainPhotoOptions = _ref.modalWindowForMainPhotoOptions;
+
+  function changePhoto() {
+    modalWindowForMainPhotoOptionsOpen();
+  }
+
+  var modalWindoeForMainPhotoModification = modalWindowForMainPhotoOptions ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ModalWindowForOptonMainPhoto_ModalWindowForOptonMainPhoto__WEBPACK_IMPORTED_MODULE_5__["default"], null) : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "photo"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "photoUser",
+    src: "/api/account/".concat(id, "/photo"),
+    alt: "photoUser"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: changePhoto,
+    className: "add_photo"
+  }, "\u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0444\u043E\u0442\u043E"), modalWindoeForMainPhotoModification);
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    id: state.userId,
+    modalWindowForMainPhotoOptions: state.modalWindowForMainPhotoOptions
+  };
+};
+
+var mapDispatchToProps = {
+  modalWindowForMainPhotoOptionsOpen: _actions__WEBPACK_IMPORTED_MODULE_3__["modalWindowForMainPhotoOptionsOpen"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_4__["default"])()(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(PhotoUser)));
+
+/***/ }),
+
+/***/ "./src/components/photoUser/photoUser.scss":
+/*!*************************************************!*\
+  !*** ./src/components/photoUser/photoUser.scss ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_photoUser_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./photoUser.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/photoUser/photoUser.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_photoUser_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_photoUser_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -68338,13 +68820,13 @@ var RegistrationWindow = /*#__PURE__*/function (_Component) {
 
     _this.valueFirstName = function (event) {
       _this.setState({
-        firstName: event.target.value
+        firstName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
       });
     };
 
     _this.valueLastName = function (event) {
       _this.setState({
-        lastName: event.target.value
+        lastName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
       });
     };
 
@@ -68595,6 +69077,7 @@ var initialState = {
   loginAndRegistrationPage: true,
   contentPages: false,
   userId: '',
+  userEmail: '',
   userAccesses: [],
   logout: false,
   userInformation: {
@@ -68608,7 +69091,11 @@ var initialState = {
     employment: '',
     description: '',
     id: ''
-  }
+  },
+  modalWindowForUserNotification: false,
+  modalWindowForMainPhoto: false,
+  modalWindowForMainPhotoModification: false,
+  modalWindowQuestonRemovePhoto: false
 };
 
 var reducer = function reducer() {
@@ -68676,6 +69163,11 @@ var reducer = function reducer() {
         userId: action.id
       });
 
+    case 'USER_EMAIL':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        userEmail: action.email
+      });
+
     case 'USER_ACCSESSES':
       return _objectSpread(_objectSpread({}, state), {}, {
         userAccesses: action.accesses
@@ -68698,19 +69190,90 @@ var reducer = function reducer() {
         }
       }
 
+      if (information.sex === "MALE") {
+        information.sex = "мужской";
+      }
+
+      if (information.sex === "FEMALE") {
+        information.sex = "женский";
+      }
+
+      var months = {
+        "01": "января",
+        "02": "февраля",
+        "03": "марта",
+        "04": "апреля",
+        "05": "мая",
+        "06": "июня",
+        "07": "июля",
+        "08": "августа",
+        "09": "сентября",
+        "10": "октября",
+        "11": "ноября",
+        "12": "декабря"
+      };
+      var newData = "Информация отсутствует";
+      var date = information.birthDate;
+      var dateArr = date.split("-");
+      var month = months[dateArr[1]];
+
+      if (date !== null && date !== undefined && date !== "Информация отсутствует") {
+        newData = "".concat(dateArr[2], " ").concat(month, " ").concat(dateArr[0], " \u0433.");
+      }
+
       return _objectSpread(_objectSpread({}, state), {}, {
         userInformation: {
           firstName: information.firstName,
           lastName: information.lastName,
           sex: information.sex,
-          birthDate: information.birthDate,
+          birthDate: newData,
           city: information.city,
           familyStatus: information.familyStatus,
           phone: information.phone,
           employment: information.employment,
-          personal: information.personal,
+          description: information.description,
           id: information.id
         }
+      });
+
+    case 'MODAL_WINDOW_FOR_USER_NOTIFICATION_OPEN':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        modalWindowForUserNotification: true
+      });
+
+    case 'MODAL_WINDOW_FOR_USER_NOTIFICATION_CLOSE':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        modalWindowForUserNotification: false
+      });
+
+    case 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_OPEN':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        modalWindowForMainPhotoOptions: true
+      });
+
+    case 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_CLOSE':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        modalWindowForMainPhotoOptions: false
+      });
+
+    case 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_OPEN':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        modalWindowForMainPhotoModification: true
+      });
+
+    case 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_CLOSE':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        modalWindowForMainPhotoModification: false
+      });
+
+    case 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_OPEN':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        modalWindowQuestonRemovePhoto: true
+      });
+
+    case 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_CLOSE':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        modalWindowQuestonRemovePhoto: false
       });
 
     default:
@@ -68988,7 +69551,7 @@ var Service = function Service() {
           switch (_context9.prev = _context9.next) {
             case 0:
               _context9.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("/api/account/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get(id);
 
             case 2:
               res = _context9.sent;
@@ -69015,7 +69578,7 @@ var Service = function Service() {
           switch (_context10.prev = _context10.next) {
             case 0:
               _context10.next = 2;
-              return _this.userAccount("/api/account/".concat(id));
+              return _this.userAccountId("/api/account/".concat(id));
 
             case 2:
               res = _context10.sent;
@@ -69061,15 +69624,15 @@ var Service = function Service() {
     };
   }());
 
-  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, "logoutRequest", /*#__PURE__*/function () {
-    var _ref12 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(url) {
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, "modificationUser", /*#__PURE__*/function () {
+    var _ref12 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(url, data) {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
         while (1) {
           switch (_context12.prev = _context12.next) {
             case 0:
               _context12.next = 2;
-              return _this.exitPage(url);
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(url, data);
 
             case 2:
               res = _context12.sent;
@@ -69083,8 +69646,62 @@ var Service = function Service() {
       }, _callee12);
     }));
 
-    return function (_x18) {
+    return function (_x18, _x19) {
       return _ref12.apply(this, arguments);
+    };
+  }());
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, "postModificationUser", /*#__PURE__*/function () {
+    var _ref13 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(url, data) {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+        while (1) {
+          switch (_context13.prev = _context13.next) {
+            case 0:
+              _context13.next = 2;
+              return _this.modificationUser(url, data);
+
+            case 2:
+              res = _context13.sent;
+              return _context13.abrupt("return", res);
+
+            case 4:
+            case "end":
+              return _context13.stop();
+          }
+        }
+      }, _callee13);
+    }));
+
+    return function (_x20, _x21) {
+      return _ref13.apply(this, arguments);
+    };
+  }());
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, "logoutRequest", /*#__PURE__*/function () {
+    var _ref14 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(url) {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+        while (1) {
+          switch (_context14.prev = _context14.next) {
+            case 0:
+              _context14.next = 2;
+              return _this.exitPage(url);
+
+            case 2:
+              res = _context14.sent;
+              return _context14.abrupt("return", res);
+
+            case 4:
+            case "end":
+              return _context14.stop();
+          }
+        }
+      }, _callee14);
+    }));
+
+    return function (_x22) {
+      return _ref14.apply(this, arguments);
     };
   }());
 };

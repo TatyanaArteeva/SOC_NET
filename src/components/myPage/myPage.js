@@ -4,7 +4,7 @@ import {Link, HashRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import DetailedInformationBlock from '../detailedInformationBlock/detailedInformationBlock';
 import WithService from '../hoc/hoc';
-import { userInformation} from '../../actions';
+import { userInformation, photoRights} from '../../actions';
 import PhotoUser from '../photoUser/photoUser';
 
 class MyPage extends Component{
@@ -37,9 +37,9 @@ class MyPage extends Component{
                     lastName: this.props.information.lastName,
                     birthDate: this.props.information.birthDate
                     })
-                })
-                    
-                    
+                });
+            Service.getAccountInfo(`/api/account/${this.props.id}/page-info`)
+                .then(res=>this.props.photoRights(res.data.accesses))
         }
 
         this.componentDidMount=()=>{
@@ -79,12 +79,14 @@ class MyPage extends Component{
 const mapStateToProps=(state)=>{
     return{
         information: state.userInformation,
-        id: state.userId
+        id: state.userId,
+        
     }
 }
 
 const mapDispatchToProps = {
-    userInformation
+    userInformation,
+    photoRights
 }
 
 export default WithService()(connect(mapStateToProps, mapDispatchToProps)(MyPage));

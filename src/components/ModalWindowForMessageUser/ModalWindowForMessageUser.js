@@ -1,5 +1,5 @@
 import React from 'react';
-import './modalWindow.scss';
+import './ModalWindowForMessageUser.scss';
 import {connect} from 'react-redux';
 import { modalWindowForUserNotificationClose } from '../../actions';
 import { useHistory } from "react-router-dom";

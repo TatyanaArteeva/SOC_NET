@@ -22,7 +22,12 @@ const initialState={
         description: '',
         id: ''
     },
-    modalWindowForUserNotification: false
+    modalWindowForUserNotification: false,
+    modalWindowForMainPhoto: false,
+    modalWindowForMainPhotoModification: false,
+    modalWindowQuestonRemovePhoto: false,
+    listPhotoRights:{},
+    photoUser:''
 }
 
 
@@ -134,11 +139,13 @@ const reducer=(state=initialState, action)=>{
                 "11": "ноября",
                 "12": "декабря",
             }
-
+            let newData= "Информация отсутствует";
             const date=information.birthDate;
             const dateArr=date.split("-");
             const month=months[dateArr[1]];
-            const newData=`${dateArr[2]} ${month} ${dateArr[0]} г.`;
+            if(date!==null && date!==undefined  && date!== "Информация отсутствует"){
+                newData=`${dateArr[2]} ${month} ${dateArr[0]} г.`;
+            }
             return {
                 ...state,
                 userInformation: {
@@ -163,6 +170,46 @@ const reducer=(state=initialState, action)=>{
             return {
                 ...state,
                 modalWindowForUserNotification: false,
+        }
+        case 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_OPEN': 
+            return {
+                ...state,
+                modalWindowForMainPhotoOptions: true
+        }
+        case 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_CLOSE': 
+            return {
+                ...state,
+                modalWindowForMainPhotoOptions: false
+        }
+        case 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_OPEN': 
+            return {
+                ...state,
+                modalWindowForMainPhotoModification: true
+        }
+        case 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_CLOSE': 
+            return {
+                ...state,
+                modalWindowForMainPhotoModification: false
+        }
+        case 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_OPEN': 
+            return {
+                ...state,
+                modalWindowQuestonRemovePhoto: true
+        }
+        case 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_CLOSE': 
+            return {
+                ...state,
+                modalWindowQuestonRemovePhoto: false
+        }
+        case 'PHOTO_RIGHTS': 
+            return {
+                ...state,
+                listPhotoRights: action.rights
+        }
+        case 'PHOTO_USER': 
+            return {
+                ...state,
+                photoUser: action.photo
         }
         default:
             return state;

@@ -47,7 +47,6 @@ class LoginPage extends Component  {
             for(let key in this.state){
                 formData.append(key, this.state[key])
             }
-
             Service.loginPage('/api/login', formData)
             .then(res=>{
                 if(res.status===200){

@@ -11,7 +11,7 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input/input';
 import { useHistory } from "react-router-dom";
 import BeforeUnloadComponent from 'react-beforeunload-component';
-import ModalWindow from '../modalWindow/modalWindow';
+import ModalWindow from '../ModalWindowForMessageUser/ModalWindowForMessageUser';
 
 const Modification=({Service, userInformation, id, modalWindowForUserNotificationOpen, modalWindowForUserNotificationClose, modalWindowUserNotificationTrue})=>{
 

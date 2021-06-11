@@ -24,9 +24,7 @@ class Service {
 
     postRegistration = async (url, data)=>{
         const res= await axios.post(url, data);
-        // if(res.status !== 200){
-        //     new Error(`Что-то пошло не так! статус: ${res.status}`)
-        // }
+
         return res
     }
 
@@ -78,6 +76,11 @@ class Service {
         return res
     }
 
+    logoutRequest= async (url) => {
+        const res= await this.exitPage(url);
+        return res
+    }
+
     modificationUser= async (url, data)=>{
         const res= await axios.post(url, data);
 
@@ -90,11 +93,49 @@ class Service {
         return res
     }
 
-    logoutRequest= async (url) => {
-        const res= await this.exitPage(url);
+    accountInfo= async (url) => {
+        const res= await axios.get(url);
+
         return res
     }
-    
+
+    getAccountInfo=async (url) =>{
+        const res=await this.accountInfo(url);
+
+        return res
+    }
+
+    newPhotoProfile=async (url, data)=>{
+        const res = await axios.request({
+            url: url,
+            method: 'post',
+            data: data,
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        return res
+    }
+
+    postNewPhotoProfile= async (url, data)=>{
+        const res= await this.newPhotoProfile(url, data);
+
+        return res
+    }
+
+    accountPhoto= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getAccountPhoto=async (url, options) =>{
+        const res=await this.accountPhoto(url, options);
+
+        return res
+    }
+
 }
 
 export default Service;

@@ -65,3 +65,35 @@ export const modalWindowForUserNotificationOpen=()=>{
 export const modalWindowForUserNotificationClose=()=>{
     return({type: 'MODAL_WINDOW_FOR_USER_NOTIFICATION_CLOSE'})
 }
+
+export const modalWindowForMainPhotoOptionsOpen=()=>{
+    return({type: 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_OPEN'})
+}
+
+export const modalWindowForMainPhotoOptionsClose=()=>{
+    return({type: 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_CLOSE'})
+}
+
+export const modalWindowForModificationMainPhotoOpen=()=>{
+    return({type: 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_OPEN'})
+}
+
+export const modalWindowForModificationMainPhotoClose=()=>{
+    return({type: 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_CLOSE'})
+}
+
+export const modalWindowForQuestonRemovePhotoOpen=()=>{
+    return({type: 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_OPEN'})
+}
+
+export const modalWindowForQuestonRemovePhotoClose=()=>{
+    return({type: 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_CLOSE'})
+}
+
+export const photoRights=(rights)=>{
+    return({type: 'PHOTO_RIGHTS', rights: rights})
+}
+
+export const photoUser=(photo)=>{
+    return({type: 'PHOTO_USER', photo: photo})
+}
