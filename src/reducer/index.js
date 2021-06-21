@@ -22,12 +22,11 @@ const initialState={
         description: '',
         id: ''
     },
+    modalWindowForMainPhotoOptions: false,
     modalWindowForUserNotification: false,
-    modalWindowForMainPhoto: false,
-    modalWindowForMainPhotoModification: false,
-    modalWindowQuestonRemovePhoto: false,
     listPhotoRights:{},
-    photoUser:''
+    photoUser:'',
+    
 }
 
 
@@ -181,26 +180,7 @@ const reducer=(state=initialState, action)=>{
                 ...state,
                 modalWindowForMainPhotoOptions: false
         }
-        case 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_OPEN': 
-            return {
-                ...state,
-                modalWindowForMainPhotoModification: true
-        }
-        case 'MODAL_WINDOW_FOR_MODIFICATION_MAIN_PHOTO_CLOSE': 
-            return {
-                ...state,
-                modalWindowForMainPhotoModification: false
-        }
-        case 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_OPEN': 
-            return {
-                ...state,
-                modalWindowQuestonRemovePhoto: true
-        }
-        case 'MODAL_WINDOW_FOR_QUESTON_REMOVE_MAIN_PHOTO_CLOSE': 
-            return {
-                ...state,
-                modalWindowQuestonRemovePhoto: false
-        }
+      
         case 'PHOTO_RIGHTS': 
             return {
                 ...state,

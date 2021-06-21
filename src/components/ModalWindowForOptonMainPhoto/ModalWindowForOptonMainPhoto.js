@@ -1,123 +1,246 @@
-import React, {useState} from 'react';
+// import React, {useState} from 'react';
+import React, {Component} from 'react';
 import './ModalWindowForOptonMainPhoto.scss';
 import {connect} from 'react-redux';
-import { modalWindowForMainPhotoOptionsClose, modalWindowForModificationMainPhotoOpen, modalWindowForModificationMainPhotoClose, modalWindowForQuestonRemovePhotoOpen, modalWindowForQuestonRemovePhotoClose, photoUser } from '../../actions';
+import { modalWindowForMainPhotoOptionsClose, photoUser, photoRights } from '../../actions';
 import WithService from '../hoc/hoc';
 
-const ModalWindowForOptonMainPhoto=({Service ,modalWindowForMainPhotoOptionsClose, modalWindowForModificationMainPhotoOpen, modalWindowForModificationMainPhotoClose, modalWindowForMainPhotoModification, modalWindowQuestonRemovePhoto, modalWindowForQuestonRemovePhotoOpen, modalWindowForQuestonRemovePhotoClose, listPhotoRights, id, photoUser})=>{
+class ModalWindowForOptonMainPhoto extends Component{
+    
+    constructor(props){
+        super(props);
+        this.state={
+            valueNewPhoto: "",
+            nameNewPhoto: "",
+            modalWindowForMainPhotoModification: false,
+            modalWindowQuestonRemovePhoto: false,
+            userNotificationForModificationPhoto: false,
+            modalWindowForMainPhotoRemove: false
+        }
 
-    const [valueNewPhoto, setValueNewPhoto]=useState();
-    const [nameNewPhoto, setNameNewPhoto]=useState()
-   
-    function modalWindowModificationMainPhoto(){
-        modalWindowForModificationMainPhotoOpen()
-    }
+        const {Service} = this.props;
 
-    function modalWindowForOptonsMainPhotoClose(){
-        modalWindowForMainPhotoOptionsClose();
-    }
+       
+        this.modalWindowForOptonsMainPhotoClose=()=>{
+            this.props.modalWindowForMainPhotoOptionsClose()
+        }
 
-    function modalWindowForQuestonRemovePhoto(){
-        modalWindowForQuestonRemovePhotoOpen()
-    }
-
-    function postNewPhotoProfile(event){
-        event.preventDefault();
-        const formData=new FormData();
-        formData.append("photo", valueNewPhoto)
-
-        Service.postNewPhotoProfile(`/api/account/${id}/change-photo`, formData)
-            .then(res=>{
-                if(res.status===200){
-                    const inf=async ()=>{
-                        const res=await Service.getAccountPhoto(`/api/account/${id}/photo`, {
-                            responseType: 'arraybuffer'
-                            })
-                            .then(response => Buffer.from(response.data, 'binary').toString('base64'));
-                            const newFormatPhoto="data:image/jpg;base64," + res;
-                            photoUser(newFormatPhoto)
-                            }
-                    inf()
-                }
+        this.modalWindowModificationMainPhoto=()=>{
+            this.setState({
+                modalWindowForMainPhotoModification: true
             })
+        }
 
-    }
+        this.modalWindowForModificationMainPhotoClose=()=>{
+            this.setState({
+                modalWindowForMainPhotoModification: false
+            })
+        }
 
-    const blockSaveNewPhoto=<div className="ModalWindowForOptonMainPhoto">
-                                Вы выбрали новое фото профиля: {nameNewPhoto}
-                                <div>
-                                    <button onClick={postNewPhotoProfile}>Сохранить</button>
-                                </div>
-                            </div>
+        this.valueNameAndContentPhoto=(event)=>{
+            this.setState({
+                valueNewPhoto: event.target.files[0],
+                nameNewPhoto: event.target.value
+            })
+        }
 
-    if(nameNewPhoto!==undefined && nameNewPhoto!==null && nameNewPhoto.length>0){
-        return blockSaveNewPhoto
+        this.modalWindowForQuestonRemovePhotoClose=()=>{
+            this.setState({
+                modalWindowQuestonRemovePhoto: false
+            })
+        }
+
+        this.modalWindowForQuestonRemovePhotoOpen=()=>{
+            this.setState({
+                modalWindowQuestonRemovePhoto: true
+            })
+        }
+
+        this.userNotificationForPhotoOpen=()=>{
+            this.setState({
+                userNotificationForModificationPhoto: true
+            })
+        }
+
+        this.userNotificationForPhotoClose=()=>{
+            this.setState({
+                userNotificationForModificationPhoto: false
+            })
+        }
+
+        this.userNotificationForPhotoRemoveOpen=()=>{
+            this.setState({
+                modalWindowForMainPhotoRemove: true
+            })
+        }
+
+        this.userNotificationForPhotoRemoveClose=()=>{
+            this.setState({
+                modalWindowForMainPhotoRemove: false
+            })
+        }
+
+        this.cancelChoiceNewPhoto=()=>{
+            this.setState({
+                nameNewPhoto: "",
+                valueNewPhoto: null
+            })
+        }
+
+        
+            
+        this.modalWindowForModificationPhotoClose=()=>{
+            this.userNotificationForPhotoClose();
+            this.modalWindowForModificationMainPhotoClose();
+            this.cancelChoiceNewPhoto()
+            this.userNotificationForPhotoRemoveClose();
+            this.modalWindowForOptonsMainPhotoClose();
+        }
+
+        
+        this.postNewPhotoProfile=(event)=>{
+            event.preventDefault();
+            const formData=new FormData();
+            formData.append("photo", this.state.valueNewPhoto)
+    
+            Service.postNewPhotoProfile(`/api/account/${this.props.id}/change-photo`, formData)
+                .then(res=>{
+                    if(res.status===200){
+                        this.props.photoRights(res.data.accesses)
+                        const information=async ()=>{
+                            const res=await Service.getAccountPhoto(`/api/account/${this.props.id}/photo`, {
+                                responseType: 'arraybuffer'
+                                })
+                                .then(response => Buffer.from(response.data, 'binary').toString('base64'));
+                                const newFormatPhoto="data:image/jpg;base64," + res;
+                                this.props.photoUser(newFormatPhoto);
+                                this.userNotificationForPhotoOpen();
+                                if(this.state.userNotificationForModificationPhoto){
+                                    setTimeout(this.modalWindowForModificationPhotoClose, 1000);
+                                }
+                                
+                        }
+                        information()
+                    }
+                })
+    
+        }
+
+        this.confirmationRemovePhoto=(event)=>{
+            event.preventDefault();
+            Service.postRemovePhotoProfile(`/api/account/${this.props.id}/change-photo`, null)
+                .then(res=>{
+                    if(res.status===200){
+                        this.props.photoRights(res.data.accesses);
+                        const information=async ()=>{
+                            const res=await Service.getAccountPhoto(`/api/account/${this.props.id}/photo`, {
+                                responseType: 'arraybuffer'
+                                })
+                                .then(response => Buffer.from(response.data, 'binary').toString('base64'));
+                                const newFormatPhoto="data:image/jpg;base64," + res;
+                                this.props.photoUser(newFormatPhoto);
+                                this.userNotificationForPhotoRemoveOpen();
+                                setTimeout(this.modalWindowForModificationPhotoClose, 1000)
+                                }
+                        information()
+                    }
+                })
+        }
     }
     
-    const modalModification=<div className="ModalWindowForOptonMainPhoto">
-                                <span onClick={modalWindowForModificationMainPhotoClose}>Закрыть</span>
-                                <div>Пожалуйста, выберите фото для своего профиля!</div>
-                                <div>
-                                    <input  name="photo" 
-                                            type="file" 
-                                            accept="image/jpeg,image/png" 
-                                            onChange={(event)=>{
-                                                        setValueNewPhoto(event.target.files[0]);
-                                                        setNameNewPhoto(event.target.value)
-                                                        }
-                                            }
-                                    />
-                                </div>
-                            </div>
+    render(){
+        
+        const modalWindowNotificationForRemovePhoto=<div className="ModalWindowForOptonMainPhoto">
+                                                        <button onClick={()=>this.modalWindowForModificationPhotoClose}>Закрыть</button>
+                                                        <div>Фото успешно удалено!</div>
+                                                    </div>
 
-    const modalQuestonRemovePhoto=<div className="ModalWindowForOptonMainPhoto">
-                                    <div>Вы уверены, что хотите удалить фото?</div>
+        if(this.state.modalWindowForMainPhotoRemove){
+            return modalWindowNotificationForRemovePhoto
+        }
+
+
+
+        const modalWindowNotificationForModificationPhoto=<div className="ModalWindowForOptonMainPhoto">
+                                                                <button onClick={()=>this.modalWindowForModificationPhotoClose}>Закрыть</button>
+                                                                <div>Фото успешно изменено!</div>
+                                                            </div>
+
+        if(this.state.userNotificationForModificationPhoto){
+            return modalWindowNotificationForModificationPhoto
+        }
+
+        const blockSaveNewPhoto=<div className="ModalWindowForOptonMainPhoto">
+                                    Вы выбрали новое фото профиля: {this.state.nameNewPhoto}
                                     <div>
-                                        <button>Удалить фото</button>
-                                        <button onClick={modalWindowForQuestonRemovePhotoClose}>Отмена</button>
+                                        <button onClick={this.postNewPhotoProfile}>Сохранить</button>
+                                        <button onClick={this.cancelChoiceNewPhoto}>Отменить</button>
                                     </div>
                                 </div>
 
-    const removePhoto=<button onClick={modalWindowForQuestonRemovePhoto}>Удалить фото</button>
+        if(this.state.nameNewPhoto!==undefined && this.state.nameNewPhoto!==null && this.state.nameNewPhoto.length>0){
+            return blockSaveNewPhoto
+        }
 
-    if( modalWindowForMainPhotoModification){
-        return modalModification
-    }
+        const modalModification=<div className="ModalWindowForOptonMainPhoto">
+                                    <span onClick={this.modalWindowForModificationMainPhotoClose}>Закрыть</span>
+                                    <div>Пожалуйста, выберите фото для своего профиля!</div>
+                                    <div>
+                                        <form>
+                                            <input  name="photo" 
+                                                    type="file" 
+                                                    accept="image/jpeg,image/png" 
+                                                    onChange={this.valueNameAndContentPhoto}
+                                            />
+                                        </form>
+                                    </div>
+                                </div>
 
-    if(modalWindowQuestonRemovePhoto){
-        return modalQuestonRemovePhoto
-    }
+        
+        const modalQuestonRemovePhoto=<div className="ModalWindowForOptonMainPhoto">
+                                        <div>Вы уверены, что хотите удалить фото?</div>
+                                        <div>
+                                            <button onClick={this.confirmationRemovePhoto}>Удалить фото</button>
+                                            <button onClick={this.modalWindowForQuestonRemovePhotoClose}>Отмена</button>
+                                        </div>
+                                    </div>
 
-    const removePhotoBtn=listPhotoRights.canRemovePhoto ? removePhoto : null;
-    
-    return(
-        <div className="ModalWindowForOptonMainPhoto">
-            <span onClick={modalWindowForOptonsMainPhotoClose}>Закрыть</span>
-            <div>
-                <button onClick={modalWindowModificationMainPhoto}>Обновить фото</button>
-                {removePhotoBtn}
+        const removePhoto=<button onClick={this.modalWindowForQuestonRemovePhotoOpen}>Удалить фото</button>
+
+        if( this.state.modalWindowForMainPhotoModification){
+            return modalModification
+        }
+
+        if(this.state.modalWindowQuestonRemovePhoto){
+            return modalQuestonRemovePhoto
+        }
+
+        const removePhotoBtn=this.props.listPhotoRights.canRemovePhoto ? removePhoto : null;
+        return(
+            <div className="ModalWindowForOptonMainPhoto">
+                <span onClick={this.modalWindowForOptonsMainPhotoClose}>Закрыть</span>
+                <div>
+                    <button onClick={this.modalWindowModificationMainPhoto}>Обновить фото</button>
+                    {removePhotoBtn}
+                </div>
             </div>
-        </div>
-    )
-
+        )
+    }
+    
 }
+
 
 const mapStateToProps=(state)=>{
     return{
-        modalWindowForMainPhotoModification: state.modalWindowForMainPhotoModification,
-        modalWindowQuestonRemovePhoto: state.modalWindowQuestonRemovePhoto,
         listPhotoRights: state.listPhotoRights,
-        id: state.userId,
+        id: state.userId
     }
 }
 
 const mapDispatchToProps={
     modalWindowForMainPhotoOptionsClose,
-    modalWindowForModificationMainPhotoOpen,
-    modalWindowForModificationMainPhotoClose,
-    modalWindowForQuestonRemovePhotoOpen,
-    modalWindowForQuestonRemovePhotoClose,
-    photoUser
+    photoUser,
+    photoRights
 }
 
 export default WithService()(connect(mapStateToProps, mapDispatchToProps)(ModalWindowForOptonMainPhoto));

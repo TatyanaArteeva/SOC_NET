@@ -124,6 +124,18 @@ class Service {
         return res
     }
 
+    removePhotoProfile=async (url, data)=>{
+        const res = await axios.post(url, data)
+
+        return res
+    }
+
+    postRemovePhotoProfile= async (url, data)=>{
+        const res= await this.removePhotoProfile(url, data);
+
+        return res
+    }
+
     accountPhoto= async (url, options) => {
         const res= await axios.get(url, options);
 
