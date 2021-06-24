@@ -5,76 +5,10 @@ import {Link, HashRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import DetailedInformationBlock from '../detailedInformationBlock/detailedInformationBlock';
 import WithService from '../hoc/hoc';
-import { userInformation, photoRights} from '../../actions';
+import { userInformation, photoRights, imagesForGallery, imagesGalleryTotalSize, imagesForGalleryUpdate} from '../../actions';
 import PhotoUser from '../photoUser/photoUser';
-import one from './one.jpg';
-import two from './two.jpg';
-import three from './three.jpg';
-import four from './four.jpg';
-import five from './five.jpg';
-import six from './six.jpg';
 import ImageGallery from 'react-image-gallery';
 
-const images = [
-    {
-      original: one,
-      thumbnail: one,
-      thumbnailHeight: 100,
-      thumbnailWidth: 100,
-      id:1
-    },
-    {
-        original: two,
-        thumbnail: two,
-        thumbnailHeight: 100,
-        thumbnailWidth: 100,
-        id:2
-    },
-    {
-        original: three,
-        thumbnail: three,
-        thumbnailHeight: 100,
-        thumbnailWidth: 100,
-        id:3
-    },
-    {
-        original: four,
-        thumbnail: four,
-        thumbnailHeight: 100,
-        thumbnailWidth: 100,
-        id:4
-    },
-    {
-        original: five,
-        thumbnail: five,
-        thumbnailHeight: 100,
-        thumbnailWidth: 100,
-        id:5
-    },
-    {
-        original: six,
-        thumbnail: six,
-        thumbnailHeight: 100,
-        thumbnailWidth: 100,
-        id:6
-    },
-    {
-        original: three,
-        thumbnail: three,
-        thumbnailHeight: 100,
-        thumbnailWidth: 100,
-        id:7
-    },
-    {
-        original: four,
-        thumbnail: four,
-        thumbnailHeight: 100,
-        thumbnailWidth: 100,
-        id:8
-    },
-    
-
-  ];
 
 class MyPage extends Component{
     constructor(props){
@@ -88,10 +22,14 @@ class MyPage extends Component{
             deleteImageModalWindow: false,
             currentImageIndex: '',
             addImageModalWindow: false,
-            newImage: [],
-            newImageName: []
+            userNotificationModalWindowAddImages: false,
+            newImage: '',
+            newImageName: [],
+            imagess: []
         }
         const {Service} = this.props;
+        let start=0;
+        let end=5;
         
         this.detailedInformation=()=>{
             this.setState(({btnDetailedInformation})=>({
@@ -113,7 +51,34 @@ class MyPage extends Component{
                     })
                 });
             Service.getAccountInfo(`/api/account/${this.props.id}/page-info`)
-                .then(res=>this.props.photoRights(res.data.accesses))
+                .then(res=>this.props.photoRights(res.data.accesses));
+
+            Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`, {
+                                responseType: 'arraybuffer'
+                                })
+                .then(res=>{
+                    this.props.imagesGalleryTotalSize(res.data.totalSize)
+                    this.props.imagesForGallery(res.data.photos)
+                        this.setState(({imagess})=>{
+                            for(let i=0; i<this.props.totalSizeImages; i++){
+                                imagess.push({
+                                    original: "",
+                                    thumbnail: "",
+                                    thumbnailHeight: 100,
+                                    thumbnailWidth: 100,
+                                    id: ""
+                                })
+                            }
+                            for(let i=start; i<this.props.arrImagesGallery.length; i++){
+                                    imagess[i].original=this.props.arrImagesGallery[i].data;
+                                    imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
+                                    imagess[i].id=this.props.arrImagesGallery[i].id;
+                            }
+                            
+                            return imagess
+                        })
+                })
+                
         }
 
         this.componentDidMount=()=>{
@@ -137,7 +102,6 @@ class MyPage extends Component{
         this.deleteImage=()=>{
             const objImage=images[this.state.currentImageIndex];
             const imageId=objImage.id;
-            console.log(imageId)
         }
 
         this.addImageModalWindowOpen=()=>{
@@ -148,11 +112,11 @@ class MyPage extends Component{
 
         this.valueAndNameNewImage=(event)=>{
             this.setState({
-                newImage: [...this.state.newImage, ...event.target.files]
+                newImage: [...this.state.newImage, event.target.files[0]]
             })
             if(event.target.value.length>0){
                 this.setState({
-                    newImageName: [...this.state.newImageName ,event.target.value]
+                    newImageName: [...this.state.newImageName, event.target.value]
                 },()=>{
                     event.target.value="";
                 })
@@ -189,11 +153,96 @@ class MyPage extends Component{
             })
 
         }
+
+        this.userNotificationModalWindowAddClose=()=>{
+            this.setState({
+                userNotificationModalWindowAddImages: false
+            })
+        }
+
+        this.postNewImages=(event)=>{
+            event.preventDefault();
+            const formData=new FormData();
+            for(let i=0; i<this.state.newImage.length; i++){
+                formData.append("photos", this.state.newImage[i])
+            }
+            Service.postNewPhotoProfile(`/api/photo/${this.props.id}/add`, formData)
+                .then(res=>{
+                    if(res.status===200){
+                        start=0;
+                        end=3;
+                        Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`)
+                            .then(res=>{
+                                this.props.imagesGalleryTotalSize(res.data.totalSize)
+                                this.props.imagesForGalleryUpdate(res.data.photos)
+                                this.setState({
+                                    imagess: []
+                                })
+                                this.setState(({imagess})=>{
+                                    for(let i=0; i<this.props.totalSizeImages; i++){
+                                        imagess.push({
+                                            original: "",
+                                            thumbnail: "",
+                                            thumbnailHeight: 100,
+                                            thumbnailWidth: 100,
+                                            id: ""
+                                        })
+                                    }
+                                    for(let i=start; i<this.props.arrImagesGallery.length; i++){
+                                        imagess[i].original=this.props.arrImagesGallery[i].data;
+                                        imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
+                                        imagess[i].id=this.props.arrImagesGallery[i].id;
+                                        console.log(this.props.arrImagesGallery)
+                                    }
+                                                    
+                                    return imagess
+                                })
+                                this.cancelAddImage()
+                                this.setState({
+                                    userNotificationModalWindowAddImages: true,
+                                });
+                                setTimeout(this.userNotificationModalWindowAddClose, 1000)
+                            })
+                        
+                    }
+                })
+                
+        }
+
+        this.onSlide=(index)=>{
+                if(index==end-2){
+                    start=end;
+                    end=end+5;
+                    console.log(start, end)
+                    Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`, {
+                        responseType: 'arraybuffer'
+                        })
+                        .then(res=>{
+                            console.log(res)
+                            // this.props.imagesForGallery(res.data.photos)
+                            // console.log(this.props.arrImagesGallery)
+                            // this.setState(({imagess})=>{
+                            //     for(let i=0; i<end-start; i++){
+                            //         if(this.props.arrImagesGallery[i]!=undefined){
+                            //             imagess[i].original=this.props.arrImagesGallery[i].data;
+                            //             imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
+                            //             imagess[i].id=this.props.arrImagesGallery[i].id;
+                            //         }
+                            //     }
+                            //     console.log(imagess)
+                            //     return imagess
+                            // })
+                            
+                        })
+                }
+               
+        }
+
+        
     }
 
     
     render(){
-        console.log(this.state.newImage, this.state.newImageName)
         const gallery=document.querySelectorAll(".image-gallery");
         const galleryObj=gallery[0];
         const btnDeletePhoto=document.createElement("button");
@@ -206,6 +255,8 @@ class MyPage extends Component{
             galleryObj.append(btnDeletePhoto)
         }
 
+        
+
         const modalWindowFromDeleteImage=<div className="ModalWindowForDeleteImage">
                                             <div>Вы уверены что хотите удалить фото номер {this.state.currentImageIndex+1}?</div>
                                             <div>
@@ -217,6 +268,17 @@ class MyPage extends Component{
         const modalWindowDeleteImage=this.state.deleteImageModalWindow ? modalWindowFromDeleteImage : null;
 
         let listNewImage=null;
+
+        let modalWindowUserNotificationAddImages=null;
+
+        if(this.state.userNotificationModalWindowAddImages){
+            modalWindowUserNotificationAddImages=<div className="ModalWindowForDeleteImage">
+                                                        <button onClick={this.userNotificationModalWindowAddClose}>Закрыть</button>
+                                                        <div>фото успешно добавлены!</div>
+                                                    </div>
+        } 
+
+
         if(this.state.newImageName.length>0 && this.state.newImageName!==undefined && this.state.newImage.length>0 && this.state.newImage!== undefined){
             listNewImage=<div>
                             Вы выбрали файлы: 
@@ -232,18 +294,20 @@ class MyPage extends Component{
                                     })
                                 }
                             </ul>
-                                <button>Загрузить фото</button>
+                                <button onClick={this.postNewImages}>Загрузить фото</button>
                         </div>
         }
 
         const modalWindowFromAddImage=<div className="ModalWindowForDeleteImage">
                                         Пожалуйста, добавьте фото для загрузки!
-                                        <input  name="image" 
-                                                type="file" 
-                                                accept="image/jpeg,image/png" 
-                                                multiple
-                                                onChange={this.valueAndNameNewImage}
-                                                />
+                                        <form>
+                                            <input  name="photos" 
+                                                    type="file" 
+                                                    accept="image/jpeg,image/png" 
+                                                    multiple
+                                                    onChange={this.valueAndNameNewImage}
+                                                    />
+                                        </form>
                                         {listNewImage}
                                         <div>
                                             <button onClick={this.cancelAddImage}>
@@ -275,12 +339,14 @@ class MyPage extends Component{
                             <div className="profile_photos_wrapper">
                                 <button onClick={this.addImageModalWindowOpen}>Добавить фото</button>
                                 {modalWindowAddImage}
+                                {modalWindowUserNotificationAddImages}
                                 <ImageGallery
                                     ref={i => this.imageGallery = i}
-                                    items={images}
+                                    items={this.state.imagess}
                                     thumbnailPosition="left"
                                     showIndex={true}
-                                    disableSwipe={true}
+                                    // lazyLoad={true}
+                                    onSlide={this.onSlide}
                                 />
                                 
                             </div>
@@ -297,12 +363,17 @@ const mapStateToProps=(state)=>{
     return{
         information: state.userInformation,
         id: state.userId, 
+        arrImagesGallery: state.imagesGallery,
+        totalSizeImages: state.imagesGalleryTotalSize
     }
 }
 
 const mapDispatchToProps = {
     userInformation,
-    photoRights
+    photoRights,
+    imagesForGallery,
+    imagesGalleryTotalSize,
+    imagesForGalleryUpdate
 }
 
 export default WithService()(connect(mapStateToProps, mapDispatchToProps)(MyPage));

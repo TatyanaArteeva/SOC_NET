@@ -1,3 +1,5 @@
+import { rawListeners } from "process"
+
 const initialState={
     windowRegistrationOpen: false,
     registrationSuccessful: false,
@@ -26,6 +28,8 @@ const initialState={
     modalWindowForUserNotification: false,
     listPhotoRights:{},
     photoUser:'',
+    imagesGallery: '',
+    imagesGalleryTotalSize: '',
     
 }
 
@@ -190,6 +194,36 @@ const reducer=(state=initialState, action)=>{
             return {
                 ...state,
                 photoUser: action.photo
+        }
+        case 'IMAGES_GALLERY': 
+            let allImages=action.arrImages;
+            allImages.map(el=>{
+                Buffer.from(el.data, 'binary').toString('base64');
+                el.data="data:image/jpg;base64," + el.data;
+            })
+            if(state.imagesGallery.length!=0){
+                allImages=[...state.imagesGallery, ...allImages]
+            }
+            return {
+                ...state,
+                imagesGallery: allImages
+        }
+        case 'IMAGES_GALLERY_UPDATE': 
+        state.allImages=[];
+        action.arrImagesUpdate.map(el=>{
+            Buffer.from(el.data, 'binary').toString('base64');
+                el.data="data:image/jpg;base64," + el.data;
+                console.log(el)
+        })
+            return {
+                ...state,
+                imagesGallery: action.arrImagesUpdate
+                
+        }
+        case 'IMAGES_GALLERY_TOTAL_SIZE': 
+            return {
+                ...state,
+                imagesGalleryTotalSize: action.imagesGalleryTotalSize
         }
         default:
             return state;

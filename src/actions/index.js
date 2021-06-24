@@ -81,6 +81,15 @@ export const photoRights=(rights)=>{
 export const photoUser=(photo)=>{
     return({type: 'PHOTO_USER', photo: photo})
 }
+export const imagesForGallery=(arrImages)=>{
+    return({type: 'IMAGES_GALLERY', arrImages: arrImages})
+}
+export const imagesForGalleryUpdate=(arrImagesUpdate)=>{
+    return({type: 'IMAGES_GALLERY_UPDATE', arrImagesUpdate: arrImagesUpdate})
+}
+export const imagesGalleryTotalSize=(imagesGalleryTotalSize)=>{
+    return({type: 'IMAGES_GALLERY_TOTAL_SIZE', imagesGalleryTotalSize: imagesGalleryTotalSize})
+}
 
 
 

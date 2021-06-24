@@ -100,6 +100,7 @@ class ModalWindowForOptonMainPhoto extends Component{
         
         this.postNewPhotoProfile=(event)=>{
             event.preventDefault();
+            console.log(this.state.valueNewPhoto)
             const formData=new FormData();
             formData.append("photo", this.state.valueNewPhoto)
     
@@ -149,7 +150,7 @@ class ModalWindowForOptonMainPhoto extends Component{
     }
     
     render(){
-        
+        console.log(this.state.valueNewPhoto)
         const modalWindowNotificationForRemovePhoto=<div className="ModalWindowForOptonMainPhoto">
                                                         <button onClick={()=>this.modalWindowForModificationPhotoClose}>Закрыть</button>
                                                         <div>Фото успешно удалено!</div>
