@@ -1,11 +1,11 @@
-import React, {Component, createElement} from 'react';
+import React, {Component} from 'react';
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import './myPage.scss';
 import {Link, HashRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import DetailedInformationBlock from '../detailedInformationBlock/detailedInformationBlock';
 import WithService from '../hoc/hoc';
-import { userInformation, photoRights, imagesForGallery, imagesGalleryTotalSize, imagesForGalleryUpdate} from '../../actions';
+import { userInformation, photoRights, imagesForGallery, imagesGalleryTotalSize, imagesForGalleryLoading} from '../../actions';
 import PhotoUser from '../photoUser/photoUser';
 import ImageGallery from 'react-image-gallery';
 
@@ -29,7 +29,9 @@ class MyPage extends Component{
         }
         const {Service} = this.props;
         let start=0;
-        let end=5;
+        let end=10;
+        let arrEnd="";
+        let numberIndexToStart="";
         
         this.detailedInformation=()=>{
             this.setState(({btnDetailedInformation})=>({
@@ -58,26 +60,16 @@ class MyPage extends Component{
                                 })
                 .then(res=>{
                     this.props.imagesGalleryTotalSize(res.data.totalSize)
-                    this.props.imagesForGallery(res.data.photos)
-                        this.setState(({imagess})=>{
-                            for(let i=0; i<this.props.totalSizeImages; i++){
-                                imagess.push({
-                                    original: "",
-                                    thumbnail: "",
-                                    thumbnailHeight: 100,
-                                    thumbnailWidth: 100,
-                                    id: ""
-                                })
-                            }
-                            for(let i=start; i<this.props.arrImagesGallery.length; i++){
-                                    imagess[i].original=this.props.arrImagesGallery[i].data;
-                                    imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
-                                    imagess[i].id=this.props.arrImagesGallery[i].id;
-                            }
-                            
-                            return imagess
-                        })
-                })
+                    this.props.imagesForGallery(res.data.photos, start, end)
+                    arrEnd=this.props.totalSizeImages;
+                    numberIndexToStart=arrEnd-10
+                    Service.getAccountInfo(`/api/photo/${this.props.id}?start=${numberIndexToStart}&end=${arrEnd}`, {
+                    responseType: 'arraybuffer'
+                    })
+                    .then(res=>{
+                        this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd)
+                    })
+            })
                 
         }
 
@@ -100,8 +92,8 @@ class MyPage extends Component{
         }
 
         this.deleteImage=()=>{
-            const objImage=images[this.state.currentImageIndex];
-            const imageId=objImage.id;
+            // const objImage=images[this.state.currentImageIndex];
+            // const imageId=objImage.id;
         }
 
         this.addImageModalWindowOpen=()=>{
@@ -170,74 +162,85 @@ class MyPage extends Component{
                 .then(res=>{
                     if(res.status===200){
                         start=0;
-                        end=3;
+                        end=10;
                         Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`)
                             .then(res=>{
                                 this.props.imagesGalleryTotalSize(res.data.totalSize)
-                                this.props.imagesForGalleryUpdate(res.data.photos)
-                                this.setState({
-                                    imagess: []
-                                })
-                                this.setState(({imagess})=>{
-                                    for(let i=0; i<this.props.totalSizeImages; i++){
-                                        imagess.push({
-                                            original: "",
-                                            thumbnail: "",
-                                            thumbnailHeight: 100,
-                                            thumbnailWidth: 100,
-                                            id: ""
-                                        })
-                                    }
-                                    for(let i=start; i<this.props.arrImagesGallery.length; i++){
-                                        imagess[i].original=this.props.arrImagesGallery[i].data;
-                                        imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
-                                        imagess[i].id=this.props.arrImagesGallery[i].id;
-                                        console.log(this.props.arrImagesGallery)
-                                    }
-                                                    
-                                    return imagess
-                                })
+                                this.props.imagesForGallery(res.data.photos, start, end)
+                                arrEnd=this.props.totalSizeImages;
+                                numberIndexToStart=arrEnd-10
+                                Service.getAccountInfo(`/api/photo/${this.props.id}?start=${numberIndexToStart}&end=${arrEnd}`, {
+                                        responseType: 'arraybuffer'
+                                    })
+                                    .then(res=>{
+                                        this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd)
+                                    })
                                 this.cancelAddImage()
                                 this.setState({
                                     userNotificationModalWindowAddImages: true,
                                 });
                                 setTimeout(this.userNotificationModalWindowAddClose, 1000)
                             })
-                        
                     }
                 })
                 
         }
 
         this.onSlide=(index)=>{
-                if(index==end-2){
-                    start=end;
-                    end=end+5;
-                    console.log(start, end)
-                    Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`, {
-                        responseType: 'arraybuffer'
-                        })
-                        .then(res=>{
-                            console.log(res)
-                            // this.props.imagesForGallery(res.data.photos)
-                            // console.log(this.props.arrImagesGallery)
-                            // this.setState(({imagess})=>{
-                            //     for(let i=0; i<end-start; i++){
-                            //         if(this.props.arrImagesGallery[i]!=undefined){
-                            //             imagess[i].original=this.props.arrImagesGallery[i].data;
-                            //             imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
-                            //             imagess[i].id=this.props.arrImagesGallery[i].id;
-                            //         }
-                            //     }
-                            //     console.log(imagess)
-                            //     return imagess
-                            // })
-                            
-                        })
+            if(index===end-8){
+                start=end;
+
+                if(end+10>=this.props.totalSizeImages){
+                    end=this.props.totalSizeImages
+                }else{
+                    end=end+10;
                 }
+
+                
+                if(end>numberIndexToStart){
+                    end=numberIndexToStart;
+                }
+
+                if(start===end){
+                    return
+                }
+
+                Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`, {
+                    responseType: 'arraybuffer'
+                    })
+                    .then(res=>{
+                        this.props.imagesForGalleryLoading(res.data.photos, start, end)
+                    })
+            }
+
+            if(index===numberIndexToStart+8){
+                arrEnd=numberIndexToStart;
+                numberIndexToStart=numberIndexToStart-10;
+
                
+                if(arrEnd<end){
+                    return
+                }
+
+                if(numberIndexToStart<end){
+                    numberIndexToStart=end
+                }
+
+                if(numberIndexToStart===arrEnd){
+                    return 
+                }
+
+                Service.getAccountInfo(`/api/photo/${this.props.id}?start=${numberIndexToStart}&end=${arrEnd}`, {
+                    responseType: 'arraybuffer'
+                    })
+                    .then(res=>{
+                        this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd)
+                    })
+            }
+       
         }
 
+       
         
     }
 
@@ -342,10 +345,9 @@ class MyPage extends Component{
                                 {modalWindowUserNotificationAddImages}
                                 <ImageGallery
                                     ref={i => this.imageGallery = i}
-                                    items={this.state.imagess}
+                                    items={this.props.arrImagesGallery}
                                     thumbnailPosition="left"
                                     showIndex={true}
-                                    // lazyLoad={true}
                                     onSlide={this.onSlide}
                                 />
                                 
@@ -373,7 +375,7 @@ const mapDispatchToProps = {
     photoRights,
     imagesForGallery,
     imagesGalleryTotalSize,
-    imagesForGalleryUpdate
+    imagesForGalleryLoading
 }
 
 export default WithService()(connect(mapStateToProps, mapDispatchToProps)(MyPage));

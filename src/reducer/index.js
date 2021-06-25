@@ -1,4 +1,3 @@
-import { rawListeners } from "process"
 
 const initialState={
     windowRegistrationOpen: false,
@@ -28,7 +27,7 @@ const initialState={
     modalWindowForUserNotification: false,
     listPhotoRights:{},
     photoUser:'',
-    imagesGallery: '',
+    imagesGallery: [],
     imagesGalleryTotalSize: '',
     
 }
@@ -196,35 +195,57 @@ const reducer=(state=initialState, action)=>{
                 photoUser: action.photo
         }
         case 'IMAGES_GALLERY': 
-            let allImages=action.arrImages;
-            allImages.map(el=>{
+            let images=action.arrImages;;
+            const start=action.startIndex;
+            const end=action.endIndex;
+            images.map(el=>{
                 Buffer.from(el.data, 'binary').toString('base64');
-                el.data="data:image/jpg;base64," + el.data;
+                return el.data="data:image/jpg;base64," + el.data;
             })
-            if(state.imagesGallery.length!=0){
-                allImages=[...state.imagesGallery, ...allImages]
+            for(let i=start; i<end; i++){
+                state.imagesGallery[i].original=images[i].data;
+                state.imagesGallery[i].thumbnail=images[i].data;
+                state.imagesGallery[i].id=images[i].id;
+                
+            }
+
+            return {
+                ...state,
+                imagesGallery: state.imagesGallery
+        }
+        case 'IMAGES_GALLERY_LOADING': 
+            let imagesLoading=action.arrImages;
+            const startLoading=action.startIndex;
+            const endLoading=action.endIndex;
+            imagesLoading.map(el=>{
+                Buffer.from(el.data, 'binary').toString('base64');
+                return el.data="data:image/jpg;base64," + el.data;
+            })
+            for(let i=startLoading; i<endLoading; i++){
+                state.imagesGallery[i].original=imagesLoading[i-startLoading].data;
+                state.imagesGallery[i].thumbnail=imagesLoading[i-startLoading].data;
+                state.imagesGallery[i].id=imagesLoading[i-startLoading].id;
             }
             return {
                 ...state,
-                imagesGallery: allImages
-        }
-        case 'IMAGES_GALLERY_UPDATE': 
-        state.allImages=[];
-        action.arrImagesUpdate.map(el=>{
-            Buffer.from(el.data, 'binary').toString('base64');
-                el.data="data:image/jpg;base64," + el.data;
-                console.log(el)
-        })
-            return {
-                ...state,
-                imagesGallery: action.arrImagesUpdate
-                
+                imagesGallery: state.imagesGallery
         }
         case 'IMAGES_GALLERY_TOTAL_SIZE': 
+            const arrImages=[]
+            for(let i=0; i<action.imagesGalleryTotalSize; i++){
+                arrImages.push({
+                    original: "",
+                    thumbnail: "",
+                    thumbnailHeight: 100,
+                    thumbnailWidth: 100,
+                    id: ""
+                })
+            }
             return {
                 ...state,
-                imagesGalleryTotalSize: action.imagesGalleryTotalSize
-        }
+                imagesGalleryTotalSize: action.imagesGalleryTotalSize,
+                imagesGallery: arrImages
+            }
         default:
             return state;
     }

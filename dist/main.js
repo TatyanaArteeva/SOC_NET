@@ -75055,7 +75055,7 @@ module.exports = function(module) {
 /*!******************************!*\
   !*** ./src/actions/index.js ***!
   \******************************/
-/*! exports provided: displayingLoginAndRegistrationPage, displayingContentPages, openModalRegistration, closeModalRegistration, registrationSuccessful, closeWindowMessageRegistration, dataBirth, loginMainPage, errorWindowLoginOpen, errorWindowLoginClose, userId, userEmail, userAccesses, logout, userInformation, modalWindowForUserNotificationOpen, modalWindowForUserNotificationClose, modalWindowForMainPhotoOptionsOpen, modalWindowForMainPhotoOptionsClose, photoRights, photoUser, imagesForGallery, imagesForGalleryUpdate, imagesGalleryTotalSize */
+/*! exports provided: displayingLoginAndRegistrationPage, displayingContentPages, openModalRegistration, closeModalRegistration, registrationSuccessful, closeWindowMessageRegistration, dataBirth, loginMainPage, errorWindowLoginOpen, errorWindowLoginClose, userId, userEmail, userAccesses, logout, userInformation, modalWindowForUserNotificationOpen, modalWindowForUserNotificationClose, modalWindowForMainPhotoOptionsOpen, modalWindowForMainPhotoOptionsClose, photoRights, photoUser, imagesForGallery, imagesForGalleryLoading, imagesForGalleryUpdate, imagesGalleryTotalSize, imagesGalleryEndArr */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75082,8 +75082,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "photoRights", function() { return photoRights; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "photoUser", function() { return photoUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "imagesForGallery", function() { return imagesForGallery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "imagesForGalleryLoading", function() { return imagesForGalleryLoading; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "imagesForGalleryUpdate", function() { return imagesForGalleryUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "imagesGalleryTotalSize", function() { return imagesGalleryTotalSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "imagesGalleryEndArr", function() { return imagesGalleryEndArr; });
 var displayingLoginAndRegistrationPage = function displayingLoginAndRegistrationPage() {
   return {
     type: 'DISPLAING_LOGIN_AND_REGISTRATION_PAGE'
@@ -75196,10 +75198,22 @@ var photoUser = function photoUser(photo) {
     photo: photo
   };
 };
-var imagesForGallery = function imagesForGallery(arrImages) {
+var imagesForGallery = function imagesForGallery(arrImages, startIndex, endIndex) {
+  console.log(arrImages, startIndex, endIndex);
   return {
     type: 'IMAGES_GALLERY',
-    arrImages: arrImages
+    arrImages: arrImages,
+    startIndex: startIndex,
+    endIndex: endIndex
+  };
+};
+var imagesForGalleryLoading = function imagesForGalleryLoading(arrImages, startIndex, endIndex) {
+  console.log(arrImages, startIndex, endIndex);
+  return {
+    type: 'IMAGES_GALLERY_LOADING',
+    arrImages: arrImages,
+    startIndex: startIndex,
+    endIndex: endIndex
   };
 };
 var imagesForGalleryUpdate = function imagesForGalleryUpdate(arrImagesUpdate) {
@@ -75212,6 +75226,14 @@ var imagesGalleryTotalSize = function imagesGalleryTotalSize(_imagesGalleryTotal
   return {
     type: 'IMAGES_GALLERY_TOTAL_SIZE',
     imagesGalleryTotalSize: _imagesGalleryTotalSize
+  };
+};
+var imagesGalleryEndArr = function imagesGalleryEndArr(imagesArrEnd, startIndex, endIndex) {
+  return {
+    type: 'IMAGES_GALLERY_TOTAL_SIZE',
+    imagesArrEnd: imagesArrEnd,
+    startIndex: startIndex,
+    endIndex: endIndex
   };
 };
 
@@ -76985,7 +77007,7 @@ var MyPage = /*#__PURE__*/function (_Component) {
     };
     var Service = _this.props.Service;
     var start = 0;
-    var end = 5;
+    var end = 10;
 
     _this.detailedInformation = function () {
       _this.setState(function (_ref) {
@@ -77014,36 +77036,65 @@ var MyPage = /*#__PURE__*/function (_Component) {
       Service.getAccountInfo("/api/photo/".concat(_this.props.id, "?start=").concat(start, "&end=").concat(end), {
         responseType: 'arraybuffer'
       }).then(function (res) {
-        console.log(res);
-
         _this.props.imagesGalleryTotalSize(res.data.totalSize);
 
-        _this.props.imagesForGallery(res.data.photos);
+        _this.props.imagesForGallery(res.data.photos, start, end); // this.setState({
+        //     imagess: this.props.arrImagesGallery
+        // })
+        // console.log(this.state.imagess)
+        // this.setState(({imagess})=>{
+        //     for(let i=0; i<this.props.totalSizeImages; i++){
+        //         imagess.push({
+        //             original: "",
+        //             thumbnail: "",
+        //             thumbnailHeight: 100,
+        //             thumbnailWidth: 100,
+        //             id: ""
+        //         })
+        //     }
+        //     for(let i=start; i<this.props.arrImagesGallery.length; i++){
+        //             imagess[i].original=this.props.arrImagesGallery[i].data;
+        //             imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
+        //             imagess[i].id=this.props.arrImagesGallery[i].id;
+        //     }
+        //     return imagess
+        // })
+        //     Service.getAccountInfo(`/api/photo/${this.props.id}?start=${this.props.totalSizeImages-10}&end=${this.props.totalSizeImages}`, {
+        //     responseType: 'arraybuffer'
+        //     })
+        //     .then(res=>{
+        //         console.log(res)
+        //         this.setState(({imagess})=>{
+        //             for(let i=this.props.totalSizeImages-10; i<this.props.totalSizeImages; i++){
+        //                 if(res.data.photos[i]!==undefined){
+        //                     imagess[i].original=res.data.photos.data[i];
+        //                     imagess[i].thumbnail=res.data.photos.data[i];
+        //                     imagess[i].id=res.data.photos.id[i];
+        //                 }
+        //             }
+        //             console.log(imagess)
+        //             return imagess
+        //         })
+        //     })
+        // })
+        // Service.getAccountInfo(`/api/photo/${this.props.id}?start=${this.props.totalSizeImages-9}&end=${this.props.totalSizeImages+1}`, {
+        //     responseType: 'arraybuffer'
+        //     })
+        //     .then(res=>{
+        //         this.props.imagesForGallery(res.data.photos)
+        //             console.log(this.props.arrImagesGallery)
+        //             this.setState(({imagess})=>{
+        //                 for(let i=this.props.totalSizeImages; i<this.props.totalSizeImages-10; i++){
+        //                     if(this.props.arrImagesGallery[i]!=undefined){
+        //                         imagess[i].original=this.props.arrImagesGallery[i].data;
+        //                         imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
+        //                         imagess[i].id=this.props.arrImagesGallery[i].id;
+        //                     }
+        //                 }
+        //                 console.log(imagess)
+        //                 return imagess
+        //             })
 
-        console.log(_this.props.arrImagesGallery);
-
-        _this.setState(function (_ref2) {
-          var imagess = _ref2.imagess;
-
-          for (var i = 0; i < _this.props.totalSizeImages; i++) {
-            imagess.push({
-              original: "",
-              thumbnail: "",
-              thumbnailHeight: 100,
-              thumbnailWidth: 100,
-              id: ""
-            });
-          }
-
-          for (var _i = start; _i < _this.props.arrImagesGallery.length; _i++) {
-            imagess[_i].original = _this.props.arrImagesGallery[_i].data;
-            imagess[_i].thumbnail = _this.props.arrImagesGallery[_i].data;
-            imagess[_i].id = _this.props.arrImagesGallery[_i].id;
-            console.log(_this.props.arrImagesGallery);
-          }
-
-          return imagess;
-        });
       });
     };
 
@@ -77066,9 +77117,8 @@ var MyPage = /*#__PURE__*/function (_Component) {
       });
     };
 
-    _this.deleteImage = function () {
-      var objImage = images[_this.state.currentImageIndex];
-      var imageId = objImage.id;
+    _this.deleteImage = function () {// const objImage=images[this.state.currentImageIndex];
+      // const imageId=objImage.id;
     };
 
     _this.addImageModalWindowOpen = function () {
@@ -77105,9 +77155,9 @@ var MyPage = /*#__PURE__*/function (_Component) {
     };
 
     _this.deleteNewImageFromList = function (index) {
-      _this.setState(function (_ref3) {
-        var newImage = _ref3.newImage,
-            newImageName = _ref3.newImageName;
+      _this.setState(function (_ref2) {
+        var newImage = _ref2.newImage,
+            newImageName = _ref2.newImageName;
         var beforeImage = newImage.slice(0, index);
         var afterImage = newImage.slice(index + 1);
         var newListNewImage = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(beforeImage), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(afterImage));
@@ -77142,16 +77192,18 @@ var MyPage = /*#__PURE__*/function (_Component) {
           Service.getAccountInfo("/api/photo/".concat(_this.props.id, "?start=").concat(start, "&end=").concat(end)).then(function (res) {
             _this.props.imagesGalleryTotalSize(res.data.totalSize);
 
+            console.log(_this.props.imagesGallery);
+
             _this.props.imagesForGalleryUpdate(res.data.photos);
 
             _this.setState({
               imagess: []
             });
 
-            _this.setState(function (_ref4) {
-              var imagess = _ref4.imagess;
+            _this.setState(function (_ref3) {
+              var imagess = _ref3.imagess;
 
-              for (var _i2 = 0; _i2 < _this.props.totalSizeImages; _i2++) {
+              for (var _i = 0; _i < _this.props.totalSizeImages; _i++) {
                 imagess.push({
                   original: "",
                   thumbnail: "",
@@ -77161,10 +77213,10 @@ var MyPage = /*#__PURE__*/function (_Component) {
                 });
               }
 
-              for (var _i3 = start; _i3 < _this.props.arrImagesGallery.length; _i3++) {
-                imagess[_i3].original = _this.props.arrImagesGallery[_i3].data;
-                imagess[_i3].thumbnail = _this.props.arrImagesGallery[_i3].data;
-                imagess[_i3].id = _this.props.arrImagesGallery[_i3].id;
+              for (var _i2 = start; _i2 < _this.props.arrImagesGallery.length; _i2++) {
+                imagess[_i2].original = _this.props.arrImagesGallery[_i2].data;
+                imagess[_i2].thumbnail = _this.props.arrImagesGallery[_i2].data;
+                imagess[_i2].id = _this.props.arrImagesGallery[_i2].id;
                 console.log(_this.props.arrImagesGallery);
               }
 
@@ -77184,33 +77236,29 @@ var MyPage = /*#__PURE__*/function (_Component) {
     };
 
     _this.onSlide = function (index) {
-      if (index == end - 2) {
+      if (index === end - 8) {
         start = end;
-        end = end + 5;
+        end = end + 10;
         console.log(start, end);
         Service.getAccountInfo("/api/photo/".concat(_this.props.id, "?start=").concat(start, "&end=").concat(end), {
           responseType: 'arraybuffer'
         }).then(function (res) {
           console.log(res);
 
-          _this.props.imagesForGallery(res.data.photos);
+          _this.props.imagesForGalleryLoading(res.data.photos, start, end);
 
-          console.log(_this.props.arrImagesGallery);
-
-          _this.setState(function (_ref5) {
-            var imagess = _ref5.imagess;
-
-            for (var i = 0; i < end - start; i++) {
-              if (_this.props.arrImagesGallery[i] != undefined) {
-                imagess[i].original = _this.props.arrImagesGallery[i].data;
-                imagess[i].thumbnail = _this.props.arrImagesGallery[i].data;
-                imagess[i].id = _this.props.arrImagesGallery[i].id;
-              }
-            }
-
-            console.log(imagess);
-            return imagess;
-          });
+          console.log(_this.props.arrImagesGallery); // console.log(this.props.arrImagesGallery)
+          // this.setState(({imagess})=>{
+          //     for(let i=start; i<end; i++){
+          //         if(this.props.arrImagesGallery[i]!==undefined){
+          //             imagess[i].original=this.props.arrImagesGallery[i].data;
+          //             imagess[i].thumbnail=this.props.arrImagesGallery[i].data;
+          //             imagess[i].id=this.props.arrImagesGallery[i].id;
+          //         }
+          //     }
+          //     console.log(imagess)
+          //     return imagess
+          // })
         });
       }
     };
@@ -77310,7 +77358,7 @@ var MyPage = /*#__PURE__*/function (_Component) {
         ref: function ref(i) {
           return _this2.imageGallery = i;
         },
-        items: this.state.imagess,
+        items: this.props.arrImagesGallery,
         thumbnailPosition: "left",
         showIndex: true // lazyLoad={true}
         ,
@@ -77338,7 +77386,8 @@ var mapDispatchToProps = {
   photoRights: _actions__WEBPACK_IMPORTED_MODULE_13__["photoRights"],
   imagesForGallery: _actions__WEBPACK_IMPORTED_MODULE_13__["imagesForGallery"],
   imagesGalleryTotalSize: _actions__WEBPACK_IMPORTED_MODULE_13__["imagesGalleryTotalSize"],
-  imagesForGalleryUpdate: _actions__WEBPACK_IMPORTED_MODULE_13__["imagesForGalleryUpdate"]
+  imagesForGalleryUpdate: _actions__WEBPACK_IMPORTED_MODULE_13__["imagesForGalleryUpdate"],
+  imagesForGalleryLoading: _actions__WEBPACK_IMPORTED_MODULE_13__["imagesForGalleryLoading"]
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_12__["default"])()(Object(react_redux__WEBPACK_IMPORTED_MODULE_10__["connect"])(mapStateToProps, mapDispatchToProps)(MyPage)));
 
@@ -77813,19 +77862,13 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
-/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_2__);
-
+/* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var initialState = {
   windowRegistrationOpen: false,
@@ -77855,7 +77898,7 @@ var initialState = {
   modalWindowForUserNotification: false,
   listPhotoRights: {},
   photoUser: '',
-  imagesGallery: '',
+  imagesGallery: [],
   imagesGalleryTotalSize: ''
 };
 
@@ -78029,34 +78072,72 @@ var reducer = function reducer() {
 
     case 'IMAGES_GALLERY':
       var allImages = action.arrImages;
+      ;
+      var start = action.startIndex;
+      var end = action.endIndex;
       allImages.map(function (el) {
         Buffer.from(el.data, 'binary').toString('base64');
-        el.data = "data:image/jpg;base64," + el.data;
-        console.log(el);
+        return el.data = "data:image/jpg;base64," + el.data;
       });
 
-      if (state.imagesGallery.length != 0) {
-        allImages = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(state.imagesGallery), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(allImages));
+      for (var i = start; i < end; i++) {
+        state.imagesGallery[i].original = allImages[i].data;
+        state.imagesGallery[i].thumbnail = allImages[i].data;
+        state.imagesGallery[i].id = allImages[i].id;
       }
 
       return _objectSpread(_objectSpread({}, state), {}, {
-        imagesGallery: allImages
+        imagesGallery: state.imagesGallery
       });
 
-    case 'IMAGES_GALLERY_UPDATE':
-      state.allImages = [];
-      action.arrImagesUpdate.map(function (el) {
+    case 'IMAGES_GALLERY_LOADING':
+      var allImagesLoading = action.arrImages;
+      console.log(allImagesLoading);
+      var startLoading = action.startIndex;
+      var endLoading = action.endIndex;
+      allImagesLoading.map(function (el) {
         Buffer.from(el.data, 'binary').toString('base64');
-        el.data = "data:image/jpg;base64," + el.data;
-        console.log(el);
+        return el.data = "data:image/jpg;base64," + el.data;
       });
+
+      for (var _i = startLoading; _i < endLoading; _i++) {
+        console.log(_i);
+        state.imagesGallery[_i].original = allImagesLoading[_i - startLoading].data;
+        state.imagesGallery[_i].thumbnail = allImagesLoading[_i - startLoading].data;
+        state.imagesGallery[_i].id = allImagesLoading[_i - startLoading].id;
+      }
+
       return _objectSpread(_objectSpread({}, state), {}, {
-        imagesGallery: action.arrImagesUpdate
+        imagesGallery: state.imagesGallery
       });
+    // case 'IMAGES_GALLERY_UPDATE': 
+    // state.allImages=[];
+    // action.arrImagesUpdate.map(el=>{
+    //     Buffer.from(el.data, 'binary').toString('base64');
+    //         el.data="data:image/jpg;base64," + el.data;
+    //         console.log(el)
+    // })
+    //     return {
+    //         ...state,
+    //         imagesGallery: action.arrImagesUpdate
+    // }
 
     case 'IMAGES_GALLERY_TOTAL_SIZE':
+      var arrImages = [];
+
+      for (var _i2 = 0; _i2 < action.imagesGalleryTotalSize; _i2++) {
+        arrImages.push({
+          original: "",
+          thumbnail: "",
+          thumbnailHeight: 100,
+          thumbnailWidth: 100,
+          id: ""
+        });
+      }
+
       return _objectSpread(_objectSpread({}, state), {}, {
-        imagesGalleryTotalSize: action.imagesGalleryTotalSize
+        imagesGalleryTotalSize: action.imagesGalleryTotalSize,
+        imagesGallery: arrImages
       });
 
     default:
