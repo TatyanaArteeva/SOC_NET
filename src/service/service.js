@@ -142,8 +142,20 @@ class Service {
         return res
     }
 
-    getAccountPhoto=async (url, options) =>{
+    getAccountPhoto=async (url, options) => {
         const res=await this.accountPhoto(url, options);
+
+        return res
+    }
+
+    deleteImagesFromGallery=async (url, data) => {
+        const res=await axios.post(url, data);
+
+        return res
+    }
+
+    postDeleteImagesFromGallery=async (url, data) => {
+        const res=await this.deleteImagesFromGallery(url, data);
 
         return res
     }

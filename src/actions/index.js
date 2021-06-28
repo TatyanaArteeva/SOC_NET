@@ -83,6 +83,7 @@ export const photoUser=(photo)=>{
 }
 
 export const imagesForGallery=(arrImages, startIndex, endIndex)=>{
+    console.log(arrImages, startIndex, endIndex)
     return({type: 'IMAGES_GALLERY', arrImages: arrImages, startIndex:startIndex, endIndex: endIndex})
 }
 
@@ -90,6 +91,10 @@ export const imagesForGalleryLoading=(arrImages, startIndex, endIndex)=>{
     return({type: 'IMAGES_GALLERY_LOADING', arrImages: arrImages, startIndex:startIndex, endIndex: endIndex})
 }
 
+export const imagesGalleryDeletePhoto=(idPhoto)=>{
+    console.log(idPhoto)
+    return({type: 'IMAGES_GALLERY_DELETE_PHOTO', idDeletePhoto: idPhoto})
+}
 
 export const imagesGalleryTotalSize=(imagesGalleryTotalSize)=>{
     return({type: 'IMAGES_GALLERY_TOTAL_SIZE', imagesGalleryTotalSize: imagesGalleryTotalSize})

@@ -203,10 +203,9 @@ const reducer=(state=initialState, action)=>{
                 return el.data="data:image/jpg;base64," + el.data;
             })
             for(let i=start; i<end; i++){
-                state.imagesGallery[i].original=images[i].data;
-                state.imagesGallery[i].thumbnail=images[i].data;
-                state.imagesGallery[i].id=images[i].id;
-                
+                    state.imagesGallery[i].original=images[i].data;
+                    state.imagesGallery[i].thumbnail=images[i].data;
+                    state.imagesGallery[i].id=images[i].id;
             }
 
             return {
@@ -222,10 +221,17 @@ const reducer=(state=initialState, action)=>{
                 return el.data="data:image/jpg;base64," + el.data;
             })
             for(let i=startLoading; i<endLoading; i++){
-                state.imagesGallery[i].original=imagesLoading[i-startLoading].data;
-                state.imagesGallery[i].thumbnail=imagesLoading[i-startLoading].data;
-                state.imagesGallery[i].id=imagesLoading[i-startLoading].id;
+                    state.imagesGallery[i].original=imagesLoading[i-startLoading].data;
+                    state.imagesGallery[i].thumbnail=imagesLoading[i-startLoading].data;
+                    state.imagesGallery[i].id=imagesLoading[i-startLoading].id;
             }
+            return {
+                ...state,
+                imagesGallery: state.imagesGallery
+        }
+        case 'IMAGES_GALLERY_DELETE_PHOTO': 
+            state.imagesGallery.splice(action.idDeletePhoto, 1)
+
             return {
                 ...state,
                 imagesGallery: state.imagesGallery
