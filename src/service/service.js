@@ -160,6 +160,51 @@ class Service {
         return res
     }
 
+    newGroup = async (url, data) => {
+        const res = await axios.request({
+            url: url,
+            method: 'post',
+            data: data,
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        if(res.status !== 200){
+        new Error(`Что-то пошло не так! статус: ${res.status}`)
+        }
+        return res
+    }
+
+    postNewGroup =async (url, data)=>{
+        const res= await this.newGroup(url, data);
+        return res
+    }
+
+    group= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getGroup=async (url, options) => {
+        const res=await this.group(url, options);
+
+        return res
+    }
+
+
+    groupAll= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getGroupAll=async (url, options) => {
+        const res=await this.groupAll(url, options);
+
+        return res
+    }
+
 }
 
 export default Service;

@@ -131,9 +131,6 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
             .then(res=>{
                 if(res.status===200){
                     modalWindowForUserNotificationOpen();
-                    // push({
-                    //     pathname: `${idLink}`
-                    // });
                 }
             }).then(res=>{
                 setTimeout(closeModalWindowAndTransitionMyPage, 3000)

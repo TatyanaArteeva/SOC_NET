@@ -26,7 +26,7 @@ class MyPage extends Component{
                 btnDetailedInformation: !btnDetailedInformation
             }))
         }
-
+        console.log(this.props.id)
         this.recepionInformation=()=>{
             Service.getUserAccountId(this.props.id)
                 .then(res=>{

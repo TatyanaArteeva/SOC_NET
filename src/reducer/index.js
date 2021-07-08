@@ -29,6 +29,9 @@ const initialState={
     photoUser:'',
     imagesGallery: [],
     imagesGalleryTotalSize: '',
+    groupId: '',
+    invalidFile: false,
+    modalWindowUserNotificationCreatingGroup: false
     
 }
 
@@ -251,7 +254,36 @@ const reducer=(state=initialState, action)=>{
                 ...state,
                 imagesGalleryTotalSize: action.imagesGalleryTotalSize,
                 imagesGallery: arrImages
-            }
+        }
+        case 'GROUP_ID': 
+            return {
+                ...state,
+               groupId: action.id
+        }
+        case 'INVALID_FILE_TRUE': 
+            return {
+                ...state,
+                invalidFile: true
+               
+        }
+        case 'INVALID_FILE_FALSE': 
+            return {
+                ...state,
+                invalidFile: false
+               
+        }
+        case 'MODAL_WINDOW_USER_NOTIFICATION_CREATING_GROUP_OPEN': 
+            return {
+                ...state,
+                modalWindowUserNotificationCreatingGroup: true
+               
+        }
+        case 'MODAL_WINDOW_USER_NOTIFICATION_CREATING_GROUP_CLOSE': 
+            return {
+                ...state,
+                modalWindowUserNotificationCreatingGroup: false
+               
+        }
         default:
             return state;
     }
