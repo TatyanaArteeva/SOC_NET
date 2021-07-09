@@ -34,20 +34,19 @@ class ModificationGroup extends Component{
                             ownTheme: res.data.ownTheme,
                             subTheme: res.data.subTheme,
                             description: res.data.description,
-                            // photo: res.data.photo,
                             photoName: res.data.photoName,
                             id: res.data.id
                         }) 
                         
                         function dataURItoBlob(dataURI) {
-                            var byteString = atob(dataURI);
-                            var mimeString = {type: "image/jpg"};
-                            var ab = new ArrayBuffer(byteString.length);
-                            var ia = new Uint8Array(ab);
-                            for (var i = 0; i < byteString.length; i++) {
+                            let byteString = atob(dataURI);
+                            let mimeString = {type: "image/jpg"};
+                            let ab = new ArrayBuffer(byteString.length);
+                            let ia = new Uint8Array(ab);
+                            for (let i = 0; i < byteString.length; i++) {
                                 ia[i] = byteString.charCodeAt(i);
                             }
-                            var bb = new Blob([ab], mimeString);
+                            let bb = new Blob([ab], mimeString);
                             return bb
                         }
 
@@ -137,7 +136,10 @@ class ModificationGroup extends Component{
             })
         }
 
+        let blockingTimerCloseNotificationSuccessfulModificationGroup=false
+
         this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup=()=>{
+            blockingTimerCloseNotificationSuccessfulModificationGroup=true
             this.props.modalWindowForUserNotificationCreatingGroupClose();
             this.props.history.push(`/groups/${this.props.idGroup}`)
         }
@@ -148,31 +150,27 @@ class ModificationGroup extends Component{
             event.preventDefault();
             const formData=new FormData();
 
-            // const blob = new Blob([this.state.photo]);
-            // const file = new File([blob], this.state.photoName, {type: "image/jpeg"});
-            // const newFormatImg=new Blob([this.state.photo], {type: 'image/jpg'})
-            // formData.append('photo', file)
-            // console.log(file)
+            if(this.state.photo.length===0){
+                const obj={
+                    name: this.state.name,
+                    theme: this.state.theme,
+                    ownTheme: this.state.ownTheme,
+                    subTheme: this.state.subTheme,
+                    description: this.state.description,
+                    photoName: this.state.photoName,
+                    id:this.state.id,
+                }
 
-
-            // const obj={
-            //     name: this.state.name,
-            //     theme: this.state.theme,
-            //     ownTheme: this.state.ownTheme,
-            //     subTheme: this.state.subTheme,
-            //     description: this.state.description,
-            //     photo: this.state.photo,
-            //     photoName: this.state.photoName,
-            //     id:this.state.id,
-            // }
-
-            // console.log(obj)
-           
-            for(let key in this.state){
-                formData.append(key, this.state[key])
+                for(let key in obj){
+                    formData.append(key, this.state[key])
+                }
+                
+            }else{
+                for(let key in this.state){
+                    formData.append(key, this.state[key])
+                }
             }
-           
-         
+
             Service.postNewGroup('/api/group', formData)
                 .then(res=>{
                     console.log(res)
@@ -181,7 +179,11 @@ class ModificationGroup extends Component{
                         this.props.groupId(res.data.id)
                         console.log(this.props.idGroup)
                         this.props.modalWindowForUserNotificationCreatingGroupOpen();
-                        setTimeout(()=>this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup(), 3000)
+                        setTimeout(()=>{
+                            if(blockingTimerCloseNotificationSuccessfulModificationGroup===false){
+                                this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup()
+                            }
+                        }, 3000)
                     }
                 })
         }
@@ -191,7 +193,7 @@ class ModificationGroup extends Component{
     
 
    render(){
-    console.log(this.state.photo)
+    console.log(this.state.photo.length)
     const id=localStorage.getItem('idGroup')
     const cancelFromModificationGroupLink=`/groups/${id}`
 

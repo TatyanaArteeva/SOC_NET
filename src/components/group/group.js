@@ -7,7 +7,6 @@ import {groupId} from '../../actions';
 import {Link, HashRouter} from 'react-router-dom';
 
 const Group =({Service, idInUrl, groupId})=>{
-    
     const[nameGroup, setNameGroup]=useState();
     const[themeGroup, setThemeGroup]=useState();
     // const[ownThemeGroup, setOwnThemeGroup]=useState();
@@ -31,6 +30,9 @@ const Group =({Service, idInUrl, groupId})=>{
                         }else{
                             setThemeGroup(res.data.theme)
                             setSubThemeGroup(res.data.subTheme)
+                        }
+                        if(res.data.theme.length===0){
+                            setThemeGroup("Тематика группы не выбрана")
                         }
                         setNameGroup(res.data.name)
                         setSubThemeGroup(res.data.subTheme)
@@ -75,7 +77,7 @@ const Group =({Service, idInUrl, groupId})=>{
 
     const mapStateToProps = (state) => {
     return {
-        idGroup: state.groupId,
+        idGroup: state.groupId
     }
 }
 

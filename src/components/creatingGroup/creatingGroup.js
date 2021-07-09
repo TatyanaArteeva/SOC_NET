@@ -6,7 +6,6 @@ import {groupId, modalWindowInvalidFilesOpen, modalWindowInvalidFilesClose, moda
 import {connect} from 'react-redux';
 
 class CreatingGroup extends Component{
-    // _cleanupFunction = false;
     constructor(props){
         super(props)
         this.state={
@@ -18,9 +17,8 @@ class CreatingGroup extends Component{
             photo: '',
             photoName: '',
         }
-
         const {Service} = this.props;
-        
+
         this.valueGroupName=(event)=>{
             this.setState({
                 name: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
@@ -80,6 +78,8 @@ class CreatingGroup extends Component{
 
         }
 
+        let blockingTimerCloseNotificationSuccessfulCreatingGroup=false
+
         this.cancelSelectedPhoto=()=>{
             this.setState({
                 photo: "",
@@ -88,8 +88,10 @@ class CreatingGroup extends Component{
         }
 
         this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup=()=>{
+            blockingTimerCloseNotificationSuccessfulCreatingGroup=true
             this.props.modalWindowForUserNotificationCreatingGroupClose();
             this.props.history.push(`/groups/${this.props.idGroup}`)
+        
         }
 
         this.creatingGroup=(event)=>{
@@ -114,9 +116,6 @@ class CreatingGroup extends Component{
                 }
             }
            
-            
-         
-               
             Service.postNewGroup('/api/group/create', formData)
                 .then(res=>{
                     console.log(res)
@@ -124,16 +123,23 @@ class CreatingGroup extends Component{
                         console.log(res.data.id)
                         this.props.modalWindowForUserNotificationCreatingGroupOpen();
                         this.props.groupId(res.data.id)
-                        setTimeout(()=>this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup(), 3000)
+                        setTimeout(()=>{
+                            if(blockingTimerCloseNotificationSuccessfulCreatingGroup===false){
+                                this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup()
+                            }
+                        }, 3000)
+                        
+                        
+                        
                     }
                 })
         }
-
 
     }
     
 
    render(){
+    console.log(this.props.modalWindowUserNotificationCreatingGroup)
 
     const modalWindowUserNotificationCreatingGroup=this.props.modalWindowUserNotificationCreatingGroup? <div>
                                                                                                             <div>
@@ -276,6 +282,7 @@ const mapStateToProps = (state) => {
         idGroup: state.groupId,
         invalidFile: state.invalidFile,
         modalWindowUserNotificationCreatingGroup: state.modalWindowUserNotificationCreatingGroup
+        
     }
 }
 

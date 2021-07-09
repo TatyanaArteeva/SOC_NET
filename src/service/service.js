@@ -205,6 +205,31 @@ class Service {
         return res
     }
 
+    friends= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getFriends=async (url, options) => {
+        const res=await this.friends(url, options);
+
+        return res
+    }
+
+
+    friendsAll= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getFriendsAll=async (url, options) => {
+        const res=await this.friendsAll(url, options);
+
+        return res
+    }
+
 }
 
 export default Service;

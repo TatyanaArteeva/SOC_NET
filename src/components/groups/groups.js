@@ -1,10 +1,9 @@
-// import React, {Component, createRef} from 'react';
-import React, {useEffect, useState, useRef, Component} from 'react';
+import React, { Component} from 'react';
 import './groups.scss';
 import {Link, HashRouter} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
-import { useHistory } from "react-router-dom";
+
 
 class Groups extends Component{
     constructor(props){
@@ -18,10 +17,6 @@ class Groups extends Component{
         this.refListGroup=React.createRef()
         const {Service} = this.props;
         
-
-       
-
-
         let start=0;
         let end=10;
 
@@ -59,21 +54,30 @@ class Groups extends Component{
             console.log(windowHeight);
             window.addEventListener("scroll", ()=>{
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                // console.log(scrollTop)
                 if((scrollTop+windowHeight)>=(this.state.heightList/100*80) && !this.state.req){
                     console.log(scrollTop+windowHeight, this.state.heightList)
                     this.setState({
                         req: true
                     })
+
                     start=end;
                     end=end+10;
-                    if(start===end){
+
+                    if(start===this.state.totalSizeGroup){
                         return
                     }
 
-                    if(end>this.state.totalSizeGroup){
+                    if(start>this.state.totalSizeGroup){
                         return
                     }
+
+                    
+                    if(end>this.state.totalSizeGroup){
+                        end=this.state.totalSizeGroup
+                    }
+
+
+                    console.log(start, end)
                     console.log("yes")
                     Service.getGroupAll(`/api/group/all?start=${start}&end=${end}`)
                     .then(res=>{
@@ -98,6 +102,30 @@ class Groups extends Component{
     
      render(){
 
+        let groupsAndMessageNotGroups=null;
+
+        if(this.state.arrGroups.length===0){
+            groupsAndMessageNotGroups=<div>
+                                        У вас пока нет групп
+                                      </div>
+        }
+
+        if(this.state.arrGroups.length>0){
+            groupsAndMessageNotGroups=<div>
+                                        {
+                                            this.state.arrGroups.map((el, index)=>{
+                                                return <div key={el.id}>
+                                                            <li className="myGroups_item" onClick={()=>this.goToGroup(el.id)}>
+                                                                {index+1}
+                                                                <img className="myGroups_item_img" src={"data:image/jpg;base64," + el.photo} alt="photoGroup"/>
+                                                                {el.name}
+                                                            </li>
+                                                        </div>
+                                            })
+                                        }
+                                      </div>
+        }
+
          return(
             <div>
                 <div>
@@ -109,20 +137,10 @@ class Groups extends Component{
                         <Link to="/createGroups"><button>Создать новую группу</button></Link>
                     </HashRouter>
                 </div>
-                <div className="myGroups" onClick={this.click}>
+                <div className="myGroups">
                     <div>Всего групп: {this.state.totalSizeGroup}</div>
                     <ul className="myGroups_list" ref={this.refListGroup}>
-                        {
-                            this.state.arrGroups.map((el, index)=>{
-                                return <div key={el.id}>
-                                            <li className="myGroups_item" onClick={()=>this.goToGroup(el.id)}>
-                                                {index+1}
-                                                <img className="myGroups_item_img" src={"data:image/jpg;base64," + el.photo} alt="photoGroup"/>
-                                                {el.name}
-                                            </li>
-                                        </div>
-                            })
-                        }
+                        {groupsAndMessageNotGroups}
                     </ul>
                 </div>
             </div>
@@ -130,139 +148,5 @@ class Groups extends Component{
      }
 }
 
-
-// const Groups =({Service})=>{
-//     const [arrGroups, setArrGroups]=useState([]);
-//     const [totalSizeGroup, setTotalSizeGroups]=useState();
-//     const [heightContent, setHeightContent]=useState();
-//     const [scroll, setScroll]=useState()
-//     const refListGroup = useRef();
-//     const { push } = useHistory();
-//     const heightListGroup=refListGroup;
-//     const windowHeight=document.documentElement.clientHeight;
-//     let request=false
-  
-//     let start=0;
-//     let end=10;
-
-//         useEffect(()=>{
-//             getGroup();
-            
-//         },[])
-
-//         window.addEventListener('scroll', ()=>{
-//             setScroll(window.pageYOffset || document.documentElement.scrollTop);
-
-//         })
-
-        
-
-//         function getGroup(){
-//             request=true
-//             Service.getGroupAll(`/api/group/all?start=${start}&end=${end}`)
-//             .then(res=>{
-//                 console.log(res)
-//                     setArrGroups([...arrGroups, ...res.data.groups])
-//                     setTotalSizeGroups(res.data.totalSize)
-//             })
-//             .then(res=>{
-//                 setHeightContent(heightListGroup.current.scrollHeight);
-//             })
-//         }
-
-   
-          
-      
-
-
-
-//         // if(scroll+windowHeight>=heightContent/100*80 && request===false){
-//         //     request=true
-//         //     if(request===true){
-//         //         start=end;
-//         //         end=end+10;
-//         //         Service.getGroupAll(`/api/group/all?start=${start}&end=${end}`)
-//         //         .then(res=>{
-//         //             console.log(res)
-//         //                 setArrGroups([...arrGroups, ...res.data.groups])
-//         //                 setTotalSizeGroups(res.data.totalSize)
-//         //         })
-//         //         .then(res=>{
-//         //             setHeightContent(heightListGroup.current.scrollHeight);
-//         //             request=false
-//         //         })
-//         //     }
-     
-//         // }
-
-
-//         function goToGroup(id){
-//             push({
-//                 pathname: `/groups/${id}`
-//             });
-//         }
-
-
-//             // const heightListGroup=refListGroup.current.heght;
-//             // console.log(heightListGroup)
-  
-
-//             // const heightListGroup=refListGroup.current.getBoundingClientRect().height;
-//             // const windowHeight=document.documentElement.clientHeight;
-//             // console.log(heightListGroup, windowHeight);
-//             // window.addEventListener("scroll", ()=>{
-//             //     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-//             //     a=scrollTop
-//                 // if((scroll+windowHeight)===heightListGroup-100 || (scroll+windowHeight)>=heightListGroup-100){
-//                 //     console.log("scroll");
-//                 //     // start=end;
-//                 //     // end=end+10;
-//                 //     // this.allGroup()
-//                 // }
-                
-               
-//             // })
-            
-
-       
-       
-        
-
-
-
-    
-    
-    
-
-//     return(
-//         <div>
-//             <div>
-//                 <input
-//                     type="text"
-//                     placeholder="Поиск групп"
-//                 />
-//                 <HashRouter>
-//                     <Link to="/createGroups"><button>Создать новую группу</button></Link>
-//                 </HashRouter>
-//             </div>
-//             <div className="myGroups">
-//                 <div>Всего групп: {totalSizeGroup}</div>
-//                 <ul className="myGroups_list" ref={refListGroup}>
-//                     {
-//                         arrGroups.map((el, index)=>{
-//                             return <div key={el.id}>
-//                                         <li className="myGroups_item" onClick={()=>goToGroup(el.id)}>
-//                                             {index+1}
-//                                             <img className="myGroups_item_img" src={"data:image/jpg;base64," + el.photo} alt="photoGroup"/>
-//                                             {el.name}
-//                                         </li>
-//                                     </div>
-//                         })
-//                     }
-//                 </ul>
-//             </div>
-//         </div>
-//     )
-// }
 
 export default withRouter(WithService()(Groups));
