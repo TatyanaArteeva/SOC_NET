@@ -142,8 +142,90 @@ class Service {
         return res
     }
 
-    getAccountPhoto=async (url, options) =>{
+    getAccountPhoto=async (url, options) => {
         const res=await this.accountPhoto(url, options);
+
+        return res
+    }
+
+    deleteImagesFromGallery=async (url, data) => {
+        const res=await axios.post(url, data);
+
+        return res
+    }
+
+    postDeleteImagesFromGallery=async (url, data) => {
+        const res=await this.deleteImagesFromGallery(url, data);
+
+        return res
+    }
+
+    newGroup = async (url, data) => {
+        const res = await axios.request({
+            url: url,
+            method: 'post',
+            data: data,
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        if(res.status !== 200){
+        new Error(`Что-то пошло не так! статус: ${res.status}`)
+        }
+        return res
+    }
+
+    postNewGroup =async (url, data)=>{
+        const res= await this.newGroup(url, data);
+        return res
+    }
+
+    group= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getGroup=async (url, options) => {
+        const res=await this.group(url, options);
+
+        return res
+    }
+
+
+    groupAll= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getGroupAll=async (url, options) => {
+        const res=await this.groupAll(url, options);
+
+        return res
+    }
+
+    friends= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getFriends=async (url, options) => {
+        const res=await this.friends(url, options);
+
+        return res
+    }
+
+
+    friendsAll= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getFriendsAll=async (url, options) => {
+        const res=await this.friendsAll(url, options);
 
         return res
     }

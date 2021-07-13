@@ -15,7 +15,8 @@ class ModalWindowForOptonMainPhoto extends Component{
             modalWindowForMainPhotoModification: false,
             modalWindowQuestonRemovePhoto: false,
             userNotificationForModificationPhoto: false,
-            modalWindowForMainPhotoRemove: false
+            modalWindowForMainPhotoRemove: false,
+            messageInvalidFile: false
         }
 
         const {Service} = this.props;
@@ -37,11 +38,33 @@ class ModalWindowForOptonMainPhoto extends Component{
             })
         }
 
-        this.valueNameAndContentPhoto=(event)=>{
+        this.modalWindowInvalidFilesClose=()=>{
             this.setState({
-                valueNewPhoto: event.target.files[0],
-                nameNewPhoto: event.target.value
+                 messageInvalidFile: false
             })
+        }
+
+        this.valueNameAndContentPhoto=(event)=>{
+            const files=event.target.value.split(".").pop().toLowerCase();
+            if(event.target.value.length>0){
+                if(files==="jpg" || files==="jpeg" || files==="png"){
+                    console.log("files")
+                    this.setState({
+                        valueNewPhoto: event.target.files[0],
+                        nameNewPhoto: event.target.value
+                    })
+                }else{
+                    this.setState({
+                        nameNewPhoto: "",
+                        valueNewPhoto: null,
+                        messageInvalidFile: true
+                    },()=>{
+                        event.target.value=""
+                    })
+                    
+                    setTimeout(this.modalWindowInvalidFilesClose, 2000)
+                }
+            }
         }
 
         this.modalWindowForQuestonRemovePhotoClose=()=>{
@@ -149,7 +172,14 @@ class ModalWindowForOptonMainPhoto extends Component{
     }
     
     render(){
-        
+
+        const invalidFile= <div>
+                            <div>Не верный формат файла!</div>
+                            <div>Допустимые значения: .jpg, .jpeg, .png</div>
+                        </div>
+
+        let ModalWindowMessageInvalidFile= this.state.messageInvalidFile ? invalidFile : null;
+
         const modalWindowNotificationForRemovePhoto=<div className="ModalWindowForOptonMainPhoto">
                                                         <button onClick={()=>this.modalWindowForModificationPhotoClose}>Закрыть</button>
                                                         <div>Фото успешно удалено!</div>
@@ -194,6 +224,7 @@ class ModalWindowForOptonMainPhoto extends Component{
                                             />
                                         </form>
                                     </div>
+                                    {ModalWindowMessageInvalidFile}
                                 </div>
 
         

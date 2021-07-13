@@ -82,6 +82,45 @@ export const photoUser=(photo)=>{
     return({type: 'PHOTO_USER', photo: photo})
 }
 
+export const imagesForGallery=(arrImages, startIndex, endIndex)=>{
+    return({type: 'IMAGES_GALLERY', arrImages: arrImages, startIndex:startIndex, endIndex: endIndex})
+}
+
+export const imagesForGalleryLoading=(arrImages, startIndex, endIndex)=>{
+    return({type: 'IMAGES_GALLERY_LOADING', arrImages: arrImages, startIndex:startIndex, endIndex: endIndex})
+}
+
+export const imagesGalleryDeletePhoto=(idPhoto)=>{
+    console.log(idPhoto)
+    return({type: 'IMAGES_GALLERY_DELETE_PHOTO', idDeletePhoto: idPhoto})
+}
+
+export const imagesGalleryTotalSize=(imagesGalleryTotalSize)=>{
+    return({type: 'IMAGES_GALLERY_TOTAL_SIZE', imagesGalleryTotalSize: imagesGalleryTotalSize})
+}
+
+export const groupId=(id)=>{
+    return({type: 'GROUP_ID', id: id})
+}
+
+export const modalWindowInvalidFilesOpen=()=>{
+    return({type: 'INVALID_FILE_TRUE'})
+}
+
+export const modalWindowInvalidFilesClose=()=>{
+    return({type: 'INVALID_FILE_FALSE'})
+}
+
+export const modalWindowForUserNotificationCreatingGroupOpen=()=>{
+    return({type: 'MODAL_WINDOW_USER_NOTIFICATION_CREATING_GROUP_OPEN'})
+}
+
+export const modalWindowForUserNotificationCreatingGroupClose=()=>{
+    return({type: 'MODAL_WINDOW_USER_NOTIFICATION_CREATING_GROUP_CLOSE'})
+}
+
+
+
 
 
 

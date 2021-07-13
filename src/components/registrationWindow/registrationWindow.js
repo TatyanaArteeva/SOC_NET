@@ -45,6 +45,7 @@ class RegistrationWindow extends Component{
 
         this.postFormRegistration=(event)=>{
             event.preventDefault();
+            
             Service.registrationPage('/api/account/registration', this.state)
                 .then(res=>{
                     if(res.status===200){

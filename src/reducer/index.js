@@ -1,3 +1,4 @@
+
 const initialState={
     windowRegistrationOpen: false,
     registrationSuccessful: false,
@@ -26,6 +27,11 @@ const initialState={
     modalWindowForUserNotification: false,
     listPhotoRights:{},
     photoUser:'',
+    imagesGallery: [],
+    imagesGalleryTotalSize: '',
+    groupId: '',
+    invalidFile: false,
+    modalWindowUserNotificationCreatingGroup: false
     
 }
 
@@ -190,6 +196,93 @@ const reducer=(state=initialState, action)=>{
             return {
                 ...state,
                 photoUser: action.photo
+        }
+        case 'IMAGES_GALLERY': 
+            let images=action.arrImages;;
+            const start=action.startIndex;
+            const end=action.endIndex;
+            images.map(el=>{
+                Buffer.from(el.data, 'binary').toString('base64');
+                return el.data="data:image/jpg;base64," + el.data;
+            })
+            for(let i=start; i<end; i++){
+                    state.imagesGallery[i].original=images[i].data;
+                    state.imagesGallery[i].thumbnail=images[i].data;
+                    state.imagesGallery[i].id=images[i].id;
+            }
+
+            return {
+                ...state,
+                imagesGallery: state.imagesGallery
+        }
+        case 'IMAGES_GALLERY_LOADING': 
+            let imagesLoading=action.arrImages;
+            const startLoading=action.startIndex;
+            const endLoading=action.endIndex;
+            imagesLoading.map(el=>{
+                Buffer.from(el.data, 'binary').toString('base64');
+                return el.data="data:image/jpg;base64," + el.data;
+            })
+            for(let i=startLoading; i<endLoading; i++){
+                    state.imagesGallery[i].original=imagesLoading[i-startLoading].data;
+                    state.imagesGallery[i].thumbnail=imagesLoading[i-startLoading].data;
+                    state.imagesGallery[i].id=imagesLoading[i-startLoading].id;
+            }
+            return {
+                ...state,
+                imagesGallery: state.imagesGallery
+        }
+        case 'IMAGES_GALLERY_DELETE_PHOTO': 
+            state.imagesGallery.splice(action.idDeletePhoto, 1)
+
+            return {
+                ...state,
+                imagesGallery: state.imagesGallery
+        }
+        case 'IMAGES_GALLERY_TOTAL_SIZE': 
+            const arrImages=[]
+            for(let i=0; i<action.imagesGalleryTotalSize; i++){
+                arrImages.push({
+                    original: "",
+                    thumbnail: "",
+                    thumbnailHeight: 100,
+                    thumbnailWidth: 100,
+                    id: ""
+                })
+            }
+            return {
+                ...state,
+                imagesGalleryTotalSize: action.imagesGalleryTotalSize,
+                imagesGallery: arrImages
+        }
+        case 'GROUP_ID': 
+            return {
+                ...state,
+               groupId: action.id
+        }
+        case 'INVALID_FILE_TRUE': 
+            return {
+                ...state,
+                invalidFile: true
+               
+        }
+        case 'INVALID_FILE_FALSE': 
+            return {
+                ...state,
+                invalidFile: false
+               
+        }
+        case 'MODAL_WINDOW_USER_NOTIFICATION_CREATING_GROUP_OPEN': 
+            return {
+                ...state,
+                modalWindowUserNotificationCreatingGroup: true
+               
+        }
+        case 'MODAL_WINDOW_USER_NOTIFICATION_CREATING_GROUP_CLOSE': 
+            return {
+                ...state,
+                modalWindowUserNotificationCreatingGroup: false
+               
         }
         default:
             return state;
