@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import BirthDatePicker from '../birthDatePicker/birthDatePicker';
 import {closeModalRegistration, loginMainPage, registrationSuccessful} from '../../actions';
-// import './registrationWindow.css';
-// import MainPage from '../main_page/mainPage';
+import './registrationWindow.scss';
 import WithService from '../hoc/hoc';
 
 class RegistrationWindow extends Component{
+    
     constructor(props){
         super(props);
         this.state={
@@ -21,13 +21,13 @@ class RegistrationWindow extends Component{
 
         this.valueFirstName=(event)=>{
             this.setState({
-                firstName: event.target.value
+                firstName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
             })
         }
 
         this.valueLastName=(event)=>{
             this.setState({
-                lastName: event.target.value
+                lastName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
             })
         }
 

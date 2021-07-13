@@ -7,6 +7,7 @@ const initialState={
     loginAndRegistrationPage: true,
     contentPages: false,
     userId: '',
+    userEmail:'',
     userAccesses:[],
     logout: false,
     userInformation: {
@@ -20,7 +21,12 @@ const initialState={
         employment: '',
         description: '',
         id: ''
-    }
+    },
+    modalWindowForMainPhotoOptions: false,
+    modalWindowForUserNotification: false,
+    listPhotoRights:{},
+    photoUser:'',
+    
 }
 
 
@@ -86,6 +92,11 @@ const reducer=(state=initialState, action)=>{
                 ...state,
                 userId: action.id
             }
+        case 'USER_EMAIL':
+            return {
+                ...state,
+                userEmail: action.email
+            }
         case 'USER_ACCSESSES':
             return {
                 ...state,
@@ -106,21 +117,80 @@ const reducer=(state=initialState, action)=>{
                             information[key]= "Информация отсутствует"
                         }
                     }
+            if(information.sex==="MALE"){
+                information.sex="мужской"
+            }
+            if(information.sex==="FEMALE"){
+                information.sex="женский"
+            }
+            
+            const months={
+                "01": "января",
+                "02": "февраля",
+                "03": "марта",
+                "04": "апреля",
+                "05": "мая",
+                "06": "июня",
+                "07": "июля",
+                "08": "августа",
+                "09": "сентября",
+                "10": "октября",
+                "11": "ноября",
+                "12": "декабря",
+            }
+            let newData= "Информация отсутствует";
+            const date=information.birthDate;
+            const dateArr=date.split("-");
+            const month=months[dateArr[1]];
+            if(date!==null && date!==undefined  && date!== "Информация отсутствует"){
+                newData=`${dateArr[2]} ${month} ${dateArr[0]} г.`;
+            }
             return {
                 ...state,
                 userInformation: {
                     firstName: information.firstName,
                     lastName: information.lastName,
                     sex: information.sex,
-                    birthDate: information.birthDate,
+                    birthDate: newData,
                     city: information.city,
                     familyStatus: information.familyStatus,
                     phone: information.phone,
                     employment: information.employment,
-                    personal: information.personal,
+                    description: information.description,
                     id: information.id
                 }
             }
+        case 'MODAL_WINDOW_FOR_USER_NOTIFICATION_OPEN': 
+            return {
+                ...state,
+                modalWindowForUserNotification: true,
+        }
+        case 'MODAL_WINDOW_FOR_USER_NOTIFICATION_CLOSE': 
+            return {
+                ...state,
+                modalWindowForUserNotification: false,
+        }
+        case 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_OPEN': 
+            return {
+                ...state,
+                modalWindowForMainPhotoOptions: true
+        }
+        case 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_CLOSE': 
+            return {
+                ...state,
+                modalWindowForMainPhotoOptions: false
+        }
+      
+        case 'PHOTO_RIGHTS': 
+            return {
+                ...state,
+                listPhotoRights: action.rights
+        }
+        case 'PHOTO_USER': 
+            return {
+                ...state,
+                photoUser: action.photo
+        }
         default:
             return state;
     }

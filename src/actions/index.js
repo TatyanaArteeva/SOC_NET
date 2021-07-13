@@ -42,6 +42,10 @@ export const userId=(id)=>{
     return({type: 'USER_ID', id: id})
 }
 
+export const userEmail=(email)=>{
+    return({type: 'USER_EMAIL', email: email})
+}
+
 export const userAccesses=(accesses)=>{
     return({type: 'USER_ACCSESSES', accesses: accesses})
 }
@@ -53,3 +57,31 @@ export const logout=()=>{
 export const userInformation=(information)=>{
     return({type: 'USER_INFORMATION', information: information})
 }
+
+export const modalWindowForUserNotificationOpen=()=>{
+    return({type: 'MODAL_WINDOW_FOR_USER_NOTIFICATION_OPEN'})
+}
+
+export const modalWindowForUserNotificationClose=()=>{
+    return({type: 'MODAL_WINDOW_FOR_USER_NOTIFICATION_CLOSE'})
+}
+
+export const modalWindowForMainPhotoOptionsOpen=()=>{
+    return({type: 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_OPEN'})
+}
+
+export const modalWindowForMainPhotoOptionsClose=()=>{
+    return({type: 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_CLOSE'})
+}
+
+export const photoRights=(rights)=>{
+    return({type: 'PHOTO_RIGHTS', rights: rights})
+}
+
+export const photoUser=(photo)=>{
+    return({type: 'PHOTO_USER', photo: photo})
+}
+
+
+
+

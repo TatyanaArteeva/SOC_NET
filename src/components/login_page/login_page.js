@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import RegistrationWindow from '../registrationWindow/registrationWindow';
-// import './login_page.css';
+import './login_page.scss';
 import {connect} from 'react-redux';
-import {openModalRegistration, loginMainPage, errorWindowLoginOpen, errorWindowLoginClose, userId, userAccesses, closeWindowMessageRegistration, userInformation} from '../../actions';
+import {openModalRegistration, loginMainPage, errorWindowLoginOpen, errorWindowLoginClose, userId, userAccesses, closeWindowMessageRegistration, userInformation, userEmail} from '../../actions';
 import MainPage from '../main_page/mainPage';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router";
@@ -52,10 +52,12 @@ class LoginPage extends Component  {
                 if(res.status===200){
                     Service.getCurrentUserStatus('/api/status')
                     .then(res=>{
+                        console.log(res)
                         if(res.status===200){
                             this.props.userId(res.data.currentAccount.id);
                             this.props.userAccesses(res.data.accesses);
-                            this.props.userInformation(res.data.currentAccount)
+                            this.props.userInformation(res.data.currentAccount);
+                            this.props.userEmail(res.data.currentAccount.email)
                         }
                     }).then(res=>{
                         this.props.loginMainPage()
@@ -130,7 +132,8 @@ const mapDispatchToProps = {
     userId,
     userAccesses,
     closeWindowMessageRegistration  ,
-    userInformation
+    userInformation,
+    userEmail
 }
 
 export default  withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(LoginPage)));
