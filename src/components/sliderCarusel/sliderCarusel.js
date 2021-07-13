@@ -14,13 +14,17 @@ class SliderCarusel extends Component{
             deleteImageModalWindow: false,
             currentImageIndex: '',
             addImageModalWindow: false,
-            userNotificationModalWindowAddImages: false,
             newImage: '',
             newImageName: [],
             imagess: [],
             messageInvalidFile: false,
-            uderNotificationModalWindowDeleteImage: false
+            userNotificationModalWindowDeleteImage: false,
+            deleteImageSuccessfully: false,
+            addImageSuccessfully: false
         }
+
+        let a=false;
+        let b=false;
 
         const {Service} = this.props;
         let start=0;
@@ -30,7 +34,7 @@ class SliderCarusel extends Component{
 
 
         this.getImagesByLoading=()=>{
-            Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`, {
+            Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${start}&end=${end}`, {
                 responseType: 'arraybuffer'
                 })
                 .then(res=>{
@@ -38,7 +42,7 @@ class SliderCarusel extends Component{
                     this.props.imagesForGallery(res.data.photos, start, end)
                     arrEnd=this.props.totalSizeImages;
                     numberIndexToStart=arrEnd-10
-                    Service.getAccountInfo(`/api/photo/${this.props.id}?start=${numberIndexToStart}&end=${arrEnd}`, {
+                    Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${numberIndexToStart}&end=${arrEnd}`, {
                     responseType: 'arraybuffer'
                     })
                     .then(res=>{
@@ -71,35 +75,50 @@ class SliderCarusel extends Component{
             })
         }
 
+        this.closeModalWindowFromDeleteImageSuccessfully=()=>{
+            a=true;
+            this.setState({
+                deleteImageSuccessfully: false
+            })
+            a=false;
+        }
+
         this.deleteImage=()=>{
             const objDeleteImages=this.props.arrImagesGallery[this.state.currentImageIndex];
             const idDeleteImages=objDeleteImages.id;
             const arrIdDeleteImages=[];
             arrIdDeleteImages.push(idDeleteImages)
             console.log(arrIdDeleteImages);
-            Service.postDeleteImagesFromGallery(`/api/photo/${this.props.id}/remove`, arrIdDeleteImages)
+            Service.postDeleteImagesFromGallery(`/api/photo/${this.props.idForPhotos}/remove`, arrIdDeleteImages)
                 .then(res=>{
                     console.log(res);
                     console.log(this.state.currentImageIndex)
                     if(res.status===200){
+                        this.setState({
+                            deleteImageSuccessfully: true,
+                            deleteImageModalWindow: false,
+                        })
+                        if(a===false){
+                            console.log("settimeout")
+                            setTimeout(this.closeModalWindowFromDeleteImageSuccessfully, 3000)
+                        }
                         start=0;
                         end=start+10;
-                        Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`)
+                        Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${start}&end=${end}`)
                             .then(res=>{
                                 this.props.imagesGalleryTotalSize(res.data.totalSize)
                                 this.props.imagesForGalleryLoading(res.data.photos, start, end)
                                 arrEnd=this.props.totalSizeImages;
                                 numberIndexToStart=arrEnd-10
-                                Service.getAccountInfo(`/api/photo/${this.props.id}?start=${numberIndexToStart}&end=${arrEnd}`, {
+                                Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${numberIndexToStart}&end=${arrEnd}`, {
                                         responseType: 'arraybuffer'
                                     })
                                     .then(res=>{
                                         this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd);
-                                        this.setState({
-                                            uderNotificationModalWindowDeleteImage: true
-                                        });
-                                        this.cancelDeleteImage()
-                                        setTimeout(this.userNotificationDeleteImageClose, 3000)
+                                        // this.setState({
+                                        //     uderNotificationModalWindowDeleteImage: true
+                                        // });
+                                        // this.cancelDeleteImage()
                                     })
                             })
                     }
@@ -180,10 +199,12 @@ class SliderCarusel extends Component{
     
             }
 
-            this.userNotificationModalWindowAddClose=()=>{
+            this.closeModalWindowFromAddImageSuccessfully=()=>{
+                b=true;
                 this.setState({
-                    userNotificationModalWindowAddImages: false
+                    addImageSuccessfully:false
                 })
+                b=false;
             }
 
             this.postNewImages=(event)=>{
@@ -192,28 +213,33 @@ class SliderCarusel extends Component{
                 for(let i=0; i<this.state.newImage.length; i++){
                     formData.append("photos", this.state.newImage[i])
                 }
-                Service.postNewPhotoProfile(`/api/photo/${this.props.id}/add`, formData)
+                Service.postNewPhotoProfile(`/api/photo/${this.props.idForPhotos}/add`, formData)
                     .then(res=>{
                         if(res.status===200){
+                            this.setState({
+                                addImageModalWindow: false,
+                                addImageSuccessfully: true,
+                                newImage: [],
+                                newImageName: []
+                            })
+                            if(b===false){
+                                setTimeout(this.closeModalWindowFromAddImageSuccessfully, 2000)
+                            }
                             start=0;
                             end=10;
-                            Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`)
+                            Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${start}&end=${end}`)
                                 .then(res=>{
                                     this.props.imagesGalleryTotalSize(res.data.totalSize)
                                     this.props.imagesForGallery(res.data.photos, start, end)
                                     arrEnd=this.props.totalSizeImages;
                                     numberIndexToStart=arrEnd-10
-                                    Service.getAccountInfo(`/api/photo/${this.props.id}?start=${numberIndexToStart}&end=${arrEnd}`, {
+                                    Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${numberIndexToStart}&end=${arrEnd}`, {
                                             responseType: 'arraybuffer'
                                         })
                                         .then(res=>{
-                                            this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd)
+                                            this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd);
+                                                // this.cancelAddImage()
                                         })
-                                    this.cancelAddImage()
-                                    this.setState({
-                                        userNotificationModalWindowAddImages: true,
-                                    });
-                                    setTimeout(this.userNotificationModalWindowAddClose, 1000)
                                 })
                         }
                     })
@@ -240,7 +266,7 @@ class SliderCarusel extends Component{
                     return
                 }
                 console.log(start, end)
-                Service.getAccountInfo(`/api/photo/${this.props.id}?start=${start}&end=${end}`, {
+                Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${start}&end=${end}`, {
                     responseType: 'arraybuffer'
                     })
                     .then(res=>{
@@ -266,7 +292,7 @@ class SliderCarusel extends Component{
                     return 
                 }
 
-                Service.getAccountInfo(`/api/photo/${this.props.id}?start=${numberIndexToStart}&end=${arrEnd}`, {
+                Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${numberIndexToStart}&end=${arrEnd}`, {
                     responseType: 'arraybuffer'
                     })
                     .then(res=>{
@@ -277,19 +303,39 @@ class SliderCarusel extends Component{
        
         }
 
+
     }
     render(){
 
-        const gallery=document.querySelectorAll(".image-gallery");
-        const galleryObj=gallery[0];
-        const btnDeletePhoto=document.createElement("button");
-        btnDeletePhoto.innerHTML="Удалить фото";
-        btnDeletePhoto.classList.add("photo_deleteBtn")
-        btnDeletePhoto.addEventListener("click", ()=>{
-            this.deleteImageModalWindowOpen()
-        })
-        if(galleryObj!==undefined){
-            galleryObj.append(btnDeletePhoto)
+        console.log(this.state)
+
+        let btnAddPhoto=null;
+        let btnRemovePhoto=null;
+
+        if(this.props.btnFunctionality==="user"){
+            btnAddPhoto=<button onClick={this.addImageModalWindowOpen}>Добавить фото</button>;
+            
+        }
+
+        if(this.props.btnFunctionality==="user" && this.props.arrImagesGallery.length>0){
+            btnRemovePhoto=<button className="photo_deleteBtn" onClick={this.deleteImageModalWindowOpen}>Удалить фото</button>
+        }
+
+        let gallerySlider=null;
+
+        if(this.props.arrImagesGallery.length===0){
+            gallerySlider=<div>У вас нет фото!</div>
+        }
+
+        if(this.props.arrImagesGallery.length>0){
+            gallerySlider=<ImageGallery
+                                ref={i => this.imageGallery = i}
+                                items={this.props.arrImagesGallery}
+                                thumbnailPosition="left"
+                                showIndex={true}
+                                onSlide={this.onSlide}
+                                startIndex={startIndex}
+                            />
         }
 
         const messageInvalidFile= <div>
@@ -299,7 +345,7 @@ class SliderCarusel extends Component{
 
         const modalWindowMessageInvalidFile=this.state.messageInvalidFile ? messageInvalidFile : null;
 
-        const modalWindowFromDeleteImage=<div className="ModalWindowForDeleteImage">
+        let modalWindowFromDeleteImage=<div className="ModalWindowForDeleteImage">
                                             <div>Вы уверены что хотите удалить фото номер {this.state.currentImageIndex+1}?</div>
                                             <div>
                                                 <button onClick={this.deleteImage}>Удалить фото</button>
@@ -309,26 +355,21 @@ class SliderCarusel extends Component{
         
         const modalWindowDeleteImage=this.state.deleteImageModalWindow ? modalWindowFromDeleteImage : null;
 
+        const modalWindowFromDeleteImageSuccessfully=<div className="ModalWindowForDeleteImage">
+                                                        <button onClick={this.closeModalWindowFromDeleteImageSuccessfully}>Закрыть</button> 
+                                                        Фото успешно удалено!
+                                                    </div>
+
+        const modalWindowDeleteImageSuccessfully=this.state.deleteImageSuccessfully ? modalWindowFromDeleteImageSuccessfully : null;
+        
+        const modalWindowFromAddImageSuccessfully=<div className="ModalWindowForDeleteImage">
+                                        <button onClick={this.closeModalWindowFromAddImageSuccessfully}>Закрыть</button> 
+                                        Фото успешно добавлено!
+                                    </div>
+
+        const modalWindowAddImageSuccessfully=this.state.addImageSuccessfully ? modalWindowFromAddImageSuccessfully : null;
+
         let listNewImage=null;
-
-        let modalWindowUserNotificationDeleteImage=null;
-
-        if(this.state.uderNotificationModalWindowDeleteImage){
-            modalWindowUserNotificationDeleteImage=<div className="ModalWindowForDeleteImage">
-                                                        <button onClick={this.userNotificationDeleteImageClose}>Закрыть</button>
-                                                        <div>Фото успешно удалено!</div>
-                                                    </div>
-        }
-
-        let modalWindowUserNotificationAddImages=null;
-
-        if(this.state.userNotificationModalWindowAddImages){
-            modalWindowUserNotificationAddImages=<div className="ModalWindowForDeleteImage">
-                                                        <button onClick={this.userNotificationModalWindowAddClose}>Закрыть</button>
-                                                        <div>фото успешно добавлены!</div>
-                                                    </div>
-        } 
-
 
         if(this.state.newImageName.length>0 && this.state.newImageName!==undefined && this.state.newImage.length>0 && this.state.newImage!== undefined){
             listNewImage=<div>
@@ -374,21 +415,14 @@ class SliderCarusel extends Component{
         return(
             <div>
                  <div className="profile_photos_wrapper">
-                                <button onClick={this.addImageModalWindowOpen}>Добавить фото</button>
+                                {btnAddPhoto}
+                                {btnRemovePhoto}
+                                {modalWindowDeleteImageSuccessfully}
                                 {modalWindowAddImage}
-                                {modalWindowUserNotificationAddImages}
-                                <ImageGallery
-                                    ref={i => this.imageGallery = i}
-                                    items={this.props.arrImagesGallery}
-                                    thumbnailPosition="left"
-                                    showIndex={true}
-                                    onSlide={this.onSlide}
-                                    startIndex={startIndex}
-                                />
-                                
+                                {modalWindowAddImageSuccessfully}
+                                {gallerySlider}
+                                {modalWindowDeleteImage}
                             </div>
-                            {modalWindowDeleteImage}
-                            {modalWindowUserNotificationDeleteImage}
             </div>
         )
     }

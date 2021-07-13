@@ -12,7 +12,7 @@ import CreatingGroup from '../creatingGroup/creatingGroup';
 import Group from '../group/group';
 import {groupId} from '../../actions';
 import ModificationGroup from '../modificationGroup/modificationGroup';
-
+import PageFriends from '../pageFriends/pageFriends';
 
 class MainPage extends Component{
     render(){
@@ -22,6 +22,7 @@ class MainPage extends Component{
         if (this.props.location.hash === "") {
             this.props.history.push("#" + id)
         }
+
 
         return(
             <>
@@ -39,6 +40,10 @@ class MainPage extends Component{
                             const id=match.params.id;
                             return <Group idInUrl={id}/>
                         }}/>
+                        <Route path="/:id" component={({match})=>{
+                            const id=match.params.id
+                            return <PageFriends idInUrl={id}/>
+                        }}/>
                     </Switch>
                 </HashRouter>
             </>
@@ -55,7 +60,7 @@ const mapStateToProps=(state)=>{
 }
 
 const mapDispatchToProps = {
-    groupId,
+    groupId
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));

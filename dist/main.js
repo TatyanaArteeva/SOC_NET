@@ -5270,10 +5270,10 @@ ___CSS_LOADER_EXPORT___.push([module.i, ".App {\n  max-width: 1140px;\n  box-siz
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/friends/friends.scss":
-/*!**************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/friends/friends.scss ***!
-  \**************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/friendsAndGroupsList/friendsAndGroupsList.scss":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/friendsAndGroupsList/friendsAndGroupsList.scss ***!
+  \****************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5288,7 +5288,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".myFriends {\n  width: 1140px;\n  border-left: groove 2px blue;\n  border-right: groove 2px blue;\n}\n\n.myFriends_list {\n  margin: 15px;\n}\n\n.myFriends_item {\n  margin: 15px;\n  height: 200px;\n  display: flex;\n}\n\n.myFriends_item_img {\n  width: 200px;\n  height: 200px;\n  border-radius: 100%;\n}", "",{"version":3,"sources":["webpack://./src/components/friends/friends.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,4BAAA;EACA,6BAAA;AACJ;;AAEA;EACI,YAAA;AACJ;;AAEA;EACI,YAAA;EACA,aAAA;EACA,aAAA;AACJ;;AAEA;EACI,YAAA;EACA,aAAA;EACA,mBAAA;AACJ","sourcesContent":[".myFriends {\r\n    width: 1140px;\r\n    border-left: groove 2px blue;\r\n    border-right: groove 2px blue;\r\n}\r\n\r\n.myFriends_list {\r\n    margin: 15px;\r\n}\r\n\r\n.myFriends_item {\r\n    margin: 15px;\r\n    height: 200px;\r\n    display: flex;\r\n}\r\n\r\n.myFriends_item_img {\r\n    width: 200px;\r\n    height: 200px;\r\n    border-radius: 100%;\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".myFriends {\n  width: 1140px;\n  border-left: groove 2px blue;\n  border-right: groove 2px blue;\n}\n\n.myFriends_list {\n  margin: 15px;\n}\n\n.myFriends_item {\n  margin: 15px;\n  height: 200px;\n  display: flex;\n}\n\n.myFriends_item_img {\n  width: 200px;\n  height: 200px;\n  border-radius: 100%;\n}", "",{"version":3,"sources":["webpack://./src/components/friendsAndGroupsList/friendsAndGroupsList.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,4BAAA;EACA,6BAAA;AACJ;;AAEA;EACI,YAAA;AACJ;;AAEA;EACI,YAAA;EACA,aAAA;EACA,aAAA;AACJ;;AAEA;EACI,YAAA;EACA,aAAA;EACA,mBAAA;AACJ","sourcesContent":[".myFriends {\r\n    width: 1140px;\r\n    border-left: groove 2px blue;\r\n    border-right: groove 2px blue;\r\n}\r\n\r\n.myFriends_list {\r\n    margin: 15px;\r\n}\r\n\r\n.myFriends_item {\r\n    margin: 15px;\r\n    height: 200px;\r\n    display: flex;\r\n}\r\n\r\n.myFriends_item_img {\r\n    width: 200px;\r\n    height: 200px;\r\n    border-radius: 100%;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -76485,9 +76485,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _friends_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./friends.scss */ "./src/components/friends/friends.scss");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
+/* harmony import */ var _friendsAndGroupsList_friendsAndGroupsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../friendsAndGroupsList/friendsAndGroupsList */ "./src/components/friendsAndGroupsList/friendsAndGroupsList.js");
 
 
 
@@ -76499,6 +76499,135 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
+// import React, { Component} from 'react';
+// import './friends.scss';
+// import { withRouter } from "react-router-dom";
+// import WithService from '../hoc/hoc';
+// import { connect } from 'react-redux';
+// import {userId} from '../../actions';
+// class Friends extends Component{
+//     constructor(props){
+//         super(props);
+//         this.state={
+//             arrFriends: [],
+//             totalSize: '',
+//             req: false,
+//             heightList: ''
+//         }
+//         this.refListFriends=React.createRef();
+//         const {Service} = this.props;
+//         let start=0;
+//         let end=10;
+//         this.allFriends=()=>{
+//             Service.getFriendsAll(`/api/account/all?start=${start}&end=${end}`)
+//                 .then(res=>{
+//                     console.log(res)
+//                     console.log("res")
+//                     this.setState({
+//                         arrFriends: [...this.state.arrFriends, ...res.data.accounts],
+//                         totalSizeFriends: res.data.totalSize
+//                     })
+//                 })
+//         }
+//         this.componentDidMount=()=>{
+//             this.allFriends();
+//         }
+//         this.goToFriends=(id)=>{
+//             this.props.history.push(id)
+//         }
+//         this.componentDidUpdate=()=>{
+//             const heightListFriends=this.refListFriends.current.scrollHeight;
+//             if(heightListFriends!==this.state.heightList){
+//                 this.setState({
+//                     heightList: heightListFriends
+//                 })
+//             }
+//             console.log(heightListFriends)
+//             const windowHeight=document.documentElement.clientHeight;
+//             console.log(windowHeight);
+//             window.addEventListener("scroll", ()=>{
+//                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+//                 if((scrollTop+windowHeight)>=(this.state.heightList/100*80) && !this.state.req){
+//                     console.log(scrollTop+windowHeight, this.state.heightList)
+//                     this.setState({
+//                         req: true
+//                     })
+//                     start=end;
+//                     end=end+10;
+//                     if(start===this.state.totalSizeFriends){
+//                         return
+//                     }
+//                     if(start>this.state.totalSizeFriends){
+//                         return
+//                     }
+//                     if(end>this.state.totalSizeFriends){
+//                         end=this.state.totalSizeFriends
+//                     }
+//                     console.log(start, end)
+//                     console.log("yes")
+//                     Service.getFriendsAll(`/api/account/all?start=${start}&end=${end}`)
+//                     .then(res=>{
+//                         console.log(res.data)
+//                         this.setState({
+//                             arrFriends: [...this.state.arrFriends, ...res.data.accounts],
+//                             totalSizeFriends: res.data.totalSize,
+//                             req: false
+//                         })
+//                     })
+//                     return false
+//                 }
+//             })
+//         }
+//     }
+//     render(){
+//         let friendsAndMessageNotFriends=null;
+//         if(this.state.arrFriends.length===0){
+//             friendsAndMessageNotFriends=<div>
+//                                         У вас пока нет друзей
+//                                       </div>
+//         }
+//         if(this.state.arrFriends.length>0){
+//             friendsAndMessageNotFriends=<div>
+//                                         {
+//                                             this.state.arrFriends.map((el, index)=>{
+//                                                 return <div key={el.id}>
+//                                                             <li className="myFriends_item" onClick={()=>this.goToFriends(el.id)}>
+//                                                                 {index+1}
+//                                                                 <img className="myFriends_item_img" src={"data:image/jpg;base64," + el.photo} alt="photoGroup"/>
+//                                                                 {el.name}
+//                                                             </li>
+//                                                         </div>
+//                                             })
+//                                         }
+//                                       </div>
+//         }
+//          return(
+//             <div>
+//                 <div>
+//                     <input
+//                         type="text"
+//                         placeholder="Поиск друзей"
+//                     />
+//                 </div>
+//                 <div className="myFriends" >
+//                     <div>Всего аккаунтов: {this.state.totalSizeFriends}</div>
+//                     <ul className="myGroups_list" ref={this.refListFriends}>
+//                         {friendsAndMessageNotFriends}
+//                     </ul>
+//                 </div>
+//             </div>
+//         )
+//      }
+// }
+// const mapStateToProps = (state) => {
+//         return {
+//         }
+//     }
+//     const mapDispatchToProps = {
+//         userId
+//     }    
+//     export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Friends)))
+// export default withRouter(WithService()(Friends));
 
 
 
@@ -76516,25 +76645,119 @@ var Friends = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      arrFriends: [],
-      totalSize: '',
-      req: false,
-      heightList: ''
+      arr: []
     };
-    _this.refListFriends = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createRef();
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(Friends, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_friendsAndGroupsList_friendsAndGroupsList__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        getItems: function getItems(start, end) {
+          return "/api/account/all?start=".concat(start, "&end=").concat(end);
+        },
+        arrItems: function arrItems(items) {
+          _this2.setState({
+            arr: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_this2.state.arr), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(items.accounts))
+          });
+        },
+        path: function path(id) {
+          _this2.props.history.push(id);
+        },
+        titleItem: function titleItem(el) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("img", {
+            className: "myFriends_item_img",
+            src: "data:image/jpg;base64," + el.photo,
+            alt: "photoGroup"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("span", null, el.firstName, " ", el.lastName));
+        },
+        renderItems: this.state.arr,
+        searchName: "Поиск друзей",
+        messageNotContent: "У вас пока нет друзей",
+        nameList: "друзей"
+      }));
+    }
+  }]);
+
+  return Friends;
+}(react__WEBPACK_IMPORTED_MODULE_6__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["withRouter"])(Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_8__["default"])()(Friends)));
+
+/***/ }),
+
+/***/ "./src/components/friendsAndGroupsList/friendsAndGroupsList.js":
+/*!*********************************************************************!*\
+  !*** ./src/components/friendsAndGroupsList/friendsAndGroupsList.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _friendsAndGroupsList_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./friendsAndGroupsList.scss */ "./src/components/friendsAndGroupsList/friendsAndGroupsList.scss");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
+
+
+
+
+
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
+
+
+
+
+var FriendsAndGroupsList = /*#__PURE__*/function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(FriendsAndGroupsList, _Component);
+
+  var _super = _createSuper(FriendsAndGroupsList);
+
+  function FriendsAndGroupsList(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, FriendsAndGroupsList);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      req: false,
+      heightList: '',
+      totalSize: ''
+    };
+    _this.refList = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createRef();
     var Service = _this.props.Service;
     var start = 0;
     var end = 10;
 
     _this.allFriends = function () {
-      Service.getFriendsAll("/api/account/all?start=".concat(start, "&end=").concat(end)).then(function (res) {
-        console.log(res);
+      Service.getFriendsAll(_this.props.getItems(start, end)).then(function (res) {
         console.log("res");
 
         _this.setState({
-          arrFriends: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_this.state.arrFriends), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(res.data.accounts)),
-          totalSizeGroup: res.data.totalSize
+          totalSize: res.data.totalSize
         });
+
+        _this.props.arrItems(res.data);
       });
     };
 
@@ -76542,28 +76765,24 @@ var Friends = /*#__PURE__*/function (_Component) {
       _this.allFriends();
     };
 
-    _this.goToFriends = function (id) {
-      _this.props.history.push("".concat(id));
+    _this.goToItem = function (id) {
+      _this.props.path(id);
     };
 
     _this.componentDidUpdate = function () {
-      var heightListFriends = _this.refListFriends.current.scrollHeight;
+      var heightList = _this.refList.current.scrollHeight;
 
-      if (heightListFriends !== _this.state.heightList) {
+      if (heightList !== _this.state.heightList) {
         _this.setState({
-          heightList: heightListFriends
+          heightList: heightList
         });
       }
 
-      console.log(heightListFriends);
       var windowHeight = document.documentElement.clientHeight;
-      console.log(windowHeight);
       window.addEventListener("scroll", function () {
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop + windowHeight >= _this.state.heightList / 100 * 80 && !_this.state.req) {
-          console.log(scrollTop + windowHeight, _this.state.heightList);
-
           _this.setState({
             req: true
           });
@@ -76571,28 +76790,29 @@ var Friends = /*#__PURE__*/function (_Component) {
           start = end;
           end = end + 10;
 
-          if (start === _this.state.totalSizeFriends) {
+          if (start === _this.state.totalSize) {
             return;
           }
 
-          if (start > _this.state.totalSizeFriends) {
+          if (start > _this.state.totalSize) {
             return;
           }
 
-          if (end > _this.state.totalSizeFriends) {
-            end = _this.state.totalSizeFriends;
+          if (end > _this.state.totalSize) {
+            end = _this.state.totalSize;
           }
 
           console.log(start, end);
           console.log("yes");
-          Service.getFriendsAll("/api/account/all?start=".concat(start, "&end=").concat(end)).then(function (res) {
-            console.log(res.data.accounts);
+          Service.getFriendsAll(_this.props.getItems(start, end)).then(function (res) {
+            console.log(res.data);
 
             _this.setState({
-              arrFriends: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_this.state.arrFriends), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(res.data.accounts)),
-              totalSizeFriends: res.data.totalSize,
+              totalSize: res.data.totalSize,
               req: false
             });
+
+            _this.props.arrItems(res.data);
           });
           return false;
         }
@@ -76602,57 +76822,55 @@ var Friends = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(Friends, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(FriendsAndGroupsList, [{
     key: "render",
     value: function render() {
       var _this2 = this;
 
       var friendsAndMessageNotFriends = null;
 
-      if (this.state.arrFriends.length === 0) {
-        friendsAndMessageNotFriends = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, "\u0423 \u0432\u0430\u0441 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442 \u0434\u0440\u0443\u0437\u0435\u0439");
+      if (this.props.renderItems.length === 0) {
+        friendsAndMessageNotFriends = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, this.props.messageNotContent);
       }
 
-      if (this.state.arrFriends.length > 0) {
-        friendsAndMessageNotFriends = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, this.state.arrFriends.map(function (el, index) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
+      if (this.props.renderItems.length > 0) {
+        friendsAndMessageNotFriends = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, this.props.renderItems.map(function (el, index) {
+          var label = _this2.props.titleItem(el);
+
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
             key: el.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("li", {
             className: "myFriends_item",
             onClick: function onClick() {
-              return _this2.goToFriends(el.id);
+              return _this2.goToItem(el.id);
             }
-          }, index + 1, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("img", {
-            className: "myFriends_item_img",
-            src: "data:image/jpg;base64," + el.photo,
-            alt: "photoGroup"
-          }), el.name));
+          }, index + 1, label));
         }));
       }
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("input", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         type: "text",
-        placeholder: "\u041F\u043E\u0438\u0441\u043A \u0434\u0440\u0443\u0437\u0435\u0439"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
+        placeholder: this.props.searchName
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "myFriends"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, "\u0412\u0441\u0435\u0433\u043E \u0433\u0440\u0443\u043F\u043F: ", this.state.totalSizeFriends), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("ul", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\u0412\u0441\u0435\u0433\u043E ", this.props.nameList, ": ", this.state.totalSize), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("ul", {
         className: "myGroups_list",
-        ref: this.refListFriends
+        ref: this.refList
       }, friendsAndMessageNotFriends)));
     }
   }]);
 
-  return Friends;
-}(react__WEBPACK_IMPORTED_MODULE_6__["Component"]);
+  return FriendsAndGroupsList;
+}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["withRouter"])(Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_9__["default"])()(Friends)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["withRouter"])(Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_8__["default"])()(FriendsAndGroupsList)));
 
 /***/ }),
 
-/***/ "./src/components/friends/friends.scss":
-/*!*********************************************!*\
-  !*** ./src/components/friends/friends.scss ***!
-  \*********************************************/
+/***/ "./src/components/friendsAndGroupsList/friendsAndGroupsList.scss":
+/*!***********************************************************************!*\
+  !*** ./src/components/friendsAndGroupsList/friendsAndGroupsList.scss ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -76660,7 +76878,7 @@ var Friends = /*#__PURE__*/function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_friends_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./friends.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/friends/friends.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_friendsAndGroupsList_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./friendsAndGroupsList.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/friendsAndGroupsList/friendsAndGroupsList.scss");
 
             
 
@@ -76669,11 +76887,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_friends_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_friendsAndGroupsList_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_friends_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_friendsAndGroupsList_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -76915,6 +77133,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _groups_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./groups.scss */ "./src/components/groups/groups.scss");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
+/* harmony import */ var _friendsAndGroupsList_friendsAndGroupsList__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../friendsAndGroupsList/friendsAndGroupsList */ "./src/components/friendsAndGroupsList/friendsAndGroupsList.js");
 
 
 
@@ -76925,6 +77144,127 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+// import React, { Component} from 'react';
+// import './groups.scss';
+// import {Link, HashRouter} from 'react-router-dom';
+// import { withRouter } from "react-router-dom";
+// import WithService from '../hoc/hoc';
+// class Groups extends Component{
+//     constructor(props){
+//         super(props)
+//         this.state={
+//             arrGroups: [],
+//             totalSizeGroup: '',
+//             req: false,
+//             heightList: ''
+//         }
+//         this.refListGroup=React.createRef()
+//         const {Service} = this.props;
+//         let start=0;
+//         let end=10;
+//         this.allGroup=()=>{
+//             Service.getGroupAll(`/api/group/all?start=${start}&end=${end}`)
+//                 .then(res=>{
+//                     console.log("res")
+//                     this.setState({
+//                         arrGroups: [...this.state.arrGroups, ...res.data.groups],
+//                         totalSizeGroup: res.data.totalSize
+//                     })
+//                 })
+//         }
+//         this.componentDidMount=()=>{
+//             this.allGroup();
+//         }
+//         this.goToGroup=(id)=>{
+//             this.props.history.push(`/groups/${id}`)
+//         }
+//         this.componentDidUpdate=()=>{
+//             const heightListGroup=this.refListGroup.current.scrollHeight;
+//             if(heightListGroup!==this.state.heightList){
+//                 this.setState({
+//                     heightList: heightListGroup
+//                 })
+//             }
+//             const windowHeight=document.documentElement.clientHeight;
+//             window.addEventListener("scroll", ()=>{
+//                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+//                 if((scrollTop+windowHeight)>=(this.state.heightList/100*80) && !this.state.req){
+//                     console.log(scrollTop+windowHeight, this.state.heightList)
+//                     this.setState({
+//                         req: true
+//                     })
+//                     start=end;
+//                     end=end+10;
+//                     if(start===this.state.totalSizeGroup){
+//                         return
+//                     }
+//                     if(start>this.state.totalSizeGroup){
+//                         return
+//                     }
+//                     if(end>this.state.totalSizeGroup){
+//                         end=this.state.totalSizeGroup
+//                     }
+//                     console.log(start, end)
+//                     console.log("yes")
+//                     Service.getGroupAll(`/api/group/all?start=${start}&end=${end}`)
+//                     .then(res=>{
+//                         console.log(res.data.groups)
+//                         this.setState({
+//                             arrGroups: [...this.state.arrGroups, ...res.data.groups],
+//                             totalSizeGroup: res.data.totalSize,
+//                             req: false
+//                         })
+//                     })
+//                     return false
+//                 }
+//             })
+//         }
+//     }
+//      render(){
+//         let groupsAndMessageNotGroups=null;
+//         if(this.state.arrGroups.length===0){
+//             groupsAndMessageNotGroups=<div>
+//                                         У вас пока нет групп
+//                                       </div>
+//         }
+//         if(this.state.arrGroups.length>0){
+//             groupsAndMessageNotGroups=<div>
+//                                         {
+//                                             this.state.arrGroups.map((el, index)=>{
+//                                                 return <div key={el.id}>
+//                                                             <li className="myGroups_item" onClick={()=>this.goToGroup(el.id)}>
+//                                                                 {index+1}
+//                                                                 <img className="myGroups_item_img" src={"data:image/jpg;base64," + el.photo} alt="photoGroup"/>
+//                                                                 {el.name}
+//                                                             </li>
+//                                                         </div>
+//                                             })
+//                                         }
+//                                       </div>
+//         }
+//          return(
+//             <div>
+//                 <div>
+//                     <input
+//                         type="text"
+//                         placeholder="Поиск групп"
+//                     />
+//                     <HashRouter>
+//                         <Link to="/createGroups"><button>Создать новую группу</button></Link>
+//                     </HashRouter>
+//                 </div>
+//                 <div className="myGroups">
+//                     <div>Всего групп: {this.state.totalSizeGroup}</div>
+//                     <ul className="myGroups_list" ref={this.refListGroup}>
+//                         {groupsAndMessageNotGroups}
+//                     </ul>
+//                 </div>
+//             </div>
+//         )
+//      }
+// }
+// export default withRouter(WithService()(Groups));
 
 
 
@@ -76944,88 +77284,8 @@ var Groups = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      arrGroups: [],
-      totalSizeGroup: '',
-      req: false,
-      heightList: ''
+      arr: []
     };
-    _this.refListGroup = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createRef();
-    var Service = _this.props.Service;
-    var start = 0;
-    var end = 10;
-
-    _this.allGroup = function () {
-      Service.getGroupAll("/api/group/all?start=".concat(start, "&end=").concat(end)).then(function (res) {
-        console.log("res");
-
-        _this.setState({
-          arrGroups: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_this.state.arrGroups), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(res.data.groups)),
-          totalSizeGroup: res.data.totalSize
-        });
-      });
-    };
-
-    _this.componentDidMount = function () {
-      _this.allGroup();
-    };
-
-    _this.goToGroup = function (id) {
-      _this.props.history.push("/groups/".concat(id));
-    };
-
-    _this.componentDidUpdate = function () {
-      var heightListGroup = _this.refListGroup.current.scrollHeight;
-
-      if (heightListGroup !== _this.state.heightList) {
-        _this.setState({
-          heightList: heightListGroup
-        });
-      }
-
-      console.log(heightListGroup);
-      var windowHeight = document.documentElement.clientHeight;
-      console.log(windowHeight);
-      window.addEventListener("scroll", function () {
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop + windowHeight >= _this.state.heightList / 100 * 80 && !_this.state.req) {
-          console.log(scrollTop + windowHeight, _this.state.heightList);
-
-          _this.setState({
-            req: true
-          });
-
-          start = end;
-          end = end + 10;
-
-          if (start === _this.state.totalSizeGroup) {
-            return;
-          }
-
-          if (start > _this.state.totalSizeGroup) {
-            return;
-          }
-
-          if (end > _this.state.totalSizeGroup) {
-            end = _this.state.totalSizeGroup;
-          }
-
-          console.log(start, end);
-          console.log("yes");
-          Service.getGroupAll("/api/group/all?start=".concat(start, "&end=").concat(end)).then(function (res) {
-            console.log(res.data.groups);
-
-            _this.setState({
-              arrGroups: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_this.state.arrGroups), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(res.data.groups)),
-              totalSizeGroup: res.data.totalSize,
-              req: false
-            });
-          });
-          return false;
-        }
-      });
-    };
-
     return _this;
   }
 
@@ -77034,40 +77294,32 @@ var Groups = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var groupsAndMessageNotGroups = null;
-
-      if (this.state.arrGroups.length === 0) {
-        groupsAndMessageNotGroups = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, "\u0423 \u0432\u0430\u0441 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442 \u0433\u0440\u0443\u043F\u043F");
-      }
-
-      if (this.state.arrGroups.length > 0) {
-        groupsAndMessageNotGroups = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, this.state.arrGroups.map(function (el, index) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-            key: el.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
-            className: "myGroups_item",
-            onClick: function onClick() {
-              return _this2.goToGroup(el.id);
-            }
-          }, index + 1, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("img", {
-            className: "myGroups_item_img",
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Link"], {
+        to: "/createGroups"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("button", null, "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E \u0433\u0440\u0443\u043F\u043F\u0443"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_friendsAndGroupsList_friendsAndGroupsList__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        getItems: function getItems(start, end) {
+          return "/api/group/all?start=".concat(start, "&end=").concat(end);
+        },
+        arrItems: function arrItems(items) {
+          _this2.setState({
+            arr: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_this2.state.arr), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(items.groups))
+          });
+        },
+        path: function path(id) {
+          _this2.props.history.push("/groups/".concat(id));
+        },
+        titleItem: function titleItem(el) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("img", {
+            className: "myFriends_item_img",
             src: "data:image/jpg;base64," + el.photo,
             alt: "photoGroup"
-          }), el.name));
-        }));
-      }
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("input", {
-        type: "text",
-        placeholder: "\u041F\u043E\u0438\u0441\u043A \u0433\u0440\u0443\u043F\u043F"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Link"], {
-        to: "/createGroups"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("button", null, "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E \u0433\u0440\u0443\u043F\u043F\u0443")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-        className: "myGroups"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, "\u0412\u0441\u0435\u0433\u043E \u0433\u0440\u0443\u043F\u043F: ", this.state.totalSizeGroup), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("ul", {
-        className: "myGroups_list",
-        ref: this.refListGroup
-      }, groupsAndMessageNotGroups)));
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("span", null, el.name));
+        },
+        renderItems: this.state.arr,
+        searchName: "Поиск групп",
+        messageNotContent: "У вас пока нет групп",
+        nameList: "групп"
+      }));
     }
   }]);
 
@@ -77530,6 +77782,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _group_group__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../group/group */ "./src/components/group/group.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../actions */ "./src/actions/index.js");
 /* harmony import */ var _modificationGroup_modificationGroup__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../modificationGroup/modificationGroup */ "./src/components/modificationGroup/modificationGroup.js");
+/* harmony import */ var _pageFriends_pageFriends__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../pageFriends/pageFriends */ "./src/components/pageFriends/pageFriends.js");
 
 
 
@@ -77539,6 +77792,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -77604,6 +77858,15 @@ var MainPage = /*#__PURE__*/function (_Component) {
           var match = _ref.match;
           var id = match.params.id;
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_group_group__WEBPACK_IMPORTED_MODULE_16__["default"], {
+            idInUrl: id
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
+        path: "/:id",
+        component: function component(_ref2) {
+          var match = _ref2.match;
+          var id = match.params.id;
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_pageFriends_pageFriends__WEBPACK_IMPORTED_MODULE_19__["default"], {
             idInUrl: id
           });
         }
@@ -78469,7 +78732,9 @@ var MyPage = /*#__PURE__*/function (_Component) {
         className: "profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "profile_photo"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_photoUser_photoUser__WEBPACK_IMPORTED_MODULE_13__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_photoUser_photoUser__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        idForPhoto: this.props.id
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "profile_information"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Link"], {
         to: "/modification"
@@ -78537,6 +78802,154 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./src/components/pageFriends/pageFriends.js":
+/*!***************************************************!*\
+  !*** ./src/components/pageFriends/pageFriends.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_image_gallery_styles_scss_image_gallery_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-image-gallery/styles/scss/image-gallery.scss */ "./node_modules/react-image-gallery/styles/scss/image-gallery.scss");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _detailedInformationBlock_detailedInformationBlock__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../detailedInformationBlock/detailedInformationBlock */ "./src/components/detailedInformationBlock/detailedInformationBlock.js");
+/* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../actions */ "./src/actions/index.js");
+/* harmony import */ var _photoUser_photoUser__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../photoUser/photoUser */ "./src/components/photoUser/photoUser.js");
+/* harmony import */ var _sliderCarusel_sliderCarusel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../sliderCarusel/sliderCarusel */ "./src/components/sliderCarusel/sliderCarusel.js");
+
+
+
+
+
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
+
+
+
+
+
+
+
+
+
+var PageFriends = /*#__PURE__*/function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(PageFriends, _Component);
+
+  var _super = _createSuper(PageFriends);
+
+  function PageFriends(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, PageFriends);
+
+    _this = _super.call(this, props);
+    _this.refImgGallery = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createRef();
+    _this.state = {
+      btnDetailedInformation: false,
+      firstName: '',
+      lastName: '',
+      birthDate: ''
+    };
+    var Service = _this.props.Service;
+
+    _this.detailedInformation = function () {
+      _this.setState(function (_ref) {
+        var btnDetailedInformation = _ref.btnDetailedInformation;
+        return {
+          btnDetailedInformation: !btnDetailedInformation
+        };
+      });
+    };
+
+    _this.recepionInformation = function () {
+      Service.getUserAccountId(_this.props.idInUrl).then(function (res) {
+        if (res.status === 200) {
+          _this.props.userInformation(res.data);
+        }
+      }).then(function (res) {
+        _this.setState({
+          firstName: _this.props.information.firstName,
+          lastName: _this.props.information.lastName,
+          birthDate: _this.props.information.birthDate
+        });
+      });
+    };
+
+    _this.componentDidMount = function () {
+      _this.recepionInformation();
+    };
+
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(PageFriends, [{
+    key: "render",
+    value: function render() {
+      var blockDetailedInformation = this.state.btnDetailedInformation ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_detailedInformationBlock_detailedInformationBlock__WEBPACK_IMPORTED_MODULE_9__["default"], null) : null;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile_photo"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_photoUser_photoUser__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        idForPhoto: this.props.idInUrl
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile_information"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Link"], {
+        to: "/modification"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile_editing"
+      }, "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile_name"
+      }, "\u041C\u043E\u0435 \u0438\u043C\u044F: ", this.state.firstName, " ", this.state.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile_information_title"
+      }, "\u041E\u0441\u043D\u043E\u0432\u043D\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile_information__birthday"
+      }, "\u0414\u0435\u043D\u044C \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F: ", this.state.birthDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
+        onClick: this.detailedInformation
+      }, "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u043F\u043E\u0434\u0440\u043E\u0431\u043D\u0443\u044E \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E"), blockDetailedInformation), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile_photos"
+      }, "\u0417\u0434\u0435\u0441\u044C \u0431\u0443\u0434\u0435\u0442 \u043A\u0430\u0440\u0443\u0441\u0435\u043B\u044C \u0434\u043B\u044F \u0444\u043E\u0442\u043E", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_sliderCarusel_sliderCarusel__WEBPACK_IMPORTED_MODULE_13__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "profile_publicMessages"
+      }, "\u0417\u0434\u0435\u0441\u044C \u0431\u0443\u0434\u0443\u0442 \u0437\u0430\u043F\u0438\u0441\u0438 \u0441\u043E \u0441\u0442\u0435\u043D\u044B")));
+    }
+  }]);
+
+  return PageFriends;
+}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    information: state.userInformation
+  };
+};
+
+var mapDispatchToProps = {
+  userInformation: _actions__WEBPACK_IMPORTED_MODULE_11__["userInformation"],
+  photoRights: _actions__WEBPACK_IMPORTED_MODULE_11__["photoRights"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(_hoc_hoc__WEBPACK_IMPORTED_MODULE_10__["default"])()(Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(mapStateToProps, mapDispatchToProps)(PageFriends)));
+
+/***/ }),
+
 /***/ "./src/components/photoUser/photoUser.js":
 /*!***********************************************!*\
   !*** ./src/components/photoUser/photoUser.js ***!
@@ -78568,7 +78981,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var PhotoUser = function PhotoUser(_ref) {
   var Service = _ref.Service,
-      id = _ref.id,
+      idForPhoto = _ref.idForPhoto,
       modalWindowForMainPhotoOptionsOpen = _ref.modalWindowForMainPhotoOptionsOpen,
       modalWindowForMainPhotoOptions = _ref.modalWindowForMainPhotoOptions,
       listPhotoRights = _ref.listPhotoRights,
@@ -78587,7 +79000,7 @@ var PhotoUser = function PhotoUser(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Service.getAccountPhoto("/api/account/".concat(id, "/photo"), {
+              return Service.getAccountPhoto("/api/account/".concat(idForPhoto, "/photo"), {
                 responseType: 'arraybuffer'
               }).then(function (response) {
                 return Buffer.from(response.data, 'binary').toString('base64');
@@ -78629,7 +79042,7 @@ var PhotoUser = function PhotoUser(_ref) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    id: state.userId,
+    // id: state.userId,
     modalWindowForMainPhotoOptions: state.modalWindowForMainPhotoOptions,
     listPhotoRights: state.listPhotoRights,
     photo: state.photoUser
