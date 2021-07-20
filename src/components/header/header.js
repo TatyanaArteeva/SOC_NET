@@ -19,14 +19,11 @@ class Header extends Component{
                     if(res.status===200){
                         this.props.logout();
                     }
-                }).then(res=>{
+                })
+                .then(res=>{
                     if(this.props.logoutStatus) {
                         return <App/>
                     }
-                })
-                .catch(res=>{
-                    return 
-                    // Здесь будет ошибка
                 })
         }
 
