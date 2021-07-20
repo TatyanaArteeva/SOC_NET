@@ -1,8 +1,7 @@
-// import React, {useState} from 'react';
 import React, {Component} from 'react';
 import './ModalWindowForOptonMainPhoto.scss';
 import {connect} from 'react-redux';
-import { modalWindowForMainPhotoOptionsClose, photoUser, photoRights } from '../../actions';
+import { modalWindowForMainPhotoOptionsClose, photoUser, rights } from '../../actions';
 import WithService from '../hoc/hoc';
 
 class ModalWindowForOptonMainPhoto extends Component{
@@ -129,7 +128,7 @@ class ModalWindowForOptonMainPhoto extends Component{
             Service.postNewPhotoProfile(`/api/account/${this.props.id}/change-photo`, formData)
                 .then(res=>{
                     if(res.status===200){
-                        this.props.photoRights(res.data.accesses)
+                        this.props.rights(res.data.accesses)
                         const information=async ()=>{
                             const res=await Service.getAccountPhoto(`/api/account/${this.props.id}/photo`, {
                                 responseType: 'arraybuffer'
@@ -146,15 +145,15 @@ class ModalWindowForOptonMainPhoto extends Component{
                         information()
                     }
                 })
-    
         }
 
         this.confirmationRemovePhoto=(event)=>{
             event.preventDefault();
             Service.postRemovePhotoProfile(`/api/account/${this.props.id}/change-photo`, null)
                 .then(res=>{
+                    console.log(res)
                     if(res.status===200){
-                        this.props.photoRights(res.data.accesses);
+                        this.props.rights(res.data.accesses);
                         const information=async ()=>{
                             const res=await Service.getAccountPhoto(`/api/account/${this.props.id}/photo`, {
                                 responseType: 'arraybuffer'
@@ -246,7 +245,7 @@ class ModalWindowForOptonMainPhoto extends Component{
             return modalQuestonRemovePhoto
         }
 
-        const removePhotoBtn=this.props.listPhotoRights.canRemovePhoto ? removePhoto : null;
+        const removePhotoBtn=this.props.listRights.canRemovePhoto ? removePhoto : null;
         return(
             <div className="ModalWindowForOptonMainPhoto">
                 <span onClick={this.modalWindowForOptonsMainPhotoClose}>Закрыть</span>
@@ -263,15 +262,15 @@ class ModalWindowForOptonMainPhoto extends Component{
 
 const mapStateToProps=(state)=>{
     return{
-        listPhotoRights: state.listPhotoRights,
-        id: state.userId
+        listRights: state.listRights,
+        id: state.userId,
     }
 }
 
 const mapDispatchToProps={
     modalWindowForMainPhotoOptionsClose,
     photoUser,
-    photoRights
+    rights
 }
 
 export default WithService()(connect(mapStateToProps, mapDispatchToProps)(ModalWindowForOptonMainPhoto));

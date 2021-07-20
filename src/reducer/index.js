@@ -9,7 +9,7 @@ const initialState={
     contentPages: false,
     userId: '',
     userEmail:'',
-    userAccesses:[],
+    userAccesses:{},
     logout: false,
     userInformation: {
         firstName:'',
@@ -25,14 +25,16 @@ const initialState={
     },
     modalWindowForMainPhotoOptions: false,
     modalWindowForUserNotification: false,
-    listPhotoRights:{},
+    listRights:{},
     photoUser:'',
     imagesGallery: [],
     imagesGalleryTotalSize: '',
     groupId: '',
     invalidFile: false,
-    modalWindowUserNotificationCreatingGroup: false
-    
+    modalWindowUserNotificationCreatingGroup: false,
+    infoRelation: {},
+    groupAccesses: {},
+    groupInfoRelation: {}
 }
 
 
@@ -187,10 +189,10 @@ const reducer=(state=initialState, action)=>{
                 modalWindowForMainPhotoOptions: false
         }
       
-        case 'PHOTO_RIGHTS': 
+        case 'RIGHTS': 
             return {
                 ...state,
-                listPhotoRights: action.rights
+                listRights: action.rights
         }
         case 'PHOTO_USER': 
             return {
@@ -283,6 +285,26 @@ const reducer=(state=initialState, action)=>{
                 ...state,
                 modalWindowUserNotificationCreatingGroup: false
                
+        }
+        case 'INFO_RELATION': 
+            return {
+                ...state,
+                infoRelation: action.infoRelation
+               
+        }
+        case 'ACCESSES_GROUP': 
+            return {
+                ...state,
+                groupAccesses:action.groupAccesses,
+    
+           
+            }
+        case 'INFO_RELATION_GROUP': 
+        console.log(action.groupInfoRelation)
+            return {
+                ...state,
+                groupInfoRelation: action.groupInfoRelation
+           
         }
         default:
             return state;

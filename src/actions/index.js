@@ -74,8 +74,8 @@ export const modalWindowForMainPhotoOptionsClose=()=>{
     return({type: 'MODAL_WINDOW_FOR_MAIN_PHOTO_OPTIONS_CLOSE'})
 }
 
-export const photoRights=(rights)=>{
-    return({type: 'PHOTO_RIGHTS', rights: rights})
+export const rights=(rights)=>{
+    return({type: 'RIGHTS', rights: rights})
 }
 
 export const photoUser=(photo)=>{
@@ -117,6 +117,17 @@ export const modalWindowForUserNotificationCreatingGroupOpen=()=>{
 
 export const modalWindowForUserNotificationCreatingGroupClose=()=>{
     return({type: 'MODAL_WINDOW_USER_NOTIFICATION_CREATING_GROUP_CLOSE'})
+}
+export const infoRelation=(infoRelation)=>{
+    return({type: 'INFO_RELATION', infoRelation: infoRelation})
+}
+
+export const groupAccesses=(groupAccesses)=>{
+    return({type: 'ACCESSES_GROUP', groupAccesses:groupAccesses})
+}
+export const groupInfoRelation=(groupInfoRelation)=>{
+    console.log(groupInfoRelation)
+    return({type: 'INFO_RELATION_GROUP', groupInfoRelation:groupInfoRelation})
 }
 
 

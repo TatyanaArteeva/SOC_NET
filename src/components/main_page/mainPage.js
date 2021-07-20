@@ -12,10 +12,15 @@ import CreatingGroup from '../creatingGroup/creatingGroup';
 import Group from '../group/group';
 import {groupId} from '../../actions';
 import ModificationGroup from '../modificationGroup/modificationGroup';
-import PageFriends from '../pageFriends/pageFriends';
+import IncomingFriends from '../incomingFriends/incomingFriend';
+import OutputFriends from '../outputFriends/outputFriends';
+import AllUsers from '../allUsers/allUsers';
+import AllGroups from '../allGroup/allGroup';
 
 class MainPage extends Component{
+    
     render(){
+
         const {idUser}=this.props;
         const id=`/${idUser}`;
 
@@ -23,16 +28,18 @@ class MainPage extends Component{
             this.props.history.push("#" + id)
         }
 
-
         return(
             <>
                 <Header/>
                 <HashRouter>
                     <Switch>
-                        <Route path={id} component={MyPage} />
-                        <Route path= "/friends" component={Friends} />
+                        <Route path= "/friends" exact component={Friends} />
+                        <Route path= "/friends/incoming" component={IncomingFriends} />
+                        <Route path= "/friends/output" component={OutputFriends} />
+                        <Route path= "/friends/allUsers" component={AllUsers} />
                         <Route path="/messages" component={Messages} />
                         <Route path="/groups" exact component={Groups} />
+                        <Route path="/groups/all" component={AllGroups} />
                         <Route path="/modification" component={Modification}/>
                         <Route path="/createGroups" component={CreatingGroup}/>
                         <Route path="/modificationGroups" component={ModificationGroup}/>
@@ -40,9 +47,9 @@ class MainPage extends Component{
                             const id=match.params.id;
                             return <Group idInUrl={id}/>
                         }}/>
-                        <Route path="/:id" component={({match})=>{
-                            const id=match.params.id
-                            return <PageFriends idInUrl={id}/>
+                        <Route path="/:id" exact component={({match})=>{
+                            const id=match.params.id;
+                            return <MyPage idInUrl={id}/>
                         }}/>
                     </Switch>
                 </HashRouter>

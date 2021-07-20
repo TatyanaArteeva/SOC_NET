@@ -70,7 +70,7 @@ class LoginPage extends Component  {
     render(){
         
         if(this.props.logoutStatus && this.props.location.hash.length!==0 && !this.props.mainPage){
-                this.props.history.push({hash: ""})
+                this.props.history.push("")
         }
 
         if(this.props.mainPage){

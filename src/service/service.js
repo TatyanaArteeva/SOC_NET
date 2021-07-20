@@ -218,14 +218,74 @@ class Service {
     }
 
 
-    friendsAll= async (url, options) => {
+    itemsList= async (url, options) => {
         const res= await axios.get(url, options);
 
         return res
     }
 
-    getFriendsAll=async (url, options) => {
-        const res=await this.friendsAll(url, options);
+    getItems=async (url, options) => {
+        const res=await this.itemsList(url, options);
+
+        return res
+    }
+
+    addFriend=async (url)=>{
+        const res=await axios.post(url);
+
+        return res
+    }
+
+    postAddFriend=async (url)=>{
+        const res=await this.addFriend(url);
+
+        return res
+    }
+
+    cancelAddFriend=async (url)=>{
+        const res=await axios.post(url);
+
+        return res
+    }
+
+    postCancelAddFriend=async (url)=>{
+        const res=await this.cancelAddFriend(url);
+
+        return res
+    }
+
+    deleteFriend=async (url)=>{
+        const res=await axios.post(url);
+
+        return res
+    }
+
+    postDeleteFriend=async (url)=>{
+        const res=await this.deleteFriend(url);
+
+        return res
+    }
+
+    addGroups=async (url)=>{
+        const res=await axios.post(url);
+
+        return res
+    }
+
+    postAddGroups=async (url)=>{
+        const res=await this.addGroups(url);
+
+        return res
+    }
+
+    userGroup= async (url) => {
+        const res= await axios.get(url);
+
+        return res
+    }
+
+    getUserGroup=async (url) => {
+        const res=await this.userGroup(url);
 
         return res
     }
