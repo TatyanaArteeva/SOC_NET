@@ -34,7 +34,8 @@ const initialState={
     modalWindowUserNotificationCreatingGroup: false,
     infoRelation: {},
     groupAccesses: {},
-    groupInfoRelation: {}
+    groupInfoRelation: {},
+    allSearchValue: ''
 }
 
 
@@ -205,12 +206,15 @@ const reducer=(state=initialState, action)=>{
             const end=action.endIndex;
             images.map(el=>{
                 Buffer.from(el.data, 'binary').toString('base64');
-                return el.data="data:image/jpg;base64," + el.data;
+                el.data="data:image/jpg;base64," + el.data;
+                return el.data
             })
             for(let i=start; i<end; i++){
-                    state.imagesGallery[i].original=images[i].data;
-                    state.imagesGallery[i].thumbnail=images[i].data;
-                    state.imagesGallery[i].id=images[i].id;
+                    if(images[i]!==undefined){
+                        state.imagesGallery[i].original=images[i].data;
+                        state.imagesGallery[i].thumbnail=images[i].data;
+                        state.imagesGallery[i].id=images[i].id;
+                    }
             }
 
             return {
@@ -306,6 +310,11 @@ const reducer=(state=initialState, action)=>{
                 groupInfoRelation: action.groupInfoRelation
            
         }
+        case 'ALL_SEARCH_VALUE': 
+            return {
+                ...state,
+                allSearchValue: action.allSearchValue
+            }
         default:
             return state;
     }

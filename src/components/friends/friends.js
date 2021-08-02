@@ -79,6 +79,11 @@ class Friends extends Component{
                                     }}    
                                     renderItems={this.state.arr}
                                     searchName={"Поиск друзей"}
+                                    arrItemsSearch={(items)=>{
+                                        this.setState({
+                                            arr: [...items.accounts]
+                                        })
+                                    }}
                                     messageNotContent={"У вас пока нет друзей"}
                                     nameList={"у вас друзей"}
                                     />

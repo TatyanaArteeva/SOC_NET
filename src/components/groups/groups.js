@@ -42,8 +42,7 @@ class Groups extends Component{
                                         renderItems={this.state.arr}
                                         titleItem={(el, funcGoItem, btnAction)=>{
                                                 return el.map((item, index)=>{
-                                                    console.log(item.info)
-
+                                             
                                                     let btnActionGroup=null;
 
                                                     if(item.info.groupRelationStatus==="NONE"){
@@ -61,7 +60,9 @@ class Groups extends Component{
                                                                 onClick={()=>funcGoItem(item.group.id)}
                                                                 >
                                                                 <div>
-                                                                    <img className="myFriends_item_img" src={"data:image/jpg;base64," + item.group.photo} alt="photoGroup"/>
+                                                                    <div className="myGroups_item_wrapper_img">
+                                                                        <img className="myGroups_item_img" src={"data:image/jpg;base64," + item.group.photo} alt="photoGroup"/>
+                                                                    </div>
                                                                     <span>{item.group.name}</span>
                                                                 </div>
                                                             </li>
@@ -82,6 +83,12 @@ class Groups extends Component{
                                             })
                                         }}
                                         searchName={"Поиск групп"}
+                                        arrItemsSearch={(items)=>{
+                                            console.log(items)
+                                            this.setState({
+                                                arr: [...items.groups]
+                                            })
+                                        }}
                                         messageNotContent={"У вас пока нет групп"}
                                         nameList={"у вас групп"}
                                     />

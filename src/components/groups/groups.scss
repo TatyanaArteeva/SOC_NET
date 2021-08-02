@@ -14,8 +14,15 @@
     display: flex;
 }
 
-.myGroups_item_img {
+.myGroups_item_wrapper_img{
     width: 200px;
     height: 200px;
+   
+}
+
+.myGroups_item_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 100%;
 }

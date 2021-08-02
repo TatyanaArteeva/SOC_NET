@@ -2,6 +2,8 @@ import React, { Component} from 'react';
 import './friendsAndGroupsList.scss';
 import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
+import {connect} from 'react-redux';
+import {allSearchValue} from '../../actions';
 
 class FriendsAndGroupsList extends Component{
     _cleanupFunction=false;
@@ -11,6 +13,7 @@ class FriendsAndGroupsList extends Component{
             req: false,
             heightList: '',
             totalSize: '',
+            searchValue: ''
         }
 
         this.refList=React.createRef();
@@ -19,16 +22,36 @@ class FriendsAndGroupsList extends Component{
         let end=10;
 
         this.getItems=()=>{
-            Service.getItems(this.props.getItems(start, end))
-                .then(res=>{
-                    console.log(res)
-                    if(this._cleanupFunction){
-                        this.setState({
-                            totalSize: res.data.totalSize,
-                        })
-                        this.props.arrItems(res.data);
-                    }
-                })
+            this.setState({
+                searchValue: this.props.valueSearch
+            })
+            start=0;
+            end=10;
+
+            if(this.props.valueSearch.length>0){
+                Service.getItems(this.props.getItems(start, end), {params:{name: this.props.valueSearch}})
+                    .then(res=>{
+                        this.props.allSearchValue("")
+                        if(this._cleanupFunction){
+                            this.setState({
+                                totalSize: res.data.totalSize,
+                            })
+                            this.props.arrItems(res.data);
+                        }
+                    })
+            }else{
+                Service.getItems(this.props.getItems(start, end))
+                    .then(res=>{
+                        console.log(res)
+                        if(this._cleanupFunction){
+                            this.setState({
+                                totalSize: res.data.totalSize,
+                            })
+                            this.props.arrItems(res.data);
+                        }
+                    })
+            }
+            
         }
 
         this.componentDidMount=()=>{
@@ -40,8 +63,11 @@ class FriendsAndGroupsList extends Component{
             this.props.path(id)
         }
 
+        
+
         this.componentDidUpdate=()=>{
                 const heightList=this.refList.current.scrollHeight;
+ 
                 if(heightList!==this.state.heightList){
                         if(this._cleanupFunction){
                             this.setState({
@@ -53,12 +79,7 @@ class FriendsAndGroupsList extends Component{
                 window.addEventListener("scroll", ()=>{
                     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                     if((scrollTop+windowHeight)>=(this.state.heightList/100*80) && !this.state.req){
-                            if(this._cleanupFunction){
-                                this.setState({
-                                    req: true
-                                })
-                            }
-
+                         
                         start=end;
                         end=end+10;
     
@@ -74,21 +95,38 @@ class FriendsAndGroupsList extends Component{
                         if(end>this.state.totalSize){
                             end=this.state.totalSize
                         }
-    
+                        
+                        if(this._cleanupFunction){
+                            this.setState({
+                                req: true
+                            })
+                        }
     
                         console.log(start, end)
                         console.log("yes")
-                        Service.getItems(this.props.getItems(start, end))
-                        .then(res=>{
-                              if(this._cleanupFunction){
-                                this.setState({
-                                    totalSize: res.data.totalSize,
-                                    req: false
+                        if(this.state.searchValue.length>0){
+                            Service.getResultForSearch(this.props.getItems(start,end), {params:{name: this.state.searchValue}})
+                                .then(res=>{
+                                    if(this._cleanupFunction){
+                                        this.setState({
+                                            totalSize: res.data.totalSize,
+                                            req: false
+                                        })
+                                        this.props.arrItems(res.data)
+                                    }
                                 })
-                                this.props.arrItems(res.data)
-                              }
-                        })
-                        return false
+                        }else{
+                            Service.getItems(this.props.getItems(start, end))
+                                .then(res=>{
+                                    if(this._cleanupFunction){
+                                        this.setState({
+                                            totalSize: res.data.totalSize,
+                                            req: false
+                                        })
+                                        this.props.arrItems(res.data)
+                                    }
+                                })
+                        }
                     }
                 })
 
@@ -259,6 +297,24 @@ class FriendsAndGroupsList extends Component{
             }
         }
 
+        this.postRequestByClickForSearch=(e)=>{
+            start=0;
+            end=10;
+            this.setState({
+                searchValue: e.target.value
+            })
+            Service.getResultForSearch(this.props.getItems(start,end), {params:{name: e.target.value}})
+                .then(res=>{
+                    console.log(res);
+                    if(this._cleanupFunction){
+                        this.setState({
+                            totalSize: res.data.totalSize,
+                        })
+                        this.props.arrItemsSearch(res.data);
+                    }
+                })
+        }
+
         this.componentWillUnmount=()=>{
             this._cleanupFunction=false
         }
@@ -266,6 +322,7 @@ class FriendsAndGroupsList extends Component{
     }
 
     render(){
+
         let contentAndMessageNotContent=null;
 
         if(this.props.renderItems.length===0){
@@ -286,11 +343,13 @@ class FriendsAndGroupsList extends Component{
                     <input
                         type="text"
                         placeholder={this.props.searchName}
+                        onChange={(e)=>this.postRequestByClickForSearch(e)}
+                        value={this.state.searchValue}
                     />
                 </div>
-                <div className="myFriends" >
+                <div className="myFriends" ref={this.refList}>
                     <div>Всего {this.props.nameList}: {this.state.totalSize}</div>
-                    <ul className="myGroups_list" ref={this.refList}>
+                    <ul className="myGroups_list">
                         {contentAndMessageNotContent}
                     </ul>
                 </div>
@@ -299,4 +358,14 @@ class FriendsAndGroupsList extends Component{
      }
 }
 
-export default withRouter(WithService()(FriendsAndGroupsList));
+const mapStateToProps = (state) => {
+    return {
+        valueSearch: state.allSearchValue
+    }
+}
+
+const mapDispatchToProps = {
+    allSearchValue
+}
+
+export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(FriendsAndGroupsList)));

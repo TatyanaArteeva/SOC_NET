@@ -51,17 +51,17 @@ class AllUsers extends Component{
                                         }
 
                                         return <div key={item.account.id}>
-                                            <li className="myFriends_item"
-                                                onClick={()=>funcGoItem(item.account.id)}
-                                                >
-                                                {index+1}
-                                                <div>
-                                                    <img className="myFriends_item_img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
-                                                    <span>{item.account.firstName} {item.account.lastName}</span>
-                                                </div>
-                                            </li>
-                                            {btnActionFriend}
-                                            {btnActionRejectFriend}
+                                                    <li className="myFriends_item"
+                                                        onClick={()=>funcGoItem(item.account.id)}
+                                                        >
+                                                        {index+1}
+                                                        <div>
+                                                            <img className="myFriends_item_img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
+                                                            <span>{item.account.firstName} {item.account.lastName}</span>
+                                                        </div>
+                                                    </li>
+                                                    {btnActionFriend}
+                                                    {btnActionRejectFriend}
                                           </div>
                                       })
                                   }}
@@ -77,7 +77,12 @@ class AllUsers extends Component{
                                     })
                                 }}
                                   renderItems={this.state.arr}
-                                  searchName={"Поиск друзей"}
+                                  searchName={"Поиск из всех пользователей"}
+                                  arrItemsSearch={(items)=>{
+                                    this.setState({
+                                        arr: [...items.accounts]
+                                    })
+                                }}
                                   messageNotContent={"Пользователей пока нет"}
                                   nameList={"пользователей"}
                                   />

@@ -1,0 +1,32 @@
+@import '../../variables';
+.input{
+    width: 320px;
+            height: 45px;
+            margin-top: 15px;
+            padding: 3px 10px;
+            border-radius: 8px;
+            border-color: $main-color;
+            color: $input-text;
+            transition: 0.5s all;
+            &:hover {
+                box-shadow: 2px 2px 5px -1px $main-color-hover;
+            }
+            &:focus{
+                outline: none;
+                box-shadow: 2px 2px 5px -1px $main-color-focus;
+                background-color: white;
+                color: $input-text;
+            }
+            &::placeholder {
+                color: $secondary-color;
+                opacity: 0.9;
+              }
+}
+
+.calendar{
+    background-color:$secondary-color-button;
+    color: $input-text;
+    font-size: 12px;
+    font-family: Raleway, sans-serif;
+    font-weight: 600;
+}

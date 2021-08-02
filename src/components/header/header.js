@@ -5,6 +5,10 @@ import WithService from '../hoc/hoc';
 import App from '../app/App';
 import {logout, displayingLoginAndRegistrationPage} from '../../actions';
 import { withRouter } from "react-router";
+import './header.scss';
+import logo from './leaf.svg';
+import arrow from './arrow.svg';
+import HeaderSearch from '../headerSearch/headerSearch';
 
 class Header extends Component{
 
@@ -36,23 +40,30 @@ class Header extends Component{
 
         return (
             <header>
-                <div>Логотип</div>
-                <input type="text" />
-                <div>
-                    <button>Меню</button>
-                    <div>
-                       <HashRouter>
-                            <Link to={id}> пункт 1: Моя страница</Link>
-                            <Link to="/friends"> пункт 2: Друзья</Link>
-                            <Link to="/messages"> пункт 3: Сообщения</Link>
-                            <Link to="/groups"> пункт 4: Группы</Link>
-                       </HashRouter>
-                    </div>
-                </div>
-                <button>Настройки</button>
-                <button onClick={()=>this.exit()}>Выход</button>
+                <nav className="header">
+                    <div><img src={logo} alt="logo" className="header__logo"/></div>
+                    <HeaderSearch/>
+                    <ul className="header__menu">
+                        <div className="header__menu__wrapper">
+                            <h1 className="header__menu__wrapper__button">Меню <img src={arrow} alt="arrow"/></h1>
+                            <ul className="header__menu__wrapper__list">
+                                <HashRouter>
+                                    <li className="header__menu__wrapper__list__item"><Link to={id}>Моя страница</Link></li>
+                                    <li className="header__menu__wrapper__list__item"><Link to="/friends">Друзья</Link></li>
+                                    <li className="header__menu__wrapper__list__item"><Link to="/messages">Сообщения</Link></li>
+                                    <li className="header__menu__wrapper__list__item"><Link to="/groups"> Группы</Link></li>
+                                </HashRouter>
+                            </ul>
+                        </div>
+                    </ul>
+                    <button>Настройки</button>
+                    <button onClick={()=>this.exit()}>Выход</button>
+                </nav>
             </header>
         )
+
+
+        
     }
 }
 

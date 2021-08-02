@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 
-
 class AllGroups extends Component{
     constructor(props){
         super(props)
@@ -16,6 +15,7 @@ class AllGroups extends Component{
     }
     
      render(){
+         console.log(this.state.arr)
          return(
             <div>
                 <FriendsAndGroupsList getItems={(start,end)=>
@@ -73,7 +73,12 @@ class AllGroups extends Component{
                                         
                                     }}
                                         renderItems={this.state.arr}
-                                        searchName={"Поиск групп"}
+                                        searchName={"Поиск  из всех групп"}
+                                        arrItemsSearch={(items)=>{
+                                            this.setState({
+                                                arr: [...items.groups]
+                                            })
+                                        }}
                                         messageNotContent={"У вас пока нет групп"}
                                         nameList={"групп"}
                                     />

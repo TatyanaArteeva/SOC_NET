@@ -16,6 +16,7 @@ import IncomingFriends from '../incomingFriends/incomingFriend';
 import OutputFriends from '../outputFriends/outputFriends';
 import AllUsers from '../allUsers/allUsers';
 import AllGroups from '../allGroup/allGroup';
+import AllSearchPage from '../allSearchPage/allSearchPage';
 
 class MainPage extends Component{
     
@@ -28,10 +29,12 @@ class MainPage extends Component{
             this.props.history.push("#" + id)
         }
 
+        console.log(this.props.location)
+
         return(
             <>
-                <Header/>
                 <HashRouter>
+                    <Header/>
                     <Switch>
                         <Route path= "/friends" exact component={Friends} />
                         <Route path= "/friends/incoming" component={IncomingFriends} />
@@ -41,6 +44,7 @@ class MainPage extends Component{
                         <Route path="/groups" exact component={Groups} />
                         <Route path="/groups/all" component={AllGroups} />
                         <Route path="/modification" component={Modification}/>
+                        <Route path="/search" component={AllSearchPage}/>
                         <Route path="/createGroups" component={CreatingGroup}/>
                         <Route path="/modificationGroups" component={ModificationGroup}/>
                         <Route path="/groups/:id" component={({match})=>{
@@ -49,6 +53,7 @@ class MainPage extends Component{
                         }}/>
                         <Route path="/:id" exact component={({match})=>{
                             const id=match.params.id;
+                            console.log(id)
                             return <MyPage idInUrl={id}/>
                         }}/>
                     </Switch>

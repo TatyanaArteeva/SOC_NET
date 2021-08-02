@@ -1,0 +1,107 @@
+@import '../../variables';
+
+
+
+.header{
+    background: linear-gradient(to top left, rgb(4%, 84%, 68%, 0.5), rgba(255, 181, 64, 0.5));
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0px 20px;
+    &__logo{
+        width: 55px;
+        height: 55px;
+        transform: rotate(30deg);
+    }
+    &__menu{
+        width: 200px;
+        padding: 0px;
+        &__wrapper{
+            margin: 0 auto;
+            &:hover{
+                .header__menu__wrapper__list{
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+            &__button{
+                margin: 0 auto;
+                width:100px;
+                display: flex;
+                justify-content: center;
+                padding: 8px 10px;
+                border-radius: 10px;
+                color: rgba(168, 8, 0, 1);
+                background-color: rgba(255, 181, 64, 0.2);
+                font-family: Raleway;
+                font-size: 17px;
+                font-weight: 600;
+                & img{
+                    margin-left: 5px;
+                    &:hover{
+                        background-color: $secondary-color-button-hover;
+                    }
+                }
+                &:hover{
+                    background-color: $secondary-color-button-hover;
+                }
+            }
+            &__list{
+                position: absolute;
+                width: 200px;
+                height: 160px;
+                margin: 10px 0px 0px 0px;
+                border-radius: 10px;
+                padding: 5px 10px 5px 20px;
+                background: $secondary-color;
+                list-style: none;
+                opacity: 0;
+                // visibility: visible;
+                visibility: hidden;
+                transition: opacity, visibility, 1s;
+                &__item{
+                    margin: 5px 0 0 7px;
+                    padding: 5px 0 0 5px;
+                    & a {
+                        font-family: Raleway;
+                        font-weight: 500;
+                        font-size: 20px;
+                        text-decoration: none;
+                        color: $input-text;
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            display: block;
+                            width: 9px;
+                            height: 9px;
+                            border-radius: 100%;
+                            border: 1px solid $input-text;
+                            background-color: rgb(255, 181, 64);
+                            left: 10px;
+                            transform: translateY(7px);
+                        }
+                        &:hover{
+                            color: rgba(168, 8, 0, 0.7);
+                            font-size: 21px;
+                            &::before{
+                                background-color: $error-color;
+                                border: 1px solid rgba(168, 8, 0, 0.5);
+                                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(168, 8, 0, 0.5);
+                            }
+                        }
+    
+                    }
+                }
+            }
+        }
+        
+    }
+    
+}
+
+
+
+
+  

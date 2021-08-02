@@ -3,6 +3,7 @@ import { withRouter} from "react-router";
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import {connect} from 'react-redux';
 
+
 class OutputFriends extends Component{
     constructor(props){
         super(props)
@@ -64,7 +65,12 @@ class OutputFriends extends Component{
                                         })
                                     }}
                                     renderItems={this.state.arr}
-                                    searchName={"Поиск друзей"}
+                                    searchName={"Поиск из исходящих заявок в друзья"}
+                                    arrItemsSearch={(items)=>{
+                                        this.setState({
+                                            arr: [...items.accounts]
+                                        })
+                                    }}
                                     messageNotContent={"У вас пока нет исходящих заявок"}
                                     nameList={"исходящих заявок"}
                                     />

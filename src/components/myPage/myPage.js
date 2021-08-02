@@ -42,16 +42,15 @@ class MyPage extends Component{
                     this.setState({
                         firstName: this.props.information.firstName,
                         lastName: this.props.information.lastName,
-                        birthDate: this.props.information.birthDate
+                        birthDate: this.props.information.birthDate,
+                        actualId: this.props.information
                         })
                    }
                 });
             Service.getAccountInfo(`/api/account/${this.props.idInUrl}/page-info`)
                 .then(res=>{
-                    console.log(res)
                     this.props.rights(res.data.accesses);
                     this.props.infoRelation(res.data.info);
-                    console.log(this.props.info)
                 });
     
         }
@@ -67,7 +66,7 @@ class MyPage extends Component{
             if(prevProps.idInUrl!==this.props.idInUrl && this._cleanupFunction){
                 this.recepionInformation()
             }
-   
+
         }
 
         this.componentWillUnmount=()=>{
@@ -80,6 +79,9 @@ class MyPage extends Component{
 
     
     render(){
+
+        // console.log(this.props.location.pathname);
+        // console.log(this.props.history);
 
         let btnModification=null;
 
