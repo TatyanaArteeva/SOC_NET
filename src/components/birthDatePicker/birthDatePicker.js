@@ -5,6 +5,7 @@ import ru from "date-fns/locale/ru";
 import { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {dataBirth} from '../../actions';
+import './birthDatePicker.scss';
 
 const BirthDatePicker = ({dataBirth}) => {
     const [startDate, setStartDate] = useState()
@@ -28,6 +29,8 @@ const BirthDatePicker = ({dataBirth}) => {
                   placeholderText="Укажите вашу дату рождения"
                   isClearable
                   locale={ru}
+                  className="input"
+                  calendarClassName="calendar"
       />
     );
   };

@@ -4,6 +4,7 @@ import BirthDatePicker from '../birthDatePicker/birthDatePicker';
 import {closeModalRegistration, loginMainPage, registrationSuccessful} from '../../actions';
 import './registrationWindow.scss';
 import WithService from '../hoc/hoc';
+import cancel from './cancel.svg';
 
 class RegistrationWindow extends Component{
     
@@ -73,16 +74,17 @@ class RegistrationWindow extends Component{
         }
         
         return(
-            <div className ="registrationWindow">
-                <form onSubmit={this.postFormRegistration}>
-                    <h2>Регистрация</h2>
-                    <div onClick={ ()=> this.props.closeModalRegistration() }>Закрыть</div>
+            <div className ="registration-window">
+                <form onSubmit={this.postFormRegistration} className="registration-window__modal">
                     <div>
-                        <input onChange={this.valueFirstName} placeholder="Укажите свое имя" type="text" name="firstName" required/>
-                        <input onChange={this.valueLastName} placeholder="Укажите свою фамилию" type="text" name="lastName" required/>
-                        <input onChange={this.valueEmail} placeholder="Введите свой e-mail" type="email" name="email" required/>
-                        <input onChange={this.valuePassword} placeholder="Введите пароль" type="password" name="password" required/>
-                        Дата рождения: <br />
+                        <span onClick={()=> this.props.closeModalRegistration()} className="registration-window__modal__close"><img src={cancel} alt="cancel" className="registration-window__modal__close__img"/></span>
+                        <h2 className="registration-window__modal__title">Регистрация</h2>
+                    </div>
+                    <div>
+                        <input onChange={this.valueFirstName} placeholder="Укажите свое имя" type="text" name="firstName" required className="registration-window__modal__input"/>
+                        <input onChange={this.valueLastName} placeholder="Укажите свою фамилию" type="text" name="lastName" required className="registration-window__modal__input"/>
+                        <input onChange={this.valueEmail} placeholder="Введите свой e-mail" type="email" name="email" required className="registration-window__modal__input"/>
+                        <input onChange={this.valuePassword} placeholder="Введите пароль" type="password" name="password" required className="registration-window__modal__input"/>
                         <div><BirthDatePicker/></div>
                     </div>
                     <button onClick={this.valueBirtDay} type = "submit">Зарегистрироваться</button>

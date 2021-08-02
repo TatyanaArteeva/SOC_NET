@@ -130,6 +130,9 @@ export const groupInfoRelation=(groupInfoRelation)=>{
     return({type: 'INFO_RELATION_GROUP', groupInfoRelation:groupInfoRelation})
 }
 
+export const allSearchValue=(value)=>{
+    return({type: 'ALL_SEARCH_VALUE', allSearchValue:value})
+}
 
 
 

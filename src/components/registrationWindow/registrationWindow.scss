@@ -1,6 +1,60 @@
-.registrationWindow{
-    position: absolute;
+@import '../../variables';
+
+.registration-window{
     display: block;
-    width: 300px;
-    height: 300px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    transition: 1s all;
+    background-color: rgba(155, 112, 43, 0.2);
+    &__modal {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 350px;
+        height: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #feddc8;
+        &__title{
+            text-align: center;
+            color: $input-text;
+        }
+        &__close{
+            display: block;
+            text-align: end;
+            &__img{
+                &:hover{
+                    border-radius: 100%;
+                    transform: rotate(30deg) scale(1.2);
+                }
+            }
+        }
+        &__input{
+            width: 320px;
+            height: 45px;
+            margin-top: 15px;
+            padding: 3px 10px;
+            border-radius: 8px;
+            border-color: $main-color;
+            color: $input-text;
+            transition: 0.5s all;
+            &:hover {
+                box-shadow: 2px 2px 5px -1px $main-color-hover;
+            }
+            &:focus{
+                outline: none;
+                box-shadow: 2px 2px 5px -1px $main-color-focus;
+                background-color: white;
+                color: $input-text;
+            }
+            &::placeholder {
+                color: $secondary-color;
+                opacity: 0.9;
+              }
+        }
+    }
 }

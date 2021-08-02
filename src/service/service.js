@@ -290,6 +290,18 @@ class Service {
         return res
     }
 
+    resultForSearch= async (url, options) => {
+        const res= await axios.get(url, options);
+
+        return res
+    }
+
+    getResultForSearch=async (url, options) => {
+        const res=await this.resultForSearch(url, options);
+
+        return res
+    }
+
 }
 
 export default Service;

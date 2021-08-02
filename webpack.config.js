@@ -42,19 +42,13 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
+        test: /\.(png|jpg|gif)$/,
+        use: ["file-loader"],
       },
-      // {
-      //   test: /\.js$/,
-      //   enforce: 'pre',
-      //   use: ['source-map-loader'],
-      //   plugins: [
-      //     new SourceMapDevToolPlugin({
-      //       filename: "[file].map"
-      //     }),
-      //   ],
-      // },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
+        loader: 'url-loader?limit=100000' 
+      }
+
     ]
   },
 };

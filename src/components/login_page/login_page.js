@@ -6,6 +6,9 @@ import {openModalRegistration, loginMainPage, errorWindowLoginOpen, errorWindowL
 import MainPage from '../main_page/mainPage';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router";
+import icon from './icon.svg';
+import error from './error.svg';
+import leaf from './leaf.svg';
 
 
 class LoginPage extends Component  {
@@ -79,7 +82,7 @@ class LoginPage extends Component  {
 
         const {registrationWindow, openModalRegistration, loginErrorWindow}=this.props;
 
-        const regWin=registrationWindow ? <RegistrationWindow/> : null;
+        const registrationModalWindow=registrationWindow ? <RegistrationWindow/> : null;
 
         const windowRegistrationMessage=this.props.registrationOk? 
         <div className ="registrationWindow">
@@ -88,26 +91,40 @@ class LoginPage extends Component  {
         </div> 
         : null;
 
-        const errorWindowLogin=loginErrorWindow? <div>Введен неправильный логин или пароль</div> : null;
+        const errorWindowLogin=loginErrorWindow? <div className="error-window-login">
+                                                    Введен неправильный логин или пароль
+                                                    <img src={error} alt="error"/>
+                                                </div> : null;
         return(
-                <div className = "login_page">
-                    <div>
-                        Привет! Вы находитесь на стартовой странице моей социальной сети! 
-                        Для того,чтобы начать ей пользоваться, войдите или зарегистрируйтесь!
-                    </div>
-                    <form onSubmit={this.postFormLogin}>
-                        <input onChange={this.valueLogin} placeholder="Введите свой e-mail" type="email" name="login" required/>
-                        <input onChange={this.valuePassword} placeholder="Введите пароль" type="password" name="password" required/>
-                        <div> <input onChange={this.valueRememberMe} type="checkbox" name="rememberMe"/>Запомнить меня</div>
-                        <button type="submit">Войти</button>
-                        {errorWindowLogin}
-                        <a href="#abc">Забыли пароль?</a>
+            <>
+                <div className="label">
+                    <img className="label__icon label__icon__animation" src={leaf} alt="icon"/>
+                    <h2 className="label__text">Общаясь - расцветай!</h2>
+                </div>
+                {errorWindowLogin}
+                <div className = "login-page">
+                    <form onSubmit={this.postFormLogin} className="login-page__form">
+                        <input className="login-page__form__input" onChange={this.valueLogin} placeholder="Введите свой e-mail" type="email" name="login" required/>
+                        <input className="login-page__form__input" onChange={this.valuePassword} placeholder="Введите пароль" type="password" name="password" required/>
+                        <div className="login-page__form__remmember-me"> 
+                            <input onChange={this.valueRememberMe} type="checkbox" id="remmember_me" name="rememberMe" className="login-page__form__remmember-me__input"/>
+                            <label htmlFor="remmember_me" className="login-page__form__remmember-me__label">Запомнить меня</label>
+                        </div>
+                        <button className="login-page__form__submit" type="submit">Войти</button>
                         <hr/>
                     </form>
-                    {regWin}
+                    {registrationModalWindow}
                     {windowRegistrationMessage}
-                    <button onClick = { ()=> openModalRegistration() }>Создать аккаунт</button>
+                    <div>
+                        <div className="login-page__offer-to-registration__question">
+                            <hr/>
+                            Нет аккаунта?
+                            <hr/>
+                        </div>
+                        <button onClick = {()=> openModalRegistration()} className="login-page__offer-to-registration__button">Создать аккаунт</button>
+                    </div>
                 </div>
+            </>
         )
     }
     

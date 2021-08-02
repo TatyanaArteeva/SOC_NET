@@ -8,7 +8,6 @@ import { imagesForGallery, imagesGalleryTotalSize, imagesForGalleryLoading, imag
 import { withRouter } from "react-router";
 let startIndex=0;
 
-
 class SliderCarusel extends Component{
     _cleanupFunction=false;
     constructor(props){
@@ -40,9 +39,6 @@ class SliderCarusel extends Component{
                 responseType: 'arraybuffer'
                 })
                 .then(res=>{
-                    if(res.data.photos.length<=end){
-                        end=res.data.photos.length
-                    }
                     if(this._cleanupFunction){
                         this.props.imagesGalleryTotalSize(res.data.totalSize)
                         this.props.imagesForGallery(res.data.photos, start, end)
@@ -52,12 +48,10 @@ class SliderCarusel extends Component{
                     if(numberIndexToStart<0){
                         return
                     }
-                    console.log(numberIndexToStart, arrEnd)
                     Service.getAccountInfo(`/api/photo/${this.props.idForPhotos}?start=${numberIndexToStart}&end=${arrEnd}`, {
                     responseType: 'arraybuffer'
                     })
                     .then(res=>{
-                        console.log(res)
                         if(this._cleanupFunction){
                             this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd)
                         }
@@ -71,8 +65,9 @@ class SliderCarusel extends Component{
         }
 
         this.componentDidUpdate=(prevProps)=>{
-            console.log(prevProps.idForPhotos, this.props.match.params.id && this._cleanupFunction)
             if(prevProps.idForPhotos!==this.props.match.params.id ){
+                start=0;
+                end=10;
                 console.log("update photos")
                 this.getImagesByLoading()
             }
@@ -341,7 +336,6 @@ class SliderCarusel extends Component{
 
     }
     render(){
-
         let btnAddPhoto=null;
         let btnRemovePhoto=null;
 

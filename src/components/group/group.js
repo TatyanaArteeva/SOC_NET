@@ -99,7 +99,7 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
         console.log("open")
     }
 
-    console.log(infoRelation)
+
 
     let btnModificationGroup=null;
     let btnActionGroup=null;

@@ -59,7 +59,12 @@ class IncomingFriends extends Component{
                                         })
                                     }}    
                                     renderItems={this.state.arr}
-                                    searchName={"Поиск друзей"}
+                                    searchName={"Поиск входящих заявках в друзья"}
+                                    arrItemsSearch={(items)=>{
+                                        this.setState({
+                                            arr: [...items.accounts]
+                                        })
+                                    }}
                                     messageNotContent={"У вас пока нет входящих заявок"}
                                     nameList={"входящих заявок"}
                                     />

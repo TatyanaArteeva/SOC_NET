@@ -1,0 +1,35 @@
+.header__search__form{
+    &__wrapper{
+        &__button{
+            background-color: red;
+            padding: 0px;
+            & a{
+                padding: 2px;
+            }
+        }
+        &__list{
+            position: absolute;
+            visibility: hidden;
+            opacity: 0;
+            background-color:white;
+            transition: opacity, visibility 1s;
+            &__item{
+                &__img{
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 100%;
+                }
+            }
+        }
+
+    }
+}
+
+.active{
+    visibility:visible;
+    opacity: 1;
+}
+
+
+    
+
