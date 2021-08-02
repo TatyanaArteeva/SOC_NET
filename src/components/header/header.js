@@ -31,6 +31,11 @@ class Header extends Component{
                 })
         }
 
+        this.goToSettings=()=>{
+            console.log("settings")
+            this.props.history.push('/modificationEmailAndPassword')
+        }
+
     }
     
     render(){
@@ -56,7 +61,7 @@ class Header extends Component{
                             </ul>
                         </div>
                     </ul>
-                    <button>Настройки</button>
+                    <button onClick={this.goToSettings}>Настройки</button>
                     <button onClick={()=>this.exit()}>Выход</button>
                 </nav>
             </header>

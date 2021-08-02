@@ -73,22 +73,19 @@ class MyPage extends Component{
             this._cleanupFunction=false
         }
 
-        
+        this.goToModificationMyPage=()=>{
+            this.props.history.push('/modification')
+        }
 
     }
 
     
     render(){
 
-        // console.log(this.props.location.pathname);
-        // console.log(this.props.history);
-
         let btnModification=null;
 
         if(this.props.listRights.canModify){
-            btnModification=<HashRouter>
-                                <Link to="/modification"><div className="profile_editing">Редактировать</div></Link>
-                            </HashRouter>
+            btnModification=<button className="profile_editing" onClick={this.goToModificationMyPage}>Редактировать</button>
         }
 
         const blockDetailedInformation=this.state.btnDetailedInformation? <DetailedInformationBlock/> : null;

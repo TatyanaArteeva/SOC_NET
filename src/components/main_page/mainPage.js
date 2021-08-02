@@ -17,6 +17,7 @@ import OutputFriends from '../outputFriends/outputFriends';
 import AllUsers from '../allUsers/allUsers';
 import AllGroups from '../allGroup/allGroup';
 import AllSearchPage from '../allSearchPage/allSearchPage';
+import ModificationEmailAndPasswordPage from '../modificationEmailAnsPassword/modificationEmailAndPassword';
 
 class MainPage extends Component{
     
@@ -47,6 +48,7 @@ class MainPage extends Component{
                         <Route path="/search" component={AllSearchPage}/>
                         <Route path="/createGroups" component={CreatingGroup}/>
                         <Route path="/modificationGroups" component={ModificationGroup}/>
+                        <Route path="/modificationEmailAndPassword" component={ModificationEmailAndPasswordPage}/>
                         <Route path="/groups/:id" component={({match})=>{
                             const id=match.params.id;
                             return <Group idInUrl={id}/>

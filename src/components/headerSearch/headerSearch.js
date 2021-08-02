@@ -97,6 +97,16 @@ class HeaderSearch extends Component{
             }
         }
 
+        const searchButton=document.querySelector('.header__search__form__wrapper__button');
+
+        window.addEventListener("click", (e)=>{
+            if(e.target!==searchButton){
+                this.setState({
+                    searchValue: ''
+                })
+            }
+        })
+
     }
 
     render(){
