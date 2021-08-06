@@ -1,4 +1,5 @@
 @import '../../variables';
+@import '../../mixins';
 
 .registration-window{
     display: block;
@@ -8,53 +9,57 @@
     top: 0;
     right: 0;
     transition: 1s all;
-    background-color: rgba(155, 112, 43, 0.2);
+    background-color: $background-color-modal;
+    z-index: 1;
     &__modal {
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
         width: 350px;
-        height: 400px;
-        padding: 20px;
+        padding: 17px 17px 25px 17px;
         border-radius: 10px;
-        background-color: #feddc8;
+        background-color: $background-color;
         &__title{
             text-align: center;
             color: $input-text;
+            margin-bottom: 15px;
         }
         &__close{
             display: block;
             text-align: end;
             &__img{
+                transition: 0.5s all;
                 &:hover{
                     border-radius: 100%;
                     transform: rotate(30deg) scale(1.2);
                 }
             }
         }
-        &__input{
-            width: 320px;
-            height: 45px;
-            margin-top: 15px;
-            padding: 3px 10px;
-            border-radius: 8px;
-            border-color: $main-color;
-            color: $input-text;
-            transition: 0.5s all;
-            &:hover {
-                box-shadow: 2px 2px 5px -1px $main-color-hover;
-            }
-            &:focus{
-                outline: none;
-                box-shadow: 2px 2px 5px -1px $main-color-focus;
-                background-color: white;
-                color: $input-text;
-            }
-            &::placeholder {
-                color: $secondary-color;
-                opacity: 0.9;
-              }
+        &_wrapper-password{
+            display:flex;
         }
+        &__input{
+            @include input;
+            padding: 3px 46px 3px 10px;
+            &_show{
+                @include inputShowPassword;
+            }
+        }
+        &__btn{
+           @include inputButton;
+           margin-top: 15px;
+        }
+    }
+}
+
+.passwordRequirements{
+    height: 15px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: $input-text;
+    font-size: 10px;
+    &_null{
+        height: 40px;
     }
 }

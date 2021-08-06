@@ -18,21 +18,17 @@ class Header extends Component{
         const {Service} = this.props;
 
         this.exit=()=>{
+
             Service.logoutRequest('api/logout')
                 .then(res=>{
                     if(res.status===200){
+                        localStorage.clear()
                         this.props.logout();
-                    }
-                })
-                .then(res=>{
-                    if(this.props.logoutStatus) {
-                        return <App/>
                     }
                 })
         }
 
         this.goToSettings=()=>{
-            console.log("settings")
             this.props.history.push('/modificationEmailAndPassword')
         }
 
@@ -40,6 +36,8 @@ class Header extends Component{
     
     render(){
 
+        console.log(this.props.logoutStatus)
+        
         const {idUser}=this.props;
         const id=`/${idUser}`;
 
@@ -75,7 +73,8 @@ class Header extends Component{
 const mapStateToProps=(state)=>{
     return {
         idUser: state.userId,
-        logoutStatus: state.logout
+        logoutStatus: state.logout,
+        mainPage: state.loginMainPage,
     }
 }
 
