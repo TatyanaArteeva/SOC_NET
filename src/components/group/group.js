@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
 import {groupId, groupAccesses, groupInfoRelation} from '../../actions';
 import {Link, HashRouter} from 'react-router-dom';
+import ModalWindowAllParticipantsGroup from '../modalWindowAllParticipantsGpoup/modalWindowAllParticipantsGroup';
 
 const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRelation, infoRelation})=>{
     const[nameGroup, setNameGroup]=useState();
@@ -17,6 +18,7 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
     const[id, setId]=useState();
     const[userInGroup, setUsersInGroup]=useState([]);
     const [totalSizeUserInGroup, setTotalSizeUserInGroup]=useState();
+    const [modalWindowAllParticipantsGroup, setModalWindowAllParticipantsGroup]=useState(false);
     
     useEffect(()=>{
         let cleanupFunction = false;
@@ -97,6 +99,22 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
 
     function openAllUserGroup(){
         console.log("open")
+        setModalWindowAllParticipantsGroup(true);
+    }
+
+    function closeAllUserGroup(){
+        setModalWindowAllParticipantsGroup(false);
+    }
+
+    let modalWindowAllParticipants=null;
+
+    if(modalWindowAllParticipantsGroup===true){
+        modalWindowAllParticipants=<div className="group__participants_modal-window">
+                                        <div>
+                                            <button onClick={closeAllUserGroup}>Закрыть</button>
+                                        </div>
+                                        <ModalWindowAllParticipantsGroup/>
+                                    </div>
     }
 
 
@@ -134,7 +152,10 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                     </div>
                     <div>
                         
-                        <div onClick={()=>openAllUserGroup()}>Участники группы: {totalSizeUserInGroup}</div>
+                        <div>Участники группы: {totalSizeUserInGroup}
+                            <button onClick={openAllUserGroup}>Показать всех</button>
+                            {modalWindowAllParticipants}
+                        </div>
                         <ul className="group_participants">
                             {
                                 userInGroup.map(el=>{

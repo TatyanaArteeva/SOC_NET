@@ -86,3 +86,11 @@
     height: 75px;
     border-radius: 100%;
 }
+
+.group__participants_modal-window{
+    display: block;
+    position: absolute;
+    background-color: red;
+    width: 500px;
+    z-index: 2;
+}

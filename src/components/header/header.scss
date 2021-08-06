@@ -1,9 +1,10 @@
 @import '../../variables';
+@import '../../mixins';
 
 
 
 .header{
-    background: linear-gradient(to top left, rgb(4%, 84%, 68%, 0.5), rgba(255, 181, 64, 0.5));
+    background: linear-gradient(to top left, $main-color-light, $secondary-color-light);
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -41,11 +42,11 @@
                 & img{
                     margin-left: 5px;
                     &:hover{
-                        background-color: $secondary-color-button-hover;
+                        background-color: $secondary-color;
                     }
                 }
                 &:hover{
-                    background-color: $secondary-color-button-hover;
+                    background-color: $secondary-color;
                 }
             }
             &__list{
@@ -86,7 +87,7 @@
                             color: rgba(168, 8, 0, 0.7);
                             font-size: 21px;
                             &::before{
-                                background-color: $error-color;
+                                background-color: $input-text;
                                 border: 1px solid rgba(168, 8, 0, 0.5);
                                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(168, 8, 0, 0.5);
                             }

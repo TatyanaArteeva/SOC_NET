@@ -31,6 +31,7 @@ const BirthDatePicker = ({dataBirth}) => {
                   locale={ru}
                   className="input"
                   calendarClassName="calendar"
+                  clearButtonClassName="buttonCleaner"
       />
     );
   };

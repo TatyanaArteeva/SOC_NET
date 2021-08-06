@@ -1,5 +1,6 @@
 @import '../../variables';
 @import './animation';
+@import '../../mixins';
 
 .label{
     display: flex;
@@ -12,7 +13,7 @@
         font-family: Raleway;
         font-weight: 600;
         margin-left: 5px;
-        color: $error-color;
+        color: $input-text;
         margin-top: 70px;
     }
     &__icon{
@@ -36,28 +37,18 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        & div{
+            display: flex;
+        }
         &__input{ 
-            width: 320px;
-            height: 45px;
-            margin-top: 15px;
-            padding: 3px 10px;
-            border-radius: 8px;
-            border-color: $main-color;
-            color: $input-text;
-            transition: 0.5s all;
-            &:hover {
-                box-shadow: 2px 2px 5px -1px $main-color-hover;
+            @include input;
+            &__password{
+                @include input;
+                padding: 3px 46px 3px 10px;
             }
-            &:focus{
-                outline: none;
-                box-shadow: 2px 2px 5px -1px $main-color-focus;
-                background-color: white;
-                color: $input-text;
+            &__show{
+                @include inputShowPassword;
             }
-            &::placeholder {
-                color: $secondary-color;
-                opacity: 0.9;
-              }
             
         }
         &__remmember-me{
@@ -78,7 +69,7 @@
                         display: inline-block;
                         width: 15px;
                         height: 15px;
-                        border: 1px solid $input-text;
+                        border: 1px solid $main-color-light;
                         border-radius: 30%;
                         background-repeat: no-repeat;
                         background-position: center center;
@@ -87,13 +78,13 @@
                         transition: 0.5s all;
                     }
                     &:hover::after {
-                        border-color: $input-text;
-                        box-shadow: 1px 1px 1px 1px $input-text;
+                        border-color: $main-color;
+                        box-shadow: 0.5px 0.5px 0.5px 0.5px $main-color;
                     }
                 }
                 &:checked+label::after{
-                    border-color: $input-text;
-                    box-shadow: 1px 1px 1px 1px $input-text;
+                    border-color: $main-color;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px $main-color;
                     background-image: url('./check.svg')
                 }
             }
@@ -106,25 +97,7 @@
             }
         }
         &__submit{
-            width: 100%;
-            height: 35px;
-            font-size: 25px;
-            font-family: Raleway;
-            font-weight: 600;
-            color: $input-text;
-            border-radius: 10px;
-            background-color: $secondary-color-button;
-            border: none;
-            box-shadow: 2px 2px 3px 2px rgba(255, 181, 64, 0.55);
-            transition: 0.5s all;
-            &:hover{
-                background-color: $secondary-color-button-hover;
-                box-shadow: 4px 4px 5px 4px rgba(255, 181, 64, 0.65);
-            }
-            &:focus{
-                background-color: $secondary-color-button-focus;
-                box-shadow: 4px 4px 5px 4px $secondary-color-button-focus;
-            }
+            @include inputButton;
         }
     }
     &__offer-to-registration{
@@ -139,31 +112,12 @@
                 width: 50px;
                 height: 2px;
                 border: none;
-                color: $main-color-hover;
-                background-color: $main-color-hover;
+                color: $main-color;
+                background-color: $main-color;
             }
         }
         &__button{
-            display: block;
-            width: 100%;
-            height: 35px;
-            font-size: 25px;
-            font-family: Raleway;
-            font-weight: 600;
-            color: $input-text;
-            border-radius: 10px;
-            background-color: $secondary-color-button;
-            border: none;
-            box-shadow: 2px 2px 3px 2px rgba(255, 181, 64, 0.55);
-            transition: 0.5s all;
-            &:hover{
-                background-color: $secondary-color-button-hover;
-                box-shadow: 4px 4px 5px 4px rgba(255, 181, 64, 0.65);
-            }
-            &:focus{
-                background-color: $secondary-color-button-focus;
-                box-shadow: 4px 4px 5px 4px $secondary-color-button-focus;
-            }
+            @include inputButton;
         }
     }
 }
@@ -171,16 +125,27 @@
 
 .error-window-login{
     font-family: Raleway;
-    font-weight: 700;
-    color: $error-color;
+    font-weight: 500;
+    color: $input-text;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 25px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
     & img{
         width: 25px;
         height: 25px;
+    }
+}
+
+.passwordRequirements{
+    height: 15px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: $input-text;
+    font-size: 10px;
+    &_null{
+        height: 40px;
     }
 }
