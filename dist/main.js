@@ -5313,7 +5313,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".input {\n  width: 316px;\n  height: 45px;\n  margin: 7.5px auto;\n  padding: 3px 10px;\n  border-radius: 8px;\n  border-color: #0ad6ad;\n  color: #196519;\n  transition: 0.5s all;\n}\n.input:hover {\n  box-shadow: 2px 2px 5px -1px rgba(10, 214, 173, 0.5);\n}\n.input:focus {\n  outline: none;\n  box-shadow: 2px 2px 5px -1px rgba(10, 214, 173, 0.7);\n  background-color: white;\n  color: #196519;\n}\n.input::placeholder {\n  color: #FFB540;\n  opacity: 0.9;\n}\n\n.calendar {\n  background-color: #FFE3AB;\n  font-size: 16px;\n  font-family: Raleway, sans-serif;\n  font-weight: 600;\n  border: none;\n  left: 0px;\n  transform: translateX(calc(-50% + 164px));\n}\n\n.buttonCleaner {\n  top: 8px;\n}\n.buttonCleaner::after {\n  background-color: #a80800;\n  font-size: 17px;\n}\n\n.react-datepicker__header {\n  background-color: #FFE3AB;\n  border-bottom: 1px solid #FFB540;\n}\n\n.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {\n  color: #196519;\n}\n\n.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {\n  background-color: #FFB540;\n}\n\n.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {\n  background-color: rgba(255, 181, 64, 0.6);\n}\n.react-datepicker__day--disabled, .react-datepicker__month-text--disabled, .react-datepicker__quarter-text--disabled, .react-datepicker__year-text--disabled {\n  cursor: default;\n  color: rgba(25, 101, 25, 0.5);\n}\n.react-datepicker__day--disabled:hover, .react-datepicker__month-text--disabled:hover, .react-datepicker__quarter-text--disabled:hover, .react-datepicker__year-text--disabled:hover {\n  background-color: transparent;\n}\n\n.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {\n  color: #196519;\n}\n\n.react-datepicker__navigation--next {\n  border-left-color: rgba(255, 181, 64, 0.9);\n}\n.react-datepicker__navigation--next:hover {\n  border-left-color: #FFB540;\n}\n\n.react-datepicker__navigation--previous {\n  border-right-color: rgba(255, 181, 64, 0.9);\n}\n.react-datepicker__navigation--previous:hover {\n  border-right-color: #FFB540;\n}\n\n.react-datepicker__triangle {\n  display: none;\n}", "",{"version":3,"sources":["webpack://./src/components/birthDatePicker/birthDatePicker.scss","webpack://./src/_variables.scss"],"names":[],"mappings":"AACA;EACI,YAAA;EACA,YAAA;EACA,kBAAA;EACA,iBAAA;EACA,kBAAA;EACA,qBCJS;EDKT,cCOS;EDNT,oBAAA;AAAJ;AACI;EACI,oDAAA;AACR;AACI;EACI,aAAA;EACA,oDAAA;EACA,uBAAA;EACA,cCFK;ADGb;AACI;EACI,cChBU;EDiBV,YAAA;AACR;;AAGA;EACI,yBAAA;EACA,eAAA;EACA,gCAAA;EACA,gBAAA;EACA,YAAA;EACA,SAAA;EACA,yCAAA;AAAJ;;AAGA;EACI,QAAA;AAAJ;AACI;EACI,yBAAA;EACA,eAAA;AACR;;AAGA;EACI,yBAAA;EACA,gCAAA;AAAJ;;AAGA;EACI,cClCS;ADkCb;;AAGA;EACI,yBCjDc;ADiDlB;;AAII;EACI,yCChDuB;AD+C/B;AAII;EACI,eAAA;EACA,6BC/CW;AD6CnB;AAIQ;EACE,6BAAA;AAFV;;AAOA;EACI,cCzDS;ADqDb;;AAOA;EACI,0CCjE2B;AD6D/B;AAKI;EACI,0BC1EU;ADuElB;;AAOA;EACI,2CCxE2B;ADoE/B;AAKI;EACI,2BCjFU;AD8ElB;;AAOA;EACI,aAAA;AAJJ","sourcesContent":["@import '../../variables';\r\n.input{\r\n    width: 316px;\r\n    height: 45px;\r\n    margin: 7.5px auto;\r\n    padding: 3px 10px;\r\n    border-radius: 8px;\r\n    border-color: $main-color;\r\n    color: $input-text;\r\n    transition: 0.5s all;\r\n    &:hover {\r\n        box-shadow: 2px 2px 5px -1px $main-color-hover;\r\n    }\r\n    &:focus{\r\n        outline: none;\r\n        box-shadow: 2px 2px 5px -1px $main-color-focus;\r\n        background-color: white;\r\n        color: $input-text;\r\n    }\r\n    &::placeholder {\r\n        color: $secondary-color;\r\n        opacity: 0.9;\r\n    }\r\n}\r\n\r\n.calendar{\r\n    background-color:#FFE3AB;\r\n    font-size: 16px;\r\n    font-family: Raleway, sans-serif;\r\n    font-weight: 600;\r\n    border: none;\r\n    left: 0px;\r\n    transform: translateX(calc(-50% + 164px));\r\n}\r\n\r\n.buttonCleaner{\r\n    top: 8px;\r\n    &::after{\r\n        background-color: rgba(168, 8, 0, 1);\r\n        font-size: 17px;\r\n    }\r\n}\r\n\r\n.react-datepicker__header{\r\n    background-color: #FFE3AB;\r\n    border-bottom: 1px solid $secondary-color;\r\n}\r\n\r\n.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{\r\n    color: $input-text;\r\n}\r\n\r\n.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {\r\n    background-color: $secondary-color;\r\n}\r\n\r\n.react-datepicker__day, .react-datepicker__month-text, .react-datepicker__quarter-text, .react-datepicker__year-text{\r\n    &:hover{\r\n        background-color: $secondary-color-button-hover;\r\n    }\r\n\r\n    &--disabled {\r\n        cursor: default;\r\n        color: $input-text-hover;\r\n    \r\n        &:hover {\r\n          background-color: transparent;\r\n        }\r\n      }\r\n}\r\n\r\n.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header{\r\n    color: $input-text;\r\n}\r\n\r\n.react-datepicker__navigation--next{\r\n    border-left-color: $secondary-color-button-focus;\r\n    &:hover{\r\n        border-left-color:$secondary-color;\r\n    }\r\n}\r\n\r\n.react-datepicker__navigation--previous {\r\n    border-right-color: $secondary-color-button-focus;\r\n    &:hover{\r\n        border-right-color:$secondary-color;\r\n    }\r\n}\r\n\r\n.react-datepicker__triangle{\r\n    display: none;\r\n}\r\n","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n$main-color: rgb(4%, 84%, 68%, 1);\r\n$secondary-color: #FFB540;\r\n\r\n$main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n$main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n$secondary-color-button: rgba(255, 181, 64, 0.4);\r\n$secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n$secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n$error-color: rgba(168, 8, 0, 0.7);\r\n\r\n$input-text: #196519;\r\n$input-text-hover: rgba(25, 101, 25, 0.5);\r\n$input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n$background-modal: rgba(255, 227, 171, 1);"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".input {\n  width: 320px;\n  height: 45px;\n  margin-top: 15px;\n  padding: 3px 10px 3px 10px;\n  border-radius: 8px;\n  border-color: #89d8c2;\n  color: black;\n  transition: 0.5s all;\n}\n.input:hover {\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n}\n.input:focus {\n  outline: none;\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n  color: black;\n}\n.input::placeholder {\n  color: #89d8c2;\n  opacity: 1;\n}\n\n.calendar {\n  background-color: #89d8c2;\n  font-size: 16px;\n  font-family: Raleway, sans-serif;\n  font-weight: 600;\n  border: none;\n  left: 0px;\n  transform: translateX(calc(-50% + 164px));\n}\n\n.buttonCleaner {\n  top: 8px;\n  padding: 0px 3px 0px 0px;\n}\n.buttonCleaner::after {\n  background-color: #89d8c2;\n  font-size: 17px;\n  height: 20px;\n  width: 20px;\n}\n\n.react-datepicker__header {\n  background-color: #89d8c2;\n  border-bottom: 1px solid #fce181;\n}\n\n.react-datepicker__day-name,\n.react-datepicker__day,\n.react-datepicker__time-name {\n  color: black;\n}\n\n.react-datepicker__day--keyboard-selected,\n.react-datepicker__month-text--keyboard-selected,\n.react-datepicker__quarter-text--keyboard-selected,\n.react-datepicker__year-text--keyboard-selected {\n  background-color: #026670;\n}\n\n.react-datepicker__day--selected,\n.react-datepicker__day--in-selecting-range,\n.react-datepicker__day--in-range,\n.react-datepicker__month-text--selected,\n.react-datepicker__month-text--in-selecting-range,\n.react-datepicker__month-text--in-range,\n.react-datepicker__quarter-text--selected,\n.react-datepicker__quarter-text--in-selecting-range,\n.react-datepicker__quarter-text--in-range,\n.react-datepicker__year-text--selected,\n.react-datepicker__year-text--in-selecting-range,\n.react-datepicker__year-text--in-range {\n  background-color: #026670;\n}\n\n.react-datepicker__day:hover,\n.react-datepicker__month-text:hover,\n.react-datepicker__quarter-text:hover,\n.react-datepicker__year-text:hover {\n  background-color: #fce181;\n}\n.react-datepicker__day--disabled,\n.react-datepicker__month-text--disabled,\n.react-datepicker__quarter-text--disabled,\n.react-datepicker__year-text--disabled {\n  cursor: default;\n  color: black;\n}\n.react-datepicker__day--disabled:hover,\n.react-datepicker__month-text--disabled:hover,\n.react-datepicker__quarter-text--disabled:hover,\n.react-datepicker__year-text--disabled:hover {\n  background-color: transparent;\n}\n\n.react-datepicker__current-month,\n.react-datepicker-time__header,\n.react-datepicker-year-header {\n  color: black;\n}\n\n.react-datepicker__navigation--next {\n  border-left-color: #fce181;\n}\n.react-datepicker__navigation--next:hover {\n  border-left-color: #fce181;\n}\n\n.react-datepicker__navigation--previous {\n  border-right-color: #fce181;\n}\n.react-datepicker__navigation--previous:hover {\n  border-right-color: #fce181;\n}\n\n.react-datepicker__triangle {\n  display: none;\n}", "",{"version":3,"sources":["webpack://./src/components/birthDatePicker/birthDatePicker.scss","webpack://./src/_mixins.scss","webpack://./src/_variables.scss"],"names":[],"mappings":"AAGA;ECFI,YAAA;EACA,YAAA;EACA,gBAAA;EACA,0BAAA;EACA,kBAAA;EACA,qBCiBe;EDhBf,YCcS;EDbT,oBAAA;ADCJ;ACAI;EACI,mBAAA;EACA,mCAAA;ADER;ACAI;EACI,aAAA;EACA,mBAAA;EACA,mCAAA;EACA,YCIK;AFFb;ACAI;EACI,cCGW;EDFX,UAAA;ADER;;AAhBA;EACI,yBEee;EFdf,eAAA;EACA,gCAAA;EACA,gBAAA;EACA,YAAA;EACA,SAAA;EACA,yCAAA;AAmBJ;;AAhBA;EACI,QAAA;EACA,wBAAA;AAmBJ;AAlBI;EACI,yBEEW;EFDX,eAAA;EACA,YAAA;EACA,WAAA;AAoBR;;AAhBA;EACI,yBENe;EFOf,gCAAA;AAmBJ;;AAhBA;;;EAGI,YEfS;AFkCb;;AAhBA;;;;EAII,yBErBS;AFwCb;;AAhBA;;;;;;;;;;;;EAYI,yBEpCS;AFuDb;;AAZI;;;;EACI,yBE1CU;AF4DlB;AAfI;;;;EACI,eAAA;EACA,YElDK;AFsEb;AAlBQ;;;;EACE,6BAAA;AAuBV;;AAlBA;;;EAGI,YE7DS;AFkFb;;AAlBA;EACI,0BE9Dc;AFmFlB;AApBI;EACI,0BEhEU;AFsFlB;;AAlBA;EACI,2BErEc;AF0FlB;AApBI;EACI,2BEvEU;AF6FlB;;AAlBA;EACI,aAAA;AAqBJ","sourcesContent":["@import '../../variables';\r\n@import '../../mixins';\r\n\r\n.input{\r\n    @include input;\r\n}\r\n\r\n.calendar{\r\n    background-color:$main-color-light;\r\n    font-size: 16px;\r\n    font-family: Raleway, sans-serif;\r\n    font-weight: 600;\r\n    border: none;\r\n    left: 0px;\r\n    transform: translateX(calc(-50% + 164px));\r\n}\r\n\r\n.buttonCleaner{\r\n    top: 8px;\r\n    padding: 0px 3px 0px 0px;\r\n    &::after{\r\n        background-color: $main-color-light;\r\n        font-size: 17px;\r\n        height: 20px;\r\n        width: 20px;\r\n    }\r\n}\r\n\r\n.react-datepicker__header{\r\n    background-color: $main-color-light;\r\n    border-bottom: 1px solid $secondary-color;\r\n}\r\n\r\n.react-datepicker__day-name, \r\n.react-datepicker__day, \r\n.react-datepicker__time-name{\r\n    color: $input-text;\r\n}\r\n\r\n.react-datepicker__day--keyboard-selected, \r\n.react-datepicker__month-text--keyboard-selected, \r\n.react-datepicker__quarter-text--keyboard-selected, \r\n.react-datepicker__year-text--keyboard-selected {\r\n    background-color: $main-color;\r\n}\r\n\r\n.react-datepicker__day--selected, \r\n.react-datepicker__day--in-selecting-range, \r\n.react-datepicker__day--in-range, \r\n.react-datepicker__month-text--selected, \r\n.react-datepicker__month-text--in-selecting-range, \r\n.react-datepicker__month-text--in-range, \r\n.react-datepicker__quarter-text--selected, \r\n.react-datepicker__quarter-text--in-selecting-range, \r\n.react-datepicker__quarter-text--in-range, \r\n.react-datepicker__year-text--selected, \r\n.react-datepicker__year-text--in-selecting-range, \r\n.react-datepicker__year-text--in-range{\r\n    background-color: $main-color;\r\n}\r\n\r\n.react-datepicker__day, \r\n.react-datepicker__month-text, \r\n.react-datepicker__quarter-text, \r\n.react-datepicker__year-text{\r\n    &:hover{\r\n        background-color: $secondary-color;\r\n    }\r\n\r\n    &--disabled {\r\n        cursor: default;\r\n        color: $input-text;\r\n    \r\n        &:hover {\r\n          background-color: transparent;\r\n        }\r\n      }\r\n}\r\n\r\n.react-datepicker__current-month, \r\n.react-datepicker-time__header, \r\n.react-datepicker-year-header{\r\n    color: $input-text;\r\n}\r\n\r\n.react-datepicker__navigation--next{\r\n    border-left-color: $secondary-color;\r\n    &:hover{\r\n        border-left-color:$secondary-color;\r\n    }\r\n}\r\n\r\n.react-datepicker__navigation--previous {\r\n    border-right-color: $secondary-color;\r\n    &:hover{\r\n        border-right-color:$secondary-color;\r\n    }\r\n}\r\n\r\n.react-datepicker__triangle{\r\n    display: none;\r\n}\r\n\r\n// .react-datepicker__close-icon {\r\n//     padding: 0px 3px 0px 0px;\r\n// }\r\n","@mixin input {\r\n    width: 320px;\r\n    height: 45px;\r\n    margin-top: 15px;\r\n    padding: 3px 10px 3px 10px;\r\n    border-radius: 8px;\r\n    border-color: $main-color-light;\r\n    color: $input-text;\r\n    transition: 0.5s all;\r\n    &:hover {\r\n        border-color: white;\r\n        box-shadow: 1px 1px 1px 1px $main-color;\r\n    }\r\n    &:focus{\r\n        outline:none;\r\n        border-color: white;\r\n        box-shadow: 1px 1px 1px 1px $main-color;\r\n        color: $input-text;\r\n    }\r\n    &::placeholder {\r\n        color: $main-color-light;\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n@mixin inputShowPassword {\r\n    display: flex;\r\n    position: absolute;\r\n    right: 20px;\r\n    border-radius: 100%;\r\n    & svg {\r\n         margin-top: 21.5px;\r\n    }\r\n}\r\n\r\n@mixin inputButton {\r\n    width: 100%;\r\n    height: 35px;\r\n    font-size: 22px;\r\n    font-family: Raleway;\r\n    font-weight: 600;\r\n    color: $input-text;\r\n    border-radius: 10px;\r\n    background-color: $background-color;\r\n    border: 2px solid $secondary-color;\r\n    transition: 0.5s all;\r\n        &:hover{\r\n            background-color: $secondary-color-light;\r\n            transform: scale(1.1);\r\n        }\r\n        &:focus{\r\n            background-color: $secondary-color-light;\r\n            transform: scale(1.1);\r\n        }\r\n}\r\n\r\n@mixin backgroundModal{\r\n    display: block;\r\n    position: fixed;\r\n    width: 100%;\r\n    height: 100%;\r\n    top: 0;\r\n    right: 0;\r\n    background-color: $background-color-modal;\r\n    z-index: 1;\r\n    transition: 1s all;\r\n}\r\n\r\n@mixin ModalWindow{\r\n    position: absolute;\r\n    left: 50%;\r\n    top: 50%;\r\n    transform: translate(-50%, -50%);\r\n    padding: 17px 17px 25px 17px;\r\n    border-radius: 10px;\r\n    background-color: $background-color;\r\n}","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n// $main-color: rgb(4%, 84%, 68%, 1);\r\n// $secondary-color: #FFB540;\r\n\r\n// $main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n// $main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n// $secondary-color-button: rgba(255, 181, 64, 0.4);\r\n// $secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n// $secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n// $error-color: rgba(168, 8, 0, 0.7);\r\n\r\n// $input-text: #196519;\r\n// $input-text-hover: rgba(25, 101, 25, 0.5);\r\n// $input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n// $background-modal: rgba(255, 227, 171, 1);\r\n\r\n$input-text: black;\r\n$main-color: #026670;\r\n$main-color-light: #89d8c2;\r\n$secondary-color: #fce181;\r\n$secondary-color-light: #fef9c7;\r\n$background-color: #f3f6dc;\r\n$background-color-modal: rgba(243, 246, 220, 0.5);\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -5413,7 +5413,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".header {\n  background: linear-gradient(to top left, rgba(10, 214, 173, 0.5), rgba(255, 181, 64, 0.5));\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 60px;\n  padding: 0px 20px;\n}\n.header__logo {\n  width: 55px;\n  height: 55px;\n  transform: rotate(30deg);\n}\n.header__menu {\n  width: 200px;\n  padding: 0px;\n}\n.header__menu__wrapper {\n  margin: 0 auto;\n}\n.header__menu__wrapper:hover .header__menu__wrapper__list {\n  opacity: 1;\n  visibility: visible;\n}\n.header__menu__wrapper__button {\n  margin: 0 auto;\n  width: 100px;\n  display: flex;\n  justify-content: center;\n  padding: 8px 10px;\n  border-radius: 10px;\n  color: #a80800;\n  background-color: rgba(255, 181, 64, 0.2);\n  font-family: Raleway;\n  font-size: 17px;\n  font-weight: 600;\n}\n.header__menu__wrapper__button img {\n  margin-left: 5px;\n}\n.header__menu__wrapper__button img:hover {\n  background-color: rgba(255, 181, 64, 0.6);\n}\n.header__menu__wrapper__button:hover {\n  background-color: rgba(255, 181, 64, 0.6);\n}\n.header__menu__wrapper__list {\n  position: absolute;\n  width: 200px;\n  height: 160px;\n  margin: 10px 0px 0px 0px;\n  border-radius: 10px;\n  padding: 5px 10px 5px 20px;\n  background: #FFB540;\n  list-style: none;\n  opacity: 0;\n  visibility: hidden;\n  transition: opacity, visibility, 1s;\n}\n.header__menu__wrapper__list__item {\n  margin: 5px 0 0 7px;\n  padding: 5px 0 0 5px;\n}\n.header__menu__wrapper__list__item a {\n  font-family: Raleway;\n  font-weight: 500;\n  font-size: 20px;\n  text-decoration: none;\n  color: #196519;\n}\n.header__menu__wrapper__list__item a::before {\n  content: \"\";\n  position: absolute;\n  display: block;\n  width: 9px;\n  height: 9px;\n  border-radius: 100%;\n  border: 1px solid #196519;\n  background-color: #ffb540;\n  left: 10px;\n  transform: translateY(7px);\n}\n.header__menu__wrapper__list__item a:hover {\n  color: rgba(168, 8, 0, 0.7);\n  font-size: 21px;\n}\n.header__menu__wrapper__list__item a:hover::before {\n  background-color: rgba(168, 8, 0, 0.7);\n  border: 1px solid rgba(168, 8, 0, 0.5);\n  box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(168, 8, 0, 0.5);\n}", "",{"version":3,"sources":["webpack://./src/components/header/header.scss","webpack://./src/_variables.scss"],"names":[],"mappings":"AAIA;EACI,0FAAA;EACA,WAAA;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,YAAA;EACA,iBAAA;AAHJ;AAII;EACI,WAAA;EACA,YAAA;EACA,wBAAA;AAFR;AAII;EACI,YAAA;EACA,YAAA;AAFR;AAGQ;EACI,cAAA;AADZ;AAGgB;EACI,UAAA;EACA,mBAAA;AADpB;AAIY;EACI,cAAA;EACA,YAAA;EACA,aAAA;EACA,uBAAA;EACA,iBAAA;EACA,mBAAA;EACA,cAAA;EACA,yCAAA;EACA,oBAAA;EACA,eAAA;EACA,gBAAA;AAFhB;AAGgB;EACI,gBAAA;AADpB;AAEoB;EACI,yCCjCO;ADiC/B;AAGgB;EACI,yCCrCW;ADoC/B;AAIY;EACI,kBAAA;EACA,YAAA;EACA,aAAA;EACA,wBAAA;EACA,mBAAA;EACA,0BAAA;EACA,mBCrDE;EDsDF,gBAAA;EACA,UAAA;EAEA,kBAAA;EACA,mCAAA;AAHhB;AAIgB;EACI,mBAAA;EACA,oBAAA;AAFpB;AAGoB;EACI,oBAAA;EACA,gBAAA;EACA,eAAA;EACA,qBAAA;EACA,cCxDX;ADuDb;AAEwB;EACI,WAAA;EACA,kBAAA;EACA,cAAA;EACA,UAAA;EACA,WAAA;EACA,mBAAA;EACA,yBAAA;EACA,yBAAA;EACA,UAAA;EACA,0BAAA;AAA5B;AAEwB;EACI,2BAAA;EACA,eAAA;AAA5B;AAC4B;EACI,sCC3ElB;ED4EkB,sCAAA;EACA,wDAAA;AAChC","sourcesContent":["@import '../../variables';\r\n\r\n\r\n\r\n.header{\r\n    background: linear-gradient(to top left, rgb(4%, 84%, 68%, 0.5), rgba(255, 181, 64, 0.5));\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    height: 60px;\r\n    padding: 0px 20px;\r\n    &__logo{\r\n        width: 55px;\r\n        height: 55px;\r\n        transform: rotate(30deg);\r\n    }\r\n    &__menu{\r\n        width: 200px;\r\n        padding: 0px;\r\n        &__wrapper{\r\n            margin: 0 auto;\r\n            &:hover{\r\n                .header__menu__wrapper__list{\r\n                    opacity: 1;\r\n                    visibility: visible;\r\n                }\r\n            }\r\n            &__button{\r\n                margin: 0 auto;\r\n                width:100px;\r\n                display: flex;\r\n                justify-content: center;\r\n                padding: 8px 10px;\r\n                border-radius: 10px;\r\n                color: rgba(168, 8, 0, 1);\r\n                background-color: rgba(255, 181, 64, 0.2);\r\n                font-family: Raleway;\r\n                font-size: 17px;\r\n                font-weight: 600;\r\n                & img{\r\n                    margin-left: 5px;\r\n                    &:hover{\r\n                        background-color: $secondary-color-button-hover;\r\n                    }\r\n                }\r\n                &:hover{\r\n                    background-color: $secondary-color-button-hover;\r\n                }\r\n            }\r\n            &__list{\r\n                position: absolute;\r\n                width: 200px;\r\n                height: 160px;\r\n                margin: 10px 0px 0px 0px;\r\n                border-radius: 10px;\r\n                padding: 5px 10px 5px 20px;\r\n                background: $secondary-color;\r\n                list-style: none;\r\n                opacity: 0;\r\n                // visibility: visible;\r\n                visibility: hidden;\r\n                transition: opacity, visibility, 1s;\r\n                &__item{\r\n                    margin: 5px 0 0 7px;\r\n                    padding: 5px 0 0 5px;\r\n                    & a {\r\n                        font-family: Raleway;\r\n                        font-weight: 500;\r\n                        font-size: 20px;\r\n                        text-decoration: none;\r\n                        color: $input-text;\r\n                        &::before{\r\n                            content: '';\r\n                            position: absolute;\r\n                            display: block;\r\n                            width: 9px;\r\n                            height: 9px;\r\n                            border-radius: 100%;\r\n                            border: 1px solid $input-text;\r\n                            background-color: rgb(255, 181, 64);\r\n                            left: 10px;\r\n                            transform: translateY(7px);\r\n                        }\r\n                        &:hover{\r\n                            color: rgba(168, 8, 0, 0.7);\r\n                            font-size: 21px;\r\n                            &::before{\r\n                                background-color: $error-color;\r\n                                border: 1px solid rgba(168, 8, 0, 0.5);\r\n                                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(168, 8, 0, 0.5);\r\n                            }\r\n                        }\r\n    \r\n                    }\r\n                }\r\n            }\r\n        }\r\n        \r\n    }\r\n    \r\n}\r\n\r\n\r\n\r\n\r\n  \r\n","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n$main-color: rgb(4%, 84%, 68%, 1);\r\n$secondary-color: #FFB540;\r\n\r\n$main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n$main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n$secondary-color-button: rgba(255, 181, 64, 0.4);\r\n$secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n$secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n$error-color: rgba(168, 8, 0, 0.7);\r\n\r\n$input-text: #196519;\r\n$input-text-hover: rgba(25, 101, 25, 0.5);\r\n$input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n$background-modal: rgba(255, 227, 171, 1);"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".header {\n  background: linear-gradient(to top left, #89d8c2, #fef9c7);\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 60px;\n  padding: 0px 20px;\n}\n.header__logo {\n  width: 55px;\n  height: 55px;\n  transform: rotate(30deg);\n}\n.header__menu {\n  width: 200px;\n  padding: 0px;\n}\n.header__menu__wrapper {\n  margin: 0 auto;\n}\n.header__menu__wrapper:hover .header__menu__wrapper__list {\n  opacity: 1;\n  visibility: visible;\n}\n.header__menu__wrapper__button {\n  margin: 0 auto;\n  width: 100px;\n  display: flex;\n  justify-content: center;\n  padding: 8px 10px;\n  border-radius: 10px;\n  color: #a80800;\n  background-color: rgba(255, 181, 64, 0.2);\n  font-family: Raleway;\n  font-size: 17px;\n  font-weight: 600;\n}\n.header__menu__wrapper__button img {\n  margin-left: 5px;\n}\n.header__menu__wrapper__button img:hover {\n  background-color: #fce181;\n}\n.header__menu__wrapper__button:hover {\n  background-color: #fce181;\n}\n.header__menu__wrapper__list {\n  position: absolute;\n  width: 200px;\n  height: 160px;\n  margin: 10px 0px 0px 0px;\n  border-radius: 10px;\n  padding: 5px 10px 5px 20px;\n  background: #fce181;\n  list-style: none;\n  opacity: 0;\n  visibility: hidden;\n  transition: opacity, visibility, 1s;\n}\n.header__menu__wrapper__list__item {\n  margin: 5px 0 0 7px;\n  padding: 5px 0 0 5px;\n}\n.header__menu__wrapper__list__item a {\n  font-family: Raleway;\n  font-weight: 500;\n  font-size: 20px;\n  text-decoration: none;\n  color: black;\n}\n.header__menu__wrapper__list__item a::before {\n  content: \"\";\n  position: absolute;\n  display: block;\n  width: 9px;\n  height: 9px;\n  border-radius: 100%;\n  border: 1px solid black;\n  background-color: #ffb540;\n  left: 10px;\n  transform: translateY(7px);\n}\n.header__menu__wrapper__list__item a:hover {\n  color: rgba(168, 8, 0, 0.7);\n  font-size: 21px;\n}\n.header__menu__wrapper__list__item a:hover::before {\n  background-color: black;\n  border: 1px solid rgba(168, 8, 0, 0.5);\n  box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(168, 8, 0, 0.5);\n}", "",{"version":3,"sources":["webpack://./src/components/header/header.scss","webpack://./src/_variables.scss"],"names":[],"mappings":"AAKA;EACI,0DAAA;EACA,WAAA;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,YAAA;EACA,iBAAA;AAJJ;AAKI;EACI,WAAA;EACA,YAAA;EACA,wBAAA;AAHR;AAKI;EACI,YAAA;EACA,YAAA;AAHR;AAIQ;EACI,cAAA;AAFZ;AAIgB;EACI,UAAA;EACA,mBAAA;AAFpB;AAKY;EACI,cAAA;EACA,YAAA;EACA,aAAA;EACA,uBAAA;EACA,iBAAA;EACA,mBAAA;EACA,cAAA;EACA,yCAAA;EACA,oBAAA;EACA,eAAA;EACA,gBAAA;AAHhB;AAIgB;EACI,gBAAA;AAFpB;AAGoB;EACI,yBCpBN;ADmBlB;AAIgB;EACI,yBCxBF;ADsBlB;AAKY;EACI,kBAAA;EACA,YAAA;EACA,aAAA;EACA,wBAAA;EACA,mBAAA;EACA,0BAAA;EACA,mBClCE;EDmCF,gBAAA;EACA,UAAA;EAEA,kBAAA;EACA,mCAAA;AAJhB;AAKgB;EACI,mBAAA;EACA,oBAAA;AAHpB;AAIoB;EACI,oBAAA;EACA,gBAAA;EACA,eAAA;EACA,qBAAA;EACA,YCnDX;ADiDb;AAGwB;EACI,WAAA;EACA,kBAAA;EACA,cAAA;EACA,UAAA;EACA,WAAA;EACA,mBAAA;EACA,uBAAA;EACA,yBAAA;EACA,UAAA;EACA,0BAAA;AAD5B;AAGwB;EACI,2BAAA;EACA,eAAA;AAD5B;AAE4B;EACI,uBCpEnB;EDqEmB,sCAAA;EACA,wDAAA;AAAhC","sourcesContent":["@import '../../variables';\r\n@import '../../mixins';\r\n\r\n\r\n\r\n.header{\r\n    background: linear-gradient(to top left, $main-color-light, $secondary-color-light);\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    height: 60px;\r\n    padding: 0px 20px;\r\n    &__logo{\r\n        width: 55px;\r\n        height: 55px;\r\n        transform: rotate(30deg);\r\n    }\r\n    &__menu{\r\n        width: 200px;\r\n        padding: 0px;\r\n        &__wrapper{\r\n            margin: 0 auto;\r\n            &:hover{\r\n                .header__menu__wrapper__list{\r\n                    opacity: 1;\r\n                    visibility: visible;\r\n                }\r\n            }\r\n            &__button{\r\n                margin: 0 auto;\r\n                width:100px;\r\n                display: flex;\r\n                justify-content: center;\r\n                padding: 8px 10px;\r\n                border-radius: 10px;\r\n                color: rgba(168, 8, 0, 1);\r\n                background-color: rgba(255, 181, 64, 0.2);\r\n                font-family: Raleway;\r\n                font-size: 17px;\r\n                font-weight: 600;\r\n                & img{\r\n                    margin-left: 5px;\r\n                    &:hover{\r\n                        background-color: $secondary-color;\r\n                    }\r\n                }\r\n                &:hover{\r\n                    background-color: $secondary-color;\r\n                }\r\n            }\r\n            &__list{\r\n                position: absolute;\r\n                width: 200px;\r\n                height: 160px;\r\n                margin: 10px 0px 0px 0px;\r\n                border-radius: 10px;\r\n                padding: 5px 10px 5px 20px;\r\n                background: $secondary-color;\r\n                list-style: none;\r\n                opacity: 0;\r\n                // visibility: visible;\r\n                visibility: hidden;\r\n                transition: opacity, visibility, 1s;\r\n                &__item{\r\n                    margin: 5px 0 0 7px;\r\n                    padding: 5px 0 0 5px;\r\n                    & a {\r\n                        font-family: Raleway;\r\n                        font-weight: 500;\r\n                        font-size: 20px;\r\n                        text-decoration: none;\r\n                        color: $input-text;\r\n                        &::before{\r\n                            content: '';\r\n                            position: absolute;\r\n                            display: block;\r\n                            width: 9px;\r\n                            height: 9px;\r\n                            border-radius: 100%;\r\n                            border: 1px solid $input-text;\r\n                            background-color: rgb(255, 181, 64);\r\n                            left: 10px;\r\n                            transform: translateY(7px);\r\n                        }\r\n                        &:hover{\r\n                            color: rgba(168, 8, 0, 0.7);\r\n                            font-size: 21px;\r\n                            &::before{\r\n                                background-color: $input-text;\r\n                                border: 1px solid rgba(168, 8, 0, 0.5);\r\n                                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(168, 8, 0, 0.5);\r\n                            }\r\n                        }\r\n    \r\n                    }\r\n                }\r\n            }\r\n        }\r\n        \r\n    }\r\n    \r\n}\r\n\r\n\r\n\r\n\r\n  \r\n","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n// $main-color: rgb(4%, 84%, 68%, 1);\r\n// $secondary-color: #FFB540;\r\n\r\n// $main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n// $main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n// $secondary-color-button: rgba(255, 181, 64, 0.4);\r\n// $secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n// $secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n// $error-color: rgba(168, 8, 0, 0.7);\r\n\r\n// $input-text: #196519;\r\n// $input-text-hover: rgba(25, 101, 25, 0.5);\r\n// $input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n// $background-modal: rgba(255, 227, 171, 1);\r\n\r\n$input-text: black;\r\n$main-color: #026670;\r\n$main-color-light: #89d8c2;\r\n$secondary-color: #fce181;\r\n$secondary-color-light: #fef9c7;\r\n$background-color: #f3f6dc;\r\n$background-color-modal: rgba(243, 246, 220, 0.5);\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -5438,7 +5438,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".header__search__form__wrapper__button {\n  background-color: red;\n  padding: 0px;\n}\n.header__search__form__wrapper__button a {\n  padding: 2px;\n}\n.header__search__form__wrapper__list {\n  position: absolute;\n  visibility: hidden;\n  opacity: 0;\n  background-color: white;\n  transition: opacity, visibility 1s;\n}\n.header__search__form__wrapper__list__item__img {\n  width: 20px;\n  height: 20px;\n  border-radius: 100%;\n}\n\n.active {\n  visibility: visible;\n  opacity: 1;\n}", "",{"version":3,"sources":["webpack://./src/components/headerSearch/headerSearch.scss"],"names":[],"mappings":"AAEQ;EACI,qBAAA;EACA,YAAA;AADZ;AAEY;EACI,YAAA;AAAhB;AAGQ;EACI,kBAAA;EACA,kBAAA;EACA,UAAA;EACA,uBAAA;EACA,kCAAA;AADZ;AAGgB;EACI,WAAA;EACA,YAAA;EACA,mBAAA;AADpB;;AASA;EACI,mBAAA;EACA,UAAA;AANJ","sourcesContent":[".header__search__form{\r\n    &__wrapper{\r\n        &__button{\r\n            background-color: red;\r\n            padding: 0px;\r\n            & a{\r\n                padding: 2px;\r\n            }\r\n        }\r\n        &__list{\r\n            position: absolute;\r\n            visibility: hidden;\r\n            opacity: 0;\r\n            background-color:white;\r\n            transition: opacity, visibility 1s;\r\n            &__item{\r\n                &__img{\r\n                    width: 20px;\r\n                    height: 20px;\r\n                    border-radius: 100%;\r\n                }\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n.active{\r\n    visibility:visible;\r\n    opacity: 1;\r\n}\r\n\r\n\r\n    \r\n\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".header-search-form__wrapper {\n  position: relative;\n}\n.header-search-form__wrapper ul {\n  padding: 0px;\n}\n.header-search-form__wrapper ul span {\n  padding: 10px 0px 15px 0px;\n  color: #026670;\n  font-size: 18px;\n  font-weight: 600;\n}\n.header-search-form__wrapper__button {\n  width: 18px;\n  height: 18px;\n  position: absolute;\n  right: 5px;\n  top: 5px;\n  cursor: pointer;\n}\n.header-search-form__wrapper__button img {\n  width: 18px;\n  height: 18px;\n}\n.header-search-form__wrapper__search {\n  width: 320px;\n  height: 45px;\n  margin-top: 15px;\n  padding: 3px 10px 3px 10px;\n  border-radius: 8px;\n  border-color: #89d8c2;\n  color: black;\n  transition: 0.5s all;\n  height: 30px;\n  margin-top: 0px;\n  padding: 3px 28px 3px 10px;\n}\n.header-search-form__wrapper__search:hover {\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n}\n.header-search-form__wrapper__search:focus {\n  outline: none;\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n  color: black;\n}\n.header-search-form__wrapper__search::placeholder {\n  color: #89d8c2;\n  opacity: 1;\n}\n.header-search-form__wrapper__list {\n  position: absolute;\n  visibility: hidden;\n  width: 318px;\n  box-shadow: 2px 2px 3px 3px #a7a7a7;\n  border-radius: 10px;\n  opacity: 0;\n  background-color: #f3f6dc;\n  margin-top: 0px;\n  padding: 10px 20px 0px 20px;\n}\n.header-search-form__wrapper__list__item {\n  list-style-type: none;\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  padding: 8px 10px;\n}\n.header-search-form__wrapper__list__item:nth-last-child(1) {\n  margin-bottom: 10px;\n}\n.header-search-form__wrapper__list__item__img {\n  width: 35px;\n  height: 35px;\n}\n.header-search-form__wrapper__list__item__img img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  border-radius: 100%;\n}\n.header-search-form__wrapper__list__item__name {\n  display: flex;\n  justify-content: left;\n  align-items: center;\n  width: 100%;\n  margin-left: 10px;\n}\n.header-search-form__wrapper__list__null {\n  list-style-type: none;\n  height: 50px;\n  padding: 8px 10px;\n}\n\n.active {\n  visibility: visible;\n  opacity: 1;\n  transition: visibility, opacity, 1s all;\n  z-index: 1;\n}", "",{"version":3,"sources":["webpack://./src/components/headerSearch/headerSearch.scss","webpack://./src/_variables.scss","webpack://./src/_mixins.scss"],"names":[],"mappings":"AAII;EACI,kBAAA;AAHR;AAIQ;EACI,YAAA;AAFZ;AAGY;EACI,0BAAA;EACA,cCYH;EDXG,eAAA;EACA,gBAAA;AADhB;AAIQ;EACI,WAAA;EACA,YAAA;EACA,kBAAA;EACA,UAAA;EACA,QAAA;EACA,eAAA;AAFZ;AAGY;EACI,WAAA;EACA,YAAA;AADhB;AAIQ;EE1BJ,YAAA;EACA,YAAA;EACA,gBAAA;EACA,0BAAA;EACA,kBAAA;EACA,qBDiBe;EChBf,YDcS;ECbT,oBAAA;EFqBQ,YAAA;EACA,eAAA;EACA,0BAAA;AAKZ;AE3BI;EACI,mBAAA;EACA,mCAAA;AF6BR;AE3BI;EACI,aAAA;EACA,mBAAA;EACA,mCAAA;EACA,YDIK;ADyBb;AE3BI;EACI,cDGW;ECFX,UAAA;AF6BR;AAjBQ;EACI,kBAAA;EACA,kBAAA;EACA,YAAA;EACA,mCAAA;EAEA,mBAAA;EACA,UAAA;EACA,yBCfO;EDgBP,eAAA;EACA,2BAAA;AAkBZ;AAjBY;EACI,qBAAA;EACA,YAAA;EACA,aAAA;EACA,uBAAA;EACA,iBAAA;AAmBhB;AAlBgB;EACI,mBAAA;AAoBpB;AAlBgB;EACI,WAAA;EACA,YAAA;AAoBpB;AAnBoB;EACI,WAAA;EACA,YAAA;EACA,iBAAA;EACA,mBAAA;AAqBxB;AAlBgB;EACI,aAAA;EACA,qBAAA;EACA,mBAAA;EACA,WAAA;EACA,iBAAA;AAoBpB;AAjBY;EACI,qBAAA;EACA,YAAA;EACA,iBAAA;AAmBhB;;AAZA;EACI,mBAAA;EACA,UAAA;EACA,uCAAA;EACA,UAAA;AAeJ","sourcesContent":["@import '../../variables';\r\n@import '../../mixins';\r\n\r\n.header-search-form{\r\n    &__wrapper{\r\n        position: relative;\r\n        & ul{\r\n            padding: 0px;\r\n            & span{\r\n                padding: 10px 0px 15px 0px;\r\n                color: $main-color;\r\n                font-size: 18px;\r\n                font-weight: 600;\r\n            }\r\n        }\r\n        &__button{\r\n            width: 18px;\r\n            height: 18px;\r\n            position: absolute;\r\n            right: 5px;\r\n            top: 5px;\r\n            cursor: pointer;\r\n            & img{\r\n                width: 18px;\r\n                height: 18px;\r\n            }\r\n        }\r\n        &__search{\r\n            @include input;\r\n            height: 30px;\r\n            margin-top: 0px;\r\n            padding: 3px 28px 3px 10px;\r\n        }\r\n        &__list{\r\n            position: absolute;\r\n            visibility: hidden;\r\n            width: 318px;\r\n            box-shadow: 2px 2px 3px 3px #a7a7a7;\r\n            // border: 2px solid black;\r\n            border-radius: 10px;\r\n            opacity: 0;\r\n            background-color:$background-color;\r\n            margin-top: 0px;\r\n            padding: 10px 20px 0px 20px;\r\n            &__item{\r\n                list-style-type: none;\r\n                height: 50px;\r\n                display: flex;\r\n                justify-content: center;\r\n                padding: 8px 10px;\r\n                &:nth-last-child(1){\r\n                    margin-bottom: 10px;\r\n                }\r\n                &__img{\r\n                    width: 35px;\r\n                    height: 35px;\r\n                    & img{\r\n                        width: 100%;\r\n                        height: 100%;\r\n                        object-fit: cover;\r\n                        border-radius: 100%;\r\n                    }\r\n                }\r\n                &__name{\r\n                    display: flex;\r\n                    justify-content: left;\r\n                    align-items: center;\r\n                    width: 100%;\r\n                    margin-left: 10px;\r\n                }\r\n            }\r\n            &__null{\r\n                list-style-type: none;\r\n                height: 50px;\r\n                padding: 8px 10px;\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n.active{\r\n    visibility:visible;\r\n    opacity: 1;\r\n    transition: visibility,  opacity, 1s all;\r\n    z-index: 1;\r\n}\r\n\r\n\r\n    \r\n\r\n","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n// $main-color: rgb(4%, 84%, 68%, 1);\r\n// $secondary-color: #FFB540;\r\n\r\n// $main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n// $main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n// $secondary-color-button: rgba(255, 181, 64, 0.4);\r\n// $secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n// $secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n// $error-color: rgba(168, 8, 0, 0.7);\r\n\r\n// $input-text: #196519;\r\n// $input-text-hover: rgba(25, 101, 25, 0.5);\r\n// $input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n// $background-modal: rgba(255, 227, 171, 1);\r\n\r\n$input-text: black;\r\n$main-color: #026670;\r\n$main-color-light: #89d8c2;\r\n$secondary-color: #fce181;\r\n$secondary-color-light: #fef9c7;\r\n$background-color: #f3f6dc;\r\n$background-color-modal: rgba(243, 246, 220, 0.5);\r\n","@mixin input {\r\n    width: 320px;\r\n    height: 45px;\r\n    margin-top: 15px;\r\n    padding: 3px 10px 3px 10px;\r\n    border-radius: 8px;\r\n    border-color: $main-color-light;\r\n    color: $input-text;\r\n    transition: 0.5s all;\r\n    &:hover {\r\n        border-color: white;\r\n        box-shadow: 1px 1px 1px 1px $main-color;\r\n    }\r\n    &:focus{\r\n        outline:none;\r\n        border-color: white;\r\n        box-shadow: 1px 1px 1px 1px $main-color;\r\n        color: $input-text;\r\n    }\r\n    &::placeholder {\r\n        color: $main-color-light;\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n@mixin inputShowPassword {\r\n    display: flex;\r\n    position: absolute;\r\n    right: 20px;\r\n    border-radius: 100%;\r\n    & svg {\r\n         margin-top: 21.5px;\r\n    }\r\n}\r\n\r\n@mixin inputButton {\r\n    width: 100%;\r\n    height: 35px;\r\n    font-size: 22px;\r\n    font-family: Raleway;\r\n    font-weight: 600;\r\n    color: $input-text;\r\n    border-radius: 10px;\r\n    background-color: $background-color;\r\n    border: 2px solid $secondary-color;\r\n    transition: 0.5s all;\r\n        &:hover{\r\n            background-color: $secondary-color-light;\r\n            transform: scale(1.1);\r\n        }\r\n        &:focus{\r\n            background-color: $secondary-color-light;\r\n            transform: scale(1.1);\r\n        }\r\n}\r\n\r\n@mixin backgroundModal{\r\n    display: block;\r\n    position: fixed;\r\n    width: 100%;\r\n    height: 100%;\r\n    top: 0;\r\n    right: 0;\r\n    background-color: $background-color-modal;\r\n    z-index: 1;\r\n    transition: 1s all;\r\n}\r\n\r\n@mixin ModalWindow{\r\n    position: absolute;\r\n    left: 50%;\r\n    top: 50%;\r\n    transform: translate(-50%, -50%);\r\n    padding: 17px 17px 25px 17px;\r\n    border-radius: 10px;\r\n    background-color: $background-color;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -5469,7 +5469,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(_check_svg__WEBPACK_IMPORTED_MODULE_3__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "@keyframes logoAnimation {\n  from {\n    transform: rotate(30deg) skewX(-10deg);\n  }\n  50% {\n    transform: rotate(30deg) skewX(15deg);\n  }\n  to {\n    transform: rotate(30deg) skewX(-10deg);\n  }\n}\n.label {\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  margin-top: 15px;\n}\n.label__text {\n  position: absolute;\n  font-size: 15px;\n  font-family: Raleway;\n  font-weight: 600;\n  margin-left: 5px;\n  color: rgba(168, 8, 0, 0.7);\n  margin-top: 70px;\n}\n.label__icon {\n  width: 70px;\n  height: 70px;\n  transform: rotate(30deg);\n}\n.label__icon__animation {\n  animation: logoAnimation 6s ease infinite;\n}\n\n.login-page {\n  position: relative;\n  width: 350px;\n  margin: 30px auto;\n  padding: 20px;\n}\n.login-page__form {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.login-page__form__input {\n  width: 320px;\n  height: 45px;\n  margin-top: 15px;\n  padding: 3px 10px;\n  border-radius: 8px;\n  border-color: #0ad6ad;\n  color: #196519;\n  transition: 0.5s all;\n}\n.login-page__form__input:hover {\n  box-shadow: 2px 2px 2px 1px rgba(10, 214, 173, 0.5);\n}\n.login-page__form__input:focus {\n  outline: none;\n  box-shadow: 2px 2px 2px 1px rgba(10, 214, 173, 0.7);\n  background-color: white;\n  color: #196519;\n}\n.login-page__form__input::placeholder {\n  color: #FFB540;\n  opacity: 0.9;\n}\n.login-page__form__remmember-me {\n  margin: 15px;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.login-page__form__remmember-me__input {\n  position: absolute;\n  z-index: -1;\n  opacity: 0;\n}\n.login-page__form__remmember-me__input + label {\n  display: inline-flex;\n  align-items: center;\n  user-select: none;\n}\n.login-page__form__remmember-me__input + label::after {\n  content: \"\";\n  display: inline-block;\n  width: 15px;\n  height: 15px;\n  border: 1px solid #196519;\n  border-radius: 30%;\n  background-repeat: no-repeat;\n  background-position: center center;\n  background-size: 80% 80%;\n  margin-left: 10px;\n  transition: 0.5s all;\n}\n.login-page__form__remmember-me__input + label:hover::after {\n  border-color: #196519;\n  box-shadow: 1px 1px 1px 1px #196519;\n}\n.login-page__form__remmember-me__input:checked + label::after {\n  border-color: #196519;\n  box-shadow: 1px 1px 1px 1px #196519;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n.login-page__form__remmember-me__label {\n  margin-right: 10px;\n  color: #196519;\n  font-size: 20px;\n  font-family: Raleway;\n  font-weight: 600;\n}\n.login-page__form__submit {\n  width: 100%;\n  height: 35px;\n  font-size: 25px;\n  font-family: Raleway;\n  font-weight: 600;\n  color: #196519;\n  border-radius: 10px;\n  background-color: rgba(255, 181, 64, 0.4);\n  border: none;\n  box-shadow: 2px 2px 3px 2px rgba(255, 181, 64, 0.55);\n  transition: 0.5s all;\n}\n.login-page__form__submit:hover {\n  background-color: rgba(255, 181, 64, 0.6);\n  box-shadow: 4px 4px 5px 4px rgba(255, 181, 64, 0.65);\n}\n.login-page__form__submit:focus {\n  background-color: rgba(255, 181, 64, 0.9);\n  box-shadow: 4px 4px 5px 4px rgba(255, 181, 64, 0.9);\n}\n.login-page__offer-to-registration__question {\n  margin: 25px 0 15px 0;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n  color: #196519;\n}\n.login-page__offer-to-registration__question hr {\n  width: 50px;\n  height: 2px;\n  border: none;\n  color: rgba(10, 214, 173, 0.5);\n  background-color: rgba(10, 214, 173, 0.5);\n}\n.login-page__offer-to-registration__button {\n  display: block;\n  width: 100%;\n  height: 35px;\n  font-size: 25px;\n  font-family: Raleway;\n  font-weight: 600;\n  color: #196519;\n  border-radius: 10px;\n  background-color: rgba(255, 181, 64, 0.4);\n  border: none;\n  box-shadow: 2px 2px 3px 2px rgba(255, 181, 64, 0.55);\n  transition: 0.5s all;\n}\n.login-page__offer-to-registration__button:hover {\n  background-color: rgba(255, 181, 64, 0.6);\n  box-shadow: 4px 4px 5px 4px rgba(255, 181, 64, 0.65);\n}\n.login-page__offer-to-registration__button:focus {\n  background-color: rgba(255, 181, 64, 0.9);\n  box-shadow: 4px 4px 5px 4px rgba(255, 181, 64, 0.9);\n}\n\n.error-window-login {\n  font-family: Raleway;\n  font-weight: 700;\n  color: rgba(168, 8, 0, 0.7);\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%);\n  margin-top: 25px;\n  display: flex;\n  align-items: center;\n}\n.error-window-login img {\n  width: 25px;\n  height: 25px;\n}", "",{"version":3,"sources":["webpack://./src/components/login_page/_animation.scss","webpack://./src/components/login_page/login_page.scss","webpack://./src/_variables.scss"],"names":[],"mappings":"AAAA;EACI;IACI,sCAAA;ECCN;EDCE;IACI,qCAAA;ECCN;EDCE;IACI,sCAAA;ECCN;AACF;AAPA;EACI,aAAA;EACA,sBAAA;EACA,kBAAA;EACA,gBAAA;AASJ;AARI;EACI,kBAAA;EACA,eAAA;EACA,oBAAA;EACA,gBAAA;EACA,gBAAA;EACA,2BCDM;EDEN,gBAAA;AAUR;AARI;EACI,WAAA;EACA,YAAA;EACA,wBAAA;AAUR;AATQ;EACI,yCAAA;AAWZ;;AALA;EACI,kBAAA;EACA,YAAA;EACA,iBAAA;EACA,aAAA;AAQJ;AAPI;EACI,WAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;AASR;AARQ;EACI,YAAA;EACA,YAAA;EACA,gBAAA;EACA,iBAAA;EACA,kBAAA;EACA,qBCzCC;ED0CD,cC9BC;ED+BD,oBAAA;AAUZ;AATY;EACI,mDAAA;AAWhB;AATY;EACI,aAAA;EACA,mDAAA;EACA,uBAAA;EACA,cCvCH;ADkDb;AATY;EACI,cCrDE;EDsDF,YAAA;AAWhB;AAPQ;EACI,YAAA;EACA,aAAA;EACA,mBAAA;EACA,mBAAA;AASZ;AARY;EACI,kBAAA;EACA,WAAA;EACA,UAAA;AAUhB;AATgB;EACI,oBAAA;EACA,mBAAA;EACA,iBAAA;AAWpB;AAVoB;EACI,WAAA;EACA,qBAAA;EACA,WAAA;EACA,YAAA;EACA,yBAAA;EACA,kBAAA;EACA,4BAAA;EACA,kCAAA;EACA,wBAAA;EACA,iBAAA;EACA,oBAAA;AAYxB;AAVoB;EACI,qBC1EX;ED2EW,mCAAA;AAYxB;AATgB;EACI,qBC/EP;EDgFO,mCAAA;EACA,yDAAA;AAWpB;AARY;EACI,kBAAA;EACA,cCtFH;EDuFG,eAAA;EACA,oBAAA;EACA,gBAAA;AAUhB;AAPQ;EACI,WAAA;EACA,YAAA;EACA,eAAA;EACA,oBAAA;EACA,gBAAA;EACA,cClGC;EDmGD,mBAAA;EACA,yCC1Ga;ED2Gb,YAAA;EACA,oDAAA;EACA,oBAAA;AASZ;AARY;EACI,yCC9Ge;ED+Gf,oDAAA;AAUhB;AARY;EACI,yCCjHe;EDkHf,mDAAA;AAUhB;AALQ;EACI,qBAAA;EACA,aAAA;EACA,mBAAA;EACA,6BAAA;EACA,mBAAA;EACA,cCzHC;ADgIb;AANY;EACI,WAAA;EACA,WAAA;EACA,YAAA;EACA,8BCvIG;EDwIH,yCCxIG;ADgJnB;AALQ;EACI,cAAA;EACA,WAAA;EACA,YAAA;EACA,eAAA;EACA,oBAAA;EACA,gBAAA;EACA,cCzIC;ED0ID,mBAAA;EACA,yCCjJa;EDkJb,YAAA;EACA,oDAAA;EACA,oBAAA;AAOZ;AANY;EACI,yCCrJe;EDsJf,oDAAA;AAQhB;AANY;EACI,yCCxJe;EDyJf,mDAAA;AAQhB;;AADA;EACI,oBAAA;EACA,gBAAA;EACA,2BCjKU;EDkKV,kBAAA;EACA,SAAA;EACA,2BAAA;EACA,gBAAA;EACA,aAAA;EACA,mBAAA;AAIJ;AAHI;EACI,WAAA;EACA,YAAA;AAKR","sourcesContent":["@keyframes logoAnimation {\r\n    from {\r\n        transform: rotate(30deg) skewX(-10deg);\r\n    }\r\n    50% {\r\n        transform: rotate(30deg) skewX(15deg);\r\n    }\r\n    to {\r\n        transform: rotate(30deg) skewX(-10deg);\r\n    }\r\n}\r\n","@import '../../variables';\r\n@import './animation';\r\n\r\n.label{\r\n    display: flex;\r\n    flex-direction: column;\r\n    position: relative;\r\n    margin-top: 15px;\r\n    &__text{\r\n        position: absolute;\r\n        font-size: 15px;\r\n        font-family: Raleway;\r\n        font-weight: 600;\r\n        margin-left: 5px;\r\n        color: $error-color;\r\n        margin-top: 70px;\r\n    }\r\n    &__icon{\r\n        width: 70px;\r\n        height: 70px;\r\n        transform: rotate(30deg);\r\n        &__animation{\r\n            animation: logoAnimation 6s ease infinite;\r\n        }\r\n        \r\n    }\r\n}\r\n\r\n.login-page{\r\n    position: relative;\r\n    width: 350px;\r\n    margin: 30px auto;\r\n    padding: 20px;\r\n    &__form{\r\n        width: 100%;\r\n        display: flex;\r\n        flex-direction: column;\r\n        align-items: center;\r\n        &__input{ \r\n            width: 320px;\r\n            height: 45px;\r\n            margin-top: 15px;\r\n            padding: 3px 10px;\r\n            border-radius: 8px;\r\n            border-color: $main-color;\r\n            color: $input-text;\r\n            transition: 0.5s all;\r\n            &:hover {\r\n                box-shadow: 2px 2px 2px 1px $main-color-hover;\r\n            }\r\n            &:focus{\r\n                outline: none;\r\n                box-shadow: 2px 2px 2px 1px $main-color-focus;\r\n                background-color: white;\r\n                color: $input-text;\r\n            }\r\n            &::placeholder {\r\n                color: $secondary-color;\r\n                opacity: 0.9;\r\n              }\r\n            \r\n        }\r\n        &__remmember-me{\r\n            margin: 15px;\r\n            display: flex;\r\n            flex-direction: row;\r\n            align-items: center;\r\n            &__input{\r\n                position: absolute;\r\n                z-index: -1;\r\n                opacity: 0;\r\n                &+label{\r\n                    display: inline-flex;\r\n                    align-items: center;\r\n                    user-select: none;\r\n                    &::after {\r\n                        content: '';\r\n                        display: inline-block;\r\n                        width: 15px;\r\n                        height: 15px;\r\n                        border: 1px solid $input-text;\r\n                        border-radius: 30%;\r\n                        background-repeat: no-repeat;\r\n                        background-position: center center;\r\n                        background-size: 80% 80%;\r\n                        margin-left: 10px;\r\n                        transition: 0.5s all;\r\n                    }\r\n                    &:hover::after {\r\n                        border-color: $input-text;\r\n                        box-shadow: 1px 1px 1px 1px $input-text;\r\n                    }\r\n                }\r\n                &:checked+label::after{\r\n                    border-color: $input-text;\r\n                    box-shadow: 1px 1px 1px 1px $input-text;\r\n                    background-image: url('./check.svg')\r\n                }\r\n            }\r\n            &__label{\r\n                margin-right: 10px;\r\n                color: $input-text;\r\n                font-size: 20px;\r\n                font-family: Raleway;\r\n                font-weight: 600;\r\n            }\r\n        }\r\n        &__submit{\r\n            width: 100%;\r\n            height: 35px;\r\n            font-size: 25px;\r\n            font-family: Raleway;\r\n            font-weight: 600;\r\n            color: $input-text;\r\n            border-radius: 10px;\r\n            background-color: $secondary-color-button;\r\n            border: none;\r\n            box-shadow: 2px 2px 3px 2px rgba(255, 181, 64, 0.55);\r\n            transition: 0.5s all;\r\n            &:hover{\r\n                background-color: $secondary-color-button-hover;\r\n                box-shadow: 4px 4px 5px 4px rgba(255, 181, 64, 0.65);\r\n            }\r\n            &:focus{\r\n                background-color: $secondary-color-button-focus;\r\n                box-shadow: 4px 4px 5px 4px $secondary-color-button-focus;\r\n            }\r\n        }\r\n    }\r\n    &__offer-to-registration{\r\n        &__question{\r\n            margin: 25px 0 15px 0;\r\n            display: flex;\r\n            flex-direction: row;\r\n            justify-content: space-around;\r\n            align-items: center;\r\n            color: $input-text;\r\n            & hr{\r\n                width: 50px;\r\n                height: 2px;\r\n                border: none;\r\n                color: $main-color-hover;\r\n                background-color: $main-color-hover;\r\n            }\r\n        }\r\n        &__button{\r\n            display: block;\r\n            width: 100%;\r\n            height: 35px;\r\n            font-size: 25px;\r\n            font-family: Raleway;\r\n            font-weight: 600;\r\n            color: $input-text;\r\n            border-radius: 10px;\r\n            background-color: $secondary-color-button;\r\n            border: none;\r\n            box-shadow: 2px 2px 3px 2px rgba(255, 181, 64, 0.55);\r\n            transition: 0.5s all;\r\n            &:hover{\r\n                background-color: $secondary-color-button-hover;\r\n                box-shadow: 4px 4px 5px 4px rgba(255, 181, 64, 0.65);\r\n            }\r\n            &:focus{\r\n                background-color: $secondary-color-button-focus;\r\n                box-shadow: 4px 4px 5px 4px $secondary-color-button-focus;\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n\r\n.error-window-login{\r\n    font-family: Raleway;\r\n    font-weight: 700;\r\n    color: $error-color;\r\n    position: absolute;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    margin-top: 25px;\r\n    display: flex;\r\n    align-items: center;\r\n    & img{\r\n        width: 25px;\r\n        height: 25px;\r\n    }\r\n}\r\n","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n$main-color: rgb(4%, 84%, 68%, 1);\r\n$secondary-color: #FFB540;\r\n\r\n$main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n$main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n$secondary-color-button: rgba(255, 181, 64, 0.4);\r\n$secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n$secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n$error-color: rgba(168, 8, 0, 0.7);\r\n\r\n$input-text: #196519;\r\n$input-text-hover: rgba(25, 101, 25, 0.5);\r\n$input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n$background-modal: rgba(255, 227, 171, 1);"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "@keyframes logoAnimation {\n  from {\n    transform: rotate(30deg) skewX(-10deg);\n  }\n  50% {\n    transform: rotate(30deg) skewX(15deg);\n  }\n  to {\n    transform: rotate(30deg) skewX(-10deg);\n  }\n}\n.label {\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  margin-top: 15px;\n}\n.label__text {\n  position: absolute;\n  font-size: 15px;\n  font-family: Raleway;\n  font-weight: 600;\n  margin-left: 5px;\n  color: black;\n  margin-top: 70px;\n}\n.label__icon {\n  width: 70px;\n  height: 70px;\n  transform: rotate(30deg);\n}\n.label__icon__animation {\n  animation: logoAnimation 6s ease infinite;\n}\n\n.login-page {\n  position: relative;\n  width: 350px;\n  margin: 30px auto;\n  padding: 20px;\n}\n.login-page__form {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.login-page__form div {\n  display: flex;\n}\n.login-page__form__input {\n  width: 320px;\n  height: 45px;\n  margin-top: 15px;\n  padding: 3px 10px 3px 10px;\n  border-radius: 8px;\n  border-color: #89d8c2;\n  color: black;\n  transition: 0.5s all;\n}\n.login-page__form__input:hover {\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n}\n.login-page__form__input:focus {\n  outline: none;\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n  color: black;\n}\n.login-page__form__input::placeholder {\n  color: #89d8c2;\n  opacity: 1;\n}\n.login-page__form__input__password {\n  width: 320px;\n  height: 45px;\n  margin-top: 15px;\n  padding: 3px 10px 3px 10px;\n  border-radius: 8px;\n  border-color: #89d8c2;\n  color: black;\n  transition: 0.5s all;\n  padding: 3px 46px 3px 10px;\n}\n.login-page__form__input__password:hover {\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n}\n.login-page__form__input__password:focus {\n  outline: none;\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n  color: black;\n}\n.login-page__form__input__password::placeholder {\n  color: #89d8c2;\n  opacity: 1;\n}\n.login-page__form__input__show {\n  display: flex;\n  position: absolute;\n  right: 20px;\n  border-radius: 100%;\n}\n.login-page__form__input__show svg {\n  margin-top: 21.5px;\n}\n.login-page__form__remmember-me {\n  margin: 15px;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.login-page__form__remmember-me__input {\n  position: absolute;\n  z-index: -1;\n  opacity: 0;\n}\n.login-page__form__remmember-me__input + label {\n  display: inline-flex;\n  align-items: center;\n  user-select: none;\n}\n.login-page__form__remmember-me__input + label::after {\n  content: \"\";\n  display: inline-block;\n  width: 15px;\n  height: 15px;\n  border: 1px solid #89d8c2;\n  border-radius: 30%;\n  background-repeat: no-repeat;\n  background-position: center center;\n  background-size: 80% 80%;\n  margin-left: 10px;\n  transition: 0.5s all;\n}\n.login-page__form__remmember-me__input + label:hover::after {\n  border-color: #026670;\n  box-shadow: 0.5px 0.5px 0.5px 0.5px #026670;\n}\n.login-page__form__remmember-me__input:checked + label::after {\n  border-color: #026670;\n  box-shadow: 0.5px 0.5px 0.5px 0.5px #026670;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n.login-page__form__remmember-me__label {\n  margin-right: 10px;\n  color: black;\n  font-size: 20px;\n  font-family: Raleway;\n  font-weight: 600;\n}\n.login-page__form__submit {\n  width: 100%;\n  height: 35px;\n  font-size: 22px;\n  font-family: Raleway;\n  font-weight: 600;\n  color: black;\n  border-radius: 10px;\n  background-color: #f3f6dc;\n  border: 2px solid #fce181;\n  transition: 0.5s all;\n}\n.login-page__form__submit:hover {\n  background-color: #fef9c7;\n  transform: scale(1.1);\n}\n.login-page__form__submit:focus {\n  background-color: #fef9c7;\n  transform: scale(1.1);\n}\n.login-page__offer-to-registration__question {\n  margin: 25px 0 15px 0;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n  color: black;\n}\n.login-page__offer-to-registration__question hr {\n  width: 50px;\n  height: 2px;\n  border: none;\n  color: #026670;\n  background-color: #026670;\n}\n.login-page__offer-to-registration__button {\n  width: 100%;\n  height: 35px;\n  font-size: 22px;\n  font-family: Raleway;\n  font-weight: 600;\n  color: black;\n  border-radius: 10px;\n  background-color: #f3f6dc;\n  border: 2px solid #fce181;\n  transition: 0.5s all;\n}\n.login-page__offer-to-registration__button:hover {\n  background-color: #fef9c7;\n  transform: scale(1.1);\n}\n.login-page__offer-to-registration__button:focus {\n  background-color: #fef9c7;\n  transform: scale(1.1);\n}\n\n.error-window-login {\n  font-family: Raleway;\n  font-weight: 500;\n  color: black;\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%);\n  margin-top: 10px;\n  display: flex;\n  align-items: center;\n}\n.error-window-login img {\n  width: 25px;\n  height: 25px;\n}\n\n.passwordRequirements {\n  height: 15px;\n  margin-top: 5px;\n  margin-bottom: 20px;\n  color: black;\n  font-size: 10px;\n}\n.passwordRequirements_null {\n  height: 40px;\n}\n\n.registration-successfully {\n  display: block;\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  right: 0;\n  background-color: rgba(243, 246, 220, 0.5);\n  z-index: 1;\n  transition: 1s all;\n}\n.registration-successfully__modal {\n  width: 300px;\n  height: 170px;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  padding: 17px 17px 25px 17px;\n  border-radius: 10px;\n  background-color: #f3f6dc;\n  background: radial-gradient(at 25% 85%, #fce181, #89d8c2, #f3f6dc);\n  box-shadow: 5px 10px 5px 3px #b5b59b;\n  z-index: 2;\n}\n.registration-successfully__modal__wrapper {\n  position: relative;\n  width: 100%;\n  margin-top: 40px;\n}\n.registration-successfully__modal__close {\n  display: inline-block;\n  position: absolute;\n  right: 0;\n  top: -40px;\n}\n.registration-successfully__modal__close img {\n  transition: 0.5s all;\n}\n.registration-successfully__modal__close img:hover {\n  border-radius: 100%;\n  transform: rotate(30deg) scale(1.2);\n}\n.registration-successfully__modal__message {\n  width: 100%;\n  width: 80%;\n  margin: 15px auto;\n  text-align: center;\n}", "",{"version":3,"sources":["webpack://./src/components/login_page/_animation.scss","webpack://./src/components/login_page/login_page.scss","webpack://./src/_variables.scss","webpack://./src/_mixins.scss"],"names":[],"mappings":"AAAA;EACI;IACI,sCAAA;ECCN;EDCE;IACI,qCAAA;ECCN;EDCE;IACI,sCAAA;ECCN;AACF;AANA;EACI,aAAA;EACA,sBAAA;EACA,kBAAA;EACA,gBAAA;AAQJ;AAPI;EACI,kBAAA;EACA,eAAA;EACA,oBAAA;EACA,gBAAA;EACA,gBAAA;EACA,YCMK;EDLL,gBAAA;AASR;AAPI;EACI,WAAA;EACA,YAAA;EACA,wBAAA;AASR;AARQ;EACI,yCAAA;AAUZ;;AAJA;EACI,kBAAA;EACA,YAAA;EACA,iBAAA;EACA,aAAA;AAOJ;AANI;EACI,WAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;AAQR;AAPQ;EACI,aAAA;AASZ;AAPQ;EEzCJ,YAAA;EACA,YAAA;EACA,gBAAA;EACA,0BAAA;EACA,kBAAA;EACA,qBDiBe;EChBf,YDcS;ECbT,oBAAA;AFmDJ;AElDI;EACI,mBAAA;EACA,mCAAA;AFoDR;AElDI;EACI,aAAA;EACA,mBAAA;EACA,mCAAA;EACA,YDIK;ADgDb;AElDI;EACI,cDGW;ECFX,UAAA;AFoDR;AA7BY;EE3CR,YAAA;EACA,YAAA;EACA,gBAAA;EACA,0BAAA;EACA,kBAAA;EACA,qBDiBe;EChBf,YDcS;ECbT,oBAAA;EFsCY,0BAAA;AAsChB;AE3EI;EACI,mBAAA;EACA,mCAAA;AF6ER;AE3EI;EACI,aAAA;EACA,mBAAA;EACA,mCAAA;EACA,YDIK;ADyEb;AE3EI;EACI,cDGW;ECFX,UAAA;AF6ER;AAlDY;EEtBR,aAAA;EACA,kBAAA;EACA,WAAA;EACA,mBAAA;AF2EJ;AE1EI;EACK,kBAAA;AF4ET;AAtDQ;EACI,YAAA;EACA,aAAA;EACA,mBAAA;EACA,mBAAA;AAwDZ;AAvDY;EACI,kBAAA;EACA,WAAA;EACA,UAAA;AAyDhB;AAxDgB;EACI,oBAAA;EACA,mBAAA;EACA,iBAAA;AA0DpB;AAzDoB;EACI,WAAA;EACA,qBAAA;EACA,WAAA;EACA,YAAA;EACA,yBAAA;EACA,kBAAA;EACA,4BAAA;EACA,kCAAA;EACA,wBAAA;EACA,iBAAA;EACA,oBAAA;AA2DxB;AAzDoB;EACI,qBC1DX;ED2DW,2CAAA;AA2DxB;AAxDgB;EACI,qBC/DP;EDgEO,2CAAA;EACA,yDAAA;AA0DpB;AAvDY;EACI,kBAAA;EACA,YCvEH;EDwEG,eAAA;EACA,oBAAA;EACA,gBAAA;AAyDhB;AAtDQ;EE9DJ,WAAA;EACA,YAAA;EACA,eAAA;EACA,oBAAA;EACA,gBAAA;EACA,YDpBS;ECqBT,mBAAA;EACA,yBDjBe;ECkBf,yBAAA;EACA,oBAAA;AFuHJ;AEtHQ;EACI,yBDtBY;ECuBZ,qBAAA;AFwHZ;AEtHQ;EACI,yBD1BY;EC2BZ,qBAAA;AFwHZ;AArEQ;EACI,qBAAA;EACA,aAAA;EACA,mBAAA;EACA,6BAAA;EACA,mBAAA;EACA,YCxFC;AD+Jb;AAtEY;EACI,WAAA;EACA,WAAA;EACA,YAAA;EACA,cC5FH;ED6FG,yBC7FH;ADqKb;AArEQ;EElFJ,WAAA;EACA,YAAA;EACA,eAAA;EACA,oBAAA;EACA,gBAAA;EACA,YDpBS;ECqBT,mBAAA;EACA,yBDjBe;ECkBf,yBAAA;EACA,oBAAA;AF0JJ;AEzJQ;EACI,yBDtBY;ECuBZ,qBAAA;AF2JZ;AEzJQ;EACI,yBD1BY;EC2BZ,qBAAA;AF2JZ;;AAlFA;EACI,oBAAA;EACA,gBAAA;EACA,YC3GS;ED4GT,kBAAA;EACA,SAAA;EACA,2BAAA;EACA,gBAAA;EACA,aAAA;EACA,mBAAA;AAqFJ;AApFI;EACI,WAAA;EACA,YAAA;AAsFR;;AAlFA;EACI,YAAA;EACA,eAAA;EACA,mBAAA;EACA,YC5HS;ED6HT,eAAA;AAqFJ;AApFI;EACI,YAAA;AAsFR;;AAlFA;EE/FI,cAAA;EACA,eAAA;EACA,WAAA;EACA,YAAA;EACA,MAAA;EACA,QAAA;EACA,0CDpCqB;ECqCrB,UAAA;EACA,kBAAA;AFqLJ;AA5FI;EACI,YAAA;EACA,aAAA;EEvFJ,kBAAA;EACA,SAAA;EACA,QAAA;EACA,gCAAA;EACA,4BAAA;EACA,mBAAA;EACA,yBDjDe;EDoIX,kEAAA;EACA,oCAAA;EACA,UAAA;AAoGR;AAnGQ;EACI,kBAAA;EACA,WAAA;EACA,gBAAA;AAqGZ;AAnGQ;EACI,qBAAA;EACA,kBAAA;EACA,QAAA;EACA,UAAA;AAqGZ;AApGY;EACI,oBAAA;AAsGhB;AArGgB;EACI,mBAAA;EACA,mCAAA;AAuGpB;AAnGQ;EACI,WAAA;EACA,UAAA;EACA,iBAAA;EACA,kBAAA;AAqGZ","sourcesContent":["@keyframes logoAnimation {\r\n    from {\r\n        transform: rotate(30deg) skewX(-10deg);\r\n    }\r\n    50% {\r\n        transform: rotate(30deg) skewX(15deg);\r\n    }\r\n    to {\r\n        transform: rotate(30deg) skewX(-10deg);\r\n    }\r\n}\r\n","@import '../../variables';\r\n@import './animation';\r\n@import '../../mixins';\r\n\r\n.label{\r\n    display: flex;\r\n    flex-direction: column;\r\n    position: relative;\r\n    margin-top: 15px;\r\n    &__text{\r\n        position: absolute;\r\n        font-size: 15px;\r\n        font-family: Raleway;\r\n        font-weight: 600;\r\n        margin-left: 5px;\r\n        color: $input-text;\r\n        margin-top: 70px;\r\n    }\r\n    &__icon{\r\n        width: 70px;\r\n        height: 70px;\r\n        transform: rotate(30deg);\r\n        &__animation{\r\n            animation: logoAnimation 6s ease infinite;\r\n        }\r\n        \r\n    }\r\n}\r\n\r\n.login-page{\r\n    position: relative;\r\n    width: 350px;\r\n    margin: 30px auto;\r\n    padding: 20px;\r\n    &__form{\r\n        width: 100%;\r\n        display: flex;\r\n        flex-direction: column;\r\n        align-items: center;\r\n        & div{\r\n            display: flex;\r\n        }\r\n        &__input{ \r\n            @include input;\r\n            &__password{\r\n                @include input;\r\n                padding: 3px 46px 3px 10px;\r\n            }\r\n            &__show{\r\n                @include inputShowPassword;\r\n            }\r\n            \r\n        }\r\n        &__remmember-me{\r\n            margin: 15px;\r\n            display: flex;\r\n            flex-direction: row;\r\n            align-items: center;\r\n            &__input{\r\n                position: absolute;\r\n                z-index: -1;\r\n                opacity: 0;\r\n                &+label{\r\n                    display: inline-flex;\r\n                    align-items: center;\r\n                    user-select: none;\r\n                    &::after {\r\n                        content: '';\r\n                        display: inline-block;\r\n                        width: 15px;\r\n                        height: 15px;\r\n                        border: 1px solid $main-color-light;\r\n                        border-radius: 30%;\r\n                        background-repeat: no-repeat;\r\n                        background-position: center center;\r\n                        background-size: 80% 80%;\r\n                        margin-left: 10px;\r\n                        transition: 0.5s all;\r\n                    }\r\n                    &:hover::after {\r\n                        border-color: $main-color;\r\n                        box-shadow: 0.5px 0.5px 0.5px 0.5px $main-color;\r\n                    }\r\n                }\r\n                &:checked+label::after{\r\n                    border-color: $main-color;\r\n                    box-shadow: 0.5px 0.5px 0.5px 0.5px $main-color;\r\n                    background-image: url('./check.svg')\r\n                }\r\n            }\r\n            &__label{\r\n                margin-right: 10px;\r\n                color: $input-text;\r\n                font-size: 20px;\r\n                font-family: Raleway;\r\n                font-weight: 600;\r\n            }\r\n        }\r\n        &__submit{\r\n            @include inputButton;\r\n        }\r\n    }\r\n    &__offer-to-registration{\r\n        &__question{\r\n            margin: 25px 0 15px 0;\r\n            display: flex;\r\n            flex-direction: row;\r\n            justify-content: space-around;\r\n            align-items: center;\r\n            color: $input-text;\r\n            & hr{\r\n                width: 50px;\r\n                height: 2px;\r\n                border: none;\r\n                color: $main-color;\r\n                background-color: $main-color;\r\n            }\r\n        }\r\n        &__button{\r\n            @include inputButton;\r\n        }\r\n    }\r\n}\r\n\r\n\r\n.error-window-login{\r\n    font-family: Raleway;\r\n    font-weight: 500;\r\n    color: $input-text;\r\n    position: absolute;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    margin-top: 10px;\r\n    display: flex;\r\n    align-items: center;\r\n    & img{\r\n        width: 25px;\r\n        height: 25px;\r\n    }\r\n}\r\n\r\n.passwordRequirements{\r\n    height: 15px;\r\n    margin-top: 5px;\r\n    margin-bottom: 20px;\r\n    color: $input-text;\r\n    font-size: 10px;\r\n    &_null{\r\n        height: 40px;\r\n    }\r\n}\r\n\r\n.registration-successfully{\r\n    @include backgroundModal;\r\n    &__modal{\r\n        width: 300px;\r\n        height: 170px;\r\n        @include ModalWindow;\r\n        background: radial-gradient(at 25% 85%, $secondary-color, $main-color-light, $background-color);\r\n        box-shadow: 5px 10px 5px 3px #b5b59b;\r\n        z-index: 2;\r\n        &__wrapper{\r\n            position: relative;\r\n            width: 100%;\r\n            margin-top: 40px;\r\n        }\r\n        &__close{\r\n            display: inline-block;\r\n            position: absolute;\r\n            right: 0;\r\n            top: -40px;\r\n            & img{\r\n                transition: 0.5s all;\r\n                &:hover{\r\n                    border-radius: 100%;\r\n                    transform: rotate(30deg) scale(1.2);\r\n                }\r\n            }\r\n        }\r\n        &__message {\r\n            width: 100%;\r\n            width: 80%;\r\n            margin: 15px auto;\r\n            text-align: center;\r\n        }\r\n    }\r\n}\r\n","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n// $main-color: rgb(4%, 84%, 68%, 1);\r\n// $secondary-color: #FFB540;\r\n\r\n// $main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n// $main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n// $secondary-color-button: rgba(255, 181, 64, 0.4);\r\n// $secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n// $secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n// $error-color: rgba(168, 8, 0, 0.7);\r\n\r\n// $input-text: #196519;\r\n// $input-text-hover: rgba(25, 101, 25, 0.5);\r\n// $input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n// $background-modal: rgba(255, 227, 171, 1);\r\n\r\n$input-text: black;\r\n$main-color: #026670;\r\n$main-color-light: #89d8c2;\r\n$secondary-color: #fce181;\r\n$secondary-color-light: #fef9c7;\r\n$background-color: #f3f6dc;\r\n$background-color-modal: rgba(243, 246, 220, 0.5);\r\n","@mixin input {\r\n    width: 320px;\r\n    height: 45px;\r\n    margin-top: 15px;\r\n    padding: 3px 10px 3px 10px;\r\n    border-radius: 8px;\r\n    border-color: $main-color-light;\r\n    color: $input-text;\r\n    transition: 0.5s all;\r\n    &:hover {\r\n        border-color: white;\r\n        box-shadow: 1px 1px 1px 1px $main-color;\r\n    }\r\n    &:focus{\r\n        outline:none;\r\n        border-color: white;\r\n        box-shadow: 1px 1px 1px 1px $main-color;\r\n        color: $input-text;\r\n    }\r\n    &::placeholder {\r\n        color: $main-color-light;\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n@mixin inputShowPassword {\r\n    display: flex;\r\n    position: absolute;\r\n    right: 20px;\r\n    border-radius: 100%;\r\n    & svg {\r\n         margin-top: 21.5px;\r\n    }\r\n}\r\n\r\n@mixin inputButton {\r\n    width: 100%;\r\n    height: 35px;\r\n    font-size: 22px;\r\n    font-family: Raleway;\r\n    font-weight: 600;\r\n    color: $input-text;\r\n    border-radius: 10px;\r\n    background-color: $background-color;\r\n    border: 2px solid $secondary-color;\r\n    transition: 0.5s all;\r\n        &:hover{\r\n            background-color: $secondary-color-light;\r\n            transform: scale(1.1);\r\n        }\r\n        &:focus{\r\n            background-color: $secondary-color-light;\r\n            transform: scale(1.1);\r\n        }\r\n}\r\n\r\n@mixin backgroundModal{\r\n    display: block;\r\n    position: fixed;\r\n    width: 100%;\r\n    height: 100%;\r\n    top: 0;\r\n    right: 0;\r\n    background-color: $background-color-modal;\r\n    z-index: 1;\r\n    transition: 1s all;\r\n}\r\n\r\n@mixin ModalWindow{\r\n    position: absolute;\r\n    left: 50%;\r\n    top: 50%;\r\n    transform: translate(-50%, -50%);\r\n    padding: 17px 17px 25px 17px;\r\n    border-radius: 10px;\r\n    background-color: $background-color;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -5544,7 +5544,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".registration-window {\n  display: block;\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  right: 0;\n  transition: 1s all;\n  background-color: rgba(102, 74, 28, 0.5);\n}\n.registration-window__modal {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 350px;\n  padding: 17px 17px 25px 17px;\n  border-radius: 10px;\n  background-color: #BFAA80;\n}\n.registration-window__modal__title {\n  text-align: center;\n  color: #196519;\n  margin-bottom: 15px;\n}\n.registration-window__modal__close {\n  display: block;\n  text-align: end;\n}\n.registration-window__modal__close__img {\n  transition: 0.5s all;\n}\n.registration-window__modal__close__img:hover {\n  border-radius: 100%;\n  transform: rotate(30deg) scale(1.2);\n}\n.registration-window__modal__input {\n  width: 100%;\n  height: 45px;\n  margin: 7.5px auto;\n  padding: 3px 10px;\n  border-radius: 8px;\n  border-color: #0ad6ad;\n  color: #196519;\n  transition: 0.5s all;\n}\n.registration-window__modal__input:hover {\n  box-shadow: 2px 2px 2px 1px rgba(10, 214, 173, 0.5);\n}\n.registration-window__modal__input:focus {\n  outline: none;\n  box-shadow: 2px 2px 2px 1px rgba(10, 214, 173, 0.7);\n  background-color: white;\n  color: #196519;\n}\n.registration-window__modal__input::placeholder {\n  color: #FFB540;\n  opacity: 0.9;\n}\n.registration-window__modal__btn {\n  margin-top: 25px;\n  height: 39px;\n  width: 312px;\n  padding: 3px 10px;\n  border-radius: 8px;\n  background-color: rgba(25, 101, 25, 0.5);\n  border: none;\n  box-shadow: 2px 2px 3px 2px rgba(25, 101, 25, 0.55);\n  font-size: 25px;\n  font-family: Raleway;\n  font-weight: 600;\n  color: #FFB540;\n  transition: 0.5s all;\n}\n.registration-window__modal__btn:hover {\n  background-color: rgba(25, 101, 25, 0.7);\n  box-shadow: 3px 3px 3px 2px rgba(38, 59, 38, 0.75);\n}\n.registration-window__modal__btn:focus {\n  background-color: rgba(38, 59, 38, 0.8);\n  box-shadow: 3px 3px 3px 2px rgba(38, 59, 38, 0.85);\n}", "",{"version":3,"sources":["webpack://./src/components/registrationWindow/registrationWindow.scss","webpack://./src/_variables.scss"],"names":[],"mappings":"AAEA;EACI,cAAA;EACA,eAAA;EACA,WAAA;EACA,YAAA;EACA,MAAA;EACA,QAAA;EACA,kBAAA;EACA,wCAAA;AADJ;AAEI;EACI,kBAAA;EACA,SAAA;EACA,QAAA;EACA,gCAAA;EACA,YAAA;EACA,4BAAA;EACA,mBAAA;EACA,yBAAA;AAAR;AACQ;EACI,kBAAA;EACA,cCPC;EDQD,mBAAA;AACZ;AACQ;EACI,cAAA;EACA,eAAA;AACZ;AAAY;EACI,oBAAA;AAEhB;AADgB;EACI,mBAAA;EACA,mCAAA;AAGpB;AACQ;EACI,WAAA;EACA,YAAA;EACA,kBAAA;EACA,iBAAA;EACA,kBAAA;EACA,qBCvCC;EDwCD,cC5BC;ED6BD,oBAAA;AACZ;AAAY;EACI,mDAAA;AAEhB;AAAY;EACI,aAAA;EACA,mDAAA;EACA,uBAAA;EACA,cCrCH;ADuCb;AAAY;EACI,cCnDE;EDoDF,YAAA;AAEhB;AACQ;EACI,gBAAA;EACA,YAAA;EACA,YAAA;EACA,iBAAA;EACA,kBAAA;EACA,wCCjDO;EDkDP,YAAA;EACA,mDAAA;EACA,eAAA;EACA,oBAAA;EACA,gBAAA;EACA,cCnEM;EDoEN,oBAAA;AACZ;AAAY;EACI,wCCzDG;ED0DH,kDAAA;AAEhB;AAAY;EACI,uCAAA;EACA,kDAAA;AAEhB","sourcesContent":["@import '../../variables';\r\n\r\n.registration-window{\r\n    display: block;\r\n    position: fixed;\r\n    width: 100%;\r\n    height: 100%;\r\n    top: 0;\r\n    right: 0;\r\n    transition: 1s all;\r\n    background-color: rgba(102, 74, 28, 0.5);\r\n    &__modal {\r\n        position: absolute;\r\n        left: 50%;\r\n        top: 50%;\r\n        transform: translate(-50%, -50%);\r\n        width: 350px;\r\n        padding: 17px 17px 25px 17px;\r\n        border-radius: 10px;\r\n        background-color: #BFAA80;\r\n        &__title{\r\n            text-align: center;\r\n            color: $input-text;\r\n            margin-bottom: 15px;\r\n        }\r\n        &__close{\r\n            display: block;\r\n            text-align: end;\r\n            &__img{\r\n                transition: 0.5s all;\r\n                &:hover{\r\n                    border-radius: 100%;\r\n                    transform: rotate(30deg) scale(1.2);\r\n                }\r\n            }\r\n        }\r\n        &__input{\r\n            width: 100%;\r\n            height: 45px;\r\n            margin: 7.5px auto;\r\n            padding: 3px 10px;\r\n            border-radius: 8px;\r\n            border-color: $main-color;\r\n            color: $input-text;\r\n            transition: 0.5s all;\r\n            &:hover {\r\n                box-shadow: 2px 2px 2px 1px $main-color-hover;\r\n            }\r\n            &:focus{\r\n                outline: none;\r\n                box-shadow: 2px 2px 2px 1px $main-color-focus;\r\n                background-color: white;\r\n                color: $input-text;\r\n            }\r\n            &::placeholder {\r\n                color: $secondary-color;\r\n                opacity: 0.9;\r\n              }\r\n        }\r\n        &__btn{\r\n            margin-top: 25px;\r\n            height: 39px;\r\n            width: 312px;\r\n            padding: 3px 10px;\r\n            border-radius: 8px;\r\n            background-color: $input-text-hover;\r\n            border: none;\r\n            box-shadow: 2px 2px 3px 2px rgba(25, 101, 25, 0.55);\r\n            font-size: 25px;\r\n            font-family: Raleway;\r\n            font-weight: 600;\r\n            color: $secondary-color;\r\n            transition: 0.5s all;\r\n            &:hover{\r\n                background-color: $input-text-focus;\r\n                box-shadow: 3px 3px 3px 2px rgba(38, 59, 38, 0.75);\r\n            }\r\n            &:focus{\r\n                background-color: rgba(38, 59, 38, 0.8);\r\n                box-shadow: 3px 3px 3px 2px rgba(38, 59, 38, 0.85);\r\n            }\r\n        }\r\n    }\r\n}\r\n","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n$main-color: rgb(4%, 84%, 68%, 1);\r\n$secondary-color: #FFB540;\r\n\r\n$main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n$main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n$secondary-color-button: rgba(255, 181, 64, 0.4);\r\n$secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n$secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n$error-color: rgba(168, 8, 0, 0.7);\r\n\r\n$input-text: #196519;\r\n$input-text-hover: rgba(25, 101, 25, 0.5);\r\n$input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n$background-modal: rgba(255, 227, 171, 1);"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".registration-window {\n  display: block;\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  right: 0;\n  background-color: rgba(243, 246, 220, 0.5);\n  z-index: 1;\n  transition: 1s all;\n}\n.registration-window__modal {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  padding: 17px 17px 25px 17px;\n  border-radius: 10px;\n  background-color: #f3f6dc;\n  width: 350px;\n}\n.registration-window__modal__title {\n  text-align: center;\n  color: black;\n  margin-bottom: 15px;\n}\n.registration-window__modal__close {\n  display: inline-block;\n  position: absolute;\n  right: 17px;\n  top: -15px;\n}\n.registration-window__modal__close__img {\n  transition: 0.5s all;\n}\n.registration-window__modal__close__img:hover {\n  border-radius: 100%;\n  transform: rotate(30deg) scale(1.2);\n}\n.registration-window__modal_wrapper-password {\n  display: flex;\n}\n.registration-window__modal__input {\n  width: 320px;\n  height: 45px;\n  margin-top: 15px;\n  padding: 3px 10px 3px 10px;\n  border-radius: 8px;\n  border-color: #89d8c2;\n  color: black;\n  transition: 0.5s all;\n  padding: 3px 46px 3px 10px;\n}\n.registration-window__modal__input:hover {\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n}\n.registration-window__modal__input:focus {\n  outline: none;\n  border-color: white;\n  box-shadow: 1px 1px 1px 1px #026670;\n  color: black;\n}\n.registration-window__modal__input::placeholder {\n  color: #89d8c2;\n  opacity: 1;\n}\n.registration-window__modal__input_show {\n  display: flex;\n  position: absolute;\n  right: 20px;\n  border-radius: 100%;\n}\n.registration-window__modal__input_show svg {\n  margin-top: 21.5px;\n}\n.registration-window__modal__btn {\n  width: 100%;\n  height: 35px;\n  font-size: 22px;\n  font-family: Raleway;\n  font-weight: 600;\n  color: black;\n  border-radius: 10px;\n  background-color: #f3f6dc;\n  border: 2px solid #fce181;\n  transition: 0.5s all;\n  margin-top: 15px;\n}\n.registration-window__modal__btn:hover {\n  background-color: #fef9c7;\n  transform: scale(1.1);\n}\n.registration-window__modal__btn:focus {\n  background-color: #fef9c7;\n  transform: scale(1.1);\n}\n\n.passwordRequirements {\n  display: flex;\n  justify-content: center;\n  height: 15px;\n  margin-top: 5px;\n  margin-bottom: 20px;\n  color: black;\n  font-size: 10px;\n}\n.passwordRequirements_null {\n  height: 40px;\n}", "",{"version":3,"sources":["webpack://./src/components/registrationWindow/registrationWindow.scss","webpack://./src/_mixins.scss","webpack://./src/_variables.scss"],"names":[],"mappings":"AAGA;ECsDI,cAAA;EACA,eAAA;EACA,WAAA;EACA,YAAA;EACA,MAAA;EACA,QAAA;EACA,0CCpCqB;EDqCrB,UAAA;EACA,kBAAA;ADvDJ;AALI;ECgEA,kBAAA;EACA,SAAA;EACA,QAAA;EACA,gCAAA;EACA,4BAAA;EACA,mBAAA;EACA,yBCjDe;EFnBX,YAAA;AAaR;AAZQ;EACI,kBAAA;EACA,YEWC;EFVD,mBAAA;AAcZ;AAZQ;EACI,qBAAA;EACA,kBAAA;EACA,WAAA;EACA,UAAA;AAcZ;AAbY;EACI,oBAAA;AAehB;AAdgB;EACI,mBAAA;EACA,mCAAA;AAgBpB;AAZQ;EACI,aAAA;AAcZ;AAZQ;EC5BJ,YAAA;EACA,YAAA;EACA,gBAAA;EACA,0BAAA;EACA,kBAAA;EACA,qBCiBe;EDhBf,YCcS;EDbT,oBAAA;EDuBQ,0BAAA;AAqBZ;AC3CI;EACI,mBAAA;EACA,mCAAA;AD6CR;AC3CI;EACI,aAAA;EACA,mBAAA;EACA,mCAAA;EACA,YCIK;AFyCb;AC3CI;EACI,cCGW;EDFX,UAAA;AD6CR;AAlCY;ECNR,aAAA;EACA,kBAAA;EACA,WAAA;EACA,mBAAA;AD2CJ;AC1CI;EACK,kBAAA;AD4CT;AAvCQ;ECAJ,WAAA;EACA,YAAA;EACA,eAAA;EACA,oBAAA;EACA,gBAAA;EACA,YCpBS;EDqBT,mBAAA;EACA,yBCjBe;EDkBf,yBAAA;EACA,oBAAA;EDPO,gBAAA;AAkDX;AC1CQ;EACI,yBCtBY;EDuBZ,qBAAA;AD4CZ;AC1CQ;EACI,yBC1BY;ED2BZ,qBAAA;AD4CZ;;AArDA;EACI,aAAA;EACA,uBAAA;EACA,YAAA;EACA,eAAA;EACA,mBAAA;EACA,YE5BS;EF6BT,eAAA;AAwDJ;AAvDI;EACI,YAAA;AAyDR","sourcesContent":["@import '../../variables';\r\n@import '../../mixins';\r\n\r\n.registration-window{\r\n    @include backgroundModal;\r\n    &__modal {\r\n        @include ModalWindow;\r\n        width: 350px;\r\n        &__title{\r\n            text-align: center;\r\n            color: $input-text;\r\n            margin-bottom: 15px;\r\n        }\r\n        &__close{\r\n            display: inline-block;\r\n            position: absolute;\r\n            right: 17px;\r\n            top: -15px;\r\n            &__img{\r\n                transition: 0.5s all;\r\n                &:hover{\r\n                    border-radius: 100%;\r\n                    transform: rotate(30deg) scale(1.2);\r\n                }\r\n            }\r\n        }\r\n        &_wrapper-password{\r\n            display:flex;\r\n        }\r\n        &__input{\r\n            @include input;\r\n            padding: 3px 46px 3px 10px;\r\n            &_show{\r\n                @include inputShowPassword;\r\n            }\r\n        }\r\n        &__btn{\r\n           @include inputButton;\r\n           margin-top: 15px;\r\n        }\r\n    }\r\n}\r\n\r\n.passwordRequirements{\r\n    display: flex;\r\n    justify-content: center;\r\n    height: 15px;\r\n    margin-top: 5px;\r\n    margin-bottom: 20px;\r\n    color: $input-text;\r\n    font-size: 10px;\r\n    &_null{\r\n        height: 40px;\r\n    }\r\n}\r\n","@mixin input {\r\n    width: 320px;\r\n    height: 45px;\r\n    margin-top: 15px;\r\n    padding: 3px 10px 3px 10px;\r\n    border-radius: 8px;\r\n    border-color: $main-color-light;\r\n    color: $input-text;\r\n    transition: 0.5s all;\r\n    &:hover {\r\n        border-color: white;\r\n        box-shadow: 1px 1px 1px 1px $main-color;\r\n    }\r\n    &:focus{\r\n        outline:none;\r\n        border-color: white;\r\n        box-shadow: 1px 1px 1px 1px $main-color;\r\n        color: $input-text;\r\n    }\r\n    &::placeholder {\r\n        color: $main-color-light;\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n@mixin inputShowPassword {\r\n    display: flex;\r\n    position: absolute;\r\n    right: 20px;\r\n    border-radius: 100%;\r\n    & svg {\r\n         margin-top: 21.5px;\r\n    }\r\n}\r\n\r\n@mixin inputButton {\r\n    width: 100%;\r\n    height: 35px;\r\n    font-size: 22px;\r\n    font-family: Raleway;\r\n    font-weight: 600;\r\n    color: $input-text;\r\n    border-radius: 10px;\r\n    background-color: $background-color;\r\n    border: 2px solid $secondary-color;\r\n    transition: 0.5s all;\r\n        &:hover{\r\n            background-color: $secondary-color-light;\r\n            transform: scale(1.1);\r\n        }\r\n        &:focus{\r\n            background-color: $secondary-color-light;\r\n            transform: scale(1.1);\r\n        }\r\n}\r\n\r\n@mixin backgroundModal{\r\n    display: block;\r\n    position: fixed;\r\n    width: 100%;\r\n    height: 100%;\r\n    top: 0;\r\n    right: 0;\r\n    background-color: $background-color-modal;\r\n    z-index: 1;\r\n    transition: 1s all;\r\n}\r\n\r\n@mixin ModalWindow{\r\n    position: absolute;\r\n    left: 50%;\r\n    top: 50%;\r\n    transform: translate(-50%, -50%);\r\n    padding: 17px 17px 25px 17px;\r\n    border-radius: 10px;\r\n    background-color: $background-color;\r\n}","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n// $main-color: rgb(4%, 84%, 68%, 1);\r\n// $secondary-color: #FFB540;\r\n\r\n// $main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n// $main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n// $secondary-color-button: rgba(255, 181, 64, 0.4);\r\n// $secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n// $secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n// $error-color: rgba(168, 8, 0, 0.7);\r\n\r\n// $input-text: #196519;\r\n// $input-text-hover: rgba(25, 101, 25, 0.5);\r\n// $input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n// $background-modal: rgba(255, 227, 171, 1);\r\n\r\n$input-text: black;\r\n$main-color: #026670;\r\n$main-color-light: #89d8c2;\r\n$secondary-color: #fce181;\r\n$secondary-color-light: #fef9c7;\r\n$background-color: #f3f6dc;\r\n$background-color-modal: rgba(243, 246, 220, 0.5);\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -5656,18 +5656,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _light_veneer_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./light-veneer.jpg */ "./src/light-veneer.jpg");
 // Imports
 
 
-
-
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
-var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(_light_veneer_jpg__WEBPACK_IMPORTED_MODULE_3__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "* {\n  box-sizing: border-box;\n  margin: 0;\n  font-family: \"Raleway\", sans-serif;\n}\n* input:-webkit-autofill,\n* input:-webkit-autofill:hover,\n* input:-webkit-autofill:focus,\n* input:-webkit-autofill:active {\n  box-shadow: white;\n  -webkit-box-shadow: 0 0 0 30px white inset !important;\n}\n* input:-webkit-autofill {\n  -webkit-text-fill-color: #196519 !important;\n}\n\nbody {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}", "",{"version":3,"sources":["webpack://./src/index.scss"],"names":[],"mappings":"AAEA;EACE,sBAAA;EACA,SAAA;EACA,kCAAA;AADF;AAEE;;;;EAKI,iBAAA;EACA,qDAAA;AADN;AAGI;EAEI,2CAAA;AAFR;;AAMA;EACE,mCAAA;EACA,kCAAA;EACA,mDAAA;AAHF","sourcesContent":["@import './variables';\r\n\r\n*{\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  font-family: 'Raleway', sans-serif;\r\n  & input:-webkit-autofill,\r\n    input:-webkit-autofill:hover, \r\n    input:-webkit-autofill:focus, \r\n    input:-webkit-autofill:active\r\n    {\r\n      box-shadow: white;\r\n      -webkit-box-shadow:  0 0 0 30px white inset !important;;\r\n    }\r\n    input:-webkit-autofill\r\n      {\r\n        -webkit-text-fill-color: $input-text !important;\r\n      }\r\n}\r\n\r\nbody {\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  background: url(\"./light-veneer.jpg\");\r\n}\r\n\r\n\r\n\r\n// code {\r\n//   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r\n//     monospace;\r\n// }\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "* {\n  box-sizing: border-box;\n  margin: 0;\n  font-family: \"Raleway\", sans-serif;\n}\n* input:-webkit-autofill,\n* input:-webkit-autofill:hover,\n* input:-webkit-autofill:focus,\n* input:-webkit-autofill:active {\n  box-shadow: white;\n  -webkit-box-shadow: 0 0 0 30px white inset !important;\n}\n* input:-webkit-autofill {\n  -webkit-text-fill-color: black !important;\n}\n\nbody {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background: #f3f6dc;\n}", "",{"version":3,"sources":["webpack://./src/index.scss","webpack://./src/_variables.scss"],"names":[],"mappings":"AAEA;EACE,sBAAA;EACA,SAAA;EACA,kCAAA;AADF;AAEE;;;;EAKI,iBAAA;EACA,qDAAA;AADN;AAGI;EAEI,yCAAA;AAFR;;AAMA;EACE,mCAAA;EACA,kCAAA;EACA,mBCGiB;ADNnB","sourcesContent":["@import './variables';\r\n\r\n*{\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  font-family: 'Raleway', sans-serif;\r\n  & input:-webkit-autofill,\r\n    input:-webkit-autofill:hover, \r\n    input:-webkit-autofill:focus, \r\n    input:-webkit-autofill:active\r\n    {\r\n      box-shadow: white;\r\n      -webkit-box-shadow:  0 0 0 30px white inset !important;;\r\n    }\r\n    input:-webkit-autofill\r\n      {\r\n        -webkit-text-fill-color: $input-text !important;\r\n      }\r\n}\r\n\r\nbody {\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  background: $background-color;\r\n}\r\n\r\n\r\n\r\n// code {\r\n//   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r\n//     monospace;\r\n// }\r\n","// $main-color: #006A55;\r\n// $secondary-color: #A64100;\r\n\r\n// $main-color: rgb(4%, 84%, 68%, 1);\r\n// $secondary-color: #FFB540;\r\n\r\n// $main-color-hover: rgb(4%, 84%, 68%, 0.5);\r\n// $main-color-focus: rgb(4%, 84%, 68%, 0.7);\r\n\r\n// $secondary-color-button: rgba(255, 181, 64, 0.4);\r\n// $secondary-color-button-hover: rgba(255, 181, 64, 0.6);\r\n// $secondary-color-button-focus: rgba(255, 181, 64, 0.9);\r\n\r\n// $error-color: rgba(168, 8, 0, 0.7);\r\n\r\n// $input-text: #196519;\r\n// $input-text-hover: rgba(25, 101, 25, 0.5);\r\n// $input-text-focus: rgba(25, 101, 25, 0.7);\r\n\r\n// $background-modal: rgba(255, 227, 171, 1);\r\n\r\n$input-text: black;\r\n$main-color: #026670;\r\n$main-color-light: #89d8c2;\r\n$secondary-color: #fce181;\r\n$secondary-color-light: #fef9c7;\r\n$background-color: #f3f6dc;\r\n$background-color-modal: rgba(243, 246, 220, 0.5);\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -78960,7 +78954,6 @@ var Header = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log(this.props.logoutStatus);
       var idUser = this.props.idUser;
       var id = "/".concat(idUser);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("nav", {
@@ -79094,6 +79087,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _myPage_myPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../myPage/myPage */ "./src/components/myPage/myPage.js");
 /* harmony import */ var _group_group__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../group/group */ "./src/components/group/group.js");
+/* harmony import */ var _search_svg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./search.svg */ "./src/components/headerSearch/search.svg");
 
 
 
@@ -79103,6 +79097,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -79223,7 +79218,7 @@ var HeaderSearch = /*#__PURE__*/function (_Component) {
       }
     };
 
-    var searchButton = document.querySelector('.header__search__form__wrapper__button');
+    var searchButton = document.querySelector('.header-search-form__wrapper__button');
     window.addEventListener("click", function (e) {
       if (e.target !== searchButton) {
         _this.setState({
@@ -79239,65 +79234,78 @@ var HeaderSearch = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var styleForSearchList = "header__search__form__wrapper__list";
+      var styleForSearchList = "header-search-form__wrapper__list";
 
       if (this.state.searchValue.length > 0) {
         styleForSearchList += " active";
       }
 
-      var listUsersSearch = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E");
+      var listUsersSearch = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "header-search-form__wrapper__list__null"
+      }, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E");
 
       if (this.state.searchUsers.length > 0) {
         listUsersSearch = this.state.searchUsers.map(function (el) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("li", {
             key: el.account.id,
-            className: "header__search__form__wrapper__list__item",
+            className: "header-search-form__wrapper__list__item",
             onClick: function onClick() {
               return _this2.goToUsersPage(el.account.id);
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
-            className: "header__search__form__wrapper__list__item__img",
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+            className: "header-search-form__wrapper__list__item__img"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
             src: "data:image/jpg;base64," + el.account.photo,
             alt: "photoUser"
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, el.account.firstName, " ", el.account.lastName));
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+            className: "header-search-form__wrapper__list__item__name"
+          }, el.account.firstName, " ", el.account.lastName));
         });
       }
 
-      var listGroupsSearch = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\u0413\u0440\u0443\u043F\u043F \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E");
+      var listGroupsSearch = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "header-search-form__wrapper__list__null"
+      }, "\u0413\u0440\u0443\u043F\u043F \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E");
 
       if (this.state.searchGroups.length > 0) {
         listGroupsSearch = this.state.searchGroups.map(function (el) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("li", {
             key: el.group.id,
-            className: "header__search__form__wrapper__list__item",
+            className: "header-search-form__wrapper__list__item",
             onClick: function onClick() {
               return _this2.goToGroupPage(el.group.id);
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
-            className: "header__search__form__wrapper__list__item__img",
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+            className: "header-search-form__wrapper__list__item__img"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
             src: "data:image/jpg;base64," + el.group.photo,
             alt: "photoUser"
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, el.group.name));
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+            className: "header-search-form__wrapper__list__item__name"
+          }, el.group.name));
         });
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("form", {
-        className: "header__search__form"
+        className: "header-search-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        className: "header__search__form__wrapper"
+        className: "header-search-form__wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         type: "text",
-        className: "header__search__form__wrapper__search",
+        className: "header-search-form__wrapper__search",
         placeholder: "\u041F\u043E\u0438\u0441\u043A \u043F\u043E \u0432\u0441\u0435\u043C \u0433\u0440\u0443\u043F\u043F\u0430\u043C \u0438 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F\u043C",
         onChange: this.searchInput,
         value: this.state.searchValue,
         onKeyPress: this.keyPressEnter
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
-        className: "header__search__form__wrapper__button",
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", {
+        className: "header-search-form__wrapper__button",
         onClick: this.saveSearchValue
-      }, "\u041D\u0430\u0439\u0442\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+        src: _search_svg__WEBPACK_IMPORTED_MODULE_13__["default"],
+        alt: "search"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: styleForSearchList
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("ul", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438:", listUsersSearch), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("ul", null, "\u0413\u0440\u0443\u043F\u043F\u044B:", listGroupsSearch))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", null, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"), listUsersSearch), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", null, "\u0413\u0440\u0443\u043F\u043F\u044B"), listGroupsSearch))));
     }
   }]);
 
@@ -79342,6 +79350,19 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_headerSearch_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./src/components/headerSearch/search.svg":
+/*!************************************************!*\
+  !*** ./src/components/headerSearch/search.svg ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPgo8dGl0bGU+c2VhcmNoPC90aXRsZT4KPHBhdGggZmlsbD0iIzg5ZDhjMiIgZD0iTTMxLjAwOCAyNy4yMzFsLTcuNTgtNi40NDdjLTAuNzg0LTAuNzA1LTEuNjIyLTEuMDI5LTIuMjk5LTAuOTk4IDEuNzg5LTIuMDk2IDIuODctNC44MTUgMi44Ny03Ljc4NyAwLTYuNjI3LTUuMzczLTEyLTEyLTEycy0xMiA1LjM3My0xMiAxMiA1LjM3MyAxMiAxMiAxMmMyLjk3MiAwIDUuNjkxLTEuMDgxIDcuNzg3LTIuODctMC4wMzEgMC42NzcgMC4yOTMgMS41MTUgMC45OTggMi4yOTlsNi40NDcgNy41OGMxLjEwNCAxLjIyNiAyLjkwNyAxLjMzIDQuMDA3IDAuMjNzMC45OTctMi45MDMtMC4yMy00LjAwN3pNMTIgMjBjLTQuNDE4IDAtOC0zLjU4Mi04LThzMy41ODItOCA4LTggOCAzLjU4MiA4IDgtMy41ODIgOC04IDh6Ij48L3BhdGg+Cjwvc3ZnPgo=");
 
 /***/ }),
 
@@ -79528,6 +79549,19 @@ var mapStateToProps = function mapStateToProps(state) {
 
 /***/ }),
 
+/***/ "./src/components/login_page/cancel.svg":
+/*!**********************************************!*\
+  !*** ./src/components/login_page/cancel.svg ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4NCjx0aXRsZT5jYW5jZWwtY2lyY2xlPC90aXRsZT4NCjxwYXRoIGZpbGw9IiNmY2UxODEiIGQ9Ik0xNiAwYy04LjgzNyAwLTE2IDcuMTYzLTE2IDE2czcuMTYzIDE2IDE2IDE2IDE2LTcuMTYzIDE2LTE2LTcuMTYzLTE2LTE2LTE2ek0xNiAyOWMtNy4xOCAwLTEzLTUuODItMTMtMTNzNS44Mi0xMyAxMy0xMyAxMyA1LjgyIDEzIDEzLTUuODIgMTMtMTMgMTN6Ij48L3BhdGg+DQo8cGF0aCBmaWxsPSIjZmNlMTgxIiBkPSJNMjEgOGwtNSA1LTUtNS0zIDMgNSA1LTUgNSAzIDMgNS01IDUgNSAzLTMtNS01IDUtNXoiPjwvcGF0aD4NCjwvc3ZnPg0K");
+
+/***/ }),
+
 /***/ "./src/components/login_page/check.svg":
 /*!*********************************************!*\
   !*** ./src/components/login_page/check.svg ***!
@@ -79537,20 +79571,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4NCjx0aXRsZT5jaGVja21hcms8L3RpdGxlPg0KPHBhdGggZmlsbD0iIzE5NjUxOSIgZD0iTTI3IDRsLTE1IDE1LTctNy01IDUgMTIgMTIgMjAtMjB6Ij48L3BhdGg+DQo8L3N2Zz4NCg==");
-
-/***/ }),
-
-/***/ "./src/components/login_page/error.svg":
-/*!*********************************************!*\
-  !*** ./src/components/login_page/error.svg ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQo8dGl0bGU+YnVnX3JlcG9ydDwvdGl0bGU+DQo8cGF0aCBmaWxsPSJyZ2JhKDE2OCwgOCwgMCwgMC43KSIgZD0iTTE0LjAxNiAxMnYtMi4wMTZoLTQuMDMxdjIuMDE2aDQuMDMxek0xNC4wMTYgMTUuOTg0di0xLjk2OWgtNC4wMzF2MS45NjloNC4wMzF6TTIwLjAxNiA4LjAxNnYxLjk2OWgtMi4xMDlxMC4wOTQgMC42NTYgMC4wOTQgMS4wMzF2MC45ODRoMi4wMTZ2Mi4wMTZoLTIuMDE2djAuOTg0cTAgMC4zMjgtMC4wOTQgMC45ODRoMi4xMDl2Mi4wMTZoLTIuODEzcS0wLjc5NyAxLjM1OS0yLjE4IDIuMTh0LTMuMDIzIDAuODItMy4wMjMtMC44Mi0yLjE4LTIuMThoLTIuODEzdi0yLjAxNmgyLjEwOXEtMC4wOTQtMC42NTYtMC4wOTQtMC45ODR2LTAuOTg0aC0yLjAxNnYtMi4wMTZoMi4wMTZ2LTAuOTg0cTAtMC4zNzUgMC4wOTQtMS4wMzFoLTIuMTA5di0xLjk2OWgyLjgxM3EwLjcwMy0xLjE3MiAxLjgyOC0xLjk2OWwtMS42NDEtMS42NDEgMS40MDYtMS40MDYgMi4yMDMgMi4xNTZxMC43MDMtMC4xNDEgMS40MDYtMC4xNDF0MS40MDYgMC4xNDFsMi4yMDMtMi4xNTYgMS40MDYgMS40MDYtMS42NDEgMS42NDFxMS4xNzIgMC43OTcgMS44MjggMS45NjloMi44MTN6Ij48L3BhdGg+DQo8L3N2Zz4NCg==");
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4NCjx0aXRsZT5jaGVja21hcms8L3RpdGxlPg0KPHBhdGggZmlsbD0iIzAyNjY3MCIgZD0iTTI3IDRsLTE1IDE1LTctNy01IDUgMTIgMTIgMjAtMjB6Ij48L3BhdGg+DQo8L3N2Zz4NCg==");
 
 /***/ }),
 
@@ -79595,8 +79616,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_page_mainPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../main_page/mainPage */ "./src/components/main_page/mainPage.js");
 /* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _error_svg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./error.svg */ "./src/components/login_page/error.svg");
-/* harmony import */ var _leaf_svg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./leaf.svg */ "./src/components/login_page/leaf.svg");
+/* harmony import */ var _leaf_svg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./leaf.svg */ "./src/components/login_page/leaf.svg");
+/* harmony import */ var _cancel_svg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./cancel.svg */ "./src/components/login_page/cancel.svg");
 
 
 
@@ -79615,7 +79636,10 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
  // import icon from './icon.svg';
+// import error from './error.svg';
 
+ // import eye from './eye.svg';
+// import eyeBlocked from './eyeBlocked.svg';
 
 
 
@@ -79633,7 +79657,8 @@ var LoginPage = /*#__PURE__*/function (_Component) {
     _this.state = {
       login: '',
       password: '',
-      rememberMe: false
+      rememberMe: false,
+      hiddenPassword: true
     };
     var Service = _this.props.Service;
 
@@ -79660,33 +79685,57 @@ var LoginPage = /*#__PURE__*/function (_Component) {
     };
 
     _this.postFormLogin = function (event) {
-      event.preventDefault();
-      localStorage.setItem('remmemberMeUser', _this.state.rememberMe);
-      var formData = new FormData();
+      if (_this.state.password.length >= 5) {
+        console.log("ok");
+        event.preventDefault();
+        localStorage.setItem('remmemberMeUser', _this.state.rememberMe);
+        var formData = new FormData();
+        var loginObj = {
+          login: _this.state.login,
+          password: _this.state.password,
+          rememberMe: _this.state.rememberMe
+        };
 
-      for (var key in _this.state) {
-        formData.append(key, _this.state[key]);
-      }
-
-      Service.loginPage('/api/login', formData).then(function (res) {
-        if (res.status === 200) {
-          Service.getCurrentUserStatus('/api/status').then(function (res) {
-            if (res.status === 200) {
-              _this.props.userId(res.data.currentAccount.id);
-
-              _this.props.userAccesses(res.data.accesses);
-
-              _this.props.userInformation(res.data.currentAccount);
-
-              _this.props.userEmail(res.data.currentAccount.email);
-            }
-          }).then(function (res) {
-            _this.props.loginMainPage();
-          });
+        for (var key in loginObj) {
+          formData.append(key, loginObj[key]);
         }
-      }).catch(function (err) {
-        return _this.props.errorWindowLoginOpen();
+
+        Service.loginPage('/api/login', formData).then(function (res) {
+          if (res.status === 200) {
+            Service.getCurrentUserStatus('/api/status').then(function (res) {
+              if (res.status === 200) {
+                _this.props.userId(res.data.currentAccount.id);
+
+                _this.props.userAccesses(res.data.accesses);
+
+                _this.props.userInformation(res.data.currentAccount);
+
+                _this.props.userEmail(res.data.currentAccount.email);
+              }
+            }).then(function (res) {
+              _this.props.loginMainPage();
+            });
+          }
+        }).catch(function (err) {
+          return _this.props.errorWindowLoginOpen();
+        });
+      }
+    };
+
+    _this.toggleShowPassword = function () {
+      _this.setState({
+        hiddenPassword: !_this.state.hiddenPassword
       });
+    };
+
+    _this.closeModalWindowRegistration = function (e) {
+      var modal = document.querySelector('.registration-successfully__modal');
+      var modalWrapper = document.querySelector('.registration-successfully__modal__wrapper');
+      var modalMessage = document.querySelector('.registration-successfully__modal__message');
+
+      if (e.target !== modal && e.target !== modalWrapper && e.target !== modalMessage) {
+        _this.props.closeWindowMessageRegistration();
+      }
     };
 
     return _this;
@@ -79696,8 +79745,6 @@ var LoginPage = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var _this2 = this;
-
-      console.log(this.state);
 
       if (this.props.logoutStatus && this.props.location.hash.length !== 0 && !this.props.mainPage) {
         this.props.history.push("");
@@ -79713,27 +79760,48 @@ var LoginPage = /*#__PURE__*/function (_Component) {
           loginErrorWindow = _this$props.loginErrorWindow;
       var registrationModalWindow = registrationWindow ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_registrationWindow_registrationWindow__WEBPACK_IMPORTED_MODULE_6__["default"], null) : null;
       var windowRegistrationMessage = this.props.registrationOk ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        className: "registrationWindow"
-      }, "\u0412\u044B \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0437\u0430\u0440\u0435\u0433\u0435\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u043D\u044B, \u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0432\u043E\u0439\u0434\u0438\u0442\u0435 \u043D\u0430 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "registration-successfully",
+        onClick: this.closeModalWindowRegistration
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "registration-successfully__modal"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "registration-successfully__modal__wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", {
+        className: "registration-successfully__modal__close",
         onClick: function onClick() {
           _this2.props.closeWindowMessageRegistration();
         }
-      }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C!")) : null;
-      var errorWindowLogin = loginErrorWindow ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        className: "error-window-login"
-      }, "\u0412\u0432\u0435\u0434\u0435\u043D \u043D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0439 \u043B\u043E\u0433\u0438\u043D \u0438\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
-        src: _error_svg__WEBPACK_IMPORTED_MODULE_13__["default"],
-        alt: "error"
-      })) : null;
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+        src: _cancel_svg__WEBPACK_IMPORTED_MODULE_14__["default"],
+        alt: "cancel"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "registration-successfully__modal__message"
+      }, "\u0412\u044B \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u043D\u044B. \u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0432\u043E\u0439\u0434\u0438\u0442\u0435 \u043D\u0430 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443!")))) : null;
+      var passwordRequirements = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "passwordRequirements"
+      }, "\u041F\u0430\u0440\u043E\u043B\u044C \u0434\u043E\u043B\u0436\u0435\u043D \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u043C\u0438\u043D\u0438\u043C\u0443\u043C 5 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432 \u0438 \u043D\u0435 \u0434\u043E\u043B\u0436\u0435\u043D \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u043F\u0440\u043E\u0431\u0435\u043B\u044B!");
+
+      if (loginErrorWindow) {
+        passwordRequirements = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+          className: "passwordRequirements"
+        }, "\u0412\u0432\u0435\u0434\u0435\u043D \u043D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0439 \u043B\u043E\u0433\u0438\u043D \u0438\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C");
+      }
+
+      if (!loginErrorWindow && this.state.password.length >= 5) {
+        passwordRequirements = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+          className: "passwordRequirements_null"
+        });
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
         className: "label__icon label__icon__animation",
-        src: _leaf_svg__WEBPACK_IMPORTED_MODULE_14__["default"],
+        src: _leaf_svg__WEBPACK_IMPORTED_MODULE_13__["default"],
         alt: "icon"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", {
         className: "label__text"
-      }, "\u041E\u0431\u0449\u0430\u044F\u0441\u044C - \u0440\u0430\u0441\u0446\u0432\u0435\u0442\u0430\u0439!")), errorWindowLogin, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+      }, "\u041E\u0431\u0449\u0430\u044F\u0441\u044C - \u0440\u0430\u0441\u0446\u0432\u0435\u0442\u0430\u0439!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "login-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("form", {
         onSubmit: this.postFormLogin,
@@ -79745,14 +79813,41 @@ var LoginPage = /*#__PURE__*/function (_Component) {
         type: "email",
         name: "login",
         required: true
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
-        className: "login-page__form__input",
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
+        className: "login-page__form__input__password",
         onChange: this.valuePassword,
         placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C",
-        type: "password",
+        type: this.state.hiddenPassword ? 'password' : 'text',
         name: "password",
         required: true
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", {
+        className: "login-page__form__input__show",
+        onClick: this.toggleShowPassword
+      }, this.state.hiddenPassword ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("svg", {
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "32",
+        height: "32",
+        viewBox: "0 0 32 32"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("title", null, "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("path", {
+        fill: "#89d8c2",
+        d: "M16 6c-6.979 0-13.028 4.064-16 10 2.972 5.936 9.021 10 16 10s13.027-4.064 16-10c-2.972-5.936-9.021-10-16-10zM23.889 11.303c1.88 1.199 3.473 2.805 4.67 4.697-1.197 1.891-2.79 3.498-4.67 4.697-2.362 1.507-5.090 2.303-7.889 2.303s-5.527-0.796-7.889-2.303c-1.88-1.199-3.473-2.805-4.67-4.697 1.197-1.891 2.79-3.498 4.67-4.697 0.122-0.078 0.246-0.154 0.371-0.228-0.311 0.854-0.482 1.776-0.482 2.737 0 4.418 3.582 8 8 8s8-3.582 8-8c0-0.962-0.17-1.883-0.482-2.737 0.124 0.074 0.248 0.15 0.371 0.228v0zM16 13c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("svg", {
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "32",
+        height: "32",
+        viewBox: "0 0 32 32"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("title", null, "\u0421\u043A\u0440\u044B\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("path", {
+        fill: "#026670",
+        d: "M29.561 0.439c-0.586-0.586-1.535-0.586-2.121 0l-6.318 6.318c-1.623-0.492-3.342-0.757-5.122-0.757-6.979 0-13.028 4.064-16 10 1.285 2.566 3.145 4.782 5.407 6.472l-4.968 4.968c-0.586 0.586-0.586 1.535 0 2.121 0.293 0.293 0.677 0.439 1.061 0.439s0.768-0.146 1.061-0.439l27-27c0.586-0.586 0.586-1.536 0-2.121zM13 10c1.32 0 2.44 0.853 2.841 2.037l-3.804 3.804c-1.184-0.401-2.037-1.521-2.037-2.841 0-1.657 1.343-3 3-3zM3.441 16c1.197-1.891 2.79-3.498 4.67-4.697 0.122-0.078 0.246-0.154 0.371-0.228-0.311 0.854-0.482 1.776-0.482 2.737 0 1.715 0.54 3.304 1.459 4.607l-1.904 1.904c-1.639-1.151-3.038-2.621-4.114-4.323z"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("path", {
+        fill: "#026670",
+        d: "M24 13.813c0-0.849-0.133-1.667-0.378-2.434l-10.056 10.056c0.768 0.245 1.586 0.378 2.435 0.378 4.418 0 8-3.582 8-8z"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("path", {
+        fill: "#026670",
+        d: "M25.938 9.062l-2.168 2.168c0.040 0.025 0.079 0.049 0.118 0.074 1.88 1.199 3.473 2.805 4.67 4.697-1.197 1.891-2.79 3.498-4.67 4.697-2.362 1.507-5.090 2.303-7.889 2.303-1.208 0-2.403-0.149-3.561-0.439l-2.403 2.403c1.866 0.671 3.873 1.036 5.964 1.036 6.978 0 13.027-4.064 16-10-1.407-2.81-3.504-5.2-6.062-6.938z"
+      })))), passwordRequirements, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "login-page__form__remmember-me"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         onChange: this.valueRememberMe,
@@ -79874,6 +79969,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _allGroup_allGroup__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../allGroup/allGroup */ "./src/components/allGroup/allGroup.js");
 /* harmony import */ var _allSearchPage_allSearchPage__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../allSearchPage/allSearchPage */ "./src/components/allSearchPage/allSearchPage.js");
 /* harmony import */ var _modificationEmailAnsPassword_modificationEmailAndPassword__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../modificationEmailAnsPassword/modificationEmailAndPassword */ "./src/components/modificationEmailAnsPassword/modificationEmailAndPassword.js");
+/* harmony import */ var _webSockets_webSockets__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../webSockets/webSockets */ "./src/components/webSockets/webSockets.js");
 
 
 
@@ -79883,6 +79979,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -79926,8 +80023,7 @@ var MainPage = /*#__PURE__*/function (_Component) {
         this.props.history.push("#" + id);
       }
 
-      console.log(this.props.location);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_header_header__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_header_header__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_webSockets_webSockets__WEBPACK_IMPORTED_MODULE_25__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
         path: "/friends",
         exact: true,
         component: _friends_friends__WEBPACK_IMPORTED_MODULE_9__["default"]
@@ -79980,7 +80076,6 @@ var MainPage = /*#__PURE__*/function (_Component) {
         component: function component(_ref2) {
           var match = _ref2.match;
           var id = match.params.id;
-          console.log(id);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_myPage_myPage__WEBPACK_IMPORTED_MODULE_8__["default"], {
             idInUrl: id
           });
@@ -80477,6 +80572,32 @@ var mapDispatchToProps = {
 
 /***/ }),
 
+/***/ "./src/components/modificationEmailAnsPassword/eye.svg":
+/*!*************************************************************!*\
+  !*** ./src/components/modificationEmailAnsPassword/eye.svg ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4NCjx0aXRsZT5leWU8L3RpdGxlPg0KPHBhdGggZD0iTTE2IDZjLTYuOTc5IDAtMTMuMDI4IDQuMDY0LTE2IDEwIDIuOTcyIDUuOTM2IDkuMDIxIDEwIDE2IDEwczEzLjAyNy00LjA2NCAxNi0xMGMtMi45NzItNS45MzYtOS4wMjEtMTAtMTYtMTB6TTIzLjg4OSAxMS4zMDNjMS44OCAxLjE5OSAzLjQ3MyAyLjgwNSA0LjY3IDQuNjk3LTEuMTk3IDEuODkxLTIuNzkgMy40OTgtNC42NyA0LjY5Ny0yLjM2MiAxLjUwNy01LjA5MCAyLjMwMy03Ljg4OSAyLjMwM3MtNS41MjctMC43OTYtNy44ODktMi4zMDNjLTEuODgtMS4xOTktMy40NzMtMi44MDUtNC42Ny00LjY5NyAxLjE5Ny0xLjg5MSAyLjc5LTMuNDk4IDQuNjctNC42OTcgMC4xMjItMC4wNzggMC4yNDYtMC4xNTQgMC4zNzEtMC4yMjgtMC4zMTEgMC44NTQtMC40ODIgMS43NzYtMC40ODIgMi43MzcgMCA0LjQxOCAzLjU4MiA4IDggOHM4LTMuNTgyIDgtOGMwLTAuOTYyLTAuMTctMS44ODMtMC40ODItMi43MzcgMC4xMjQgMC4wNzQgMC4yNDggMC4xNSAwLjM3MSAwLjIyOHYwek0xNiAxM2MwIDEuNjU3LTEuMzQzIDMtMyAzcy0zLTEuMzQzLTMtMyAxLjM0My0zIDMtMyAzIDEuMzQzIDMgM3oiPjwvcGF0aD4NCjwvc3ZnPg0K");
+
+/***/ }),
+
+/***/ "./src/components/modificationEmailAnsPassword/eyeBlocked.svg":
+/*!********************************************************************!*\
+  !*** ./src/components/modificationEmailAnsPassword/eyeBlocked.svg ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4NCjx0aXRsZT5leWUtYmxvY2tlZDwvdGl0bGU+DQo8cGF0aCBkPSJNMjkuNTYxIDAuNDM5Yy0wLjU4Ni0wLjU4Ni0xLjUzNS0wLjU4Ni0yLjEyMSAwbC02LjMxOCA2LjMxOGMtMS42MjMtMC40OTItMy4zNDItMC43NTctNS4xMjItMC43NTctNi45NzkgMC0xMy4wMjggNC4wNjQtMTYgMTAgMS4yODUgMi41NjYgMy4xNDUgNC43ODIgNS40MDcgNi40NzJsLTQuOTY4IDQuOTY4Yy0wLjU4NiAwLjU4Ni0wLjU4NiAxLjUzNSAwIDIuMTIxIDAuMjkzIDAuMjkzIDAuNjc3IDAuNDM5IDEuMDYxIDAuNDM5czAuNzY4LTAuMTQ2IDEuMDYxLTAuNDM5bDI3LTI3YzAuNTg2LTAuNTg2IDAuNTg2LTEuNTM2IDAtMi4xMjF6TTEzIDEwYzEuMzIgMCAyLjQ0IDAuODUzIDIuODQxIDIuMDM3bC0zLjgwNCAzLjgwNGMtMS4xODQtMC40MDEtMi4wMzctMS41MjEtMi4wMzctMi44NDEgMC0xLjY1NyAxLjM0My0zIDMtM3pNMy40NDEgMTZjMS4xOTctMS44OTEgMi43OS0zLjQ5OCA0LjY3LTQuNjk3IDAuMTIyLTAuMDc4IDAuMjQ2LTAuMTU0IDAuMzcxLTAuMjI4LTAuMzExIDAuODU0LTAuNDgyIDEuNzc2LTAuNDgyIDIuNzM3IDAgMS43MTUgMC41NCAzLjMwNCAxLjQ1OSA0LjYwN2wtMS45MDQgMS45MDRjLTEuNjM5LTEuMTUxLTMuMDM4LTIuNjIxLTQuMTE0LTQuMzIzeiI+PC9wYXRoPg0KPHBhdGggZD0iTTI0IDEzLjgxM2MwLTAuODQ5LTAuMTMzLTEuNjY3LTAuMzc4LTIuNDM0bC0xMC4wNTYgMTAuMDU2YzAuNzY4IDAuMjQ1IDEuNTg2IDAuMzc4IDIuNDM1IDAuMzc4IDQuNDE4IDAgOC0zLjU4MiA4LTh6Ij48L3BhdGg+DQo8cGF0aCBkPSJNMjUuOTM4IDkuMDYybC0yLjE2OCAyLjE2OGMwLjA0MCAwLjAyNSAwLjA3OSAwLjA0OSAwLjExOCAwLjA3NCAxLjg4IDEuMTk5IDMuNDczIDIuODA1IDQuNjcgNC42OTctMS4xOTcgMS44OTEtMi43OSAzLjQ5OC00LjY3IDQuNjk3LTIuMzYyIDEuNTA3LTUuMDkwIDIuMzAzLTcuODg5IDIuMzAzLTEuMjA4IDAtMi40MDMtMC4xNDktMy41NjEtMC40MzlsLTIuNDAzIDIuNDAzYzEuODY2IDAuNjcxIDMuODczIDEuMDM2IDUuOTY0IDEuMDM2IDYuOTc4IDAgMTMuMDI3LTQuMDY0IDE2LTEwLTEuNDA3LTIuODEtMy41MDQtNS4yLTYuMDYyLTYuOTM4eiI+PC9wYXRoPg0KPC9zdmc+DQo=");
+
+/***/ }),
+
 /***/ "./src/components/modificationEmailAnsPassword/modificationEmailAndPassword.js":
 /*!*************************************************************************************!*\
   !*** ./src/components/modificationEmailAnsPassword/modificationEmailAndPassword.js ***!
@@ -80500,6 +80621,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _hoc_hoc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../hoc/hoc */ "./src/components/hoc/hoc.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _eye_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./eye.svg */ "./src/components/modificationEmailAnsPassword/eye.svg");
+/* harmony import */ var _eyeBlocked_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./eyeBlocked.svg */ "./src/components/modificationEmailAnsPassword/eyeBlocked.svg");
 
 
 
@@ -80509,6 +80632,8 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
 
 
 
@@ -80538,7 +80663,12 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
       modalWindowNewEmailIsNull: false,
       invalidPasswordMessage: false,
       passwordDontMatchMessage: false,
-      modalWindowSuccessfullyPasswordChanged: false
+      modalWindowSuccessfullyPasswordChanged: false,
+      modalWindowIdenticalEmail: false,
+      modalWindowIdenticalPassword: false,
+      hiddenOldPassword: true,
+      hiddenNewPassword: true,
+      hiddenRepiatNewPassword: true
     };
     var Service = _this.props.Service;
 
@@ -80617,33 +80747,47 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
       });
     };
 
+    _this.closeModalWindowEdenticalEmail = function () {
+      _this.setState({
+        modalWindowIdenticalEmail: false
+      });
+    };
+
     _this.modificationEmail = function (e) {
       e.preventDefault();
 
       if (_this.state.newEmail.length > 0) {
-        var emailModificationObj = {
-          email: _this.state.newEmail,
-          accountId: _this.state.accountId
-        };
-        Service.postModificationUser('/api/account/change-credentials', emailModificationObj).then(function (res) {
-          if (res.status === 200) {
-            _this.setState({
-              modalWindowSuccessfullyEmailChanged: true,
-              modificationEmail: false,
-              newEmail: ''
-            });
+        if (_this.state.email === _this.state.newEmail) {
+          console.log("одинаковые майлы");
 
-            setTimeout(_this.closeModalWindowSuccessfullyEmailChange, 2000);
-            Service.getUserAccountId(_this.props.id).then(function (res) {
-              if (res.status === 200) {
-                _this.setState({
-                  email: res.data.email,
-                  accountId: res.data.accountId
-                });
-              }
-            });
-          }
-        });
+          _this.setState({
+            modalWindowIdenticalEmail: true
+          });
+        } else {
+          var emailModificationObj = {
+            email: _this.state.newEmail,
+            accountId: _this.state.accountId
+          };
+          Service.postModificationUser('/api/account/change-credentials', emailModificationObj).then(function (res) {
+            if (res.status === 200) {
+              _this.setState({
+                modalWindowSuccessfullyEmailChanged: true,
+                modificationEmail: false,
+                newEmail: ''
+              });
+
+              setTimeout(_this.closeModalWindowSuccessfullyEmailChange, 2000);
+              Service.getUserAccountId(_this.props.id).then(function (res) {
+                if (res.status === 200) {
+                  _this.setState({
+                    email: res.data.email,
+                    accountId: res.data.accountId
+                  });
+                }
+              });
+            }
+          });
+        }
       }
 
       if (_this.state.newEmail.length === 0) {
@@ -80676,6 +80820,12 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
       });
     };
 
+    _this.closeModalWindowIdenticalPassword = function () {
+      _this.setState({
+        modalWindowIdenticalPassword: false
+      });
+    };
+
     _this.updatingData = function () {
       var formData = new FormData();
       var newData = {
@@ -80685,7 +80835,7 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
       };
 
       for (var key in newData) {
-        formData.append(key, _this.state[key]);
+        formData.append(key, newData[key]);
       }
 
       Service.loginPage('/api/login', formData).then(function (res) {
@@ -80721,26 +80871,33 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
           console.log(validPassword);
           console.log(_this.state);
 
-          if (_this.state.newPassword === _this.state.repiatNewPassword) {
-            console.log("отправка");
-            var passwordModificationObj = {
-              email: _this.state.email,
-              accountId: _this.state.accountId,
-              newPassword: _this.state.newPassword,
-              oldPassword: _this.state.oldPassword
-            };
-            Service.postModificationUser('/api/account/change-credentials', passwordModificationObj).then(function (res) {
-              if (res.status === 200) {
-                console.log("пароль заменили");
-                console.log(res);
-
-                _this.updatingData();
-              }
+          if (_this.state.oldPassword === _this.state.newPassword) {
+            _this.setState({
+              modalWindowIdenticalPassword: true
             });
           } else {
-            _this.setState({
-              passwordDontMatchMessage: true
-            });
+            if (_this.state.newPassword === _this.state.repiatNewPassword && validPassword === true) {
+              console.log("отправка");
+              var passwordModificationObj = {
+                email: _this.state.email,
+                accountId: _this.state.accountId,
+                newPassword: _this.state.newPassword,
+                oldPassword: _this.state.oldPassword
+              };
+              Service.postModificationUser('/api/account/change-credentials', passwordModificationObj).then(function (res) {
+                if (res.status === 200) {
+                  console.log("пароль заменили");
+                  console.log(res);
+                  console.log(_this.state);
+
+                  _this.updatingData();
+                }
+              });
+            } else {
+              _this.setState({
+                passwordDontMatchMessage: true
+              });
+            }
           }
         } else {
           console.log(validPassword);
@@ -80752,6 +80909,24 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
       } else {
         return;
       }
+    };
+
+    _this.toggleShowOldPassword = function () {
+      _this.setState({
+        hiddenOldPassword: !_this.state.hiddenOldPassword
+      });
+    };
+
+    _this.toggleShowNewPassword = function () {
+      _this.setState({
+        hiddenNewPassword: !_this.state.hiddenNewPassword
+      });
+    };
+
+    _this.toggleShowRepiatNewPassword = function () {
+      _this.setState({
+        hiddenRepiatNewPassword: !_this.state.hiddenRepiatNewPassword
+      });
     };
 
     return _this;
@@ -80772,8 +80947,23 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
         setTimeout(this.closeMessagepasswordDontMatch, 2000);
       }
 
+      if (this.state.modalWindowIdenticalEmail) {
+        setTimeout(this.closeModalWindowEdenticalEmail, 2000);
+      }
+
+      if (this.state.modalWindowIdenticalPassword) {
+        setTimeout(this.closeModalWindowIdenticalPassword, 2000);
+      }
+
       var modalWindowSuccessfullyEmailChanged = null;
       var modalWindowNewEmailIsNull = null;
+      var modalWindowIdenticalEmail = null;
+
+      if (this.state.modalWindowIdenticalEmail) {
+        modalWindowIdenticalEmail = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
+          onClick: this.closeModalWindowEdenticalEmail
+        }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"), "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043F\u043E\u0447\u0442\u0430 \u0438 \u043D\u043E\u0432\u0430\u044F \u0438\u0434\u0435\u043D\u0442\u0438\u0447\u043D\u044B!");
+      }
 
       if (this.state.modalWindowNewEmailIsNull === true) {
         modalWindowNewEmailIsNull = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\u043D\u043E\u0432\u044B\u0439 Email \u043D\u0435 \u0431\u044B\u043B \u0432\u0432\u0435\u0434\u0435\u043D!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
@@ -80838,22 +81028,37 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
       if (this.state.modificationPassword) {
         newPasswordBlock = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("form", {
           onSubmit: this.modificationPassword
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", null, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0441\u0442\u0430\u0440\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", null, passwordRequirements, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0441\u0442\u0430\u0440\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
           placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0441\u0442\u0430\u0440\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C",
-          type: "password",
+          type: this.state.hiddenOldPassword ? 'password' : 'text',
           onChange: this.valueOldPassword,
           required: true
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", null, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", {
+          onClick: this.toggleShowOldPassword
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+          src: this.state.hiddenOldPassword ? _eye_svg__WEBPACK_IMPORTED_MODULE_8__["default"] : _eyeBlocked_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
+          alt: "eye"
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", null, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
           placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C",
-          type: "password",
+          type: this.state.hiddenNewPassword ? 'password' : 'text',
           onChange: this.valueNewPassword,
           required: true
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", null, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", {
+          onClick: this.toggleShowNewPassword
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+          src: this.state.hiddenNewPassword ? _eye_svg__WEBPACK_IMPORTED_MODULE_8__["default"] : _eyeBlocked_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
+          alt: "eye"
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", null, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
           placeholder: "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C",
-          type: "password",
+          type: this.state.hiddenRepiatNewPassword ? 'password' : 'text',
           onChange: this.repiatValueNewPassword,
           required: true
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", {
+          onClick: this.toggleShowRepiatNewPassword
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+          src: this.state.hiddenRepiatNewPassword ? _eye_svg__WEBPACK_IMPORTED_MODULE_8__["default"] : _eyeBlocked_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
+          alt: "eye"
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
           type: "submit"
         }, "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
           onClick: this.closeModificationPassword
@@ -80876,7 +81081,15 @@ var ModificationEmailAndPasswordPage = /*#__PURE__*/function (_Component) {
         buttonModificationPassword = null;
       }
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 E-mail:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("hr", null), "\u0412\u0430\u0448 \u0442\u0435\u043A\u0443\u0449\u0438\u0439 E-mail: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", null, this.state.email), buttonModificationEmail, newEmailBlock, modalWindowSuccessfullyEmailChanged, modalWindowNewEmailIsNull), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u043F\u0430\u0440\u043E\u043B\u044F:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("hr", null), buttonModificationPassword, newPasswordBlock, passwordRequirements, modalWindowInvalidPasswordMessage, passwordDontMatchMessageModalWindow, modalWindowSuccessfullyPasswordChange));
+      var modalWindowIdenticalPassword = null;
+
+      if (this.state.modalWindowIdenticalPassword) {
+        modalWindowIdenticalPassword = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
+          onClick: this.closeModalWindowIdenticalPassword
+        }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"), "\u0421\u0442\u0430\u0440\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C \u0438 \u043D\u043E\u0432\u044B\u0439 \u0438\u0434\u0435\u043D\u0442\u0438\u0447\u043D\u044B!");
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 E-mail:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("hr", null), "\u0412\u0430\u0448 \u0442\u0435\u043A\u0443\u0449\u0438\u0439 E-mail: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", null, this.state.email), buttonModificationEmail, newEmailBlock, modalWindowSuccessfullyEmailChanged, modalWindowNewEmailIsNull, modalWindowIdenticalEmail), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u043F\u0430\u0440\u043E\u043B\u044F:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("hr", null), buttonModificationPassword, newPasswordBlock, modalWindowInvalidPasswordMessage, passwordDontMatchMessageModalWindow, modalWindowSuccessfullyPasswordChange, modalWindowIdenticalPassword));
     }
   }]);
 
@@ -81916,7 +82129,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4NCjx0aXRsZT5jYW5jZWwtY2lyY2xlPC90aXRsZT4NCjxwYXRoIGZpbGw9InJnYmEoMTY4LCA4LCAwLCAwLjUpIiBkPSJNMTYgMGMtOC44MzcgMC0xNiA3LjE2My0xNiAxNnM3LjE2MyAxNiAxNiAxNiAxNi03LjE2MyAxNi0xNi03LjE2My0xNi0xNi0xNnpNMTYgMjljLTcuMTggMC0xMy01LjgyLTEzLTEzczUuODItMTMgMTMtMTMgMTMgNS44MiAxMyAxMy01LjgyIDEzLTEzIDEzeiI+PC9wYXRoPg0KPHBhdGggZmlsbD0icmdiYSgxNjgsIDgsIDAsIDEpIiBkPSJNMjEgOGwtNSA1LTUtNS0zIDMgNSA1LTUgNSAzIDMgNS01IDUgNSAzLTMtNS01IDUtNXoiPjwvcGF0aD4NCjwvc3ZnPg0K");
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4NCjx0aXRsZT5jYW5jZWwtY2lyY2xlPC90aXRsZT4NCjxwYXRoIGZpbGw9IiNmY2UxODEiIGQ9Ik0xNiAwYy04LjgzNyAwLTE2IDcuMTYzLTE2IDE2czcuMTYzIDE2IDE2IDE2IDE2LTcuMTYzIDE2LTE2LTcuMTYzLTE2LTE2LTE2ek0xNiAyOWMtNy4xOCAwLTEzLTUuODItMTMtMTNzNS44Mi0xMyAxMy0xMyAxMyA1LjgyIDEzIDEzLTUuODIgMTMtMTMgMTN6Ij48L3BhdGg+DQo8cGF0aCBmaWxsPSIjZmNlMTgxIiBkPSJNMjEgOGwtNSA1LTUtNS0zIDMgNSA1LTUgNSAzIDMgNS01IDUgNSAzLTMtNS01IDUtNXoiPjwvcGF0aD4NCjwvc3ZnPg0K");
 
 /***/ }),
 
@@ -81963,7 +82176,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
-
+ // import eye from './eye.svg';
+// import eyeBlocked from './eyeBlocked.svg';
 
 var RegistrationWindow = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(RegistrationWindow, _Component);
@@ -81981,7 +82195,9 @@ var RegistrationWindow = /*#__PURE__*/function (_Component) {
       lastName: '',
       email: '',
       password: '',
-      birthDate: null
+      birthDate: null,
+      invalidPassword: false,
+      hiddenPassword: true
     };
     var Service = _this.props.Service;
 
@@ -82009,18 +82225,52 @@ var RegistrationWindow = /*#__PURE__*/function (_Component) {
       });
     };
 
+    _this.closeModalWindowInvalidPassword = function () {
+      _this.setState({
+        invalidPassword: false
+      });
+    };
+
     _this.postFormRegistration = function (event) {
       event.preventDefault();
-      Service.registrationPage('/api/account/registration', _this.state).then(function (res) {
-        if (res.status === 200) {
-          console.log(res.status);
 
-          _this.props.registrationSuccessful();
+      if (_this.state.password.length >= 5) {
+        var OneInvalidSymbol = ' ';
+        var twoInvalidSymbol = '    ';
+        var valuePassword = _this.state.password;
+        var oneCheck = valuePassword.indexOf(OneInvalidSymbol);
+        var twoCheck = valuePassword.indexOf(twoInvalidSymbol);
 
-          _this.props.closeModalRegistration();
+        if (oneCheck === -1 && twoCheck === -1) {
+          var registationObj = {
+            firstName: _this.state.firstName,
+            lastName: _this.state.lastName,
+            email: _this.state.email,
+            password: _this.state.password,
+            birthDate: _this.state.birthDate
+          };
+          Service.registrationPage('/api/account/registration', registationObj).then(function (res) {
+            if (res.status === 200) {
+              console.log(res.status);
+
+              _this.props.registrationSuccessful();
+
+              _this.props.closeModalRegistration();
+            } else {
+              console.log("Что-то пошло не так!");
+            }
+          });
         } else {
-          console.log("Что-то пошло не так!");
+          _this.setState({
+            invalidPassword: true
+          });
         }
+      }
+    };
+
+    _this.toggleShowPassword = function () {
+      _this.setState({
+        hiddenPassword: !_this.state.hiddenPassword
       });
     };
 
@@ -82044,6 +82294,26 @@ var RegistrationWindow = /*#__PURE__*/function (_Component) {
         }
       };
 
+      if (this.state.invalidPassword) {
+        setTimeout(this.closeModalWindowInvalidPassword, 2000);
+      }
+
+      var passwordRequirements = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "passwordRequirements_null"
+      });
+
+      if (this.state.password.length < 5) {
+        passwordRequirements = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+          className: "passwordRequirements"
+        }, "\u041F\u0430\u0440\u043E\u043B\u044C \u0434\u043E\u043B\u0436\u0435\u043D \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u043C\u0438\u043D\u0438\u043C\u0443\u043C 5 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432 \u0438 \u043D\u0435 \u0434\u043E\u043B\u0436\u0435\u043D \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u043F\u0440\u043E\u0431\u0435\u043B\u044B!");
+      }
+
+      if (this.state.invalidPassword) {
+        passwordRequirements = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+          className: "passwordRequirements"
+        }, "\u041F\u0430\u0440\u043E\u043B\u044C \u0441\u043E\u0434\u0435\u0440\u0436\u0438\u0442 \u043D\u0435 \u0434\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u044B\u0435 \u0441\u0438\u043C\u0432\u043E\u043B\u044B!");
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "registration-window"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("form", {
@@ -82066,14 +82336,16 @@ var RegistrationWindow = /*#__PURE__*/function (_Component) {
         type: "text",
         name: "firstName",
         required: true,
-        className: "registration-window__modal__input"
+        className: "registration-window__modal__input",
+        value: this.state.firstName
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         onChange: this.valueLastName,
         placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0441\u0432\u043E\u044E \u0444\u0430\u043C\u0438\u043B\u0438\u044E",
         type: "text",
         name: "lastName",
         required: true,
-        className: "registration-window__modal__input"
+        className: "registration-window__modal__input",
+        value: this.state.lastName
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         onChange: this.valueEmail,
         placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0441\u0432\u043E\u0439 e-mail",
@@ -82081,14 +82353,43 @@ var RegistrationWindow = /*#__PURE__*/function (_Component) {
         name: "email",
         required: true,
         className: "registration-window__modal__input"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_birthDatePicker_birthDatePicker__WEBPACK_IMPORTED_MODULE_7__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "registration-window__modal_wrapper-password"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         onChange: this.valuePassword,
         placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C",
-        type: "password",
+        type: this.state.hiddenPassword ? 'password' : 'text',
         name: "password",
         required: true,
         className: "registration-window__modal__input"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_birthDatePicker_birthDatePicker__WEBPACK_IMPORTED_MODULE_7__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("span", {
+        className: "registration-window__modal__input_show",
+        onClick: this.toggleShowPassword
+      }, this.state.hiddenPassword ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("svg", {
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "32",
+        height: "32",
+        viewBox: "0 0 32 32"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("title", null, "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("path", {
+        fill: "#89d8c2",
+        d: "M16 6c-6.979 0-13.028 4.064-16 10 2.972 5.936 9.021 10 16 10s13.027-4.064 16-10c-2.972-5.936-9.021-10-16-10zM23.889 11.303c1.88 1.199 3.473 2.805 4.67 4.697-1.197 1.891-2.79 3.498-4.67 4.697-2.362 1.507-5.090 2.303-7.889 2.303s-5.527-0.796-7.889-2.303c-1.88-1.199-3.473-2.805-4.67-4.697 1.197-1.891 2.79-3.498 4.67-4.697 0.122-0.078 0.246-0.154 0.371-0.228-0.311 0.854-0.482 1.776-0.482 2.737 0 4.418 3.582 8 8 8s8-3.582 8-8c0-0.962-0.17-1.883-0.482-2.737 0.124 0.074 0.248 0.15 0.371 0.228v0zM16 13c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("svg", {
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "32",
+        height: "32",
+        viewBox: "0 0 32 32"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("title", null, "\u0421\u043A\u0440\u044B\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("path", {
+        fill: "#026670",
+        d: "M29.561 0.439c-0.586-0.586-1.535-0.586-2.121 0l-6.318 6.318c-1.623-0.492-3.342-0.757-5.122-0.757-6.979 0-13.028 4.064-16 10 1.285 2.566 3.145 4.782 5.407 6.472l-4.968 4.968c-0.586 0.586-0.586 1.535 0 2.121 0.293 0.293 0.677 0.439 1.061 0.439s0.768-0.146 1.061-0.439l27-27c0.586-0.586 0.586-1.536 0-2.121zM13 10c1.32 0 2.44 0.853 2.841 2.037l-3.804 3.804c-1.184-0.401-2.037-1.521-2.037-2.841 0-1.657 1.343-3 3-3zM3.441 16c1.197-1.891 2.79-3.498 4.67-4.697 0.122-0.078 0.246-0.154 0.371-0.228-0.311 0.854-0.482 1.776-0.482 2.737 0 1.715 0.54 3.304 1.459 4.607l-1.904 1.904c-1.639-1.151-3.038-2.621-4.114-4.323z"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("path", {
+        fill: "#026670",
+        d: "M24 13.813c0-0.849-0.133-1.667-0.378-2.434l-10.056 10.056c0.768 0.245 1.586 0.378 2.435 0.378 4.418 0 8-3.582 8-8z"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("path", {
+        fill: "#026670",
+        d: "M25.938 9.062l-2.168 2.168c0.040 0.025 0.079 0.049 0.118 0.074 1.88 1.199 3.473 2.805 4.67 4.697-1.197 1.891-2.79 3.498-4.67 4.697-2.362 1.507-5.090 2.303-7.889 2.303-1.208 0-2.403-0.149-3.561-0.439l-2.403 2.403c1.866 0.671 3.873 1.036 5.964 1.036 6.978 0 13.027-4.064 16-10-1.407-2.81-3.504-5.2-6.062-6.938z"
+      })))), passwordRequirements, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
         onClick: this.valueBirtDay,
         type: "submit",
         className: "registration-window__modal__btn"
@@ -82514,8 +82815,6 @@ var SliderCarusel = /*#__PURE__*/function (_Component) {
     };
 
     _this.onSlide = function (index) {
-      console.log(index);
-
       if (index === end - 8) {
         start = end;
 
@@ -82715,6 +83014,50 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_sliderCarusel_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./src/components/webSockets/webSockets.js":
+/*!*************************************************!*\
+  !*** ./src/components/webSockets/webSockets.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+ // import SockJS from 'sockjs-client';
+
+ // var Stomp = require("stompjs/lib/stomp.js").Stomp;
+
+var WebSockets = function WebSockets(_ref) {
+  var idUser = _ref.idUser;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    // const sockJs=new SockJS('/messages');
+    // console.log(sockJs)
+    // sockJs.onopen=()=>{
+    //     console.log("open")
+    // }
+    var ws = new WebSocket('ws://localhost:9000/messages');
+    console.log(ws);
+
+    ws.onopen = function () {
+      console.log('open');
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    idUser: state.userId
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(WebSockets));
 
 /***/ }),
 
@@ -82968,19 +83311,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_index_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./src/light-veneer.jpg":
-/*!******************************!*\
-  !*** ./src/light-veneer.jpg ***!
-  \******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "1aeebf1e826c0986d1b3d8fb489da73d.jpg");
 
 /***/ }),
 

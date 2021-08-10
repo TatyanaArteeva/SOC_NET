@@ -18,6 +18,7 @@ import AllUsers from '../allUsers/allUsers';
 import AllGroups from '../allGroup/allGroup';
 import AllSearchPage from '../allSearchPage/allSearchPage';
 import ModificationEmailAndPasswordPage from '../modificationEmailAnsPassword/modificationEmailAndPassword';
+import WebSockets from '../webSockets/webSockets';
 
 class MainPage extends Component{
     
@@ -30,12 +31,11 @@ class MainPage extends Component{
             this.props.history.push("#" + id)
         }
 
-        console.log(this.props.location)
-
         return(
             <>
                 <HashRouter>
                     <Header/>
+                    <WebSockets/>
                     <Switch>
                         <Route path= "/friends" exact component={Friends} />
                         <Route path= "/friends/incoming" component={IncomingFriends} />
@@ -55,7 +55,6 @@ class MainPage extends Component{
                         }}/>
                         <Route path="/:id" exact component={({match})=>{
                             const id=match.params.id;
-                            console.log(id)
                             return <MyPage idInUrl={id}/>
                         }}/>
                     </Switch>

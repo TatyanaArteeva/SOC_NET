@@ -6,6 +6,7 @@ import {allSearchValue} from '../../actions';
 import { withRouter } from "react-router";
 import MyPage from '../myPage/myPage';
 import Group from '../group/group';
+import search from './search.svg';
 
 
 class HeaderSearch extends Component{
@@ -97,7 +98,7 @@ class HeaderSearch extends Component{
             }
         }
 
-        const searchButton=document.querySelector('.header__search__form__wrapper__button');
+        const searchButton=document.querySelector('.header-search-form__wrapper__button');
 
         window.addEventListener("click", (e)=>{
             if(e.target!==searchButton){
@@ -111,45 +112,45 @@ class HeaderSearch extends Component{
 
     render(){
         
-        let styleForSearchList="header__search__form__wrapper__list";
+        let styleForSearchList="header-search-form__wrapper__list";
         if(this.state.searchValue.length>0){
             styleForSearchList +=" active";
         }
 
-        let listUsersSearch=<div>
+        let listUsersSearch=<div className="header-search-form__wrapper__list__null">
                                 Пользователей не найдено
                             </div>;
 
         if(this.state.searchUsers.length>0){
             listUsersSearch=this.state.searchUsers.map(el=>{
                                 return <li key={el.account.id} 
-                                            className="header__search__form__wrapper__list__item"
+                                            className="header-search-form__wrapper__list__item"
                                             onClick={()=>this.goToUsersPage(el.account.id)}
                                             >
-                                            <div>
-                                                <img className="header__search__form__wrapper__list__item__img" src={"data:image/jpg;base64," + el.account.photo} alt="photoUser"/>
+                                            <div className="header-search-form__wrapper__list__item__img">
+                                                <img src={"data:image/jpg;base64," + el.account.photo} alt="photoUser"/>
                                             </div>
-                                            <div>
+                                            <div className="header-search-form__wrapper__list__item__name">
                                                 {el.account.firstName} {el.account.lastName}
                                             </div>
                                         </li>
                             })
         }
 
-        let listGroupsSearch=<div>
+        let listGroupsSearch=<div className="header-search-form__wrapper__list__null">
                                 Групп не найдено
                             </div>;
 
         if(this.state.searchGroups.length>0){
             listGroupsSearch=  this.state.searchGroups.map(el=>{
                                     return <li key={el.group.id} 
-                                                className="header__search__form__wrapper__list__item"
+                                                className="header-search-form__wrapper__list__item"
                                                 onClick={()=>this.goToGroupPage(el.group.id)}
                                                 >
-                                                <div>
-                                                    <img className="header__search__form__wrapper__list__item__img" src={"data:image/jpg;base64," + el.group.photo} alt="photoUser"/>
+                                                <div className="header-search-form__wrapper__list__item__img">
+                                                    <img src={"data:image/jpg;base64," + el.group.photo} alt="photoUser"/>
                                                 </div>
-                                                <div>
+                                                <div className="header-search-form__wrapper__list__item__name">
                                                     {el.group.name} 
                                                 </div>
                                             </li>
@@ -160,17 +161,18 @@ class HeaderSearch extends Component{
         
 
         return(
-            <form className="header__search__form">
-                <div className="header__search__form__wrapper">
-                    <input type="text" className="header__search__form__wrapper__search" placeholder="Поиск по всем группам и пользователям" onChange={this.searchInput} value={this.state.searchValue}  onKeyPress={this.keyPressEnter}/>
-                    <button className="header__search__form__wrapper__button" onClick={this.saveSearchValue}>Найти</button>
+            <form className="header-search-form">
+                <div className="header-search-form__wrapper">
+                    <input type="text" className="header-search-form__wrapper__search" placeholder="Поиск по всем группам и пользователям" onChange={this.searchInput} value={this.state.searchValue}  onKeyPress={this.keyPressEnter}/>
+                    {/* <button className="header-search-form__wrapper__button" onClick={this.saveSearchValue}>Найти</button> */}
+                    <span className="header-search-form__wrapper__button" onClick={this.saveSearchValue}><img src={search} alt="search"/></span>
                     <div className={styleForSearchList}>
                     <ul>
-                        Пользователи:
+                        <span>Пользователи</span>
                         { listUsersSearch }
                     </ul>
                     <ul>
-                        Группы:
+                        <span>Группы</span>
                         { listGroupsSearch }
                     </ul>
                     </div>

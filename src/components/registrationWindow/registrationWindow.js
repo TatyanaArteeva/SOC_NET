@@ -5,8 +5,8 @@ import {closeModalRegistration, loginMainPage, registrationSuccessful} from '../
 import './registrationWindow.scss';
 import WithService from '../hoc/hoc';
 import cancel from './cancel.svg';
-import eye from './eye.svg';
-import eyeBlocked from './eyeBlocked.svg';
+// import eye from './eye.svg';
+// import eyeBlocked from './eyeBlocked.svg';
 
 
 
@@ -130,7 +130,6 @@ class RegistrationWindow extends Component{
 
         if(this.state.invalidPassword){
             passwordRequirements=<div className="passwordRequirements">
-                                            <button onClick={this.closeModalWindowInvalidPassword}>Закрыть</button>
                                             Пароль содержит не допустимые символы!
                                         </div>
         }

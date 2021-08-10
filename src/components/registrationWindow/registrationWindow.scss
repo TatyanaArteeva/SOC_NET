@@ -2,32 +2,20 @@
 @import '../../mixins';
 
 .registration-window{
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    transition: 1s all;
-    background-color: $background-color-modal;
-    z-index: 1;
+    @include backgroundModal;
     &__modal {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        @include ModalWindow;
         width: 350px;
-        padding: 17px 17px 25px 17px;
-        border-radius: 10px;
-        background-color: $background-color;
         &__title{
             text-align: center;
             color: $input-text;
             margin-bottom: 15px;
         }
         &__close{
-            display: block;
-            text-align: end;
+            display: inline-block;
+            position: absolute;
+            right: 17px;
+            top: -15px;
             &__img{
                 transition: 0.5s all;
                 &:hover{
@@ -54,6 +42,8 @@
 }
 
 .passwordRequirements{
+    display: flex;
+    justify-content: center;
     height: 15px;
     margin-top: 5px;
     margin-bottom: 20px;

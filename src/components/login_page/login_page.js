@@ -7,10 +7,11 @@ import MainPage from '../main_page/mainPage';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router";
 // import icon from './icon.svg';
-import error from './error.svg';
+// import error from './error.svg';
 import leaf from './leaf.svg';
-import eye from './eye.svg';
-import eyeBlocked from './eyeBlocked.svg';
+// import eye from './eye.svg';
+// import eyeBlocked from './eyeBlocked.svg';
+import cancel from './cancel.svg';
 
 class LoginPage extends Component  {
     
@@ -46,33 +47,36 @@ class LoginPage extends Component  {
         }
 
         this.postFormLogin=(event)=>{
-            event.preventDefault();
-            localStorage.setItem('remmemberMeUser', this.state.rememberMe)
-            const formData=new FormData();
-            const loginObj={
-                login: this.state.login,
-                password: this.state.password,
-                rememberMe: this.state.rememberMe
-            }
-            for(let key in loginObj){
-                formData.append(key, loginObj[key])
-            }
-            Service.loginPage('/api/login', formData)
-            .then(res=>{
-                if(res.status===200){
-                    Service.getCurrentUserStatus('/api/status')
-                    .then(res=>{
-                        if(res.status===200){
-                            this.props.userId(res.data.currentAccount.id);
-                            this.props.userAccesses(res.data.accesses);
-                            this.props.userInformation(res.data.currentAccount);
-                            this.props.userEmail(res.data.currentAccount.email)
-                        }
-                    }).then(res=>{
-                        this.props.loginMainPage()
-                    })
+            if(this.state.password.length>=5){
+                console.log("ok")
+                event.preventDefault();
+                localStorage.setItem('remmemberMeUser', this.state.rememberMe)
+                const formData=new FormData();
+                const loginObj={
+                    login: this.state.login,
+                    password: this.state.password,
+                    rememberMe: this.state.rememberMe
                 }
-            }).catch(err=>this.props.errorWindowLoginOpen())
+                for(let key in loginObj){
+                    formData.append(key, loginObj[key])
+                }
+                Service.loginPage('/api/login', formData)
+                .then(res=>{
+                    if(res.status===200){
+                        Service.getCurrentUserStatus('/api/status')
+                        .then(res=>{
+                            if(res.status===200){
+                                this.props.userId(res.data.currentAccount.id);
+                                this.props.userAccesses(res.data.accesses);
+                                this.props.userInformation(res.data.currentAccount);
+                                this.props.userEmail(res.data.currentAccount.email)
+                            }
+                        }).then(res=>{
+                            this.props.loginMainPage()
+                        })
+                    }
+                }).catch(err=>this.props.errorWindowLoginOpen())
+            }
         }
 
         this.toggleShowPassword=()=>{
@@ -80,10 +84,19 @@ class LoginPage extends Component  {
                 hiddenPassword: !this.state.hiddenPassword
             })
         }
+
+        this.closeModalWindowRegistration=(e)=>{
+            const modal=document.querySelector('.registration-successfully__modal');
+            const modalWrapper=document.querySelector('.registration-successfully__modal__wrapper');
+            const modalMessage=document.querySelector('.registration-successfully__modal__message');
+            if(e.target!==modal && e.target!==modalWrapper && e.target!==modalMessage){
+                this.props.closeWindowMessageRegistration()
+            }
+        }
     }
 
     render(){
-        console.log(this.state)
+
         if(this.props.logoutStatus && this.props.location.hash.length!==0 && !this.props.mainPage){
                 this.props.history.push("")
         }
@@ -97,22 +110,36 @@ class LoginPage extends Component  {
         const registrationModalWindow=registrationWindow ? <RegistrationWindow/> : null;
 
         const windowRegistrationMessage=this.props.registrationOk? 
-        <div className ="registrationWindow">
-            Вы успешно зарегестрированы, пожалуйста, войдите на страницу!
-            <div onClick={()=>{this.props.closeWindowMessageRegistration()}}>Закрыть!</div>
+        <div className ="registration-successfully" onClick={this.closeModalWindowRegistration}>
+            <div className ="registration-successfully__modal">
+                <div className="registration-successfully__modal__wrapper">
+                    <span className="registration-successfully__modal__close" onClick={()=>{this.props.closeWindowMessageRegistration()}}><img src={cancel} alt="cancel"/></span>
+                    <div className="registration-successfully__modal__message">
+                        Вы успешно зарегистрированы.
+                        Пожалуйста, войдите на страницу!
+                    </div>
+                </div>
+            </div>
         </div> 
         : null;
 
-        const errorWindowLogin=loginErrorWindow? <div className="error-window-login">
-                                                    Введен неправильный логин или пароль
-                                                </div> : null;
+
         let passwordRequirements=<div className="passwordRequirements">
                                     Пароль должен содержать минимум 5 символов и не должен содержать пробелы!
                                 </div>
 
-        if(this.state.password.length>=5){
+        
+        if(loginErrorWindow){
+            passwordRequirements=<div className="passwordRequirements">
+                                    Введен неправильный логин или пароль
+                                </div>
+        }
+
+        if(!loginErrorWindow && this.state.password.length>=5){
             passwordRequirements=<div className="passwordRequirements_null"></div>;
         }
+
+        
 
         return(
             <>
@@ -120,7 +147,6 @@ class LoginPage extends Component  {
                     <img className="label__icon label__icon__animation" src={leaf} alt="icon"/>
                     <h2 className="label__text">Общаясь - расцветай!</h2>
                 </div>
-                {errorWindowLogin}
                 <div className = "login-page">
                     <form onSubmit={this.postFormLogin} className="login-page__form">
                         <input className="login-page__form__input" onChange={this.valueLogin} placeholder="Введите свой e-mail" type="email" name="login" required/>

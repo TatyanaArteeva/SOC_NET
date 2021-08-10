@@ -35,9 +35,7 @@ class Header extends Component{
     }
     
     render(){
-
-        console.log(this.props.logoutStatus)
-        
+ 
         const {idUser}=this.props;
         const id=`/${idUser}`;
 

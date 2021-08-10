@@ -274,7 +274,6 @@ class SliderCarusel extends Component{
 
             
         this.onSlide=(index)=>{
-            console.log(index)
             if(index===end-8){
                 start=end;
 
