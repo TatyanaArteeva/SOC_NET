@@ -302,6 +302,30 @@ class Service {
         return res
     }
 
+    message= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    postMessage= async (url, data) => {
+        const res= await this.message(url, data);
+
+        return res
+    }
+
+    messageAll= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    getMessageAll= async (url, data) => {
+        const res= await this.message(url, data);
+
+        return res
+    }
+
 }
 
 export default Service;

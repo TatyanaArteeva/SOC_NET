@@ -44,12 +44,15 @@ class Friends extends Component{
                                       this.props.history.push(id)
                                     }
                                     }
-                                    titleItem={(el, funcGoItem, btnAction)=>{
+                                    titleItem={(el, funcGoItem, btnAction, writeMessageBtn)=>{
                                         return el.map((item, index)=>{
                                             let btnActionFriend=null;
 
+                                            let writeMessage=null;
+
                                             if(item.info.friendRelationStatus==="FULL"){
                                                 btnActionFriend=<button onClick={()=>btnAction(item.account.id, "FULL")}>Удалить из друзей</button>
+                                                writeMessage= <button onClick={()=>writeMessageBtn(item.account.id)}>Написать сообщение</button>
                                             }
 
                                            
@@ -63,6 +66,7 @@ class Friends extends Component{
                                                             </div>
                                                         </li>
                                                         {btnActionFriend}
+                                                        {writeMessage}
                                                     </div>
                                         })
                                     }}

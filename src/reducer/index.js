@@ -35,7 +35,10 @@ const initialState={
     infoRelation: {},
     groupAccesses: {},
     groupInfoRelation: {},
-    allSearchValue: ''
+    allSearchValue: '',
+    idForDialogFriends: '',
+    outputMessage:{},
+    inputMessageObj:[]
 }
 
 
@@ -314,6 +317,23 @@ const reducer=(state=initialState, action)=>{
             return {
                 ...state,
                 allSearchValue: action.allSearchValue
+            }
+        case 'ID_FOR_DIALOG_FRIENDS': 
+            return {
+                ...state,
+                idForDialogFriends: action.idForDialogFriends
+            }
+        // возможно нужно удалить, так ак не используется
+        case 'OUTPUT_MESSAGE': 
+        console.log(action.outputMessage)
+            return {
+                ...state,
+                outputMessage: action.outputMessage
+            }
+        case 'INPUT_MESSAGE_OBJ': 
+            return {
+                ...state,
+                inputMessageObj:action.inputMessageObj
             }
         default:
             return state;

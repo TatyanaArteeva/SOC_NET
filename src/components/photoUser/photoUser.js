@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import './photoUser.scss';
 import {connect} from 'react-redux';
-import { modalWindowForMainPhotoOptionsOpen, photoUser, infoRelation } from '../../actions';
+import { modalWindowForMainPhotoOptionsOpen, photoUser, infoRelation, idForDialogFriends } from '../../actions';
 import ModalWindowForOptonMainPhoto from '../ModalWindowForOptonMainPhoto/ModalWindowForOptonMainPhoto';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router";
@@ -110,6 +110,12 @@ class PhotoUser extends Component{
             })
         }
 
+        this.writeMessage=()=>{
+            localStorage.setItem('idForDialogFriends', this.props.idForPhoto);
+            this.props.idForDialogFriends(this.props.idForPhoto);
+            this.props.history.push('/dialog')
+        }
+
     }
 
     render(){
@@ -117,6 +123,7 @@ class PhotoUser extends Component{
         let btnActionsElementsPage=null;
         let modalWindowForMainPhotoModification=null;
         let btnActionRejectFriend=null;
+        let btnActionWriteMessage=null;
         if(this.props.modalWindowForMainPhotoOptions){
             modalWindowForMainPhotoModification=<ModalWindowForOptonMainPhoto/>;
         }
@@ -126,6 +133,7 @@ class PhotoUser extends Component{
         const btnConfirmAddFriends=<button onClick={this.addFriends} className="add_photo">Подтвердить друга</button>;
         const btnRejectFriend=<button onClick={this.rejectFriends} className="add_photo">Отклонить друга</button>;
         const btnDeleteFriends= <button onClick={this.deleteFriends} className="add_photo">Удалить из друзей</button>;
+        const btnWriteMessage= <button onClick={this.writeMessage} className="add_photo">Написать сообщение</button>;
         if(this.props.listRights.canModify){
             btnActionsElementsPage=editingPhotoBtn;
         }
@@ -144,13 +152,17 @@ class PhotoUser extends Component{
         }
         if(this.props.info.friendRelationStatus==="FULL"){
             btnActionsElementsPage=btnDeleteFriends;
+            btnActionWriteMessage=btnWriteMessage;
         }
         
         return(
             <div>
                 <div className="photo"><img className="photoUser" src={this.props.photo}  alt="photoUser"/></div>
-                {btnActionsElementsPage}
-                {btnActionRejectFriend}
+                <div className="btns">
+                    {btnActionsElementsPage}
+                    {btnActionWriteMessage}
+                    {btnActionRejectFriend}
+                </div>
                 {modalWindowForMainPhotoModification}
             </div>
         )
@@ -172,7 +184,8 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps={
     modalWindowForMainPhotoOptionsOpen,
     photoUser,
-    infoRelation
+    infoRelation,
+    idForDialogFriends
 }
 
 export default WithService()(withRouter(connect(mapStateToProps, mapDispatchToProps)(PhotoUser)));

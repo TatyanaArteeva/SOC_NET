@@ -19,6 +19,7 @@ import AllGroups from '../allGroup/allGroup';
 import AllSearchPage from '../allSearchPage/allSearchPage';
 import ModificationEmailAndPasswordPage from '../modificationEmailAnsPassword/modificationEmailAndPassword';
 import WebSockets from '../webSockets/webSockets';
+import DialogPage from '../DialogPage/dialogPage';
 
 class MainPage extends Component{
     
@@ -48,6 +49,7 @@ class MainPage extends Component{
                         <Route path="/search" component={AllSearchPage}/>
                         <Route path="/createGroups" component={CreatingGroup}/>
                         <Route path="/modificationGroups" component={ModificationGroup}/>
+                        <Route path="/dialog" component={DialogPage}/>
                         <Route path="/modificationEmailAndPassword" component={ModificationEmailAndPasswordPage}/>
                         <Route path="/groups/:id" component={({match})=>{
                             const id=match.params.id;

@@ -52,10 +52,9 @@ module.exports = {
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
         loader: 'url-loader?limit=100000' 
       }
-
     ]
   },
-// };
+};
 
 
 // Запуск dev-server-а : npm run start:dev
