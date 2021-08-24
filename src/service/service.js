@@ -302,6 +302,66 @@ class Service {
         return res
     }
 
+    message= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    postMessage= async (url, data) => {
+        const res= await this.message(url, data);
+
+        return res
+    }
+
+    messageAll= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    getMessageAll= async (url, data) => {
+        const res= await this.message(url, data);
+
+        return res
+    }
+
+    messageRead= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    postMessageRead= async (url, data) => {
+        const res= await this.messageRead(url, data);
+
+        return res
+    }
+
+    unreadMessage= async (url)=>{
+        const res= await axios.get(url);
+
+         return res
+    }
+
+    getUnreadMessage= async (url) => {
+        const res= await this.unreadMessage(url);
+
+        return res
+    }
+
+    messagesAll= async (url)=>{
+        const res= await axios.get(url);
+
+         return res
+    }
+
+    getMessagesAll= async (url) => {
+        const res= await this.messagesAll(url);
+
+        return res
+    }
+
 }
 
 export default Service;

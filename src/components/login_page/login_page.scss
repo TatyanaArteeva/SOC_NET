@@ -149,3 +149,39 @@
         height: 40px;
     }
 }
+
+.registration-successfully{
+    @include backgroundModal;
+    &__modal{
+        width: 300px;
+        height: 170px;
+        @include ModalWindow;
+        background: radial-gradient(at 25% 85%, $secondary-color, $main-color-light, $background-color);
+        box-shadow: 5px 10px 5px 3px #b5b59b;
+        z-index: 2;
+        &__wrapper{
+            position: relative;
+            width: 100%;
+            margin-top: 40px;
+        }
+        &__close{
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            top: -40px;
+            & img{
+                transition: 0.5s all;
+                &:hover{
+                    border-radius: 100%;
+                    transform: rotate(30deg) scale(1.2);
+                }
+            }
+        }
+        &__message {
+            width: 100%;
+            width: 80%;
+            margin: 15px auto;
+            text-align: center;
+        }
+    }
+}

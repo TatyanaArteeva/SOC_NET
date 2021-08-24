@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {allSearchValue} from '../../actions';
+import {allSearchValue, idForDialogFriends} from '../../actions';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router";
 
@@ -219,6 +219,12 @@ class AllSearchPage extends Component{
             })
         }
 
+        this.writeMessage=(id)=>{
+            localStorage.setItem('idForDialogFriends', id);
+            this.props.idForDialogFriends(id);
+            this.props.history.push('/dialog')
+        }
+
         this.joinGroup=(id)=>{
             Service.postAddGroups(`/api/group-relation/join-group/${id}`)
                 .then(res=>{
@@ -272,11 +278,13 @@ class AllSearchPage extends Component{
             listUsersSearch=this.state.searchUsers.map(el=>{
                                 let buttonForActionRelationships=null;
                                 let btnActionRejectFriend=null;
+                                let btnActionWriteMessage=null;
                                 const btnAddFriends=<button onClick={()=>this.addFriends(el.account.id)} className="add_photo">Добавить в друзья</button>;
                                 const btnCancelAddFriends=<button onClick={()=>this.cancelAddFriends(el.account.id)} className="add_photo">Отменить заявку</button>;
                                 const btnConfirmAddFriends=<button onClick={()=>this.addFriends(el.account.id)} className="add_photo">Подтвердить друга</button>;
                                 const btnRejectFriend=<button onClick={()=>this.rejectFriends(el.account.id)} className="add_photo">Отклонить друга</button>;
                                 const btnDeleteFriends= <button onClick={()=>this.deleteFriends(el.account.id)} className="add_photo">Удалить из друзей</button>;
+                                const btnWriteMessage= <button onClick={()=>this.writeMessage(el.account.id)} className="add_photo">Написать сообщение</button>;
 
                                 if(el.info.friendRelationStatus==="NO_RELATION"){
                                     buttonForActionRelationships=btnAddFriends;
@@ -292,6 +300,7 @@ class AllSearchPage extends Component{
                                 }
                                 if(el.info.friendRelationStatus==="FULL"){
                                     buttonForActionRelationships=btnDeleteFriends;
+                                    btnActionWriteMessage=btnWriteMessage;
                                 }
 
                                 return <div>
@@ -304,6 +313,8 @@ class AllSearchPage extends Component{
                                                 </div>
                                             </li>
                                             {buttonForActionRelationships}
+                                            {btnActionRejectFriend}
+                                            {btnActionWriteMessage}
                                         </div>
                             })
         }
@@ -374,7 +385,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    allSearchValue
+    allSearchValue,
+    idForDialogFriends
 }
 
 export default WithService()(withRouter(connect(mapStateToProps, mapDispatchToProps)(AllSearchPage)));

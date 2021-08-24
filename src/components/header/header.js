@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { HashRouter, Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
-import App from '../app/App';
-import {logout, displayingLoginAndRegistrationPage} from '../../actions';
+import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe} from '../../actions';
 import { withRouter } from "react-router";
 import './header.scss';
 import logo from './leaf.svg';
@@ -22,6 +21,7 @@ class Header extends Component{
             Service.logoutRequest('api/logout')
                 .then(res=>{
                     if(res.status===200){
+                        this.props.unsubscribe();
                         localStorage.clear()
                         this.props.logout();
                     }
@@ -32,14 +32,33 @@ class Header extends Component{
             this.props.history.push('/modificationEmailAndPassword')
         }
 
+        this.componentDidMount=()=>{
+            Service.getUnreadMessage('/api/message/get-unaccepted-messages')
+                .then(res=>{
+                    if(res.status===200){
+                        res.data.forEach(el=>{
+                            this.props.inputMessageObj(el)
+                        })
+                    }
+                })
+        }
+
+
     }
     
     render(){
 
-        console.log(this.props.logoutStatus)
-        
         const {idUser}=this.props;
         const id=`/${idUser}`;
+
+        let countMessage=null;
+
+        
+        if(this.props.inputMessageCount.length>0){
+            countMessage=this.props.inputMessageCount.length
+        }
+
+
 
         return (
             <header>
@@ -48,7 +67,7 @@ class Header extends Component{
                     <HeaderSearch/>
                     <ul className="header__menu">
                         <div className="header__menu__wrapper">
-                            <h1 className="header__menu__wrapper__button">Меню <img src={arrow} alt="arrow"/></h1>
+                            <h1 className="header__menu__wrapper__button">Меню <img src={arrow} alt="arrow"/>{countMessage}</h1>
                             <ul className="header__menu__wrapper__list">
                                 <HashRouter>
                                     <li className="header__menu__wrapper__list__item"><Link to={id}>Моя страница</Link></li>
@@ -75,12 +94,15 @@ const mapStateToProps=(state)=>{
         idUser: state.userId,
         logoutStatus: state.logout,
         mainPage: state.loginMainPage,
+        inputMessageCount: state.inputMessageObj
     }
 }
 
 const mapDispatchToProps={
         logout,
-        displayingLoginAndRegistrationPage
+        displayingLoginAndRegistrationPage,
+        inputMessageObj,
+        unsubscribe
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Header)));

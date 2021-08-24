@@ -1,8 +1,12 @@
 .photo {
     width: 300px;
     height: 250px;
-    margin: 20px 45px;
+    margin: 10px 45px;
     border: 2px solid black;
+}
+
+.btns{
+    display: flex;
 }
 
 .photoUser {

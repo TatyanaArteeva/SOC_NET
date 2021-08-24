@@ -15,6 +15,7 @@ class App extends Component{
       Service.getCurrentUserStatus('/api/status')
         .then(res=>{
           if(res.status===200){
+            localStorage.setItem("idUser", res.data.currentAccount.id)
             this.props.userId(res.data.currentAccount.id);
             this.props.userAccesses(res.data.accesses)
           }

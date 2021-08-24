@@ -1,30 +1,78 @@
 @import '../../variables';
 @import '../../mixins';
 
-.header__search__form{
+.header-search-form{
     &__wrapper{
-        &__button{
-            background-color: red;
+        position: relative;
+        & ul{
             padding: 0px;
-            & a{
-                padding: 2px;
+            & span{
+                padding: 10px 0px 15px 0px;
+                color: $main-color;
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+        &__button{
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            cursor: pointer;
+            & img{
+                width: 18px;
+                height: 18px;
             }
         }
         &__search{
             @include input;
+            height: 30px;
+            margin-top: 0px;
+            padding: 3px 28px 3px 10px;
         }
         &__list{
             position: absolute;
             visibility: hidden;
+            width: 318px;
+            box-shadow: 2px 2px 3px 3px #a7a7a7;
+            // border: 2px solid black;
+            border-radius: 10px;
             opacity: 0;
-            background-color:white;
-            transition: opacity, visibility 1s;
+            background-color:$background-color;
+            margin-top: 0px;
+            padding: 10px 20px 0px 20px;
             &__item{
-                &__img{
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 100%;
+                list-style-type: none;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                padding: 8px 10px;
+                &:nth-last-child(1){
+                    margin-bottom: 10px;
                 }
+                &__img{
+                    width: 35px;
+                    height: 35px;
+                    & img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 100%;
+                    }
+                }
+                &__name{
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                    width: 100%;
+                    margin-left: 10px;
+                }
+            }
+            &__null{
+                list-style-type: none;
+                height: 50px;
+                padding: 8px 10px;
             }
         }
 
@@ -34,6 +82,8 @@
 .active{
     visibility:visible;
     opacity: 1;
+    transition: visibility,  opacity, 1s all;
+    z-index: 1;
 }
 
 

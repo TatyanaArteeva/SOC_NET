@@ -134,6 +134,42 @@ export const allSearchValue=(value)=>{
     return({type: 'ALL_SEARCH_VALUE', allSearchValue:value})
 }
 
+export const idForDialogFriends=(idForDialogFriends)=>{
+    return({type: 'ID_FOR_DIALOG_FRIENDS', idForDialogFriends: idForDialogFriends})
+}
+
+// под вопросом, возможно нужно будет удалить, так как ни где не используется, вместо него, props
+
+export const outputMessage=(content, sourceId, destinationId)=>{
+    console.log(content, sourceId, destinationId)
+    return({type: 'OUTPUT_MESSAGE', 
+    outputMessage: {
+        content:content,
+        sourceId: sourceId,
+        destinationId: destinationId
+    }})
+}
+
+export const inputMessageObj=(inputMessageObj)=>{
+    return({type: 'INPUT_MESSAGE_OBJ', inputMessageObj: inputMessageObj})
+}
+
+export const deleteMessageFromInputMessageObj=(message)=>{
+    return({type: 'DELETE_MESSAGE_FROM_INPUT_MESSAGE_OBJ', message: message})
+}
+
+export const unsubscribe=()=>{
+    return({type: 'UNSUBSCRIBE'})
+}
+
+export const subscribe=()=>{
+    return({type: 'SUBSCRIBE'})
+}
+
+
+
+
+
 
 
 

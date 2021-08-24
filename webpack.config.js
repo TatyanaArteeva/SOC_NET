@@ -1,5 +1,5 @@
 const path = require("path");
-// const { SourceMapDevToolPlugin } = require("webpack");
+
 
 module.exports = {
   mode: "development",
@@ -19,8 +19,12 @@ module.exports = {
     progress: true,
     proxy: {
       '/api': {
-      target: 'http://localhost:8080',
-      changeOrigin: true,
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+      '/messages': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
       }
     },
   },
@@ -48,7 +52,6 @@ module.exports = {
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
         loader: 'url-loader?limit=100000' 
       }
-
     ]
   },
 };

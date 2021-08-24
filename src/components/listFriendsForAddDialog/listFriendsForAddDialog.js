@@ -1,4 +1,3 @@
-
 import React, { Component} from 'react';
 import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
@@ -7,7 +6,7 @@ import {Link, HashRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 
-class Friends extends Component{
+class ListFriendsForAddDialog extends Component{
 
     constructor(props){
         super(props)
@@ -20,18 +19,7 @@ class Friends extends Component{
    render(){
 
     return (
-        <div>
-            <div>
-                <HashRouter>
-                    <Link to="/friends/incoming"><button>Входящие заявки в друзья</button></Link>
-                </HashRouter>
-                <HashRouter>
-                    <Link to="/friends/output"><button>Исходящие заявки в друзья</button></Link>
-                </HashRouter>
-                <HashRouter>
-                    <Link to="/friends/allUsers"><button>Все пользователи</button></Link>
-                </HashRouter>
-            </div>
+        <div className="listFriendsForAddDialog">
             <FriendsAndGroupsList  getItems={(start,end)=>
                                         `/api/friend/get-friends/${this.props.id}?start=${start}&end=${end}`
                                     }
@@ -41,22 +29,12 @@ class Friends extends Component{
                                       })
                                     }}
                                     path={(id)=>{
-                                      this.props.history.push(id)
+                                        localStorage.setItem('idForDialogFriends', id);
+                                        this.props.history.push('/dialog')
                                     }
                                     }
-                                    titleItem={(el, funcGoItem, btnAction, writeMessageBtn)=>{
+                                    titleItem={(el, funcGoItem)=>{
                                         return el.map((item, index)=>{
-                                            let btnActionFriend=null;
-
-                                            let writeMessage=null;
-
-                                            if(item.info.friendRelationStatus==="FULL"){
-                                                btnActionFriend=<button onClick={()=>btnAction(item.account.id, "FULL")}>Удалить из друзей</button>
-                                                writeMessage= <button onClick={()=>writeMessageBtn(item.account.id)}>Написать сообщение</button>
-                                            }
-
-                                           
-
                                             return  <div key={item.account.id}>
                                                         <li className="myFriends_item" onClick={()=>funcGoItem(item.account.id)}>
                                                             {index+1}
@@ -65,20 +43,7 @@ class Friends extends Component{
                                                                 <span>{item.account.firstName} {item.account.lastName}</span>
                                                             </div>
                                                         </li>
-                                                        {btnActionFriend}
-                                                        {writeMessage}
                                                     </div>
-                                        })
-                                    }}
-                                    arrItemModification={(item)=>{
-                                        const index=this.state.arr.findIndex(el=>{
-                                            return el.account.id===item.account.id
-                                        });
-                                        const before=this.state.arr.slice(0, index);
-                                        const after=this.state.arr.slice(index+1);
-                                        const newArr=[...before, ...after]
-                                        this.setState({
-                                            arr: newArr
                                         })
                                     }}    
                                     renderItems={this.state.arr}
@@ -104,4 +69,4 @@ const mapStateToProps=(state)=>{
 
 
 
-export default withRouter(connect(mapStateToProps)(WithService()(Friends)));
+export default withRouter(connect(mapStateToProps)(WithService()(ListFriendsForAddDialog)));

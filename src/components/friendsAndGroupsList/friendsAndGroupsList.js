@@ -3,7 +3,7 @@ import './friendsAndGroupsList.scss';
 import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
 import {connect} from 'react-redux';
-import {allSearchValue} from '../../actions';
+import {allSearchValue, idForDialogFriends} from '../../actions';
 
 class FriendsAndGroupsList extends Component{
     _cleanupFunction=false;
@@ -42,7 +42,6 @@ class FriendsAndGroupsList extends Component{
             }else{
                 Service.getItems(this.props.getItems(start, end))
                     .then(res=>{
-                        console.log(res)
                         if(this._cleanupFunction){
                             this.setState({
                                 totalSize: res.data.totalSize,
@@ -297,6 +296,12 @@ class FriendsAndGroupsList extends Component{
             }
         }
 
+        this.writeMessage=(id)=>{
+            localStorage.setItem('idForDialogFriends', id);
+            this.props.idForDialogFriends(id);
+            this.props.history.push('/dialog')
+        }
+
         this.postRequestByClickForSearch=(e)=>{
             start=0;
             end=10;
@@ -333,7 +338,7 @@ class FriendsAndGroupsList extends Component{
 
         if(this.props.renderItems.length>0){
             contentAndMessageNotContent=<div>
-                                            {this.props.titleItem(this.props.renderItems, this.goToItem, this.btnAction)}
+                                            {this.props.titleItem(this.props.renderItems, this.goToItem, this.btnAction, this.writeMessage)}
                                         </div>                          
         }
 
@@ -365,7 +370,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    allSearchValue
+    allSearchValue,
+    idForDialogFriends
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(FriendsAndGroupsList)));

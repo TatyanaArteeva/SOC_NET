@@ -28,11 +28,13 @@ class AllUsers extends Component{
                                     this.props.history.push(`/${id}`)
                                     }
                                   }
-                                  titleItem={(el, funcGoItem, btnAction)=>{
+                                  titleItem={(el, funcGoItem, btnAction, writeMessageBtn)=>{
                                       return el.map((item, index)=>{
 
                                         let btnActionFriend=null;
                                         let btnActionRejectFriend=null;
+
+                                        let writeMessage=null;
 
                                         if(item.info.friendRelationStatus==="NO_RELATION"){
                                             btnActionFriend=<button onClick={()=>btnAction(item.account.id, "NO_RELATION")}>Добавить в друзья</button>
@@ -48,6 +50,7 @@ class AllUsers extends Component{
                                         }
                                         if(item.info.friendRelationStatus==="FULL"){
                                             btnActionFriend=<button onClick={()=>btnAction(item.account.id, "FULL")}>Удалить из друзей</button>
+                                            writeMessage= <button onClick={()=>writeMessageBtn(item.account.id)}>Написать сообщение</button>
                                         }
 
                                         return <div key={item.account.id}>
@@ -62,6 +65,7 @@ class AllUsers extends Component{
                                                     </li>
                                                     {btnActionFriend}
                                                     {btnActionRejectFriend}
+                                                    {writeMessage}
                                           </div>
                                       })
                                   }}
