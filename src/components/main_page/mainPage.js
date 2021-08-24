@@ -36,7 +36,7 @@ class MainPage extends Component{
             <>
                 <HashRouter>
                     <Header/>
-                    <WebSockets/>
+                    <WebSockets location={this.props.location}/>
                     <Switch>
                         <Route path= "/friends" exact component={Friends} />
                         <Route path= "/friends/incoming" component={IncomingFriends} />

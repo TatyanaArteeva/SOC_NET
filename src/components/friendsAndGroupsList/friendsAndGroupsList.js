@@ -42,7 +42,6 @@ class FriendsAndGroupsList extends Component{
             }else{
                 Service.getItems(this.props.getItems(start, end))
                     .then(res=>{
-                        console.log(res)
                         if(this._cleanupFunction){
                             this.setState({
                                 totalSize: res.data.totalSize,
@@ -298,7 +297,6 @@ class FriendsAndGroupsList extends Component{
         }
 
         this.writeMessage=(id)=>{
-            console.log("message", id);
             localStorage.setItem('idForDialogFriends', id);
             this.props.idForDialogFriends(id);
             this.props.history.push('/dialog')

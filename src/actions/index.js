@@ -151,9 +151,24 @@ export const outputMessage=(content, sourceId, destinationId)=>{
 }
 
 export const inputMessageObj=(inputMessageObj)=>{
-    console.log(inputMessageObj)
     return({type: 'INPUT_MESSAGE_OBJ', inputMessageObj: inputMessageObj})
 }
+
+export const deleteMessageFromInputMessageObj=(message)=>{
+    return({type: 'DELETE_MESSAGE_FROM_INPUT_MESSAGE_OBJ', message: message})
+}
+
+export const unsubscribe=()=>{
+    return({type: 'UNSUBSCRIBE'})
+}
+
+export const subscribe=()=>{
+    return({type: 'SUBSCRIBE'})
+}
+
+
+
+
 
 
 

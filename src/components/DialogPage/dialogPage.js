@@ -3,7 +3,12 @@ import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
 import './dialogPage.scss';
 import { withRouter } from "react-router-dom";
-import {outputMessage} from '../../actions';
+import {outputMessage, deleteMessageFromInputMessageObj} from '../../actions';
+import 'moment/locale/ru';
+import Moment from 'react-moment';
+
+const localFormatDateByVersionLibMomentReact='lll'
+
 
 class DialogPage extends Component{
     _cleanupFunction=false;
@@ -19,24 +24,31 @@ class DialogPage extends Component{
             inputMessage: '',
             heightList: '',
             req: false,
-            date: ''
+            date: '',
+            firstNameUser: '',
+            lastNameUser: '', 
+            totalSizeMessage: ''
         }
+
         this.refListMessage=React.createRef();
         let start=0;
         let end=50;
+
         const idFriends=localStorage.getItem('idForDialogFriends');
+        const idUser=localStorage.getItem('idUser');
+
         const {Service}=this.props;
 
-        this.getInfoFriends=()=>{
+        this.getInfoUsers=()=>{
             Service.getAccountInfo(`/api/account/${idFriends}/page-info`)
-            .then(res=>{
-                if(res.status===200){
-                    this.setState({
-                        firstNameFriends: res.data.account.firstName,
-                        lastNameFriends:  res.data.account.lastName
-                    })
-                }
-            })
+                .then(res=>{
+                    if(res.status===200){
+                        this.setState({
+                            firstNameFriends: res.data.account.firstName,
+                            lastNameFriends:  res.data.account.lastName
+                        })
+                    }
+                })
             Service.getAccountPhoto(`/api/account/${idFriends}/photo`, {
                 responseType: 'arraybuffer'
                 })
@@ -46,6 +58,15 @@ class DialogPage extends Component{
                     this.setState({
                         photoFriends: newFormatPhoto
                     })
+                })
+            Service.getAccountInfo(`/api/account/${idUser}/page-info`)
+                .then(res=>{
+                    if(res.status===200){
+                        this.setState({
+                            firstNameUser: res.data.account.firstName,
+                            lastNameUser: res.data.account.lastName
+                        })
+                    }
                 })
         }
 
@@ -60,17 +81,17 @@ class DialogPage extends Component{
             Service.getMessageAll('/api/message/get-private-messages', objDataForMessages)
                 .then(res=>{
                     if(res.status===200){
-                        console.log(res)
                         const arrReverse=res.data.messages.reverse();
                         this.setState({
-                            allAndOutputMessage:  arrReverse
+                            allAndOutputMessage:  arrReverse,
+                            totalSizeMessage: res.data.totalSize
                         })
                     }
                 })
                 .then(res=>{
                     const windowMessage=document.querySelector('.wrapperListMessage');
-                    console.log(windowMessage)
                     windowMessage.scrollTop = windowMessage.scrollHeight;
+                    windowMessage.pageYOffset=windowMessage.scrollHeight;
                 })
         }
 
@@ -81,7 +102,7 @@ class DialogPage extends Component{
                 idFriends: idFriends,
                 date: date
             },()=>{
-                this.getInfoFriends();
+                this.getInfoUsers();
                 this.getOldMessages();
             })
         }
@@ -110,7 +131,7 @@ class DialogPage extends Component{
                     Service.postMessage('/api/message/sendMessage', outputMessage)
                         .then(res=>{
                             if(res.status===200){
-                                console.log(res)
+                                console.log("послали сообщение")
                                 this.setState({
                                     newMessage: '',
                                     allAndOutputMessage:[...this.state.allAndOutputMessage, res.data]
@@ -131,35 +152,56 @@ class DialogPage extends Component{
             })
         }
 
-        this.componentDidUpdate=(prevProps)=>{
+        this.componentDidUpdate=()=>{
             const heightList=this.refListMessage.current.scrollHeight;
             const windowMessage=document.querySelector('.wrapperListMessage');
-
-            if(this.props.inputMessage.content!==undefined && prevProps.inputMessage.id!==this.props.inputMessage.id){
-                let scrollInBottom=false;
-                if(heightList===(windowMessage.scrollTop+windowMessage.clientHeight)){
-                    scrollInBottom=true;
-                }
-                this.setState({
-                    allAndOutputMessage: [...this.state.allAndOutputMessage, this.props.inputMessage]
-                },()=>{
-                    if (scrollInBottom) {
-                        windowMessage.scrollTop = windowMessage.scrollHeight;
+            windowMessage.scrollTop = windowMessage.scrollHeight;
+                this.props.inputMessage.map(el=>{
+                    if(el.sourceId===localStorage.getItem("idForDialogFriends")){
+                        this.props.deleteMessageFromInputMessageObj(el)
+                        let scrollInBottom=false;
+                        if(heightList===(windowMessage.scrollTop+windowMessage.clientHeight)){
+                            scrollInBottom=true;
+                        }
+                        this.setState({
+                            allAndOutputMessage: [...this.state.allAndOutputMessage, el]
+                        },()=>{
+                            if (scrollInBottom) {
+                                windowMessage.scrollTop = windowMessage.scrollHeight;
+                                Service.postMessageRead('/api/message/acceptMessages', [el.id])
+                                    .then(res=>{
+                                        console.log(res)
+                                        console.log("элемент принят и прочитан")
+                                    })
+                            }
+                        })
                     }
                 })
-            }
 
             windowMessage.addEventListener('scroll', ()=>{
                 if((windowMessage.scrollTop)<= heightList/100*20 && !this.state.req){
-                    console.log(windowMessage.scrollTop+windowMessage.clientHeight)
+        
                     start=end;
                     end=end+50;
+
+
+                    if(start===this.state.totalSizeMessage){
+                        return
+                    }
+
+                    if(start>this.state.totalSizeMessage){
+                        return
+                    }
+
+                    
+                    if(end>this.state.totalSizeMessage){
+                        end=this.state.totalSizeMessage
+                    }
 
                     if(this._cleanupFunction){
                         this.setState({
                             req: true
                         },()=>{
-                            console.log("подгружаем новый контент")
                             const objDataForMessages={
                                 end: end,
                                 start: start,
@@ -168,8 +210,8 @@ class DialogPage extends Component{
                             }
                             Service.getMessageAll('/api/message/get-private-messages', objDataForMessages)
                                 .then(res=>{
+                                    console.log("подгружаем новый контент")
                                     if(res.status===200 && this._cleanupFunction){
-                                        console.log(res)
                                         const arrReverse=res.data.messages.reverse();
                                         this.setState({
                                             allAndOutputMessage:  [...arrReverse ,...this.state.allAndOutputMessage],
@@ -182,16 +224,23 @@ class DialogPage extends Component{
 
                 }
             })
+        }
 
-            
+        this.keyPressEnter=(e)=>{
+            if(e.key==='Enter'){
+                this.postMessage(e)
+            }
+                
+        }
 
+        this.componentWillUnmount=()=>{
+            this._cleanupFunction=false
         }
 
 
     }
 
     render(){
-
         return(
             <div className="dialog">
             <div className="dialog__wrapper">
@@ -207,14 +256,28 @@ class DialogPage extends Component{
                     <ul>
                         {
                             this.state.allAndOutputMessage.map(el=>{
+                                const dateMilliseconds=new Date(el.sendDate).getTime();
+                                const timeZone=new Date(el.sendDate).getTimezoneOffset()*60*1000;
+                                const currentDateMilliseconds=dateMilliseconds-(timeZone);
+                                const currentDate=new Date(currentDateMilliseconds)
+
                                 let classMessage="user";
+                                let nameUser=<span>{this.state.firstNameUser} {this.state.lastNameUser}</span>
 
                                 if(el.destinationId===this.props.id){
                                     classMessage="friend"
+                                    nameUser=<span>{this.state.firstNameFriends} {this.state.firstNameFriends}</span>
                                 }
 
                                 return  <li key={el.id} className={classMessage}>
-                                            {el.content}
+                                                {nameUser}
+                                                {el.content}
+                                                <Moment locale="ru"
+                                                        date={currentDate}
+                                                        format={localFormatDateByVersionLibMomentReact}
+                                                        
+                                                />
+                                                
                                         </li>
                             })
                         }  
@@ -222,13 +285,13 @@ class DialogPage extends Component{
                 </div>
             </div>
             <div className="dialog__inputMessage">
-                <form onSubmit={this.postMessage} className="dialog__inputMessage__form">
+                <form onSubmit={this.postMessage} className="dialog__inputMessage__form" onKeyPress={this.keyPressEnter}>
                     <textarea   className="dialog__inputMessage__form__input" 
                                 type="text" placeholder="Введите текст сообщения" 
                                 value={this.state.newMessage}
                                 required
                                 onChange={this.valueMessage}/>
-                    <button type="submit">Отправить</button>
+                    <button type="submit" className="dialog__inputMessage__form__button">Отправить</button>
                 </form>
             </div>
         </div>
@@ -242,13 +305,14 @@ const mapStateToProps=(state)=>{
     return{
         id: state.userId,
         idForDialogFriends: state.idForDialogFriends,
-        messageObj: state.outputMessage,
-        inputMessage:state.inputMessageObj
+        // messageObj: state.outputMessage,
+        inputMessage:state.inputMessageObj,
     }
 }
 
 const mapDispatchToProps={
-    outputMessage
+    outputMessage,
+    deleteMessageFromInputMessageObj
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(DialogPage)));

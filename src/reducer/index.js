@@ -38,7 +38,8 @@ const initialState={
     allSearchValue: '',
     idForDialogFriends: '',
     outputMessage:{},
-    inputMessageObj:[]
+    inputMessageObj:[],
+    unsubscribe: false
 }
 
 
@@ -72,7 +73,7 @@ const reducer=(state=initialState, action)=>{
         case 'LOGIN_MAIN_PAGE':
             return {
                 ...state,
-                loginMainPage: true
+                loginMainPage: true,
             }
         case 'ERROR_WINDOW_LOGIN_OPEN':
             return {
@@ -117,10 +118,11 @@ const reducer=(state=initialState, action)=>{
         case 'LOGOUT':
             return {
                 ...state,
-                logout: true,
                 loginMainPage: false,
                 loginAndRegistrationPage: true,
                 contentPages: false,
+                logout: true,
+                inputMessageObj: []
             }
         case 'USER_INFORMATION':
             const information=action.information;
@@ -325,15 +327,37 @@ const reducer=(state=initialState, action)=>{
             }
         // возможно нужно удалить, так ак не используется
         case 'OUTPUT_MESSAGE': 
-        console.log(action.outputMessage)
             return {
                 ...state,
                 outputMessage: action.outputMessage
             }
         case 'INPUT_MESSAGE_OBJ': 
+           
             return {
                 ...state,
-                inputMessageObj:action.inputMessageObj
+                inputMessageObj: [...state.inputMessageObj ,action.inputMessageObj]
+            }
+        case 'DELETE_MESSAGE_FROM_INPUT_MESSAGE_OBJ': 
+            const index=state.inputMessageObj.findIndex(el=>{
+                return el.id===action.message.id
+            })
+
+            const before=state.inputMessageObj.slice(0, index);
+            const after=state.inputMessageObj.slice(index+1);
+            const newArr=[...before, ...after]
+            return {
+                ...state,
+                inputMessageObj: newArr
+            }
+        case 'UNSUBSCRIBE': 
+            return {
+                ...state,
+                unsubscribe: true
+            }
+        case 'SUBSCRIBE': 
+            return {
+                ...state,
+                unsubscribe: false
             }
         default:
             return state;

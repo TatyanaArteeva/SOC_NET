@@ -44,10 +44,16 @@
     background-color: red;
     list-style-type: none;
     text-align: start;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid
 }
 
 .friend{
     background-color: blue;
     list-style-type: none;
     text-align: end;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid
 }
