@@ -1,3 +1,4 @@
+import { Action } from "history"
 
 const initialState={
     windowRegistrationOpen: false,
@@ -39,7 +40,10 @@ const initialState={
     idForDialogFriends: '',
     outputMessage:{},
     inputMessageObj:[],
-    unsubscribe: false
+    unsubscribe: false,
+    currentIdLocation: '',
+    newPost: {},
+    accessesToPosts:{}
 }
 
 
@@ -301,6 +305,12 @@ const reducer=(state=initialState, action)=>{
                 infoRelation: action.infoRelation
                
         }
+        case 'INFO_RELATION_FOR_ACCESSES_TO_POSTS': 
+            return {
+                ...state,
+                accessesToPosts: action.accessesToPosts
+               
+        }
         case 'ACCESSES_GROUP': 
             return {
                 ...state,
@@ -358,6 +368,16 @@ const reducer=(state=initialState, action)=>{
             return {
                 ...state,
                 unsubscribe: false
+            }
+        case 'CURRENT_ID_LOCATION': 
+            return {
+                ...state,
+                currentIdLocation: action.currentIdLocation
+            }
+        case 'NEW_POST': 
+            return {
+                ...state,
+                newPost: action.newPost
             }
         default:
             return state;

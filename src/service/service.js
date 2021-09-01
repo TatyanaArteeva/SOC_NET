@@ -362,6 +362,31 @@ class Service {
         return res
     }
 
+
+    allPosts= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    getAllPosts= async (url, data) => {
+        const res= await this.allPosts(url, data);
+
+        return res
+    }
+
+    informationForInputMessage= async (url)=>{
+        const res= await axios.post(url);
+
+         return res
+    }
+
+    getInformationForInputMessage= async (url) => {
+        const res= await this.informationForInputMessage(url);
+
+        return res
+    }
+
 }
 
 export default Service;

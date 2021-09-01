@@ -3,14 +3,14 @@ import './group.scss';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
-import {groupId, groupAccesses, groupInfoRelation} from '../../actions';
+import {groupId, groupAccesses, groupInfoRelation, currentIdLocation} from '../../actions';
 import {Link, HashRouter} from 'react-router-dom';
 import ModalWindowAllParticipantsGroup from '../modalWindowAllParticipantsGpoup/modalWindowAllParticipantsGroup';
+import PostsList from '../postsList/postsList';
 
-const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRelation, infoRelation})=>{
+const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRelation, infoRelation, currentIdLocation})=>{
     const[nameGroup, setNameGroup]=useState();
     const[themeGroup, setThemeGroup]=useState();
-    // const[ownThemeGroup, setOwnThemeGroup]=useState();
     const[subThemeGroup, setSubThemeGroup]=useState();
     const[descriptionGroup, setDescriptionGroup]=useState();
     const[photoGroup, setPhotoGroup]=useState();
@@ -22,11 +22,11 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
     
     useEffect(()=>{
         let cleanupFunction = false;
+            currentIdLocation(idInUrl)
             const information=async () =>{
             try{
                 const res=await Service.getGroup(`/api/group/${idInUrl}/page-info`);
                 const userGroup=await Service.getUserGroup(`/api/group-relation/get-group-accounts/${idInUrl}?start=0&end=6`);
-                console.log(userGroup)
                     if(!cleanupFunction){
                         groupId(idInUrl)
                         localStorage.setItem('idGroup', idInUrl);
@@ -135,6 +135,12 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
         btnActionGroup=<button onClick={()=>exitFromGroup()}>Выйти из группы</button>;
     }
 
+    let postsContent=<div>Вы не состоите в группе! Контент не доступен!</div>
+    console.log(infoRelation)
+    if(infoRelation.groupRelationStatus==="OWNER" || infoRelation.groupRelationStatus==="PARTICIPANT"){
+        postsContent=<PostsList idForPosts={idInUrl} messageOnWallType={"GROUP"}/>
+    }
+
         return(
             <div>
                 <div className="group">
@@ -161,17 +167,22 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                                 userInGroup.map(el=>{
                                     const imgUser="data:image/jpg;base64," + el.account.photo;
                                     const linkToPageUserGroup=`/${el.account.id}`
-                                    return  <Link to={linkToPageUserGroup}>
-                                                <li key={el.account.id} className="group_participant_item">
+                                    return <li key={el.account.id} className="group_participant_item">
+                                                    <Link to={linkToPageUserGroup}>
                                                     <img src={imgUser} alt="imgUser" className="group_participant_item__img"/>
                                                     <span>{el.account.firstName} {el.account.lastName}</span>
-                                                </li>
-                                            </Link>
+                                                    </Link>
+                                            </li>
+                                            
                                 })
                             }
                         </ul>
                     </div>
-                    <div className="group_publicMessages">Здесь будут новости группы</div>
+                    <div className="group_publicMessages">
+                        Здесь будут новости группы
+                        {postsContent}
+                        {/* <PostsList idForPosts={idInUrl} messageOnWallType={"GROUP"}/> */}
+                    </div>
                 </div>
             </div>
         )
@@ -188,7 +199,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     groupId,
     groupAccesses, 
-    groupInfoRelation
+    groupInfoRelation,
+    currentIdLocation
 }
 
 

@@ -18,7 +18,7 @@ class DetailedInformationBlock extends Component{
         const {Service} = this.props;
 
         this.recepionInformation=()=>{
-            Service.getUserAccountId(this.props.id)
+            Service.getUserAccountId(this.props.idForInfo)
                 .then(res=>{
                     if(res.status===200){
                         this.props.userInformation(res.data)
