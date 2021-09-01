@@ -2,17 +2,17 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import SockJS from 'sockjs-client';
 import { connect } from 'react-redux';
 import { Client } from '@stomp/stompjs';
-import { inputMessageObj } from '../../actions';
+import { inputMessageObj} from '../../actions';
 
 
 
 
-const WebSockets = ({ inputMessageObj, unsubscribe }) => {
+
+const WebSocketsPrivatMessages = ({ inputMessageObj, unsubscribe}) => {
     const idForSubscribe = localStorage.getItem("idUser")
-
-    const[connected, setConnected]=useState();
     
-
+    const[connected, setConnected]=useState();
+  
     const client=useMemo(()=>{
         const connect = new Client({
             connectHeaders: {},
@@ -20,7 +20,6 @@ const WebSockets = ({ inputMessageObj, unsubscribe }) => {
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
             webSocketFactory: () => new SockJS('/messages'),
-    
         });
 
         
@@ -36,6 +35,8 @@ const WebSockets = ({ inputMessageObj, unsubscribe }) => {
         return connect
     },[])
 
+    
+
     client.debug = function (str) {
         console.log(str);
     };
@@ -48,28 +49,36 @@ const WebSockets = ({ inputMessageObj, unsubscribe }) => {
 
     }
 
-    const setSubscribe=useCallback(()=>{
+  
+    const setSubscribePrivatMessages=useCallback(()=>{
         console.log("начинем подписку")
         client.subscribe('/queue/privateMessage/' + idForSubscribe, actionMessage)
     },[])
 
     useEffect(()=>{
         if(connected){
-            setSubscribe()
+            setSubscribePrivatMessages()
+           
         }
     },[connected])
 
-    const setUnsubscribe=useCallback(()=>{
+    
+
+    const setUnsubscribePrivatMessages=useCallback(()=>{
         console.log("начинем отписку");
         client.unsubscribe();
         client.deactivate()
     },[])
 
+    
+
     useEffect(()=>{
         if(unsubscribe){
-            setUnsubscribe()
+            setUnsubscribePrivatMessages()
         }
     },[unsubscribe])
+
+    
    
     return (
         <div>
@@ -81,8 +90,7 @@ const mapStateToProps = (state) => {
     return {
         idUser: state.userId,
         outputMessage: state.outputMessage,
-        unsubscribe: state.unsubscribe
-
+        unsubscribe: state.unsubscribe,
     }
 }
 
@@ -90,5 +98,5 @@ const mapDispatchToProps = {
     inputMessageObj
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WebSockets);
+export default connect(mapStateToProps, mapDispatchToProps)(WebSocketsPrivatMessages);
 

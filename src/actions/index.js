@@ -166,6 +166,16 @@ export const subscribe=()=>{
     return({type: 'SUBSCRIBE'})
 }
 
+export const currentIdLocation=(currentIdLocation)=>{
+    return({type: 'CURRENT_ID_LOCATION', currentIdLocation: currentIdLocation})
+}
+
+export const newPost=(newPost)=>{
+    return({type: 'NEW_POST', newPost: newPost})
+}
+
+
+
 
 
 

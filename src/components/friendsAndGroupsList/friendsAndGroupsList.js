@@ -81,7 +81,6 @@ class FriendsAndGroupsList extends Component{
                          
                         start=end;
                         end=end+10;
-    
                         if(start===this.state.totalSize){
                             return
                         }
