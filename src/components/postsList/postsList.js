@@ -12,8 +12,6 @@ let req=false;
 const localFormatDateByVersionLibMomentReact='lll'
 
 const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageOnWallType, info, groupInfoRelation, accessesToPosts})=>{
-    console.log(accessesToPosts);
-    // console.log(groupInfoRelation)
     const[newPost, setNewPost]=useState();
     const[loadingPosts, setLoadingPosts]=useState(false);
     const[calcIndex, setCalcIndex]=useState(false);
@@ -94,7 +92,6 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
 
     useEffect(()=>{
         let cleanupFunction = false;
-        console.log('loading')
         if(currentIdLocation.length>0 ){
             // getPosts()
             const date=new Date().toISOString();
@@ -112,7 +109,6 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
             Service.getAllPosts(`/api/message/getMessagesOnWall`, objDataForPosts)
                        .then(res=>{
                            if(res.status===200){
-                            console.log("info")
                             if(!cleanupFunction){
                                 setPostsArr(res.data.messages)
                                 setTotalSizePosts(res.data.totalSize)
@@ -171,16 +167,13 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
 
         useEffect(()=>{
             let cleanupFunction = false;
-            console.log("aaaa", req, start, end)
             if(loadingPosts){
-                console.log("запрос", start, end)
                 const objDataForPosts={
                     end: end,
                     start: start,
                     startLoadTime: startDate,
                     targetId: idForPosts
                 }   
-                console.log("вызываем функцию")
                 const inf=async ()=>{
                     try{
                         const res=await Service.getAllPosts(`/api/message/getMessagesOnWall`, objDataForPosts);
@@ -255,7 +248,6 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
     
             if(totalSizePosts>0){
                 posts= postsArr.map((post, index)=>{
-                    console.log("el")
                     const dateMilliseconds=new Date(post.sendDate).getTime();
                     const timeZone=new Date(post.sendDate).getTimezoneOffset()*60*1000;
                     const currentDateMilliseconds=dateMilliseconds-(timeZone);

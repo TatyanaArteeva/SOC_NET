@@ -154,8 +154,17 @@ export const inputMessageObj=(inputMessageObj)=>{
     return({type: 'INPUT_MESSAGE_OBJ', inputMessageObj: inputMessageObj})
 }
 
+export const inputNotificationObj=(inputNotificationObj)=>{
+    return({type: 'INPUT_NOTIFICATION_OBJ', inputNotificationObj: inputNotificationObj})
+}
+
 export const deleteMessageFromInputMessageObj=(message)=>{
     return({type: 'DELETE_MESSAGE_FROM_INPUT_MESSAGE_OBJ', message: message})
+}
+
+export const deleteNotificationFromInputNotificationObj=(notification)=>{
+    // console.log(notification)
+    return({type: 'DELETE_NOTIFICATION_FROM_INPUT_NOTIFICATION_OBJ', notification: notification})
 }
 
 export const unsubscribe=()=>{

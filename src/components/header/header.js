@@ -2,17 +2,22 @@ import React, {Component} from 'react';
 import { HashRouter, Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
-import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe} from '../../actions';
+import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe, inputNotificationObj} from '../../actions';
 import { withRouter } from "react-router";
 import './header.scss';
 import logo from './leaf.svg';
 import arrow from './arrow.svg';
 import HeaderSearch from '../headerSearch/headerSearch';
+import UserNotificationsList from '../userNotificationsList/userNotificationsList';
 
 class Header extends Component{
 
     constructor(props){
         super(props);
+
+        this.state={
+            openNotificationsList: false
+        }
 
         const {Service} = this.props;
 
@@ -41,12 +46,28 @@ class Header extends Component{
                         })
                     }
                 })
+            Service.getUnacceptedNotifications('/api/notification/getUnacceptedNotifications')
+                .then(res=>{
+                    if(res.status===200){
+                        res.data.forEach(el=>{
+                            this.props.inputNotificationObj(el)
+                        })
+                    }
+                })
+        }
+
+        this.openNotificationsList=()=>{
+            this.setState({
+                openNotificationsList: !this.state.openNotificationsList
+            })
         }
 
 
     }
     
     render(){
+
+
 
         const {idUser}=this.props;
         const id=`/${idUser}`;
@@ -58,7 +79,17 @@ class Header extends Component{
             countMessage=this.props.inputMessageCount.length
         }
 
+        let countNotifications=null;
 
+        if(this.props.inputNotificationObjCount.length>0){
+            countNotifications=this.props.inputNotificationObjCount.length
+        }
+
+        let listNotifications=null;
+
+        if(this.state.openNotificationsList){
+            listNotifications=<UserNotificationsList/>
+        }
 
         return (
             <header>
@@ -78,7 +109,9 @@ class Header extends Component{
                             </ul>
                         </div>
                     </ul>
-                    <button onClick={this.goToSettings}>Настройки</button>
+                    <button onClick={this.openNotificationsList}>Уведомления {countNotifications}</button>
+                    {listNotifications}
+                    <button onClick={()=>this.goToSettings()}>Настройки</button>
                     <button onClick={()=>this.exit()}>Выход</button>
                 </nav>
             </header>
@@ -94,7 +127,8 @@ const mapStateToProps=(state)=>{
         idUser: state.userId,
         logoutStatus: state.logout,
         mainPage: state.loginMainPage,
-        inputMessageCount: state.inputMessageObj
+        inputMessageCount: state.inputMessageObj,
+        inputNotificationObjCount: state.inputNotificationObj
     }
 }
 
@@ -102,7 +136,8 @@ const mapDispatchToProps={
         logout,
         displayingLoginAndRegistrationPage,
         inputMessageObj,
-        unsubscribe
+        unsubscribe,
+        inputNotificationObj
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Header)));

@@ -40,6 +40,7 @@ const initialState={
     idForDialogFriends: '',
     outputMessage:{},
     inputMessageObj:[],
+    inputNotificationObj:[],
     unsubscribe: false,
     currentIdLocation: '',
     newPost: {},
@@ -342,10 +343,14 @@ const reducer=(state=initialState, action)=>{
                 outputMessage: action.outputMessage
             }
         case 'INPUT_MESSAGE_OBJ': 
-           
             return {
                 ...state,
                 inputMessageObj: [...state.inputMessageObj ,action.inputMessageObj]
+            }
+        case 'INPUT_NOTIFICATION_OBJ': 
+            return {
+                ...state,
+                inputNotificationObj : [...state.inputNotificationObj ,action.inputNotificationObj]
             }
         case 'DELETE_MESSAGE_FROM_INPUT_MESSAGE_OBJ': 
             const index=state.inputMessageObj.findIndex(el=>{
@@ -358,6 +363,19 @@ const reducer=(state=initialState, action)=>{
             return {
                 ...state,
                 inputMessageObj: newArr
+            }
+        case 'DELETE_NOTIFICATION_FROM_INPUT_NOTIFICATION_OBJ': 
+                // console.log(action.notification)
+            const indexNotification=state.inputNotificationObj.findIndex(el=>{
+                return el.id===action.notification.id
+            })
+
+            const beforeNotificationArr=state.inputNotificationObj.slice(0, indexNotification);
+            const afterNotificationArr=state.inputNotificationObj.slice(indexNotification+1);
+            const newArrNotification=[...beforeNotificationArr, ...afterNotificationArr]
+            return {
+                ...state,
+                inputNotificationObj: newArrNotification
             }
         case 'UNSUBSCRIBE': 
             return {
