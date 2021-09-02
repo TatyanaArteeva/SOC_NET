@@ -28,7 +28,6 @@ class InfoUser extends Component{
             Service.getUserAccountId(this.props.idForInfo)
                 .then(res=>{
                     if(res.status===200){
-                        console.log(res)
                         this.props.userInformation(res.data)
                         this.props.currentIdLocation(this.props.idForInfo)
                     }

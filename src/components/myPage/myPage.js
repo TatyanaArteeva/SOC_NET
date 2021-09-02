@@ -11,7 +11,6 @@ import {connect} from 'react-redux';
 class MyPage extends Component{
     
     render(){
-        console.log(this.props.info)
 
         let postsContent=<div>Вы не друзья! Контент не доступен!</div>;
         if(this.props.info.friendRelationStatus==="SELF" || this.props.info.friendRelationStatus==="FULL"){

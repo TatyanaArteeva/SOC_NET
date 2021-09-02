@@ -1,0 +1,18 @@
+.user-notifications-list{
+    width: 350px;
+    height: 350px;
+    display: block;
+    position: absolute;
+    z-index: 2;
+    background-color: chartreuse;
+    margin-top: 20px;
+    top: 40px;
+    left: 50%;
+    transform: translateX(50%);
+    overflow-y: scroll;
+    &__img{
+        border-radius: 100%;
+        width: 30px;
+        height: 30px;
+    }
+}

@@ -387,6 +387,44 @@ class Service {
         return res
     }
 
+    unacceptedNotifications= async (url)=>{
+        const res= await axios.get(url);
+
+         return res
+    }
+
+    getUnacceptedNotifications= async (url) => {
+        const res= await this.unacceptedNotifications(url);
+
+        return res
+    }
+
+    allNotifications= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    getAllNotifications= async (url, data) => {
+        const res= await this.allPosts(url, data);
+
+        return res
+    }
+
+    notificationRead= async (url, data)=>{
+        const res= await axios.post(url, data);
+
+         return res
+    }
+
+    postNotificationRead= async (url, data) => {
+        const res= await this.messageRead(url, data);
+
+        return res
+    }
+
+    userInfoForNotification
+
 }
 
 export default Service;

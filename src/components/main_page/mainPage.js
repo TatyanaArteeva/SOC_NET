@@ -20,6 +20,7 @@ import AllSearchPage from '../allSearchPage/allSearchPage';
 import ModificationEmailAndPasswordPage from '../modificationEmailAnsPassword/modificationEmailAndPassword';
 import WebSocketsPrivatMessages from '../webSocketsPrivatMessages/webSocketsPrivatMessages';
 import WebSocketsPosts from '../webSocketsPosts/webSocketsPosts';
+import WebSocketsNotifications from '../webSocketsNotifications/webSocketsNotifications';
 import DialogPage from '../DialogPage/dialogPage';
 
 class MainPage extends Component{
@@ -39,6 +40,7 @@ class MainPage extends Component{
                     <Header/>
                     <WebSocketsPrivatMessages/>
                     <WebSocketsPosts/>
+                    <WebSocketsNotifications/>
                     <Switch>
                         <Route path= "/friends" exact component={Friends} />
                         <Route path= "/friends/incoming" component={IncomingFriends} />
