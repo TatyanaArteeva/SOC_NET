@@ -6,6 +6,8 @@ import { withRouter } from "react-router-dom";
 import {outputMessage, deleteMessageFromInputMessageObj} from '../../actions';
 import 'moment/locale/ru';
 import Moment from 'react-moment';
+import Spinner from '../spinner/spinner';
+import SpinnerMini from '../spinner/spinner';
 
 const localFormatDateByVersionLibMomentReact='lll'
 
@@ -27,7 +29,9 @@ class DialogPage extends Component{
             date: '',
             firstNameUser: '',
             lastNameUser: '', 
-            totalSizeMessage: ''
+            totalSizeMessage: '',
+            spinner: true,
+            spinnerMini: false
         }
 
         this.refListMessage=React.createRef();
@@ -84,7 +88,8 @@ class DialogPage extends Component{
                         const arrReverse=res.data.messages.reverse();
                         this.setState({
                             allAndOutputMessage:  arrReverse,
-                            totalSizeMessage: res.data.totalSize
+                            totalSizeMessage: res.data.totalSize,
+                            spinner:false
                         })
                     }
                 })
@@ -200,7 +205,8 @@ class DialogPage extends Component{
 
                     if(this._cleanupFunction){
                         this.setState({
-                            req: true
+                            req: true,
+                            spinnerMini: true
                         },()=>{
                             const objDataForMessages={
                                 end: end,
@@ -215,7 +221,8 @@ class DialogPage extends Component{
                                         const arrReverse=res.data.messages.reverse();
                                         this.setState({
                                             allAndOutputMessage:  [...arrReverse ,...this.state.allAndOutputMessage],
-                                            req: false
+                                            req: false,
+                                            spinnerMini: false,
                                         })
                                     }
                                 })
@@ -241,6 +248,38 @@ class DialogPage extends Component{
     }
 
     render(){
+
+        const messages= this.state.allAndOutputMessage.map(el=>{
+                            const dateMilliseconds=new Date(el.sendDate).getTime();
+                            const timeZone=new Date(el.sendDate).getTimezoneOffset()*60*1000;
+                            const currentDateMilliseconds=dateMilliseconds-(timeZone);
+                            const currentDate=new Date(currentDateMilliseconds)
+
+                            let classMessage="user";
+                            let nameUser=<span>{this.state.firstNameUser} {this.state.lastNameUser}</span>
+
+                            if(el.destinationId===this.props.id){
+                                classMessage="friend"
+                                nameUser=<span>{this.state.firstNameFriends} {this.state.firstNameFriends}</span>
+                            }
+
+                            return  <li key={el.id} className={classMessage}>
+                                            {nameUser}
+                                            {el.content}
+                                            <Moment locale="ru"
+                                                    date={currentDate}
+                                                    format={localFormatDateByVersionLibMomentReact}
+                                                    
+                                            />
+                                            
+                                    </li>
+                        })
+
+
+        const content=this.state.spinner? <Spinner/>: messages
+
+        const miniSpinner=this.state.spinnerMini ? <SpinnerMini/> : null;
+
         return(
             <div className="dialog">
             <div className="dialog__wrapper">
@@ -254,33 +293,10 @@ class DialogPage extends Component{
             <div className="dialog__list"> 
                 <div ref={this.refListMessage} className="wrapperListMessage">
                     <ul>
+                        {miniSpinner}
                         {
-                            this.state.allAndOutputMessage.map(el=>{
-                                const dateMilliseconds=new Date(el.sendDate).getTime();
-                                const timeZone=new Date(el.sendDate).getTimezoneOffset()*60*1000;
-                                const currentDateMilliseconds=dateMilliseconds-(timeZone);
-                                const currentDate=new Date(currentDateMilliseconds)
-
-                                let classMessage="user";
-                                let nameUser=<span>{this.state.firstNameUser} {this.state.lastNameUser}</span>
-
-                                if(el.destinationId===this.props.id){
-                                    classMessage="friend"
-                                    nameUser=<span>{this.state.firstNameFriends} {this.state.firstNameFriends}</span>
-                                }
-
-                                return  <li key={el.id} className={classMessage}>
-                                                {nameUser}
-                                                {el.content}
-                                                <Moment locale="ru"
-                                                        date={currentDate}
-                                                        format={localFormatDateByVersionLibMomentReact}
-                                                        
-                                                />
-                                                
-                                        </li>
-                            })
-                        }  
+                          content
+                        }
                     </ul>
                 </div>
             </div>

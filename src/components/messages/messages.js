@@ -6,6 +6,8 @@ import 'moment/locale/ru';
 import Moment from 'react-moment';
 import './messages.scss';
 import ListFriendsForAddDialog from '../listFriendsForAddDialog/listFriendsForAddDialog';
+import Spinner from '../spinner/spinner';
+import SpinnerMini from '../spinner/spinner';
 
 const localFormatDateByVersionLibMomentReact='lll'
 
@@ -17,7 +19,9 @@ class Messages extends Component{
             totalSizeDialogs: '',
             dialogs: [],
             listForAddDialog: false,
-            req: false
+            req: false,
+            spinner:true,
+            miniSpinner: false
         }
         const {Service}=this.props;
         this.refList=React.createRef();
@@ -30,8 +34,9 @@ class Messages extends Component{
                 .then(res=>{
                     if(res.status===200){
                         this.setState({
+                            spinner:false,
                             totalSizeDialogs: res.data.totalSize,
-                            dialogs: res.data.dialogs
+                            dialogs: res.data.dialogs,
                         })
                     }
                 })
@@ -74,7 +79,8 @@ class Messages extends Component{
 
                     if(this._cleanupFunction){
                         this.setState({
-                            req: true
+                            req: true,
+                            miniSpinner: true
                         },()=>{
                             console.log(start, end)
                             Service.getMessagesAll(`/api/dialog/list?start=${start}&end=${end}`)
@@ -84,7 +90,8 @@ class Messages extends Component{
                                         this.setState({
                                             totalSizeDialogs: res.data.totalSize,
                                             dialogs: [...this.state.dialogs, ...res.data.dialogs],
-                                            req: false
+                                            req: false,
+                                            miniSpinner: false
                                         })
                                     }
                                 })
@@ -176,63 +183,68 @@ class Messages extends Component{
 
 
    render(){
-    let content=this.state.dialogs.map((el, index)=>{
-        let arrUnreadMessage=[];
 
-        arrUnreadMessage=this.props.inputMessage.filter(elInputMessage=>{
-            if(elInputMessage.sourceId===el.account.id){
-                return el
+    let content=null;
+
+    if(this.state.dialogs.length>0 && !this.state.spinner){
+        content=this.state.dialogs.map((el, index)=>{
+            let arrUnreadMessage=[];
+    
+            arrUnreadMessage=this.props.inputMessage.filter(elInputMessage=>{
+                if(elInputMessage.sourceId===el.account.id){
+                    return el
+                }
+            })
+            
+    
+            let addressesLastMessage="Вы"
+    
+            if(el.lastMessage.sourceId!==localStorage.getItem('idUser') || (arrUnreadMessage.length>0 && arrUnreadMessage[arrUnreadMessage.length-1].sourceId!==localStorage.getItem('idUser'))){
+                addressesLastMessage="Друг"
             }
+    
+            let countUnacceptedMessages=null;
+            let lastMessage=el.lastMessage.content;
+    
+            if(arrUnreadMessage.length>0){
+                countUnacceptedMessages=<span>Непрочитанных сообщений: {arrUnreadMessage.length}</span>
+                lastMessage=arrUnreadMessage[arrUnreadMessage.length-1].content
+            }
+    
+            const dateMilliseconds=new Date(el.lastMessage.sendDate).getTime();
+            const timeZone=new Date(el.lastMessage.sendDate).getTimezoneOffset()*60*1000;
+            const currentDateMilliseconds=dateMilliseconds-(timeZone);
+            const currentDate=new Date(currentDateMilliseconds)
+    
+            return<li key={el.account.id}>
+                    {index+1}
+                    <div onClick={()=>this.goToDialogsWithFriend(el.account.id)} className="dialogs__list__item">
+                        <div>
+                            <span>
+                                <img className="dialogs__list__item_img" src={"data:image/jpg;base64," + el.account.photo} alt="photoDialogs"/>
+                            </span>
+                        </div>
+                        <div className="dialogs__list__item_content">
+                            <span className="dialogs__list__item_name">
+                                {el.account.firstName} {el.account.lastName}
+                            </span>
+                            <span>
+                                <Moment locale="ru"
+                                                date={currentDate}
+                                                format={localFormatDateByVersionLibMomentReact}
+                                                
+                                />
+                            </span>
+                            <span>
+                                {addressesLastMessage}: {lastMessage} {countUnacceptedMessages}
+                            </span>
+                        </div>
+                    </div>
+                </li>
         })
-        
+    }
 
-        let addressesLastMessage="Вы"
-
-        if(el.lastMessage.sourceId!==localStorage.getItem('idUser') || (arrUnreadMessage.length>0 && arrUnreadMessage[arrUnreadMessage.length-1].sourceId!==localStorage.getItem('idUser'))){
-            addressesLastMessage="Друг"
-        }
-
-        let countUnacceptedMessages=null;
-        let lastMessage=el.lastMessage.content;
-
-        if(arrUnreadMessage.length>0){
-            countUnacceptedMessages=<span>Непрочитанных сообщений: {arrUnreadMessage.length}</span>
-            lastMessage=arrUnreadMessage[arrUnreadMessage.length-1].content
-        }
-
-        const dateMilliseconds=new Date(el.lastMessage.sendDate).getTime();
-        const timeZone=new Date(el.lastMessage.sendDate).getTimezoneOffset()*60*1000;
-        const currentDateMilliseconds=dateMilliseconds-(timeZone);
-        const currentDate=new Date(currentDateMilliseconds)
-
-        return<li key={el.account.id}>
-                {index+1}
-                <div onClick={()=>this.goToDialogsWithFriend(el.account.id)} className="dialogs__list__item">
-                    <div>
-                        <span>
-                            <img className="dialogs__list__item_img" src={"data:image/jpg;base64," + el.account.photo} alt="photoDialogs"/>
-                        </span>
-                    </div>
-                    <div className="dialogs__list__item_content">
-                        <span className="dialogs__list__item_name">
-                            {el.account.firstName} {el.account.lastName}
-                        </span>
-                        <span>
-                            <Moment locale="ru"
-                                            date={currentDate}
-                                            format={localFormatDateByVersionLibMomentReact}
-                                            
-                            />
-                        </span>
-                        <span>
-                            {addressesLastMessage}: {lastMessage} {countUnacceptedMessages}
-                        </span>
-                    </div>
-                </div>
-            </li>
-    })
-
-    if(this.state.dialogs.length===0){
+    if(this.state.dialogs.length===0 && !this.state.spinner){
         content=<div>
                     У вас пока нет диалогов!
                 </div>
@@ -247,6 +259,9 @@ class Messages extends Component{
                                     <ListFriendsForAddDialog/>
                             </div>
     }
+
+    const contentDialogsList=this.state.spinner ? <Spinner/> : content;
+    const miniSpinner=this.state.miniSpinner ? <SpinnerMini/> : null;
     
     return(
         <>
@@ -257,8 +272,9 @@ class Messages extends Component{
             {this.state.totalSizeDialogs}
             <ul className="dialogs__list" ref={this.refList}>
                 {
-                    content
+                    contentDialogsList
                 }
+                {miniSpinner}
             </ul>
         </>
     )

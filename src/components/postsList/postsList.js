@@ -1,17 +1,18 @@
 
-import React, {useEffect, useState, useRef, useCallback, useMemo} from 'react';
+import React, {useEffect, useState, useRef, useMemo} from 'react';
 import { connect } from 'react-redux';
 import WithService from '../hoc/hoc';
 import 'moment/locale/ru';
 import Moment from 'react-moment';
 import './postsList.scss';
+import SpinnerMini from '../spinner/spinner';
 
 let req=false;
 
 
 const localFormatDateByVersionLibMomentReact='lll'
 
-const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageOnWallType, info, groupInfoRelation, accessesToPosts})=>{
+const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageOnWallType, postsLoading})=>{
     const[newPost, setNewPost]=useState();
     const[loadingPosts, setLoadingPosts]=useState(false);
     const[calcIndex, setCalcIndex]=useState(false);
@@ -22,6 +23,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
     const postListRef=useRef()
     const[start, setStart]=useState(0);
     const [end, setEnd]=useState(10);
+    const [spinnerMini, setSpinnerMini]= useState(false)
     
     function getSimpleAccount(){
         console.log(inputPost)
@@ -45,7 +47,6 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                     }
                     setTotalSizePosts(totalSizePosts + 1)
                     setPostsArr([newEl, ...postsArr])
-
                 }
             })
     }
@@ -62,38 +63,11 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
         return () => cleanupFunction = true;
     }, [newPostInput])
 
-    // const getPosts=useCallback(()=>{
-    //     console.log("el")
-    //     let cleanupFunction = false;
-    //     const date=new Date().toISOString();
-    //     if(!cleanupFunction){
-    //         setStartDate(date)
-    //     }
-        
-    //     const objDataForPosts={
-    //         end: end,
-    //         start: start,
-    //         startLoadTime: date,
-    //         targetId: idForPosts
-    //     }
-
-    //     Service.getAllPosts(`/api/message/getMessagesOnWall`, objDataForPosts)
-    //                .then(res=>{
-    //                    if(res.status===200){
-    //                     console.log("info")
-    //                     if(!cleanupFunction){
-    //                         setPostsArr(res.data.messages)
-    //                         setTotalSizePosts(res.data.totalSize)
-    //                     }
-    //                    }
-    //                }) 
-    //     return () => { cleanupFunction = true;};
-    // },[Service, startDate, getPosts])
+    
 
     useEffect(()=>{
         let cleanupFunction = false;
         if(currentIdLocation.length>0 ){
-            // getPosts()
             const date=new Date().toISOString();
             if(!cleanupFunction){
                 setStartDate(date)
@@ -112,6 +86,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                             if(!cleanupFunction){
                                 setPostsArr(res.data.messages)
                                 setTotalSizePosts(res.data.totalSize)
+                                postsLoading(true)
                             }
                            }
                        }) 
@@ -168,6 +143,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
         useEffect(()=>{
             let cleanupFunction = false;
             if(loadingPosts){
+                setSpinnerMini(true)
                 const objDataForPosts={
                     end: end,
                     start: start,
@@ -179,6 +155,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                         const res=await Service.getAllPosts(`/api/message/getMessagesOnWall`, objDataForPosts);
                         console.log(res)
                         if(!cleanupFunction){
+                            setSpinnerMini(false)
                             setPostsArr([...postsArr , ...res.data.messages])
                             setTotalSizePosts(res.data.totalSize)
                             req=false;
@@ -232,8 +209,6 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                     setCalcIndex(true)
                 }
             }
-            
-            
         })
 
 
@@ -279,6 +254,8 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
             
         }, [totalSizePosts, postsArr])
 
+        const miniSpinner=spinnerMini ? <SpinnerMini/> : null;
+
         return(
             
             <div>
@@ -299,6 +276,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                     {
                         postContent
                     }
+                    {miniSpinner}
                 </ul>
             </div>
         )
@@ -310,9 +288,8 @@ const mapStateToProps = (state) => {
         currentIdLocation: state.currentIdLocation,
         newPostInput: state.newPost,
         accessesToPosts: state.accessesToPosts
-        // info: state.infoRelation,
-        // groupInfoRelation:state.groupInfoRelation
     }
 }
+
 
 export default WithService()(connect(mapStateToProps)(PostsList));

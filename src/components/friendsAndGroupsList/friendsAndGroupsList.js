@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
 import {connect} from 'react-redux';
 import {allSearchValue, idForDialogFriends} from '../../actions';
+import Spinner from '../spinner/spinner';
+import SpinnerMini from '../spinner/spinner';
 
 class FriendsAndGroupsList extends Component{
     _cleanupFunction=false;
@@ -13,7 +15,9 @@ class FriendsAndGroupsList extends Component{
             req: false,
             heightList: '',
             totalSize: '',
-            searchValue: ''
+            searchValue: '',
+            spinner: true,
+            miniSpinner: false
         }
 
         this.refList=React.createRef();
@@ -29,12 +33,16 @@ class FriendsAndGroupsList extends Component{
             end=10;
 
             if(this.props.valueSearch.length>0){
+                this.setState({
+                    spinner: true
+                })
                 Service.getItems(this.props.getItems(start, end), {params:{name: this.props.valueSearch}})
                     .then(res=>{
                         this.props.allSearchValue("")
                         if(this._cleanupFunction){
                             this.setState({
                                 totalSize: res.data.totalSize,
+                                spinner: false
                             })
                             this.props.arrItems(res.data);
                         }
@@ -42,11 +50,14 @@ class FriendsAndGroupsList extends Component{
             }else{
                 Service.getItems(this.props.getItems(start, end))
                     .then(res=>{
-                        if(this._cleanupFunction){
-                            this.setState({
-                                totalSize: res.data.totalSize,
-                            })
-                            this.props.arrItems(res.data);
+                        if(res.status===200){
+                            if(this._cleanupFunction){
+                                this.setState({
+                                    totalSize: res.data.totalSize,
+                                    spinner: false
+                                })
+                                this.props.arrItems(res.data);
+                            }
                         }
                     })
             }
@@ -65,6 +76,7 @@ class FriendsAndGroupsList extends Component{
         
 
         this.componentDidUpdate=()=>{
+            if(this.refList.current!==null && this.refList.current!==undefined){
                 const heightList=this.refList.current.scrollHeight;
  
                 if(heightList!==this.state.heightList){
@@ -96,7 +108,8 @@ class FriendsAndGroupsList extends Component{
                         
                         if(this._cleanupFunction){
                             this.setState({
-                                req: true
+                                req: true,
+                                miniSpinner: true
                             })
                         }
     
@@ -108,7 +121,8 @@ class FriendsAndGroupsList extends Component{
                                     if(this._cleanupFunction){
                                         this.setState({
                                             totalSize: res.data.totalSize,
-                                            req: false
+                                            req: false,
+                                            miniSpinner: false
                                         })
                                         this.props.arrItems(res.data)
                                     }
@@ -119,7 +133,8 @@ class FriendsAndGroupsList extends Component{
                                     if(this._cleanupFunction){
                                         this.setState({
                                             totalSize: res.data.totalSize,
-                                            req: false
+                                            req: false,
+                                            miniSpinner: false
                                         })
                                         this.props.arrItems(res.data)
                                     }
@@ -127,6 +142,7 @@ class FriendsAndGroupsList extends Component{
                         }
                     }
                 })
+            }
 
         }
 
@@ -305,7 +321,8 @@ class FriendsAndGroupsList extends Component{
             start=0;
             end=10;
             this.setState({
-                searchValue: e.target.value
+                searchValue: e.target.value,
+                spinner: true
             })
             Service.getResultForSearch(this.props.getItems(start,end), {params:{name: e.target.value}})
                 .then(res=>{
@@ -313,6 +330,7 @@ class FriendsAndGroupsList extends Component{
                     if(this._cleanupFunction){
                         this.setState({
                             totalSize: res.data.totalSize,
+                            spinner: false
                         })
                         this.props.arrItemsSearch(res.data);
                     }
@@ -341,22 +359,31 @@ class FriendsAndGroupsList extends Component{
                                         </div>                          
         }
 
+        const miniSpinner=this.state.miniSpinner ? <SpinnerMini/> : null;
+
+        const contentGroupsOrFriends=  <div>
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder={this.props.searchName}
+                                    onChange={(e)=>this.postRequestByClickForSearch(e)}
+                                    value={this.state.searchValue}
+                                />
+                            </div>
+                            <div className="myFriends" ref={this.refList}>
+                                <div>Всего {this.props.nameList}: {this.state.totalSize}</div>
+                                <ul className="myGroups_list">
+                                    {contentAndMessageNotContent}
+                                    {miniSpinner}
+                                </ul>
+                            </div>
+                        </div>
+
+        
+        const content=this.state.spinner? <Spinner/> : contentGroupsOrFriends
          return(
             <div>
-                <div>
-                    <input
-                        type="text"
-                        placeholder={this.props.searchName}
-                        onChange={(e)=>this.postRequestByClickForSearch(e)}
-                        value={this.state.searchValue}
-                    />
-                </div>
-                <div className="myFriends" ref={this.refList}>
-                    <div>Всего {this.props.nameList}: {this.state.totalSize}</div>
-                    <ul className="myGroups_list">
-                        {contentAndMessageNotContent}
-                    </ul>
-                </div>
+               {content}
             </div>
         )
      }

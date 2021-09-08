@@ -1,0 +1,47 @@
+.modification{
+    &__wrapper{
+        &__select-partner{
+            position: relative;
+            &__list{
+                position: absolute;
+                visibility: hidden;
+                width: 318px;
+                height: 100px;
+                overflow-y: scroll;
+                box-shadow: 2px 2px 3px 3px #a7a7a7;
+                // border: 2px solid black;
+                border-radius: 10px;
+                opacity: 0;
+                background-color:red;
+                margin-top: 0px;
+                padding: 10px 20px 0px 20px;
+                &__img{
+                    width: 30px;
+                    height: 30px;
+                    object-fit: cover;
+                    border-radius: 100%;
+                }
+
+            }
+        }
+    }
+    
+}
+
+.active{
+    position: absolute;
+    width: 318px;
+    height: 100px;
+    overflow-y: scroll;
+    box-shadow: 2px 2px 3px 3px #a7a7a7;   
+    border-radius: 10px;
+    background-color:red;
+    margin-top: 0px;
+    padding: 10px 20px 0px 20px;
+    visibility:visible;
+    opacity: 1;
+    transition: visibility,  opacity, 1s all;
+    z-index: 1;
+}
+    
+    

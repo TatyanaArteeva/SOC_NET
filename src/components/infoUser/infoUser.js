@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import {connect} from 'react-redux';
 import { userInformation, rights, infoRelation, currentIdLocation} from '../../actions';
 import DetailedInformationBlock from '../detailedInformationBlock/detailedInformationBlock';
+import Spinner from '../spinner/spinner';
 
 class InfoUser extends Component{
     _cleanupFunction=false;
@@ -14,7 +15,8 @@ class InfoUser extends Component{
             btnDetailedInformation:false,
             firstName: '',
             lastName: '',
-            birthDate: ''
+            birthDate: '',
+            spinner: true
         }
         const {Service} = this.props;
 
@@ -37,14 +39,17 @@ class InfoUser extends Component{
                                 firstName: this.props.information.firstName,
                                 lastName: this.props.information.lastName,
                                 birthDate: this.props.information.birthDate,
-                                })
+                                spinner: false
+                            })
                         }
                 });
             Service.getAccountInfo(`/api/account/${this.props.idForInfo}/page-info`)
                 .then(res=>{
                     this.props.rights(res.data.accesses);
                     this.props.infoRelation(res.data.info);
-                });
+                    this.setState({
+                    })
+                })
         }
 
         this.componentDidMount=()=>{
@@ -77,13 +82,18 @@ class InfoUser extends Component{
 
         const blockDetailedInformation=this.state.btnDetailedInformation? <DetailedInformationBlock idForInfo={this.props.idForInfo}/> : null;
 
+        const contentInformation=<>
+                                    {btnModification}
+                                    <div className="profile_name">Мое имя: {this.state.firstName} {this.state.lastName}</div>
+                                    <div className="profile_information_title">Основная информация</div>
+                                    <div className="profile_information__birthday">День рождения: {this.state.birthDate}</div>
+                                    <button onClick={this.detailedInformation}>Показать подробную информацию</button>
+                                </>
+        const content= this.state.spinner ? <Spinner/> : contentInformation
+
         return(
             <div>
-                {btnModification}
-                <div className="profile_name">Мое имя: {this.state.firstName} {this.state.lastName}</div>
-                <div className="profile_information_title">Основная информация</div>
-                <div className="profile_information__birthday">День рождения: {this.state.birthDate}</div>
-                <button onClick={this.detailedInformation}>Показать подробную информацию</button>
+                {content}
                 {blockDetailedInformation}
             </div>
         )

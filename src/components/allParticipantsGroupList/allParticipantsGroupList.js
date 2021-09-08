@@ -5,6 +5,8 @@ import WithService from '../hoc/hoc';
 import {connect} from 'react-redux';
 import {allSearchValue} from '../../actions';
 import './AllParticipantsGroupList.scss';
+import Spinner from '../spinner/spinner';
+import SpinnerMini from '../spinner/spinner';
 
 class AllParticipantsGroupList extends Component{
     _cleanupFunction=false;
@@ -14,7 +16,9 @@ class AllParticipantsGroupList extends Component{
             req: false,
             heightList: '',
             totalSize: '',
-            searchValue: ''
+            searchValue: '',
+            spinner: true,
+            miniSpinner: false
         }
 
         this.refList=React.createRef();
@@ -33,13 +37,12 @@ class AllParticipantsGroupList extends Component{
                     if(this._cleanupFunction){
                         this.setState({
                             totalSize: res.data.totalSize,
+                            spinner: false
                         })
                         this.props.arrItems(res.data);
                     }
                 })
          
-                
-            
         }
 
         this.componentDidMount=()=>{
@@ -54,6 +57,7 @@ class AllParticipantsGroupList extends Component{
         
 
         this.componentDidUpdate=()=>{
+            if(this.refList.current!==null && this.refList.current!==undefined){
                 const heightList=this.refList.current.scrollHeight;
  
                 if(heightList!==this.state.heightList){
@@ -86,7 +90,8 @@ class AllParticipantsGroupList extends Component{
                         
                         if(this._cleanupFunction){
                             this.setState({
-                                req: true
+                                req: true,
+                                miniSpinner: true
                             })
                         }
     
@@ -95,7 +100,8 @@ class AllParticipantsGroupList extends Component{
                                 if(this._cleanupFunction){
                                     this.setState({
                                         totalSize: res.data.totalSize,
-                                        req: false
+                                        req: false,
+                                        miniSpinner: false
                                     })
                                     this.props.arrItems(res.data)
                                 }
@@ -103,6 +109,7 @@ class AllParticipantsGroupList extends Component{
                         
                     }
                 })
+            }
 
         }
 
@@ -116,24 +123,29 @@ class AllParticipantsGroupList extends Component{
 
         let contentAndMessageNotContent=null;
 
-        if(this.props.renderItems.length===0){
+        if(this.props.renderItems.length===0 && !this.state.spinner){
             contentAndMessageNotContent=<div>
                                         {this.props.messageNotContent}
                                       </div>
         }
 
-        if(this.props.renderItems.length>0){
+        const miniSpinner=this.state.miniSpinner ? <SpinnerMini/> : null;
+
+        if(this.props.renderItems.length>0 && !this.state.spinner){
             contentAndMessageNotContent=<div className="participantsGroupList__wrapper">
                                             {this.props.titleItem(this.props.renderItems, this.goToItem)}
+                                            {miniSpinner}
                                         </div>                          
         }
+
+        const content=this.state.spinner? <Spinner/>: contentAndMessageNotContent
 
          return(
             <div>
                 <div className="participantsGroupList" ref={this.refList}>
                     <div>Всего {this.props.nameList}: {this.state.totalSize}</div>
                     <ul className="participantsGroupList_list">
-                        {contentAndMessageNotContent}
+                        {content}
                     </ul>
                 </div>
             </div>

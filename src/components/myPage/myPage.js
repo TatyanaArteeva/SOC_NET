@@ -29,7 +29,6 @@ class MyPage extends Component{
                         <div className="profile_publicMessages">
                             Здесь будут записи со стены
                             {postsContent}
-                            {/* <PostsList idForPosts={this.props.idInUrl}  messageOnWallType={"ACCOUNT"}/> */}
                         </div>
                 </div>
             </div>

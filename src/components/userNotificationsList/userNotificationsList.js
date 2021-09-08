@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import { deleteNotificationFromInputNotificationObj} from '../../actions';
 import 'moment/locale/ru';
 import Moment from 'react-moment';
+import Spinner from '../spinner/spinner';
 
 const localFormatDateByVersionLibMomentReact='lll'
 
@@ -19,7 +20,8 @@ class UserNotificationsList extends Component{
             idUser:'',
             totalSizeNotifications: '',
             renderItems:false,
-            req: false
+            req: false,
+            spinner:true
         }
 
         let start=0;
@@ -58,7 +60,8 @@ class UserNotificationsList extends Component{
                                 totalSizeNotifications: res.data.totalSize,
                                 arrNotifications:[...this.state.arrNotifications, ...res.data.notifications],
                                 renderItems: true,
-                                req: false
+                                req: false,
+                                spinner: false
                             })
                         }
 
@@ -180,10 +183,6 @@ class UserNotificationsList extends Component{
                 }
             }
 
-
-
-        
-
         }
 
                 
@@ -195,9 +194,13 @@ class UserNotificationsList extends Component{
     render(){
         console.log(this.state.arrNotifications)
 
-        let notificationsContent=<div>У Вас нет уведомлений!</div>;
+        let notificationsContent=null;
 
-        if(this.state.arrNotifications.length>0 || this.props.inputNotificationObj.length>0){
+        if(this.state.arrNotifications.length===0 && !this.state.spinner){
+            notificationsContent=<div>У Вас нет уведомлений!</div>;
+        }
+
+        if((this.state.arrNotifications.length>0 && !this.state.spinner) || (this.props.inputNotificationObj.length>0 && !this.state.spinner)){
             notificationsContent= <ul ref={this.refList}>
                                         {
                                             this.state.arrNotifications.map((el,index)=>{
@@ -233,6 +236,14 @@ class UserNotificationsList extends Component{
                                                     messageNotification="отменил свою заявку в друзья"
                                                 }
 
+                                                if(el.notificationType==="ADD_PARTNER"){
+                                                    messageNotification="Начал с Вами отношения"
+                                                }
+
+                                                if(el.notificationType==="REMOVE_PARTNER"){
+                                                    messageNotification="Прекратил с Вами отношения"
+                                                }
+
 
                                                 return <li key={el.id}>
                                                             <div>{index+1}</div>
@@ -250,10 +261,12 @@ class UserNotificationsList extends Component{
                                     </ul>
         }
 
+        const content=this.state.spinner ? <Spinner/> : notificationsContent
+
         return (
             <div className="user-notifications-list">
                 <div>{this.state.totalSizeNotifications}</div>
-                {notificationsContent}
+                {content}
             </div>
         )
     }
