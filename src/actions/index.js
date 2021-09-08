@@ -183,6 +183,18 @@ export const newPost=(newPost)=>{
     return({type: 'NEW_POST', newPost: newPost})
 }
 
+export const pathLink=(pathLink)=>{
+    console.log(pathLink)
+    return({type: 'PATH_LINK', pathLink: pathLink})
+}
+
+export const actionTransitionModification=(actionTransitionModification)=>{
+    console.log(actionTransitionModification)
+    return({type: 'ACTION_TRANSITION_MODIFICATION', actionTransitionModification: actionTransitionModification })
+}
+
+
+
 
 
 

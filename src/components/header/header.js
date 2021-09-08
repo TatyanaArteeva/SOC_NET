@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { HashRouter, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
-import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe, inputNotificationObj} from '../../actions';
+import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe, inputNotificationObj, pathLink} from '../../actions';
 import { withRouter } from "react-router";
 import './header.scss';
 import logo from './leaf.svg';
@@ -100,12 +100,12 @@ class Header extends Component{
                         <div className="header__menu__wrapper">
                             <h1 className="header__menu__wrapper__button">Меню <img src={arrow} alt="arrow"/>{countMessage}</h1>
                             <ul className="header__menu__wrapper__list">
-                                <HashRouter>
-                                    <li className="header__menu__wrapper__list__item"><Link to={id}>Моя страница</Link></li>
-                                    <li className="header__menu__wrapper__list__item"><Link to="/friends">Друзья</Link></li>
-                                    <li className="header__menu__wrapper__list__item"><Link to="/messages">Сообщения</Link></li>
-                                    <li className="header__menu__wrapper__list__item"><Link to="/groups"> Группы</Link></li>
-                                </HashRouter>
+                                {/* <HashRouter> */}
+                                    <li className="header__menu__wrapper__list__item" onClick={()=>this.props.pathLink(`${id}`)}><Link to={id}>Моя страница</Link></li>
+                                    <li className="header__menu__wrapper__list__item"><Link to="/friends" onClick={()=>this.props.pathLink("/friends")}>Друзья</Link></li>
+                                    <li className="header__menu__wrapper__list__item"><Link to="/messages" onClick={()=>this.props.pathLink("/messages")}>Сообщения</Link></li>
+                                    <li className="header__menu__wrapper__list__item"><Link to="/groups" onClick={()=>this.props.pathLink("/groups")}>Группы</Link></li>
+                                {/* </HashRouter> */}
                             </ul>
                         </div>
                     </ul>
@@ -137,7 +137,8 @@ const mapDispatchToProps={
         displayingLoginAndRegistrationPage,
         inputMessageObj,
         unsubscribe,
-        inputNotificationObj
+        inputNotificationObj,
+        pathLink
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Header)));

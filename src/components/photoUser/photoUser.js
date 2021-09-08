@@ -11,9 +11,6 @@ class PhotoUser extends Component{
 
     constructor(props){
         super(props);
-
-
-
         this.changePhoto=()=>{
             this.props.modalWindowForMainPhotoOptionsOpen();
         }
@@ -41,7 +38,14 @@ class PhotoUser extends Component{
 
         this.componentDidUpdate=(prevProps)=>{
             if(prevProps.idForPhoto!==this.props.idForPhoto || "#" + this.props.match.params.id){
-                this.inf()
+                Service.getAccountPhoto(`/api/account/${this.props.idForPhoto}/photo`, {
+                    responseType: 'arraybuffer'
+                    })
+                    .then(response => {
+                        photo=Buffer.from(response.data, 'binary').toString('base64');
+                        const newFormatPhoto="data:image/jpg;base64," + photo;
+                        this.props.photoUser(newFormatPhoto)
+                    });
             }
             
         }

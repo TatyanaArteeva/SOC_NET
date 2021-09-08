@@ -4,6 +4,8 @@ import WithService from '../hoc/hoc';
 import {groupId, modalWindowInvalidFilesOpen, modalWindowInvalidFilesClose, modalWindowForUserNotificationCreatingGroupOpen, modalWindowForUserNotificationCreatingGroupClose} from '../../actions';
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
+import PromptNav from'../PromptNav/promptNav';
+import Spinner from '../spinner/spinner';
 
 class ModificationGroup extends Component{
     _cleanupFunction = false;
@@ -18,6 +20,8 @@ class ModificationGroup extends Component{
             photo: '',
             photoName: '',
             id:'',
+            nav:true,
+            spinner:true
         }
 
         const {Service} = this.props;
@@ -35,7 +39,9 @@ class ModificationGroup extends Component{
                             subTheme: res.data.subTheme,
                             description: res.data.description,
                             photoName: res.data.photoName,
-                            id: res.data.id
+                            id: res.data.id,
+                            nav:false,
+                            spinner: false
                         }) 
                         
                         function dataURItoBlob(dataURI) {
@@ -148,6 +154,9 @@ class ModificationGroup extends Component{
             
             console.log("hi")
             event.preventDefault();
+            this.setState({
+                spinner:true
+            })
             const formData=new FormData();
 
             if(this.state.photo.length===0){
@@ -178,6 +187,10 @@ class ModificationGroup extends Component{
                         console.log(res.data.id)
                         this.props.groupId(res.data.id)
                         console.log(this.props.idGroup)
+                        this.setState({
+                            nav: true,
+                            spinner:false
+                        })
                         this.props.modalWindowForUserNotificationCreatingGroupOpen();
                         setTimeout(()=>{
                             if(blockingTimerCloseNotificationSuccessfulModificationGroup===false){
@@ -253,82 +266,89 @@ class ModificationGroup extends Component{
         inputPhoto=notificationSelectedPhoto
     }
 
+    const contentModification=<div>
+                                <PromptNav when={this.state.nav===false}/>
+                                <form>
+                                    <label>Название группы: 
+                                        <input 
+                                            onChange={this.valueGroupName} 
+                                            type="text" 
+                                            name="groupName" 
+                                            placeholder="Укажите название группы" 
+                                            value={this.state.name}
+                                            required/> 
+                                    </label>
+                                    <label>Тематика группы: 
+                                        <select 
+                                            onChange={this.valueThemeGroup}
+                                            value={this.state.theme} 
+                                            name="themeGroup">
+                                            <option>Не выбрано</option>
+                                            <option>Авто и автовладельцы</option>
+                                            <option>Благотворительность</option>
+                                            <option>Велосипеды</option>
+                                            <option>Видеоигры</option>
+                                            <option>Водный транспорт</option>
+                                            <option>Городское сообщество</option>
+                                            <option>Дизайн, интерьер</option>
+                                            <option>Дикие животные</option>
+                                            <option>Домашние животные</option>
+                                            <option>Друзья</option>
+                                            <option>Еда</option>
+                                            <option>Здоровье</option>
+                                            <option>Компьютеры, интернет</option>
+                                            <option>Красота</option>
+                                            <option>Кулинария</option>
+                                            <option>Медицина</option>
+                                            <option>Недвижимость</option>
+                                            <option>Образование</option>
+                                            <option>Объявления</option>
+                                            <option>Отношения, семья</option>
+                                            <option>Развлечения</option>
+                                            <option>Спорт</option>
+                                            <option>Туризм, путешествия</option>
+                                            <option>Увлечения, хобби</option>
+                                            <option>Финансы</option>
+                                            <option>Другое</option>
+                                        </select> 
+                                    </label>
+                                    { selectionTheme}
+                                    <label> Учитывая тему, укажите подтему группы: 
+                                            <input 
+                                                onChange={this.valueSubthemeGroup} 
+                                                type="text" 
+                                                name="subThemeGroup" 
+                                                placeholder="Подтема группы" 
+                                                value={this.state.subTheme}
+                                            /> 
+                                    </label>
+                                    <label>Описание группы: 
+                                        <textarea  
+                                            onChange={this.valueDescriptionGroup} 
+                                            name="description" 
+                                            placeholder="Описание группы"
+                                            value={this.state.description}/> 
+                                    </label>
+                                    {inputPhoto}
+                                    {modalWindowMessageInvalidFile}
+                                    <div>
+                                        Указать организатора группы
+                                    </div>
+                                </form>
+                                <button onClick={this.modificationGroup}>Сохранить</button>
+                                <HashRouter>
+                                    <Link to={cancelFromModificationGroupLink}><button>Отмена</button></Link>
+                                </HashRouter>
+                                {modalWindowUserNotificationCreatingGroup}
+                            </div>
+
+        const content=this.state.spinner? <Spinner/> : contentModification
+
 
         return (
-            <div>
-                <form>
-                    <label>Название группы: 
-                        <input 
-                            onChange={this.valueGroupName} 
-                            type="text" 
-                            name="groupName" 
-                            placeholder="Укажите название группы" 
-                            value={this.state.name}
-                            required/> 
-                    </label>
-                    <label>Тематика группы: 
-                        <select 
-                            onChange={this.valueThemeGroup}
-                            value={this.state.theme} 
-                            name="themeGroup">
-                            <option>Не выбрано</option>
-                            <option>Авто и автовладельцы</option>
-                            <option>Благотворительность</option>
-                            <option>Велосипеды</option>
-                            <option>Видеоигры</option>
-                            <option>Водный транспорт</option>
-                            <option>Городское сообщество</option>
-                            <option>Дизайн, интерьер</option>
-                            <option>Дикие животные</option>
-                            <option>Домашние животные</option>
-                            <option>Друзья</option>
-                            <option>Еда</option>
-                            <option>Здоровье</option>
-                            <option>Компьютеры, интернет</option>
-                            <option>Красота</option>
-                            <option>Кулинария</option>
-                            <option>Медицина</option>
-                            <option>Недвижимость</option>
-                            <option>Образование</option>
-                            <option>Объявления</option>
-                            <option>Отношения, семья</option>
-                            <option>Развлечения</option>
-                            <option>Спорт</option>
-                            <option>Туризм, путешествия</option>
-                            <option>Увлечения, хобби</option>
-                            <option>Финансы</option>
-                            <option>Другое</option>
-                        </select> 
-                    </label>
-                    { selectionTheme}
-                    <label> Учитывая тему, укажите подтему группы: 
-                            <input 
-                                onChange={this.valueSubthemeGroup} 
-                                type="text" 
-                                name="subThemeGroup" 
-                                placeholder="Подтема группы" 
-                                value={this.state.subTheme}
-                            /> 
-                    </label>
-                    <label>Описание группы: 
-                        <textarea  
-                            onChange={this.valueDescriptionGroup} 
-                            name="description" 
-                            placeholder="Описание группы"
-                            value={this.state.description}/> 
-                    </label>
-                    {inputPhoto}
-                    {modalWindowMessageInvalidFile}
-                    <div>
-                        Указать организатора группы
-                    </div>
-                </form>
-                <button onClick={this.modificationGroup}>Сохранить</button>
-                <HashRouter>
-                    <Link to={cancelFromModificationGroupLink}><button>Отмена</button></Link>
-                </HashRouter>
-                {modalWindowUserNotificationCreatingGroup}
-            </div>
+            <>
+                {content}
+            </>
         )
    }
 }

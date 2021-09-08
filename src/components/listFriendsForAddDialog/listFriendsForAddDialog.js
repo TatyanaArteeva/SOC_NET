@@ -5,7 +5,6 @@ import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import {Link, HashRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-
 class ListFriendsForAddDialog extends Component{
 
     constructor(props){

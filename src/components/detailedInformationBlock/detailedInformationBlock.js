@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
 import { userAccesses, userInformation} from '../../actions';
+import {Link} from 'react-router-dom';
+import Spinner from '../spinner/spinner';
 
 class DetailedInformationBlock extends Component{
     constructor(props){
@@ -12,7 +14,9 @@ class DetailedInformationBlock extends Component{
             phone: '',
             familyStatus: '',
             employment: '',
-            description: ''
+            description: '',
+            partner:{},
+            spinner: true
         }
 
         const {Service} = this.props;
@@ -21,7 +25,24 @@ class DetailedInformationBlock extends Component{
             Service.getUserAccountId(this.props.idForInfo)
                 .then(res=>{
                     if(res.status===200){
-                        this.props.userInformation(res.data)
+                        console.log(res)
+                        const objForModificationInformation={
+                            sex: res.data.sex,
+                            city: res.data.city,
+                            phone: res.data.phone,
+                            familyStatus: res.data.familyStatus,
+                            employment: res.data.employment,
+                            description: res.data.description,
+                            birthDate: res.data.birthDate,
+                            email: res.data.email,
+                            id: res.data.id,
+
+                        }
+                        console.log(objForModificationInformation)
+                        this.props.userInformation(objForModificationInformation)
+                        this.setState({
+                            partner: res.data.partner
+                        })
                     }
                 }).then(res=>{
                     this.setState({
@@ -30,7 +51,9 @@ class DetailedInformationBlock extends Component{
                         phone: this.props.information.phone,
                         familyStatus: this.props.information.familyStatus,
                         employment: this.props.information.employment,
-                        description: this.props.information.description
+                        description: this.props.information.description,
+                        spinner: false
+                        
                     })
                 })    
         }
@@ -45,15 +68,29 @@ class DetailedInformationBlock extends Component{
     render(){
 
         console.log(this.state)
+        let partnerName=null;
+        let partnerPrefix=null;
         
+
+        if(this.state.partner!==null && this.state.partner.accepted===true ){
+            partnerName= <Link to={this.state.partner.id}>{this.state.partner.firstName} {this.state.partner.lastName}</Link>
+            partnerPrefix="c"
+        }
+
+        const contentDetailedInformation=<div>
+                                            <div className="profile_information__sex">Пол: {this.state.sex}</div>
+                                            <div className="profile_information__city">Город: {this.state.city}</div>
+                                            <div className="profile_information__phone">Мой номер телефона: {this.state.phone}</div>
+                                            <div className="profile_information__familyStatus">Семейное положение: {this.state.familyStatus} {partnerPrefix} {partnerName}</div>
+                                            <div className="profile_information__education">Место учебы или работы: {this.state.employment}</div>
+                                            <div className="profile_information__personal">Обо мне: {this.state.description}</div> 
+                                        </div>
+
+        const content=this.state.spinner? <Spinner/>: contentDetailedInformation        
+
         return (
             <div>
-                <div className="profile_information__sex">Пол: {this.state.sex}</div>
-                <div className="profile_information__city">Город: {this.state.city}</div>
-                <div className="profile_information__phone">Мой номер телефона: {this.state.phone}</div>
-                <div className="profile_information__familyStatus">Семейное положение: {this.state.familyStatus}</div>
-                <div className="profile_information__education">Место учебы или работы: {this.state.employment}</div>
-                <div className="profile_information__personal">Обо мне: {this.state.description}</div> 
+                {content}
             </div>
         )
     }

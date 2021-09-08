@@ -3,6 +3,7 @@ import WithService from '../hoc/hoc';
 import { connect } from 'react-redux';
 import eye from './eye.svg';
 import eyeBlocked from './eyeBlocked.svg';
+import Spinner from '../spinner/spinner';
 
 class ModificationEmailAndPasswordPage extends Component {
     constructor(props) {
@@ -25,7 +26,8 @@ class ModificationEmailAndPasswordPage extends Component {
             modalWindowIdenticalPassword:false,
             hiddenOldPassword: true,
             hiddenNewPassword: true,
-            hiddenRepiatNewPassword: true
+            hiddenRepiatNewPassword: true,
+            spinner:false,
         }
 
 
@@ -124,6 +126,9 @@ class ModificationEmailAndPasswordPage extends Component {
                         modalWindowIdenticalEmail: true
                     })
                 }else{
+                    this.setState({
+                        spinner:true
+                    })
                     const emailModificationObj = {
                         email: this.state.newEmail,
                         accountId: this.state.accountId
@@ -132,6 +137,7 @@ class ModificationEmailAndPasswordPage extends Component {
                         .then(res => {
                             if (res.status === 200) {
                                 this.setState({
+                                    spinner:false,
                                     modalWindowSuccessfullyEmailChanged: true,
                                     modificationEmail: false,
                                     newEmail: ''
@@ -140,9 +146,10 @@ class ModificationEmailAndPasswordPage extends Component {
                                 Service.getUserAccountId(this.props.id)
                                     .then(res => {
                                         if (res.status === 200) {
+                                            console.log(res)
                                             this.setState({
                                                 email: res.data.email,
-                                                accountId: res.data.accountId
+                                                accountId: res.data.id
                                             })
                                         }
                                     })
@@ -222,10 +229,8 @@ class ModificationEmailAndPasswordPage extends Component {
                 const twoInvalidSymbol = '    ';
                 const valuePassword = this.state.newPassword;
                 let validPassword = false;
-
                 const oneCheck = valuePassword.indexOf(OneInvalidSymbol);
                 const twoCheck = valuePassword.indexOf(twoInvalidSymbol);
-
                 if (oneCheck === -1 && twoCheck === -1) {
                     validPassword = true;
                     console.log(validPassword)
@@ -243,12 +248,19 @@ class ModificationEmailAndPasswordPage extends Component {
                                 newPassword: this.state.newPassword,
                                 oldPassword: this.state.oldPassword
                             };
+                            console.log(passwordModificationObj)
+                            this.setState({
+                                spinner:true
+                            })
                             Service.postModificationUser('/api/account/change-credentials', passwordModificationObj)
                                 .then(res => {
                                     if (res.status === 200) {
                                         console.log("пароль заменили");
                                         console.log(res)
                                         console.log(this.state)
+                                        this.setState({
+                                            spinner:false
+                                        })
                                         this.updatingData()
                                     }
                                 })
@@ -291,6 +303,8 @@ class ModificationEmailAndPasswordPage extends Component {
 
 
     render() {
+
+        console.log(this.state)
 
         if (this.state.modalWindowSuccessfullyPasswordChanged) {
             setTimeout(this.closeModalWindowSuccessfullyPaswordChange, 2000)
@@ -446,31 +460,39 @@ class ModificationEmailAndPasswordPage extends Component {
                                             </div>
         }
 
+        const contentModificationEmail=<div>
+                                    Изменение E-mail:
+                                    <br />
+                                    <hr />
+                                    Ваш текущий E-mail: <span>{this.state.email}</span>
+                                    {buttonModificationEmail}
+                                    {newEmailBlock}
+                                    {modalWindowSuccessfullyEmailChanged}
+                                    {modalWindowNewEmailIsNull}
+                                    {modalWindowIdenticalEmail}
+                                </div>
+
+        const contentModificationPassword=<div>
+                                            Изменение пароля:
+                                            <br />
+                                            <hr />
+                                            {buttonModificationPassword}
+                                            {newPasswordBlock}
+                                            {modalWindowInvalidPasswordMessage}
+                                            {passwordDontMatchMessageModalWindow}
+                                            {modalWindowSuccessfullyPasswordChange}
+                                            {modalWindowIdenticalPassword}
+                                        </div>
+
+        const allContent=<>
+                            {contentModificationEmail}
+                            {contentModificationPassword}
+                        </>
+        const content=this.state.spinner ? <Spinner/> : allContent;
+        // const contentPassword=this.state.spinnerEmail ? <SpinnerPassword/> : contentModificationPassword;
         return (
             <div>
-                <div>
-                    Изменение E-mail:
-                    <br />
-                    <hr />
-                    Ваш текущий E-mail: <span>{this.state.email}</span>
-                    {buttonModificationEmail}
-                    {newEmailBlock}
-                    {modalWindowSuccessfullyEmailChanged}
-                    {modalWindowNewEmailIsNull}
-                    {modalWindowIdenticalEmail}
-                </div>
-
-                <div>
-                    Изменение пароля:
-                    <br />
-                    <hr />
-                    {buttonModificationPassword}
-                    {newPasswordBlock}
-                    {modalWindowInvalidPasswordMessage}
-                    {passwordDontMatchMessageModalWindow}
-                    {modalWindowSuccessfullyPasswordChange}
-                    {modalWindowIdenticalPassword}
-                </div>
+                {content}
             </div>
         )
     }

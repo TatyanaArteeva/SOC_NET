@@ -7,6 +7,7 @@ import {groupId, groupAccesses, groupInfoRelation, currentIdLocation} from '../.
 import {Link, HashRouter} from 'react-router-dom';
 import ModalWindowAllParticipantsGroup from '../modalWindowAllParticipantsGpoup/modalWindowAllParticipantsGroup';
 import PostsList from '../postsList/postsList';
+import Spinner from '../spinner/spinner';
 
 const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRelation, infoRelation, currentIdLocation})=>{
     const[nameGroup, setNameGroup]=useState();
@@ -19,6 +20,7 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
     const[userInGroup, setUsersInGroup]=useState([]);
     const [totalSizeUserInGroup, setTotalSizeUserInGroup]=useState();
     const [modalWindowAllParticipantsGroup, setModalWindowAllParticipantsGroup]=useState(false);
+    const [spinner, setSpinner]=useState(true)
     
     useEffect(()=>{
         let cleanupFunction = false;
@@ -50,7 +52,8 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                         const newFormatPhoto="data:image/jpg;base64," + res.data.group.photo;
                         setPhotoGroup(newFormatPhoto);
                         groupAccesses(res.data.accesses);
-                        groupInfoRelation(res.data.info);
+                        groupInfoRelation(res.data.info);  
+                        setSpinner(false)
                     }
             }catch(e){
                 console.log(e)
@@ -141,47 +144,52 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
         postsContent=<PostsList idForPosts={idInUrl} messageOnWallType={"GROUP"}/>
     }
 
+    const groupContent= <>
+                             <div className="group_photo">
+                                <div className="photo"><img className="photoUser" src={photoGroup}  alt="photoGroup"/></div>
+                                {btnActionGroup}
+                            </div>
+                            <div className="group_information">
+                                {btnModificationGroup}
+                                <div className="group_name">Название группы: {nameGroup}</div>
+                                <div className="group_information_theme">здесь будет тема: {themeGroup}</div>
+                                <div className="group_information__subTheme">Здесь будет субтема: {subThemeGroup}</div>
+                                <div className="group_information__description">Здесь будет описание: {descriptionGroup}</div>
+                                <div className="group_information__admin">Здесь будет администратор группы</div>
+                            </div>
+                            <div>
+                                
+                                <div>Участники группы: {totalSizeUserInGroup}
+                                    <button onClick={openAllUserGroup}>Показать всех</button>
+                                    {modalWindowAllParticipants}
+                                </div>
+                                <ul className="group_participants">
+                                    {
+                                        userInGroup.map(el=>{
+                                            const imgUser="data:image/jpg;base64," + el.account.photo;
+                                            const linkToPageUserGroup=`/${el.account.id}`
+                                            return <li key={el.account.id} className="group_participant_item">
+                                                            <Link to={linkToPageUserGroup}>
+                                                            <img src={imgUser} alt="imgUser" className="group_participant_item__img"/>
+                                                            <span>{el.account.firstName} {el.account.lastName}</span>
+                                                            </Link>
+                                                    </li>
+                                                    
+                                        })
+                                    }
+                                </ul>
+                            </div>
+                        </>
+
+        const content=spinner? <Spinner/>: groupContent;
+
         return(
             <div>
                 <div className="group">
-                    <div className="group_photo">
-                        <div className="photo"><img className="photoUser" src={photoGroup}  alt="photoGroup"/></div>
-                        {btnActionGroup}
-                    </div>
-                    <div className="group_information">
-                        {btnModificationGroup}
-                        <div className="group_name">Название группы: {nameGroup}</div>
-                        <div className="group_information_theme">здесь будет тема: {themeGroup}</div>
-                        <div className="group_information__subTheme">Здесь будет субтема: {subThemeGroup}</div>
-                        <div className="group_information__description">Здесь будет описание: {descriptionGroup}</div>
-                        <div className="group_information__admin">Здесь будет администратор группы</div>
-                    </div>
-                    <div>
-                        
-                        <div>Участники группы: {totalSizeUserInGroup}
-                            <button onClick={openAllUserGroup}>Показать всех</button>
-                            {modalWindowAllParticipants}
-                        </div>
-                        <ul className="group_participants">
-                            {
-                                userInGroup.map(el=>{
-                                    const imgUser="data:image/jpg;base64," + el.account.photo;
-                                    const linkToPageUserGroup=`/${el.account.id}`
-                                    return <li key={el.account.id} className="group_participant_item">
-                                                    <Link to={linkToPageUserGroup}>
-                                                    <img src={imgUser} alt="imgUser" className="group_participant_item__img"/>
-                                                    <span>{el.account.firstName} {el.account.lastName}</span>
-                                                    </Link>
-                                            </li>
-                                            
-                                })
-                            }
-                        </ul>
-                    </div>
+                    {content}
                     <div className="group_publicMessages">
                         Здесь будут новости группы
                         {postsContent}
-                        {/* <PostsList idForPosts={idInUrl} messageOnWallType={"GROUP"}/> */}
                     </div>
                 </div>
             </div>

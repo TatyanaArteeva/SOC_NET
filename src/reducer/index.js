@@ -44,7 +44,9 @@ const initialState={
     unsubscribe: false,
     currentIdLocation: '',
     newPost: {},
-    accessesToPosts:{}
+    accessesToPosts:{},
+    pathLink: '',
+    actionTransitionModification: '',
 }
 
 
@@ -132,15 +134,24 @@ const reducer=(state=initialState, action)=>{
         case 'USER_INFORMATION':
             const information=action.information;
             for(let key in information){
-                        if(information[key]===null || information[key]===undefined){
+                        if(information[key]===null || information[key]===undefined || information[key].length===0){
                             information[key]= "Информация отсутствует"
                         }
                     }
             if(information.sex==="MALE"){
                 information.sex="мужской"
-            }
-            if(information.sex==="FEMALE"){
+            }else if(information.sex==="FEMALE"){
                 information.sex="женский"
+            }else if(information.sex.length===0 || information.sex===null){
+                information.sex="Не выбрано"
+            }
+
+            if(information.familyStatus==="RELATION"){
+                information.familyStatus="В отношениях"
+            }else if(information.familyStatus==="NO_RELATION"){
+                information.familyStatus="Не в отношениях"
+            }else if(information.familyStatus==="ACTIVE_SEARCH"){
+                information.familyStatus="В активном поиске"
             }
             
             const months={
@@ -397,6 +408,19 @@ const reducer=(state=initialState, action)=>{
                 ...state,
                 newPost: action.newPost
             }
+        case 'PATH_LINK': 
+        console.log(action.pathLink)
+            return {
+                ...state,
+                pathLink: action.pathLink
+            }
+        case 'ACTION_TRANSITION_MODIFICATION': 
+            console.log(action.actionTransitionModification)
+            return {
+                ...state,
+                actionTransitionModification: action.actionTransitionModification
+            }
+        
         default:
             return state;
     }
