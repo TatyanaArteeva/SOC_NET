@@ -6,10 +6,10 @@
 }
 
 .calendar{
-    background-color:$main-color-light;
+    background-color:$background-color;
     font-size: 16px;
     font-family: Raleway, sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     border: none;
     left: 0px;
     transform: translateX(calc(-50% + 164px));
@@ -17,13 +17,6 @@
 
 .buttonCleaner{
     top: 8px;
-    padding: 0px 3px 0px 0px;
-    &::after{
-        background-color: $main-color-light;
-        font-size: 17px;
-        height: 20px;
-        width: 20px;
-    }
 }
 
 .react-datepicker__header{
@@ -101,6 +94,13 @@
     display: none;
 }
 
-// .react-datepicker__close-icon {
-//     padding: 0px 3px 0px 0px;
-// }
+.react-datepicker__month-container{
+    background-color:$background-color;
+}
+
+.react-datepicker__close-icon{
+    &::after{
+        background-color: $main-color-light;
+    }
+}
+

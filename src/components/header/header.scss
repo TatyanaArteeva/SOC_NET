@@ -1,106 +1,115 @@
 @import '../../variables';
 @import '../../mixins';
+@import './animation.scss';
+
 
 
 
 .header{
-    background: linear-gradient(to top left, $main-color-light, $secondary-color-light);
+    background: rgba(137, 216, 194, .1);
+    border-radius: 7px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
-    padding: 0px 20px;
+    height: 50px;
+    padding: 0px 15px;
     &__logo{
-        width: 55px;
-        height: 55px;
-        transform: rotate(30deg);
+        width: 40px;
+        height: 40px;
+        animation: logoAnimation 8s ease infinite;
+        margin-left: 10px;
     }
     &__menu{
-        width: 200px;
-        padding: 0px;
+        display: flex;
+        justify-content: space-between;
         &__wrapper{
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
             &:hover{
-                .header__menu__wrapper__list{
-                    opacity: 1;
+                .header__menu__item__count_notifications{
+                    font-size: 20px;
+                }
+                .header__menu__item__count{
+                    font-size: 20px;
+                }
+                .header__menu__item__label{
                     visibility: visible;
                 }
-            }
-            &__button{
-                margin: 0 auto;
-                width:100px;
-                display: flex;
-                justify-content: center;
-                padding: 8px 10px;
-                border-radius: 10px;
-                color: rgba(168, 8, 0, 1);
-                background-color: rgba(255, 181, 64, 0.2);
-                font-family: Raleway;
-                font-size: 17px;
-                font-weight: 600;
-                & img{
-                    margin-left: 5px;
-                    &:hover{
-                        background-color: $secondary-color;
-                    }
+                .header__menu__item__label_last{
+                    visibility: visible;
                 }
-                &:hover{
-                    background-color: $secondary-color;
+                .header__menu__item{
+                    width: 35px;
+                    height: 35px;
+                    padding: 0;
                 }
             }
-            &__list{
+
+        }
+        &__item{
+            width: 35px;
+            height: 35px;
+            padding: 0 5px 0 5px;
+            margin: 0 10px 0 10px;
+            &__label{
                 position: absolute;
-                width: 200px;
-                height: 160px;
-                margin: 10px 0px 0px 0px;
-                border-radius: 10px;
-                padding: 5px 10px 5px 20px;
-                background: $secondary-color;
-                list-style: none;
-                opacity: 0;
-                // visibility: visible;
                 visibility: hidden;
-                transition: opacity, visibility, 1s;
-                &__item{
-                    margin: 5px 0 0 7px;
-                    padding: 5px 0 0 5px;
-                    & a {
-                        font-family: Raleway;
-                        font-weight: 500;
-                        font-size: 20px;
-                        text-decoration: none;
-                        color: $input-text;
-                        &::before{
-                            content: '';
-                            position: absolute;
-                            display: block;
-                            width: 9px;
-                            height: 9px;
-                            border-radius: 100%;
-                            border: 1px solid $input-text;
-                            background-color: rgb(255, 181, 64);
-                            left: 10px;
-                            transform: translateY(7px);
-                        }
-                        &:hover{
-                            color: rgba(168, 8, 0, 0.7);
-                            font-size: 21px;
-                            &::before{
-                                background-color: $input-text;
-                                border: 1px solid rgba(168, 8, 0, 0.5);
-                                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(168, 8, 0, 0.5);
-                            }
-                        }
-    
-                    }
+                padding: 3px 3px 3px 3px;
+                color: #026670;
+                font-size: 13px;
+                font-weight: 100;
+                transform: translate(0, 100%);
+                margin-top: 14px;
+                z-index: 3;
+                margin-left: 27px;
+                background-color: rgba(137, 216, 194, 0.1);
+                border-radius: 0 7px 7px 7px;
+                border: 1px solid rgba(137, 216, 194, 0.6);
+                &_last{
+                    position: absolute;
+                    visibility: hidden;
+                    padding: 3px 3px 3px 3px;
+                    color: #026670;
+                    font-size: 13px;
+                    font-weight: 100;
+                    transform: translate(0, 100%);
+                    margin-top: 14px;
+                    z-index: 3;
+                    margin-left: -20px;
+                    background-color: rgba(137, 216, 194, 0.1);
+                    border-radius: 7px 0 7px 7px;
+                    border: 1px solid rgba(137, 216, 194, 0.6);
+                }
+            }
+            &__count{
+                color: $main-color;
+                position: absolute;
+                margin-left: -17px;
+                padding: 0px 0 20px 5px;
+                margin-top: -5px;
+                font-size: 18px;
+                font-weight: 800;
+                z-index: 1;
+                &_notifications{
+                    position: absolute;
+                    margin-left: 39px;
+                    color: $main-color;
+                    padding: 0px 0 20px 5px;
+                    margin-top: -5px;
+                    font-size: 18px;
+                    font-weight: 800;
+                    z-index: 1;
                 }
             }
         }
-        
     }
     
 }
+
+
 
 
 

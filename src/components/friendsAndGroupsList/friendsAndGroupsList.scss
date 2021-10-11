@@ -1,21 +1,125 @@
-.myFriends {
+@import '../../variables';
+@import '../../mixins';
+
+.friends-and-groups-list{
     width: 1140px;
-    border-left: groove 2px blue;
-    border-right: groove 2px blue;
-}
-
-.myFriends_list {
-    margin: 15px;
-}
-
-.myFriends_item {
-    margin: 15px;
-    height: 200px;
-    display: flex;
-}
-
-.myFriends_item_img {
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
+    margin-top: 7px;
+    &__wrapper-search{
+        width: 100%;
+    }
+    &__search{
+        @include input;
+        display: block;
+        margin: 10px auto;
+        width: 550px;
+    }
+    &__wrapper-content{
+        width: 100%;
+    }
+    &__total-size{
+        margin-left: 15px;
+        &_title{
+            font-weight: 500;
+            color: $main-color;
+            font-size: 19px;
+        }
+        &_size{
+            font-size: 19px;
+        }
+    }
+    &__list{
+        margin: 15px auto;
+        padding: 0;
+        width: 1000px;
+        &__item{
+            margin: 15px;
+            height: 200px;
+            display: flex;
+            background-color: rgba(254, 249, 199, .3);
+            padding: 15px;
+            border-radius: 20px;
+            &:hover{
+                transform: scale(1.02);
+            }
+            &_warning{
+                margin: 15px;
+                height: 200px;
+                display: flex;
+                background-color: rgba(167, 167, 167, .1);
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: 3px 3px 3px 3px $background-color-modal-shadow;
+            }
+            &_confirmation{
+                margin: 15px;
+                height: 200px;
+                display: flex;
+                background-color: rgba(254, 249, 199, .8);
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: 3px 3px 3px 3px $secondary-color;
+            }
+            &__img{
+                width: 170px;
+                height: 170px;
+                border-radius: 100%;
+                object-fit: cover;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+            &__content{
+                margin-left: 25px;
+                width: 100%;
+                position: relative;
+                &_name{
+                    font-size: 19px;
+                    color: $main-color;
+                    font-weight: 600;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+                &_current-status{
+                    display: flex;
+                    justify-content: flex-end;
+                    position: absolute;
+                    width: 100%;
+                    & span{
+                        color: $background-color-modal-shadow;
+                        font-size: 18px;
+                        font-weight: 500;
+                        padding: 5px 7px;
+                        background-color: $background-color;
+                        border-radius: 5px;
+                    }
+                }
+                &__btns{
+                    display: flex;
+                    align-items: flex-end;
+                    height: 80%;
+                    &_main{
+                        @include btnMini;
+                        border-color: $main-color-light;
+                        margin-right: 15px;
+                        &:hover{
+                            background-color:rgba(137, 216, 194, .2);
+                            border-color: $main-color-light;
+                        }
+                    }
+                    &_danger{
+                        @include btnMini;
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+    }
+    &__not-content{
+        text-align: center;
+        font-size: 30px;
+        font-weight: 500;
+        margin-top: 10px;
+        color: $secondary-color;
+    }
 }

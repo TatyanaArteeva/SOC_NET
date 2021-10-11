@@ -46,14 +46,14 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|ico)$/,
         use: ["file-loader"],
       },
-      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
+      { test: /\.(png|woff|woff2|eot|ttf|svg|ico)$/, 
         loader: 'url-loader?limit=100000' 
-      }
-    ]
-  },
+      },
+    ],
+  }
 };
 
 

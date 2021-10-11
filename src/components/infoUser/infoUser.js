@@ -3,7 +3,7 @@ import WithService from '../hoc/hoc';
 import './infoUser.scss';
 import { withRouter } from "react-router";
 import {connect} from 'react-redux';
-import { userInformation, rights, infoRelation, currentIdLocation} from '../../actions';
+import { userInformation, rights, infoRelation, currentIdLocation, loadingInfoProfile} from '../../actions';
 import DetailedInformationBlock from '../detailedInformationBlock/detailedInformationBlock';
 import Spinner from '../spinner/spinner';
 
@@ -30,8 +30,11 @@ class InfoUser extends Component{
             Service.getUserAccountId(this.props.idForInfo)
                 .then(res=>{
                     if(res.status===200){
-                        this.props.userInformation(res.data)
-                        this.props.currentIdLocation(this.props.idForInfo)
+                        if(this._cleanupFunction){
+                            this.props.userInformation(res.data)
+                            this.props.currentIdLocation(this.props.idForInfo)
+                            this.props.loadingInfoProfile(true)
+                        }
                     }
                 }).then(res=>{
                         if(this._cleanupFunction){
@@ -47,13 +50,13 @@ class InfoUser extends Component{
                 .then(res=>{
                     this.props.rights(res.data.accesses);
                     this.props.infoRelation(res.data.info);
-                    this.setState({
-                    })
                 })
         }
 
         this.componentDidMount=()=>{
             this._cleanupFunction=true;
+            this.props.loadingInfoProfile(false)
+            this.props.infoRelation('');
             this.info()
         }
 
@@ -77,22 +80,43 @@ class InfoUser extends Component{
         let btnModification=null;
 
         if(this.props.listRights.canModify){
-            btnModification=<button className="profile_editing" onClick={this.goToModificationMyPage}>Редактировать</button>
+            btnModification=<div className="profile-information__modification-btn__wrapper">
+                                <button className="profile-information__modification-btn" onClick={this.goToModificationMyPage}>Редактировать</button>
+                            </div>
         }
 
         const blockDetailedInformation=this.state.btnDetailedInformation? <DetailedInformationBlock idForInfo={this.props.idForInfo}/> : null;
 
+        
+        let name=null;
+        let birthDate=null;
+
+        if(this.state.firstName.length>0 || this.state.lastName.length>0){
+            name=<div className="profile-information__content">Мое имя: <span>{this.state.firstName} {this.state.lastName}</span></div>
+        }
+
+        if(this.state.birthDate.length>0){
+            birthDate=<div className="profile-information__content">День рождения: <span>{this.state.birthDate}</span></div>
+        }
+
+        let btnDetailInformationBlock="Показать подробную информацию"
+
+        if(this.state.btnDetailedInformation){
+            btnDetailInformationBlock="Скрыть подробную информацию"
+        }
+
         const contentInformation=<>
                                     {btnModification}
-                                    <div className="profile_name">Мое имя: {this.state.firstName} {this.state.lastName}</div>
-                                    <div className="profile_information_title">Основная информация</div>
-                                    <div className="profile_information__birthday">День рождения: {this.state.birthDate}</div>
-                                    <button onClick={this.detailedInformation}>Показать подробную информацию</button>
+                                    <div className="profile-information__content__wrapper">
+                                        {name}
+                                        {birthDate}
+                                    </div>
+                                    <button onClick={this.detailedInformation} className="profile-information__content__btn_detailed">{btnDetailInformationBlock}</button>
                                 </>
         const content= this.state.spinner ? <Spinner/> : contentInformation
 
         return(
-            <div>
+            <div className="profile-information">
                 {content}
                 {blockDetailedInformation}
             </div>
@@ -113,7 +137,8 @@ const mapDispatchToProps = {
     userInformation,
     rights,
     infoRelation,
-    currentIdLocation
+    currentIdLocation,
+    loadingInfoProfile
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(InfoUser)));

@@ -15,10 +15,14 @@ class ModalWindowTransitionModification extends Component{
         // }
         return(
             <div className={classModal}>
-                <div className="transition__wrapper">
-                    {this.props.title}
-                    <button onClick={()=>this.props.actionTransitionModification(true)}>Да</button>
-                    <button onClick={()=>this.props.actionTransitionModification(false)}>Нет</button>
+                <div className="transition__modal">
+                    <div className="transition__modal__text">
+                        {this.props.title}
+                    </div>
+                    <div className="transition__modal__wrapper">
+                        <button className="transition__modal__btn" onClick={()=>this.props.actionTransitionModification(true)}>Да</button>
+                        <button className="transition__modal__btn" onClick={()=>this.props.actionTransitionModification(false)}>Нет</button>
+                    </div>
                 </div>
             </div>
         )

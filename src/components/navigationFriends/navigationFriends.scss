@@ -1,0 +1,26 @@
+@import '../../variables';
+@import '../../mixins';
+
+.navigation{
+    width: 100%;
+    margin: 17px 0;
+    &__wrapper{
+        width: 655px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    &__btn{
+        @include btnMini;
+        margin-right: 15px;
+        &_active{
+            @include btnMini;
+            margin-right: 15px;
+            font-weight: 600;
+            background-color: $secondary-color-light;
+            transform: scale(1.1);
+        }
+        &:last-child{
+            margin-right: 0px;
+        }
+    }
+}

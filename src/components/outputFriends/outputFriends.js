@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { withRouter} from "react-router";
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import {connect} from 'react-redux';
+import NavigationFriends from '../navigationFriends/navigationFriends';
 
 
 class OutputFriends extends Component{
@@ -9,6 +10,9 @@ class OutputFriends extends Component{
         super(props)
         this.state={
             arr: [],
+            idOutput: '',
+            idNoRelation: '',
+            totalSize: ''
         }
 
     }
@@ -16,6 +20,7 @@ class OutputFriends extends Component{
     render(){
         return(
             <>
+                <NavigationFriends/>
                 <FriendsAndGroupsList getItems={(start,end)=>
                                         `/api/friend/get-output-friends/${this.props.id}?start=${start}&end=${end}`
                                     }
@@ -29,29 +34,60 @@ class OutputFriends extends Component{
                                     }
                                   }
                                   titleItem={(el, funcGoItem, btnAction)=>{
-                                    return el.map((item, index)=>{
+                                    return el.map(item=>{
                                         let btnActionFriend=null;
 
+                                        let classItem="friends-and-groups-list__list__item";
+
+                                        if(this.state.idOutput===item.account.id && this.state.idOutput.length>0){
+                                            classItem="friends-and-groups-list__list__item_warning"
+                                        }
+
+                                        if(this.state.idNoRelation===item.account.id && this.state.idNoRelation.length>0){
+                                            classItem="friends-and-groups-list__list__item_confirmation"
+                                        }
+
                                         if(item.info.friendRelationStatus==="OUTPUT"){
-                                            btnActionFriend=<button onClick={()=>btnAction(item.account.id, "OUTPUT")}>Отменить заявку</button>
+                                            btnActionFriend=<button onClick={()=>{
+                                                                        btnAction(item.account.id, "OUTPUT")
+                                                                        this.setState({
+                                                                            idOutput: item.account.id,
+                                                                            totalSize: this.state.totalSize -1
+                                                                        })
+                                                                    }}
+                                                                    className="friends-and-groups-list__list__item__content__btns_danger"
+                                                            >
+                                                                Отменить заявку
+                                                            </button>
                                         }
 
                                         if(item.info.friendRelationStatus==="NO_RELATION"){
-                                            btnActionFriend=<button onClick={()=>btnAction(item.account.id, "NO_RELATION")}>Добавить в друзья</button>
+                                            btnActionFriend=<button onClick={()=>{
+                                                                        btnAction(item.account.id, "NO_RELATION")
+                                                                        this.setState({
+                                                                            idNoRelation: item.account.id,
+                                                                            totalSize: this.state.totalSize +1
+                                                                        })
+                                                                    }}
+                                                                    className="friends-and-groups-list__list__item__content__btns_main"
+                                                            >
+                                                                Добавить в друзья
+                                                            </button>
                                         }
 
-                                        return <div key={item.account.id}>
-                                            <li className="myFriends_item"
-                                                onClick={()=>funcGoItem(item.account.id)}
-                                                >
-                                                {index+1}
-                                                <div>
-                                                    <img className="myFriends_item_img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
-                                                     <span>{item.account.firstName} {item.account.lastName}</span>
-                                                </div>
-                                            </li>
-                                            {btnActionFriend}
+                                        return <li key={item.account.id} className={classItem}>
+                                            <div  onClick={()=>funcGoItem(item.account.id)}>
+                                                <img className="friends-and-groups-list__list__item__img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
                                             </div>
+                                            <div className="friends-and-groups-list__list__item__content">
+                                                <span onClick={()=>funcGoItem(item.account.id)} className="friends-and-groups-list__list__item__content_name">
+                                                    {item.account.firstName} {item.account.lastName}
+                                                </span>
+                                                <div className="friends-and-groups-list__list__item__content__btns">
+                                                    {btnActionFriend}
+                                                </div>
+                                            </div>
+                                            </li>
                                         })
                                     }}
                                     arrItemModification={(item)=>{
@@ -61,7 +97,9 @@ class OutputFriends extends Component{
                                         const newElem=item;
                                         const newArrItems=[...this.state.arr.slice(0, index), newElem, ...this.state.arr.slice(index+1)];
                                         this.setState({
-                                            arr: newArrItems
+                                            arr: newArrItems,
+                                            idOutput: '',
+                                            idNoRelation: ''
                                         })
                                     }}
                                     renderItems={this.state.arr}
@@ -73,6 +111,12 @@ class OutputFriends extends Component{
                                     }}
                                     messageNotContent={"У вас пока нет исходящих заявок"}
                                     nameList={"исходящих заявок"}
+                                    totalSize={(size)=>{
+                                        this.setState({
+                                            totalSize: size
+                                        })
+                                      }}
+                                    totalSizeReturn={this.state.totalSize}
                                     />
             </>
         )

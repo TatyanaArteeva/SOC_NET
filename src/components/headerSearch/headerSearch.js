@@ -7,8 +7,8 @@ import { withRouter } from "react-router";
 import MyPage from '../myPage/myPage';
 import Group from '../group/group';
 import search from './search.svg';
-import SpinnerUsers from '../spinner/spinner';
-import SpinnerGroups from '../spinner/spinner';
+import SpinnerUsers from '../spinnerMini/spinnerMini';
+import SpinnerGroups from '../spinnerMini/spinnerMini';
 
 
 class HeaderSearch extends Component{
@@ -136,7 +136,7 @@ class HeaderSearch extends Component{
         
         let styleForSearchList="header-search-form__wrapper__list";
         if(this.state.searchValue.length>0){
-            styleForSearchList +=" active";
+            styleForSearchList +=" active-header-search-list";
         }
 
         let listUsersSearch=null;
@@ -187,26 +187,23 @@ class HeaderSearch extends Component{
                                 })
         }
 
-        const contentGroups=this.state.spinnerGroups? <SpinnerGroups/> : listUsersSearch;
-        const contentUsers=this.state.spinnerUsers ? <SpinnerUsers/> : listGroupsSearch;
+        const contentGroups=this.state.spinnerGroups? <SpinnerGroups/> : listGroupsSearch;
+        const contentUsers=this.state.spinnerUsers ? <SpinnerUsers/> : listUsersSearch;
         
 
         return(
             <form className="header-search-form">
                 <div className="header-search-form__wrapper">
                     <input type="text" className="header-search-form__wrapper__search" placeholder="Поиск по всем группам и пользователям" onChange={this.searchInput} value={this.state.searchValue}  onKeyPress={this.keyPressEnter}/>
-                    {/* <button className="header-search-form__wrapper__button" onClick={this.saveSearchValue}>Найти</button> */}
                     <span className="header-search-form__wrapper__button" onClick={this.saveSearchValue}><img src={search} alt="search"/></span>
                     <div className={styleForSearchList}>
                     <ul>
-                        <span>Пользователи</span>
+                        <span className="header-search-form__title">Пользователи</span>
                             {contentUsers}
-                        {/* { listUsersSearch } */}
                     </ul>
                     <ul>
-                        <span>Группы</span>
+                        <span className="header-search-form__title">Группы</span>
                             {contentGroups}
-                        {/* { listGroupsSearch } */}
                     </ul>
                     </div>
                 </div>

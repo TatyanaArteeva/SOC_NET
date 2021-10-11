@@ -184,15 +184,37 @@ export const newPost=(newPost)=>{
 }
 
 export const pathLink=(pathLink)=>{
-    console.log(pathLink)
     return({type: 'PATH_LINK', pathLink: pathLink})
 }
 
 export const actionTransitionModification=(actionTransitionModification)=>{
-    console.log(actionTransitionModification)
     return({type: 'ACTION_TRANSITION_MODIFICATION', actionTransitionModification: actionTransitionModification })
 }
 
+export const openModalAllParticipantsGroup=()=>{
+    return({type: 'OPEN_MODAL_ALL_PARTICIPANTS_GROUP'})
+}
+
+export const closeModalAllParticipantsGroup=()=>{
+    return({type: 'CLOSE_MODAL_ALL_PARTICIPANTS_GROUP'})
+}
+
+export const loadingInfoProfile=(loadingInfoProfile)=>{
+    return({type: 'LOADING_INFO_PROFILE', loadingInfoProfile: loadingInfoProfile})
+}
+
+export const loadingPhotoProfile=(loadingPhotoProfile)=>{
+    return({type: 'LOADING_PHOTO_PROFILE', loadingPhotoProfile:loadingPhotoProfile})
+}
+
+export const mouseLeaveNotificationsList=(mouseLeaveNotificationsList)=>{
+    console.log(mouseLeaveNotificationsList)
+    return({type:'MOUSE_LEAVE_NOTIFICATIONS_LIST', mouseLeaveNotificationsList: mouseLeaveNotificationsList})
+}
+
+export const returnFromModificationPage=(returnFromModificationPage)=>{
+    return({type:'RETURN_FROM_MODIFICATION_PAGE', returnFromModificationPage: returnFromModificationPage})
+}
 
 
 

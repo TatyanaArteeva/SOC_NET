@@ -1,11 +1,13 @@
-
 import React, {useEffect, useState, useRef, useMemo} from 'react';
 import { connect } from 'react-redux';
 import WithService from '../hoc/hoc';
 import 'moment/locale/ru';
 import Moment from 'react-moment';
 import './postsList.scss';
-import SpinnerMini from '../spinner/spinner';
+import SpinnerMini from '../spinnerMini/spinnerMini';
+import send from './send.svg';
+import { withRouter, useHistory} from "react-router-dom";
+
 
 let req=false;
 
@@ -13,20 +15,21 @@ let req=false;
 const localFormatDateByVersionLibMomentReact='lll'
 
 const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageOnWallType, postsLoading})=>{
-    const[newPost, setNewPost]=useState();
+    const[newPost, setNewPost]=useState('');
     const[loadingPosts, setLoadingPosts]=useState(false);
     const[calcIndex, setCalcIndex]=useState(false);
     const[startDate, setStartDate]=useState('');
-    const[postsArr, setPostsArr]=useState([]);
+    const[postsArr, setPostsArr]=useState('');
     const[totalSizePosts, setTotalSizePosts]=useState();
     const [inputPost, setInputPost]=useState();
     const postListRef=useRef()
     const[start, setStart]=useState(0);
     const [end, setEnd]=useState(10);
-    const [spinnerMini, setSpinnerMini]= useState(false)
-    
+    const [spinnerMini, setSpinnerMini]= useState(false);
+    const [loading, setLoading]=useState(true);
+    const { push } = useHistory();
+
     function getSimpleAccount(){
-        console.log(inputPost)
         Service.getInformationForInputMessage(`/api/account/simple-account/${newPostInput.sourceId}`)
             .then(res=>{
                 if(res.status===200){
@@ -46,7 +49,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                         }
                     }
                     setTotalSizePosts(totalSizePosts + 1)
-                    setPostsArr([newEl, ...postsArr])
+                    setPostsArr([newEl, ...postsArr]);
                 }
             })
     }
@@ -62,8 +65,6 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
         }
         return () => cleanupFunction = true;
     }, [newPostInput])
-
-    
 
     useEffect(()=>{
         let cleanupFunction = false;
@@ -86,7 +87,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                             if(!cleanupFunction){
                                 setPostsArr(res.data.messages)
                                 setTotalSizePosts(res.data.totalSize)
-                                postsLoading(true)
+                                setLoading(false);
                             }
                            }
                        }) 
@@ -95,12 +96,12 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
     },[currentIdLocation])
 
     function valuePost(e){
-        setNewPost(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))
+        if(e.target!==undefined){
+            setNewPost(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))
+        }
     }
 
  
-
-
         function postRequest(e){
             e.preventDefault();
             const OneInvalidSymbol = ' ';
@@ -135,7 +136,13 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
             if(e.key==='Enter'){
                 postRequest(e)
             }
-                
+        }
+
+        function keyDown(e){
+            if(e.key==='Enter' && e.ctrlKey===true){
+                console.log("ok")
+                setNewPost(newPost + "\r\n")
+            }
         }
 
         const windowHeight=document.documentElement.clientHeight;
@@ -212,16 +219,25 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
         })
 
 
-        let postContent=null
+        let postContent=null;
+
+        function goToPageUser(id){
+            console.log(id)
+            push({
+                pathname: `/${id}`
+            });
+        }
+
+    
 
         postContent=useMemo(()=>{
             let posts=null;
-            if(totalSizePosts===0){
-                posts=<div>У вас пока нет записей на стене!</div>
+            if(totalSizePosts===0 && typeof postsArr!=="string"){
+                posts=<div className="public-messages__null">Пока нет новостей</div>
                 return posts
             }
     
-            if(totalSizePosts>0){
+            if(totalSizePosts>0 && typeof postsArr!=="string"){
                 posts= postsArr.map((post, index)=>{
                     const dateMilliseconds=new Date(post.sendDate).getTime();
                     const timeZone=new Date(post.sendDate).getTimezoneOffset()*60*1000;
@@ -229,23 +245,29 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                     const currentDate=new Date(currentDateMilliseconds);
     
                     const newFormatPhoto="data:image/jpg;base64," + post.source.photo;
-    
-             
-                    return <li key={post.id} className="myFriends_item">
-                                {index+1}
-                                <div>
-                                    <div>
-                                        <img src={newFormatPhoto} alt="userPhoto" className="myFriends_item_img"/>
-                                        {post.source.firstName} {post.source.lastName}
+                    
+                    return <li key={post.id} className="public-messages__item">
+                                <div className="public-messages__item__img" onClick={()=>goToPageUser(post.source.id)}>
+                                        <img src={newFormatPhoto} alt="userPhoto"/>
+                                </div>
+                                <div className="public-messages__item__content">
+                                    <div className="public-messages__item__content__info">
+                                        <div className="public-messages__item__content__info_name"  onClick={()=>goToPageUser(post.source.id)}>
+                                            {post.source.firstName} {post.source.lastName}
+                                        </div>
+                                    </div>
+                                    <div className="public-messages__item__content__message">
+                                        {post.content}
                                     </div>
                                 </div>
-                                <div>{post.content}</div>
-                                <div>
-                                <Moment locale="ru"
+                                <div className="public-messages__item__content__info_time">
+                                    <div>
+                                        <Moment locale="ru"
                                                 date={currentDate}
                                                 format={localFormatDateByVersionLibMomentReact}
-                                                
+                                                                
                                         />
+                                    </div>
                                 </div>
                             </li>
                 })
@@ -256,29 +278,39 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
 
         const miniSpinner=spinnerMini ? <SpinnerMini/> : null;
 
+        const messages=  <ul ref={postListRef} className="public-messages__list">
+                                <div className="public-messages__total-size">
+                                    Всего новостей: <span>{totalSizePosts}</span>
+                                </div>
+                                {
+                                    postContent
+                                }
+                                {miniSpinner}
+                            </ul>
+                        
+
+        let content= loading? <SpinnerMini/> : messages;
+
         return(
-            
-            <div>
-                <form 
-                onSubmit={postRequest}  
+          <div className="public-messages">
+            <form 
                 onKeyPress={keyPressEnter}
+                onKeyDown={keyDown}
+                className="public-messages__wrapper"
                 >
-                    <textarea type="text" 
-                              placeholder="Какие новости?" 
-                              value={newPost}
-                              required
-                              onChange={valuePost}
-                    />
-                    <button type="submit">Опубликовать</button>
-                </form>
-                <div>{totalSizePosts}</div>
-                <ul ref={postListRef}>
-                    {
-                        postContent
-                    }
-                    {miniSpinner}
-                </ul>
-            </div>
+                <textarea type="text" 
+                    placeholder="Какие новости?" 
+                    value={newPost}
+                    required
+                    onChange={valuePost}
+                    className="public-messages__input"
+                />
+                <div className="public-messages__send" onClick={postRequest} >
+                <img src={send} alt="send"/>
+                </div>
+            </form>
+            {content}
+          </div>
         )
     
 }
@@ -292,4 +324,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default WithService()(connect(mapStateToProps)(PostsList));
+export default withRouter(WithService()(connect(mapStateToProps)(PostsList)));

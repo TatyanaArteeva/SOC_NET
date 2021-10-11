@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
-import AllParticipantsGroupList from '../allParticipantsGroupList/allParticipantsGroupList';
+import AllParticipantsModal from '../allParticipantsModal/allParticipantsModal';
 import {connect} from 'react-redux';
+import {closeModalAllParticipantsGroup} from '../../actions';
 
 class ModalWindowAllParticipantsGroup extends Component{
     constructor(props){
@@ -19,7 +20,7 @@ class ModalWindowAllParticipantsGroup extends Component{
 
          return(
             <div>
-                <AllParticipantsGroupList getItems={(start,end)=>
+                <AllParticipantsModal getItems={(start,end)=>
                                             `/api/group-relation/get-group-accounts/${idInUrl}?start=${start}&end=${end}`
                                         }
                                         arrItems={(items)=>{
@@ -29,23 +30,23 @@ class ModalWindowAllParticipantsGroup extends Component{
                                             })
                                         }}
                                         path={(id)=>{
+                                            this.props.closeModalAllParticipantsGroup()
                                             this.props.history.push(`/${id}`)
                                             }
                                         }
                                         renderItems={this.state.arr}
                                         titleItem={(el, funcGoItem)=>{
-                                                return el.map((item, index)=>{
+                                                return el.map(item=>{
                                                     return(
                                                         <div key={item.account.id}>
-                                                            {index+1}
-                                                            <li className="participantsGroupList_item"
+                                                            <li className="participants-list__item"
                                                                 onClick={()=>funcGoItem(item.account.id)}
                                                                 >
-                                                                <div>
-                                                                    <div className="myGroups_item_wrapper_img">
-                                                                        <img className="participantsGroupList_img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
+                                                                <div className="participants-list__item__content">
+                                                                    <div className="participants-list__item__content__img">
+                                                                        <img src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
                                                                     </div>
-                                                                    <span>{item.account.firstName} {item.account.lastName}</span>
+                                                                    <span className="participants-list__item__content__name">{item.account.firstName} {item.account.lastName}</span>
                                                                 </div>
                                                             </li>
                                                         </div>
@@ -54,7 +55,7 @@ class ModalWindowAllParticipantsGroup extends Component{
                                             
                                         }}
                                         messageNotContent={"Нет участников группы"}
-                                        nameList={"у вас участников"}
+                                        nameList={"Всего участников:"}
                                     />
             </div>
          )
@@ -67,5 +68,9 @@ const mapStateToProps=(state)=>{
     }
 }
 
+const mapDispatchToProps = {
+    closeModalAllParticipantsGroup
+}
 
-export default withRouter(connect(mapStateToProps)(WithService()(ModalWindowAllParticipantsGroup)));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(WithService()(ModalWindowAllParticipantsGroup)));

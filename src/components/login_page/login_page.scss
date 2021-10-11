@@ -9,19 +9,18 @@
     margin-top: 15px;
     &__text{
         position: absolute;
-        font-size: 15px;
+        font-size: 20px;
         font-family: Raleway;
-        font-weight: 600;
-        margin-left: 5px;
-        color: $input-text;
-        margin-top: 70px;
+        font-weight: 500;
+        margin-left: 75px;
+        color: $main-color;
+        margin-top: 45px;
     }
     &__icon{
         width: 70px;
-        height: 70px;
-        transform: rotate(30deg);
+        height: 60px;
         &__animation{
-            animation: logoAnimation 6s ease infinite;
+            animation: logoAnimation 8s ease infinite;
         }
         
     }
@@ -30,7 +29,7 @@
 .login-page{
     position: relative;
     width: 350px;
-    margin: 30px auto;
+    margin: 15px auto;
     padding: 20px;
     &__form{
         width: 100%;

@@ -1,0 +1,76 @@
+@import '../../variables';
+@import '../../mixins';
+
+.search-page{
+    margin-top: 7px;
+    width: 1140px;
+    &__search{
+        @include input;
+        display: block;
+        margin: 20px auto;
+        width: 550px;
+    }
+    &__list{
+        padding: 0;
+        &__wrapper{
+            display: flex;
+            justify-content: space-between;
+        }
+        &__title{
+            font-weight: 500;
+            color: #026670;
+            font-size: 19px;
+        }
+        &__btn-show-all{
+            @include btnMini;
+            width: 200px;
+            height: 30px;
+            font-weight: 600;
+        }
+        &__content{
+            margin: 15px auto;
+            padding: 0;
+            width: 1000px;
+            &__item{
+                margin: 15px;
+                height: 200px;
+                display: flex;
+                background-color: rgba(254, 249, 199, 0.3);
+                padding: 15px;
+                border-radius: 20px;
+                &_img{
+                    width: 170px;
+                    height: 170px;
+                    border-radius: 100%;
+                    object-fit: cover;
+                    margin-right: 25px;
+                }
+                &_name{
+                    font-size: 19px;
+                    color: #026670;
+                    font-weight: 600;
+                }
+                &__btns{
+                    height: 100%;
+                    display: flex;
+                    align-items: flex-end;
+                    &_main{
+                        @include btnMini;
+                        border: 2px solid $main-color-light;
+                        margin-bottom: 40px;
+                        margin-right: 15px;
+                        &:hover{
+                            background-color:rgba(137, 216, 194, .2);
+                            border-color: $main-color-light;
+                        }
+                    }
+                    &_warning{
+                        @include btnMini;
+                        margin-bottom: 40px;
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

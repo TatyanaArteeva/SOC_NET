@@ -22,6 +22,7 @@ import WebSocketsPrivatMessages from '../webSocketsPrivatMessages/webSocketsPriv
 import WebSocketsPosts from '../webSocketsPosts/webSocketsPosts';
 import WebSocketsNotifications from '../webSocketsNotifications/webSocketsNotifications';
 import DialogPage from '../DialogPage/dialogPage';
+import DevizLabel from '../devizLabel/devixLabel';
 
 class MainPage extends Component{
     constructor(props){
@@ -31,7 +32,6 @@ class MainPage extends Component{
             const {idUser}=this.props;
             const id=`/${idUser}`;
     
-            console.log(this.props.location, idUser)
     
             if (this.props.location.hash === "" ) {
                 this.props.history.push("#" + id)
@@ -58,16 +58,17 @@ class MainPage extends Component{
                     }}
                     >
                     <Header/>
+                    <DevizLabel/>
                     <WebSocketsPrivatMessages/>
                     <WebSocketsPosts/>
                     <WebSocketsNotifications/>
                     <Switch>
-                        <Route path= "/friends" exact component={Friends} />
+                        <Route path= "/friends/" exact component={Friends} />
                         <Route path= "/friends/incoming" component={IncomingFriends} />
                         <Route path= "/friends/output" component={OutputFriends} />
                         <Route path= "/friends/allUsers" component={AllUsers} />
                         <Route path="/messages" component={Messages} />
-                        <Route path="/groups" exact component={Groups} />
+                        <Route path="/groups/" exact component={Groups} />
                         <Route path="/groups/all" component={AllGroups} />
                         <Route path="/modification" component={Modification}/>
                         <Route path="/search" component={AllSearchPage}/>

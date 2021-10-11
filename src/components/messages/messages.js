@@ -7,7 +7,8 @@ import Moment from 'react-moment';
 import './messages.scss';
 import ListFriendsForAddDialog from '../listFriendsForAddDialog/listFriendsForAddDialog';
 import Spinner from '../spinner/spinner';
-import SpinnerMini from '../spinner/spinner';
+import SpinnerMini from '../spinnerMini/spinnerMini';
+import {openModalAllParticipantsGroup} from '../../actions';
 
 const localFormatDateByVersionLibMomentReact='lll'
 
@@ -30,13 +31,17 @@ class Messages extends Component{
 
 
         this.getDialogsAndFriends=()=>{
+            this.setState({
+                req: true
+            })
             Service.getMessagesAll(`/api/dialog/list?start=${start}&end=${end}`)
                 .then(res=>{
                     if(res.status===200){
                         this.setState({
-                            spinner:false,
-                            totalSizeDialogs: res.data.totalSize,
                             dialogs: res.data.dialogs,
+                            totalSizeDialogs: res.data.totalSize,
+                            req: false,
+                            spinner:false
                         })
                     }
                 })
@@ -105,7 +110,7 @@ class Messages extends Component{
 
             if(this.props.inputMessage.length>0 && prevProps.inputMessage.length!==this.props.inputMessage.length){
 
-                if(this.state.dialogs.length>0){
+                if(this.state.dialogs.length>0 && !this.state.req){
                     console.log("кол дивлогов больше 1")
                     const elWithNewMessage=this.state.dialogs.filter(el=>{
                         let elObj=null;
@@ -133,18 +138,22 @@ class Messages extends Component{
                             dialogs: newArr
                         })
                     }else{
+                        this.setState({
+                            req: true
+                        })
                         Service.getMessagesAll(`/api/dialog/${this.props.inputMessage[this.props.inputMessage.length-1].sourceId}`)
                             .then(res=>{
                                 console.log(res)
                                     this.setState({
-                                        dialogs: [res.data, ...this.state.dialogs]
+                                        dialogs: [res.data, ...this.state.dialogs],
+                                        req: false
                                     },()=>{
                                         start=start+1
                                     })
 
                             })
                     }
-                }else{
+                }else if(this.state.dialogs.length===0 && !this.state.req){
                     console.log("кол дивлогов 0");
                     console.log(this.props.inputMessage)
                     for(let i=0; i<this.props.inputMessage.length; i++){
@@ -167,9 +176,7 @@ class Messages extends Component{
         }
 
         this.openListUsersForAddDialog=()=>{
-            this.setState({
-                listForAddDialog: true
-            })
+            this.props.openModalAllParticipantsGroup()
         }
 
         this.closeListUsersForAddDialog=()=>{
@@ -187,7 +194,7 @@ class Messages extends Component{
     let content=null;
 
     if(this.state.dialogs.length>0 && !this.state.spinner){
-        content=this.state.dialogs.map((el, index)=>{
+        content=this.state.dialogs.map(el=>{
             let arrUnreadMessage=[];
     
             arrUnreadMessage=this.props.inputMessage.filter(elInputMessage=>{
@@ -197,18 +204,18 @@ class Messages extends Component{
             })
             
     
-            let addressesLastMessage="Вы"
+            let addressesLastMessage=<span className="dialogs-list__list__item__content__last-message_my">Вы: </span>
     
             if(el.lastMessage.sourceId!==localStorage.getItem('idUser') || (arrUnreadMessage.length>0 && arrUnreadMessage[arrUnreadMessage.length-1].sourceId!==localStorage.getItem('idUser'))){
-                addressesLastMessage="Друг"
+                addressesLastMessage=<span className="dialogs-list__list__item__content__last-message_friend">Друг: </span>
             }
     
             let countUnacceptedMessages=null;
-            let lastMessage=el.lastMessage.content;
+            let lastMessage=<span className="dialogs-list__list__item__content__last-message_message">{el.lastMessage.content}</span>;
     
             if(arrUnreadMessage.length>0){
-                countUnacceptedMessages=<span>Непрочитанных сообщений: {arrUnreadMessage.length}</span>
-                lastMessage=arrUnreadMessage[arrUnreadMessage.length-1].content
+                countUnacceptedMessages=<div className="dialogs-list__list__item__content__new-messages">Новых сообщений: <span>{arrUnreadMessage.length}</span></div>
+                lastMessage=<span className="dialogs-list__list__item__content__last-message_message">{arrUnreadMessage[arrUnreadMessage.length-1].content}</span>
             }
     
             const dateMilliseconds=new Date(el.lastMessage.sendDate).getTime();
@@ -216,31 +223,31 @@ class Messages extends Component{
             const currentDateMilliseconds=dateMilliseconds-(timeZone);
             const currentDate=new Date(currentDateMilliseconds)
     
-            return<li key={el.account.id}>
-                    {index+1}
-                    <div onClick={()=>this.goToDialogsWithFriend(el.account.id)} className="dialogs__list__item">
+            return  <li key={el.account.id} className="dialogs-list__list__item" onClick={()=>this.goToDialogsWithFriend(el.account.id)}>
                         <div>
-                            <span>
-                                <img className="dialogs__list__item_img" src={"data:image/jpg;base64," + el.account.photo} alt="photoDialogs"/>
-                            </span>
+                            <img className="dialogs-list__list__item_img" src={"data:image/jpg;base64," + el.account.photo} alt="photoDialogs"/>
                         </div>
-                        <div className="dialogs__list__item_content">
-                            <span className="dialogs__list__item_name">
-                                {el.account.firstName} {el.account.lastName}
-                            </span>
-                            <span>
-                                <Moment locale="ru"
-                                                date={currentDate}
-                                                format={localFormatDateByVersionLibMomentReact}
-                                                
-                                />
-                            </span>
-                            <span>
-                                {addressesLastMessage}: {lastMessage} {countUnacceptedMessages}
-                            </span>
+                        <div className="dialogs-list__list__item__content">
+                            <div className="dialogs-list__list__item__content__name-and-time">
+                                <span className="dialogs-list__list__item__content__name-and-time_name">
+                                    {el.account.firstName} {el.account.lastName}
+                                </span>
+                                <span className="dialogs-list__list__item__content__name-and-time_time">
+                                    <Moment locale="ru"
+                                                    date={currentDate}
+                                                    format={localFormatDateByVersionLibMomentReact}
+                                                    
+                                    />
+                                </span>
+                            </div>
+                            <div className="dialogs-list__list__item__content__last-message">
+                                <div className="dialogs-list__list__item__content__last-message__wrapper">
+                                    {addressesLastMessage} {lastMessage}
+                                </div>
+                                {countUnacceptedMessages}
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
         })
     }
 
@@ -252,31 +259,29 @@ class Messages extends Component{
 
     let listUsersForDialog=null;
 
-    if(this.state.listForAddDialog){
-        console.log("true")
-        listUsersForDialog= <div>
-                                <button onClick={this.closeListUsersForAddDialog}>Закрыть</button>
-                                    <ListFriendsForAddDialog/>
-                            </div>
+    if(this.props.modalAllParticipantsGroup===true){
+        listUsersForDialog=<ListFriendsForAddDialog/>
     }
 
     const contentDialogsList=this.state.spinner ? <Spinner/> : content;
     const miniSpinner=this.state.miniSpinner ? <SpinnerMini/> : null;
+
+    console.log(this.state.dialogs)
     
     return(
-        <>
-            <div onClick={this.openListUsersForAddDialog}>
-                создать новый диалог
-            </div>
+        <div className="dialogs-list">
+            <button onClick={this.openListUsersForAddDialog} className="dialogs-list__creating-dialog">
+                Создать новый диалог
+            </button>
             {listUsersForDialog}
-            {this.state.totalSizeDialogs}
-            <ul className="dialogs__list" ref={this.refList}>
+            <div className="dialogs-list__total-size">Всего диалогов: <span>{this.state.totalSizeDialogs}</span></div>
+            <ul className="dialogs-list__list" ref={this.refList}>
                 {
                     contentDialogsList
                 }
                 {miniSpinner}
             </ul>
-        </>
+        </div>
     )
    }
 }
@@ -284,7 +289,12 @@ class Messages extends Component{
 const mapStateToProps=(state)=>{
     return{
         inputMessage:state.inputMessageObj,
+        modalAllParticipantsGroup :state.openModalAllParticipantsGroup,
     }
 }
 
-export default withRouter(WithService()(connect(mapStateToProps)(Messages)));
+const mapDispatchToProps = {
+    openModalAllParticipantsGroup
+}
+
+export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Messages)));

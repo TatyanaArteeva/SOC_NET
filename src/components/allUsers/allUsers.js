@@ -2,12 +2,19 @@ import React, {Component} from 'react';
 import { withRouter} from "react-router";
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import {connect} from 'react-redux';
+import NavigationFriends from '../navigationFriends/navigationFriends';
 
 class AllUsers extends Component{
     constructor(props){
         super(props)
         this.state={
             arr: [],
+            idNoRelation: '',
+            idOutput: '',
+            idInput: '',
+            idReject: '',
+            idFull: '',
+            totalSize: ''
         }
 
     }
@@ -15,6 +22,7 @@ class AllUsers extends Component{
     render(){
         return(
             <>
+                <NavigationFriends/>
                 <FriendsAndGroupsList getItems={(start,end)=>
                                         `/api/account/all?start=${start}&end=${end}`
                                     }
@@ -29,44 +37,109 @@ class AllUsers extends Component{
                                     }
                                   }
                                   titleItem={(el, funcGoItem, btnAction, writeMessageBtn)=>{
-                                      return el.map((item, index)=>{
+                                      return el.map(item=>{
 
                                         let btnActionFriend=null;
                                         let btnActionRejectFriend=null;
-
                                         let writeMessage=null;
+                                        let currentStatusUsers="Вы";
+
+                                        let classItem="friends-and-groups-list__list__item";
+
+                                        if((this.state.idOutput===item.account.id && this.state.idOutput.length>0) || (this.state.idReject===item.account.id && this.state.idReject.length>0) || (this.state.idFull===item.account.id && this.state.idFull.length>0)){
+                                            classItem="friends-and-groups-list__list__item_warning"
+                                        }
+
+                                        if((this.state.idNoRelation===item.account.id && this.state.idNoRelation.length>0) || (this.state.idInput===item.account.id && this.state.idInput.length>0)){
+                                            classItem="friends-and-groups-list__list__item_confirmation"
+                                        }
 
                                         if(item.info.friendRelationStatus==="NO_RELATION"){
-                                            btnActionFriend=<button onClick={()=>btnAction(item.account.id, "NO_RELATION")}>Добавить в друзья</button>
+                                            btnActionFriend=<button onClick={()=>{
+                                                                        btnAction(item.account.id, "NO_RELATION")
+                                                                        this.setState({
+                                                                            idNoRelation: item.account.id
+                                                                        })
+                                                                    }}
+                                                                    className="friends-and-groups-list__list__item__content__btns_main"
+                                                            >
+                                                                Добавить в друзья
+                                                            </button>
+                                            currentStatusUsers="Не в друзьях"
                                         }
                                 
                                         if(item.info.friendRelationStatus==="OUTPUT"){
-                                            btnActionFriend=<button onClick={()=>btnAction(item.account.id, "OUTPUT")}>Отменить заявку</button>
+                                            btnActionFriend=<button onClick={()=>{
+                                                                        btnAction(item.account.id, "OUTPUT")
+                                                                        this.setState({
+                                                                            idOutput: item.account.id
+                                                                        })
+                                                                        }}
+                                                                    className="friends-and-groups-list__list__item__content__btns_danger"
+                                                            >
+                                                                Отменить заявку
+                                                            </button>
+                                            currentStatusUsers="Хотите быть другом"
                                         }
                                 
                                         if(item.info.friendRelationStatus==="INPUT"){
-                                            btnActionFriend=<button onClick={()=>btnAction(item.account.id, "INPUT")}>Подтвердить друга</button>
-                                            btnActionRejectFriend=<button onClick={()=>btnAction(item.account.id, "INPUT-REJECT")}>Отклонить друга</button>;
+                                            btnActionFriend=<button onClick={()=>{
+                                                                        btnAction(item.account.id, "INPUT")
+                                                                        this.setState({
+                                                                            idInput: item.account.id
+                                                                        })
+                                                                    }}
+                                                                    className="friends-and-groups-list__list__item__content__btns_main"
+                                                            >
+                                                                Подтвердить друга
+                                                            </button>
+                                            btnActionRejectFriend=<button onClick={()=>{
+                                                                            btnAction(item.account.id, "INPUT-REJECT")
+                                                                            this.setState({
+                                                                                idReject: item.account.id
+                                                                            })
+                                                                          }}
+                                                                          className="friends-and-groups-list__list__item__content__btns_danger"
+                                                                    >
+                                                                    Отклонить друга
+                                                                </button>;
+                                            currentStatusUsers="Хочет быть другом"
                                         }
                                         if(item.info.friendRelationStatus==="FULL"){
-                                            btnActionFriend=<button onClick={()=>btnAction(item.account.id, "FULL")}>Удалить из друзей</button>
-                                            writeMessage= <button onClick={()=>writeMessageBtn(item.account.id)}>Написать сообщение</button>
+                                            btnActionFriend=<button onClick={()=>{
+                                                                        btnAction(item.account.id, "FULL")
+                                                                        this.setState({
+                                                                            idFull: item.account.id
+                                                                        })
+                                                                    }}
+                                                                    className="friends-and-groups-list__list__item__content__btns_danger"
+                                                            >
+                                                                Удалить из друзей
+                                                            </button>
+                                            writeMessage= <button onClick={()=>{
+                                                                    writeMessageBtn(item.account.id)
+                                                                }}
+                                                                className="friends-and-groups-list__list__item__content__btns_main"
+                                                            >
+                                                                Написать сообщение
+                                                            </button>
+                                            currentStatusUsers="Друзья"
                                         }
 
-                                        return <div key={item.account.id}>
-                                                    <li className="myFriends_item"
-                                                        onClick={()=>funcGoItem(item.account.id)}
-                                                        >
-                                                        {index+1}
-                                                        <div>
-                                                            <img className="myFriends_item_img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
-                                                            <span>{item.account.firstName} {item.account.lastName}</span>
+                                        return <li key={item.account.id} className={classItem}>
+                                                    <div onClick={()=>funcGoItem(item.account.id)}>
+                                                        <img className="friends-and-groups-list__list__item__img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
+                                                    </div>
+                                                    <div className="friends-and-groups-list__list__item__content">
+                                                        <span onClick={()=>funcGoItem(item.account.id)} className="friends-and-groups-list__list__item__content_name">{item.account.firstName} {item.account.lastName}</span>
+                                                        <div className="friends-and-groups-list__list__item__content_current-status"><span>{currentStatusUsers}</span></div>
+                                                        <div className="friends-and-groups-list__list__item__content__btns">
+                                                            {btnActionFriend}
+                                                            {btnActionRejectFriend}
+                                                            {writeMessage}
                                                         </div>
-                                                    </li>
-                                                    {btnActionFriend}
-                                                    {btnActionRejectFriend}
-                                                    {writeMessage}
-                                          </div>
+                                                    </div>
+                                          </li>
                                       })
                                   }}
                                   arrItemModification={(item)=>{
@@ -77,7 +150,12 @@ class AllUsers extends Component{
                                     const newElem=item;
                                     const newArrItems=[...this.state.arr.slice(0, index), newElem, ...this.state.arr.slice(index+1)];
                                     this.setState({
-                                        arr: newArrItems
+                                        arr: newArrItems,
+                                        idNoRelation: '',
+                                        idOutput: '',
+                                        idInput: '',
+                                        idReject: '',
+                                        idFull: ''
                                     })
                                 }}
                                   renderItems={this.state.arr}
@@ -89,7 +167,14 @@ class AllUsers extends Component{
                                 }}
                                   messageNotContent={"Пользователей пока нет"}
                                   nameList={"пользователей"}
+                                  totalSize={(size)=>{
+                                    this.setState({
+                                        totalSize: size
+                                    })
+                                  }}
+                                  totalSizeReturn={this.state.totalSize}
                                   />
+                                  
             </>
         )
     }

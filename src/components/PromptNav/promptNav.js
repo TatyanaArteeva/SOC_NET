@@ -7,23 +7,26 @@ import {actionTransitionModification} from '../../actions';
 
 const PromptNav=({when, actionTransitionModification, actionTransitionModificationState})=>{
     const history = useHistory();
-    const location=useLocation()
     const [showPrompt, setShowPrompt]=useState(false);
     const [currentPath, setCurrentPath] = useState("");
-    const [permissionShowPrompt, setPermissionShowPrompt]=useState(false)
+    const [permissionShowPrompt, setPermissionShowPrompt]=useState(false);
 
     useEffect(()=>{
-        if(when){
+        if(when===true){
             history.block((prompt)=>{
+                console.log(prompt.pathname)
                 setCurrentPath(prompt.pathname);
                 setPermissionShowPrompt(true)
                 return "true";       
             })
-            
         }else{
             history.block(() => {});
         }
+
     },[when])
+
+
+
 
     useEffect(()=>{
         if(permissionShowPrompt===true){
@@ -33,20 +36,17 @@ const PromptNav=({when, actionTransitionModification, actionTransitionModificati
         }
     },[permissionShowPrompt])
 
-    console.log(location)
-
-
     useEffect(()=>{
         if(actionTransitionModificationState===true){
             actionTransitionModification('');
             history.block(() => {});
-            history.push(currentPath);      
+            console.log(currentPath)
+            history.push(currentPath);
         }
 
         if(actionTransitionModificationState===false){
             actionTransitionModification(''); 
             setPermissionShowPrompt(false)
-            
         }
 
     }, [actionTransitionModificationState])
@@ -54,7 +54,7 @@ const PromptNav=({when, actionTransitionModification, actionTransitionModificati
 
     return showPrompt ? (
         <ModalWindowTransitionModification
-            title={"Вы уверены, что хотите покинуть страницу модификации?"}
+            title={"Вы уверены, что хотите покинуть страницу? Изменения не будут сохранены!"}
         />
     ): null;
 

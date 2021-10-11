@@ -1,125 +1,57 @@
+@import '../../variables';
+@import '../../mixins';
+
 .profile{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 400px 700px;
+    column-gap: 40px;
+    &__photo{
+        margin-top: 10px;
+        margin-bottom: 60px;
+        grid-column: 1;
+        width: 400px;
+        background: rgba(254, 249, 199, .3);
+    }
+    &__information{
+        display: grid;
+        grid-template-rows: auto auto auto;
+        row-gap: 30px;
+        margin-top: 10px;
+        &__data{
+            grid-row: 1;
+            min-height: 200px;
+            background: rgba(254, 249, 199, .3);
+        }
+        &__photos{
+            position: relative;
+            grid-row: 2;
+            width: 100%;
+            height: 450px;
+            background: rgba(254, 249, 199, .3);
+        }
+        &__public-messages{
+            grid-row: 3;
+            width: 100%;
+            background: rgba(254, 249, 199, .3);
+            margin: 0 auto;
+            min-height: 200px;
+            &_not-access{
+                margin: 0 auto;
+                margin-top: 60px;
+                margin-bottom: 30px;
+                width: 80%;
+                padding: 0 15px;
+                text-align: center;
+                font-size: 30px;
+                font-weight: 500;
+                color: #FDD544;
+            }
+        }
+    }
+    
 }
 
-.profile_photo {
-    width: 400px;
-    height: 350px;
-    background: blue;
-}
 
-.profile_name {
-    max-width: 300px;
-    min-height: 50px;
-}
-
-.profile_information {
-    width: 600px;
-    min-height: 300px;
-    margin-left: 50px;
-    background: red
-}
-
-.profile_information_title {
-    width: 200px;
-    height: 50px;
-}
-
-.profile_information__birthday {
-    width: 100px;
-}
-
-.profile_information__city {
-    width: 100px;
-}
-
-.profile_information__familyStatus {
-    width: 100px;
-}
-
-.profile_information__education {
-    width: 100px;
-}
-
-.profile_information__personal {
-    width: 100px;
-}
-
-.profile_editing {
-    width: 100px;
-}
-
-.profile_photos {
-    width: 100%;
-    height: 400px;
-    background: green;
-}
-
-// .profile_photos_wrapper{
-//     margin: 0 auto;
-//     width: 80%;
-//     height: 330px;
-// }
-
-// .photo_deleteBtn {
-//     position: absolute;
-//     bottom: 6%;
-//     transform: translate(50%,100%);
-//     display: block;
-//     margin: 0 auto;
-// }
-
-// .ModalWindowForDeleteImage {
-//     position: absolute;
-//     background: blueviolet;
-//     width: 400px;
-//     min-height: 200px;
-//     z-index: 5;
-// }
-
-.profile_publicMessages{
-    width: 70%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background: orange;
-    margin: 0 auto;
-    min-height: 200px;
-}
-
-// .image-gallery-slide  {
-//     width: 100%;
-//     height: 330px;
-// }
-
-// .image-gallery-slide img {
-//     width: 100%;
-//     height: 330px;
-// }
-
-
-// .image-gallery {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// }
-
-// .fullscreen {
-//     width: 100%;
-// }
-
-// .fullscreen .image-gallery-slide  {
-//     width: 100%;
-//     height: 100%; 
-// }
-
-// .fullscreen .image-gallery-slide  img{
-//     width: 700px;
-//     height: 700px; 
-// }
 
 

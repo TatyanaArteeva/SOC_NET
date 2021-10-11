@@ -3,6 +3,8 @@ import './ModalWindowForOptonMainPhoto.scss';
 import {connect} from 'react-redux';
 import { modalWindowForMainPhotoOptionsClose, photoUser, rights } from '../../actions';
 import WithService from '../hoc/hoc';
+import cancel from './cancel.svg';
+import download from './download.svg';
 
 class ModalWindowForOptonMainPhoto extends Component{
     
@@ -47,7 +49,6 @@ class ModalWindowForOptonMainPhoto extends Component{
             const files=event.target.value.split(".").pop().toLowerCase();
             if(event.target.value.length>0){
                 if(files==="jpg" || files==="jpeg" || files==="png"){
-                    console.log("files")
                     this.setState({
                         valueNewPhoto: event.target.files[0],
                         nameNewPhoto: event.target.value
@@ -172,16 +173,21 @@ class ModalWindowForOptonMainPhoto extends Component{
     
     render(){
 
-        const invalidFile= <div>
-                            <div>Не верный формат файла!</div>
-                            <div>Допустимые значения: .jpg, .jpeg, .png</div>
-                        </div>
+        const invalidFile= <div className="modal-window-for-opton-main-photo__invalid-file">
+                                <div className="modal-window-for-opton-main-photo__invalid-file_text">
+                                    Не верный формат! Разрешены: .jpg, .jpeg, .png
+                                </div>
+                            </div>
 
         let ModalWindowMessageInvalidFile= this.state.messageInvalidFile ? invalidFile : null;
 
-        const modalWindowNotificationForRemovePhoto=<div className="ModalWindowForOptonMainPhoto">
-                                                        <button onClick={()=>this.modalWindowForModificationPhotoClose}>Закрыть</button>
-                                                        <div>Фото успешно удалено!</div>
+        const modalWindowNotificationForRemovePhoto=<div className="modal-window-for-opton-main-photo">
+                                                        <div className="modal-window-for-opton-main-photo__cancel">
+                                                            <img src={cancel} alt="cancel" onClick={()=>this.modalWindowForModificationPhotoClose}/>
+                                                        </div>
+                                                        <div className="modal-window-for-opton-main-photo__text_final">
+                                                            Фото успешно удалено!
+                                                        </div>
                                                     </div>
 
         if(this.state.modalWindowForMainPhotoRemove){
@@ -190,20 +196,26 @@ class ModalWindowForOptonMainPhoto extends Component{
 
 
 
-        const modalWindowNotificationForModificationPhoto=<div className="ModalWindowForOptonMainPhoto">
-                                                                <button onClick={()=>this.modalWindowForModificationPhotoClose}>Закрыть</button>
-                                                                <div>Фото успешно изменено!</div>
+        const modalWindowNotificationForModificationPhoto=<div className="modal-window-for-opton-main-photo">
+                                                                <div className="modal-window-for-opton-main-photo__cancel">
+                                                                    <img src={cancel} alt="cancel" onClick={()=>this.modalWindowForModificationPhotoClose}/>
+                                                                </div>
+                                                                <div className="modal-window-for-opton-main-photo__text_final">
+                                                                    Фото успешно изменено!
+                                                                </div>
                                                             </div>
 
         if(this.state.userNotificationForModificationPhoto){
             return modalWindowNotificationForModificationPhoto
         }
 
-        const blockSaveNewPhoto=<div className="ModalWindowForOptonMainPhoto">
-                                    Вы выбрали новое фото профиля: {this.state.nameNewPhoto}
-                                    <div>
-                                        <button onClick={this.postNewPhotoProfile}>Сохранить</button>
-                                        <button onClick={this.cancelChoiceNewPhoto}>Отменить</button>
+        const blockSaveNewPhoto=<div className="modal-window-for-opton-main-photo">
+                                    <div className="modal-window-for-opton-main-photo__text">
+                                        Вы выбрали новое фото: {this.state.nameNewPhoto}
+                                    </div>
+                                    <div className="modal-window-for-opton-main-photo__wrapper__btn">
+                                        <button onClick={this.postNewPhotoProfile} className="modal-window-for-opton-main-photo__btn">Сохранить</button>
+                                        <button onClick={this.cancelChoiceNewPhoto} className="modal-window-for-opton-main-photo__btn">Отменить</button>
                                     </div>
                                 </div>
 
@@ -211,31 +223,42 @@ class ModalWindowForOptonMainPhoto extends Component{
             return blockSaveNewPhoto
         }
 
-        const modalModification=<div className="ModalWindowForOptonMainPhoto">
-                                    <span onClick={this.modalWindowForModificationMainPhotoClose}>Закрыть</span>
-                                    <div>Пожалуйста, выберите фото для своего профиля!</div>
-                                    <div>
+        const modalModification=<div className="modal-window-for-opton-main-photo">
+                                    <div onClick={this.modalWindowForModificationMainPhotoClose} className="modal-window-for-opton-main-photo__cancel">
+                                        <img src={cancel} alt="cancel" onClick={this.modalWindowForModificationMainPhotoClose}/>
+                                    </div>
+                                    <div className="modal-window-for-opton-main-photo__text_final">
+                                        Пожалуйста, выберите новое фото!
+                                    </div>
+                                    <div className="modal-window-for-opton-main-photo__wrapper__input-file">
                                         <form>
                                             <input  name="photo" 
                                                     type="file" 
                                                     accept="image/jpeg,image/png" 
                                                     onChange={this.valueNameAndContentPhoto}
+                                                    id="inputFile"
+                                                    className="modal-window-for-opton-main-photo__input-file__input"
                                             />
+                                            <label htmlFor="inputFile" className="modal-window-for-opton-main-photo__wrapper__input-file__label">
+                                                <span className="modal-window-for-opton-main-photo__wrapper__input-file__label_img"><img src={download} alt="inputFile"/></span>
+                                                <div className="modal-window-for-opton-main-photo__wrapper__input-file__label_border"></div>
+                                                <span className="modal-window-for-opton-main-photo__wrapper__input-file__label_name">Выберите файл</span>
+                                            </label>
                                         </form>
                                     </div>
                                     {ModalWindowMessageInvalidFile}
                                 </div>
 
         
-        const modalQuestonRemovePhoto=<div className="ModalWindowForOptonMainPhoto">
-                                        <div>Вы уверены, что хотите удалить фото?</div>
-                                        <div>
-                                            <button onClick={this.confirmationRemovePhoto}>Удалить фото</button>
-                                            <button onClick={this.modalWindowForQuestonRemovePhotoClose}>Отмена</button>
+        const modalQuestonRemovePhoto=<div className="modal-window-for-opton-main-photo">
+                                        <div className="modal-window-for-opton-main-photo__text">Вы уверены, что хотите удалить фото?</div>
+                                        <div className="modal-window-for-opton-main-photo__wrapper__btn">
+                                            <button onClick={this.confirmationRemovePhoto} className="modal-window-for-opton-main-photo__btn">Удалить фото</button>
+                                            <button onClick={this.modalWindowForQuestonRemovePhotoClose} className="modal-window-for-opton-main-photo__btn">Отмена</button>
                                         </div>
                                     </div>
 
-        const removePhoto=<button onClick={this.modalWindowForQuestonRemovePhotoOpen}>Удалить фото</button>
+        const removePhoto=<button onClick={this.modalWindowForQuestonRemovePhotoOpen} className="modal-window-for-opton-main-photo__btn">Удалить фото</button>
 
         if( this.state.modalWindowForMainPhotoModification){
             return modalModification
@@ -247,10 +270,15 @@ class ModalWindowForOptonMainPhoto extends Component{
 
         const removePhotoBtn=this.props.listRights.canRemovePhoto ? removePhoto : null;
         return(
-            <div className="ModalWindowForOptonMainPhoto">
-                <span onClick={this.modalWindowForOptonsMainPhotoClose}>Закрыть</span>
-                <div>
-                    <button onClick={this.modalWindowModificationMainPhoto}>Обновить фото</button>
+            <div className="modal-window-for-opton-main-photo">
+                <div className="modal-window-for-opton-main-photo__cancel">
+                    <img src={cancel} alt="cancel" onClick={this.modalWindowForOptonsMainPhotoClose}/>
+                </div>
+                <div className="modal-window-for-opton-main-photo__text">
+                    Действия:
+                </div>
+                <div className="modal-window-for-opton-main-photo__wrapper__btn">
+                    <button onClick={this.modalWindowModificationMainPhoto} className="modal-window-for-opton-main-photo__btn">Обновить фото</button>
                     {removePhotoBtn}
                 </div>
             </div>

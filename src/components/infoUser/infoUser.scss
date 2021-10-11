@@ -1,17 +1,57 @@
-.profile_name {
-    max-width: 300px;
-    min-height: 50px;
+@import '../../variables';
+@import '../../mixins';
+
+
+.profile-information{
+    margin: 7px 15px 0 15px;
+    &__modification-btn{
+        @include btnMini;
+        &__wrapper{
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+    &__content{
+        width: 100%;
+        margin: 10px 0;
+        font-size: 17px;
+        font-weight: 600;
+        color: $main-color;
+        &:first-child{
+            & span{
+                // color: $main-color;
+                // font-weight: 700;
+                font-size: 19px;
+            }
+        }
+        & span{
+            color: $input-text;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        &__btn{
+            &_detailed{
+                display: block;
+                margin: 10px auto;
+                width: 600px;
+                height: 40px;
+                background: none;
+                border: 2px solid rgba(137, 216, 194, .3);;
+                border-radius: 12px;
+                font-size: 20px;
+                font-weight: 400;
+                &:hover{
+                    border: 2px solid $main-color-light;
+                    transform: scale(1.1);
+                    cursor: pointer;
+                }
+            }
+        }
+        &__wrapper{
+            margin: 15px 15px 15px 15px;
+            width: 640px;
+            overflow: hidden;
+        }
+    }
 }
 
-.profile_information_title {
-    width: 200px;
-    height: 50px;
-}
-
-.profile_information__birthday {
-    width: 100px;
-}
-
-.profile_editing {
-    width: 100px;
-}

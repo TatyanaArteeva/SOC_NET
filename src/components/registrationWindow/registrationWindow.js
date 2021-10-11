@@ -134,10 +134,9 @@ class RegistrationWindow extends Component{
         }
 
         let passwordRequirements = <div className="passwordRequirements_null"></div>;
+        
         if (this.state.password.length < 5) {
-            passwordRequirements = <div className="passwordRequirements">
-                Пароль должен содержать минимум 5 символов и не должен содержать пробелы!
-            </div>
+            passwordRequirements = <div className="passwordRequirements">Пароль должен содержать минимум 5 символов и не должен содержать пробелы!</div>
         }
 
         if(this.state.invalidPassword){
@@ -147,11 +146,8 @@ class RegistrationWindow extends Component{
         }
 
         const contentRegistration=<form onSubmit={this.postFormRegistration} className="registration-window__modal">
-                                    <div>
-                                        <span onClick={()=> this.props.closeModalRegistration()} className="registration-window__modal__close"><img src={cancel} alt="cancel" className="registration-window__modal__close__img"/></span>
+                                        {/* <span onClick={()=> this.props.closeModalRegistration()} className="registration-window__modal__close"><img src={cancel} alt="cancel" className="registration-window__modal__close__img"/></span> */}
                                         <h2 className="registration-window__modal__title">Регистрация</h2>
-                                    </div>
-                                    <div>
                                         <input onChange={this.valueFirstName} placeholder="Укажите свое имя" type="text" name="firstName" required className="registration-window__modal__input" value={this.state.firstName}/>
                                         <input onChange={this.valueLastName} placeholder="Укажите свою фамилию" type="text" name="lastName" required className="registration-window__modal__input" value={this.state.lastName}/>
                                         <input onChange={this.valueEmail} placeholder="Введите свой e-mail" type="email" name="email" required className="registration-window__modal__input"/>
@@ -162,7 +158,7 @@ class RegistrationWindow extends Component{
                                                     type={this.state.hiddenPassword ? 'password' : 'text'}
                                                     name="password" 
                                                     required 
-                                                    className="registration-window__modal__input"/>
+                                                    className="registration-window__modal__input_password"/>
                                                     <span   className="registration-window__modal__input_show" 
                                                             onClick={this.toggleShowPassword}>
                                                             {this.state.hiddenPassword? <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -181,7 +177,7 @@ class RegistrationWindow extends Component{
                                         </div>
                                         {passwordRequirements}
                                         <button onClick={this.valueBirtDay} type = "submit" className="registration-window__modal__btn">Зарегистрироваться</button>
-                                    </div>
+                                        <button onClick={()=> this.props.closeModalRegistration()} className="registration-window__modal__btn">Вернуться</button>
                                 </form>
 
         const content=this.state.spinner ? <Spinner/> : contentRegistration

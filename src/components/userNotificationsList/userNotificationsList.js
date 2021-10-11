@@ -3,10 +3,10 @@ import './userNotificationsList.scss';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router";
 import {connect} from 'react-redux';
-import { deleteNotificationFromInputNotificationObj} from '../../actions';
+import { deleteNotificationFromInputNotificationObj, mouseLeaveNotificationsList} from '../../actions';
 import 'moment/locale/ru';
 import Moment from 'react-moment';
-import Spinner from '../spinner/spinner';
+import SpinnerMini from '../spinnerMini/spinnerMini';
 
 const localFormatDateByVersionLibMomentReact='lll'
 
@@ -70,6 +70,7 @@ class UserNotificationsList extends Component{
         }
 
         this.componentDidMount=()=>{
+            this.props.mouseLeaveNotificationsList(false)
             this._cleanupFunction=true;
             const date=new Date().toISOString();
             this.setState({
@@ -96,7 +97,7 @@ class UserNotificationsList extends Component{
                 windowNotifications.addEventListener("scroll", ()=>{
                     let heightList=this.refList.current.scrollHeight;
                     let scrollTop = windowNotifications.scrollTop;
-
+                    console.log(scrollTop, heightList)
                     if((scrollTop+windowHeight)>=(heightList/100*80) && !this.state.req){
                         start=end;
                         end=end+10;
@@ -186,7 +187,9 @@ class UserNotificationsList extends Component{
         }
 
                 
-                   
+        this.mouseLeave=()=>{
+            this.props.mouseLeaveNotificationsList(true)
+        }      
                
 
 
@@ -197,11 +200,11 @@ class UserNotificationsList extends Component{
         let notificationsContent=null;
 
         if(this.state.arrNotifications.length===0 && !this.state.spinner){
-            notificationsContent=<div>У Вас нет уведомлений!</div>;
+            notificationsContent=<div className="user-notifications-list__not-notifications"><span>Уведомлений пока нет</span></div>;
         }
 
         if((this.state.arrNotifications.length>0 && !this.state.spinner) || (this.props.inputNotificationObj.length>0 && !this.state.spinner)){
-            notificationsContent= <ul ref={this.refList}>
+            notificationsContent= <ul ref={this.refList} className="user-notifications-list__list" onMouseLeave={this.mouseLeave}>
                                         {
                                             this.state.arrNotifications.map((el,index)=>{
                                                 const dateMilliseconds=new Date(el.createDate).getTime();
@@ -209,8 +212,9 @@ class UserNotificationsList extends Component{
                                                 const currentDateMilliseconds=dateMilliseconds-(timeZone);
                                                 const currentDate=new Date(currentDateMilliseconds);
 
-                                                let nameUser=<span 
-                                                onClick={()=>this.goToUserPage(el.source.id)}>{el.source.firstName} {el.source.lastName}</span>
+                                                let nameUser=<span onClick={()=>this.goToUserPage(el.source.id)}>
+                                                                {el.source.firstName} {el.source.lastName}
+                                                            </span>
 
                                                 const newFormatPhoto="data:image/jpg;base64," + el.source.photo;
 
@@ -221,52 +225,69 @@ class UserNotificationsList extends Component{
                                                 }
 
                                                 if(el.notificationType==="ACCEPT_FRIEND"){
-                                                    messageNotification="подтвердил, что вы его друг"
+                                                    messageNotification="подтвердил(а), что вы его друг"
                                                 }
 
                                                 if(el.notificationType==="REMOVE_FRIEND"){
-                                                    messageNotification="удалил Вас из друзей"
+                                                    messageNotification="удалил(а) Вас из друзей"
                                                 }
 
                                                 if(el.notificationType==="REJECT_FRIEND"){
-                                                    messageNotification="отклонил вашу заявку в друзья"
+                                                    messageNotification="отклонил(а) вашу заявку в друзья"
                                                 }
 
                                                 if(el.notificationType==="CANCEL_FRIEND"){
-                                                    messageNotification="отменил свою заявку в друзья"
+                                                    messageNotification="отменил(а) свою заявку в друзья"
                                                 }
 
                                                 if(el.notificationType==="ADD_PARTNER"){
-                                                    messageNotification="Начал с Вами отношения"
+                                                    messageNotification="Начал(а) с Вами отношения"
                                                 }
 
                                                 if(el.notificationType==="REMOVE_PARTNER"){
-                                                    messageNotification="Прекратил с Вами отношения"
+                                                    messageNotification="Прекратил(а) с Вами отношения"
                                                 }
 
 
-                                                return <li key={el.id}>
-                                                            <div>{index+1}</div>
-                                                            <img src={newFormatPhoto} alt="photoUser" className="user-notifications-list__img"/>
-                                                            <span>Пользователь {nameUser} {messageNotification}</span>
+                                                return <li key={el.id} className="user-notifications-list__list__item">
+                                                            <div className="user-notifications-list__list__item__content">
+                                                                <div>
+                                                                    <img src={newFormatPhoto} alt="photoUser" className="user-notifications-list__list__item__content__img"/>
+                                                                </div>
+                                                                <div className="user-notifications-list__list__item__content__name">
+                                                                    
+                                                                    <div className="user-notifications-list__list__item__content__name_name">
+                                                                        {nameUser}
+                                                                    </div>
 
-                                                            <Moment locale="ru"
-                                                                            date={currentDate}
-                                                                            format={localFormatDateByVersionLibMomentReact}
-                                                                            
-                                                                    />
+                                                                    <div className="user-notifications-list__list__item__content__name_message">
+                                                                            {messageNotification}
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div className="user-notifications-list__list__item__time">
+                                                                <div>
+                                                                    <Moment locale="ru"
+                                                                                    date={currentDate}
+                                                                                    format={localFormatDateByVersionLibMomentReact}
+                                                                                    
+                                                                            />
+                                                                </div>
+                                                            </div>
                                                         </li>
                                             })
                                         }
                                     </ul>
         }
 
-        const content=this.state.spinner ? <Spinner/> : notificationsContent
+        const content=this.state.spinner ? <div className="user-notifications-list__spinner-wrapper"><SpinnerMini/></div> : notificationsContent
 
         return (
             <div className="user-notifications-list">
-                <div>{this.state.totalSizeNotifications}</div>
-                {content}
+                <div className="user-notifications-list__wrapper">
+                    {content}
+                </div>
             </div>
         )
     }
@@ -279,7 +300,8 @@ const mapStateToProps=(state)=>{
 }
 
 const mapDispatchToProps={
-    deleteNotificationFromInputNotificationObj
+    deleteNotificationFromInputNotificationObj,
+    mouseLeaveNotificationsList,
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(UserNotificationsList)));

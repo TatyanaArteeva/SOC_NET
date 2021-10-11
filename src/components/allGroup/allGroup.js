@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
+import NavigationGroups from '../navigationGroups/navigationGroups';
 
 class AllGroups extends Component{
     constructor(props){
@@ -9,7 +10,10 @@ class AllGroups extends Component{
         this.state={
             arr: [],
             start: '',
-            end: ''
+            end: '',
+            idInput: '',
+            idExit: '',
+            totalSize: ''
         }
 
     }
@@ -18,6 +22,7 @@ class AllGroups extends Component{
          console.log(this.state.arr)
          return(
             <div>
+                <NavigationGroups/>
                 <FriendsAndGroupsList getItems={(start,end)=>
                                             `/api/group/all?start=${start}&end=${end}`
                                         }
@@ -33,7 +38,9 @@ class AllGroups extends Component{
                                             const newElem=item;
                                             const newArrItems=[...this.state.arr.slice(0, index), newElem, ...this.state.arr.slice(index+1)];
                                             this.setState({
-                                                arr: newArrItems
+                                                arr: newArrItems,
+                                                idInput: '',
+                                                idExit: ''
                                             })
                                         }}
                                         path={(id)=>{
@@ -41,33 +48,62 @@ class AllGroups extends Component{
                                             }
                                         }
                                         titleItem={(el, funcGoItem, btnAction)=>{
-                                            return el.map((item, index)=>{
+                                            return el.map(item=>{
 
                                                 let btnActionGroup=null;
+                                                let currentStatusGroup="Создатель группы"
+
+                                                let classItem="friends-and-groups-list__list__item";
+
+                                                if(this.state.idInput===item.group.id && this.state.idInput.length>0){
+                                                    classItem="friends-and-groups-list__list__item_confirmation"
+                                                }
+        
+                                                if(this.state.idExit===item.group.id && this.state.idExit.length>0){
+                                                    classItem="friends-and-groups-list__list__item_warning"
+                                                }
 
                                                 if(item.info.groupRelationStatus==="NONE"){
-                                                    btnActionGroup=<button onClick={()=>btnAction(item.group.id, "NONE")}>Вступить в группу</button>;
+                                                    btnActionGroup=<button onClick={()=>{
+                                                                                btnAction(item.group.id, "NONE")
+                                                                                this.setState({
+                                                                                    idInput: item.group.id
+                                                                                })
+                                                                            }}
+                                                                            className="friends-and-groups-list__list__item__content__btns_main"
+                                                                    >
+                                                                        Вступить в группу
+                                                                    </button>;
+                                                    currentStatusGroup="Не состоите в группе"
                                                 }
                                             
                                                 if(item.info.groupRelationStatus==="PARTICIPANT"){
-                                                    btnActionGroup=<button onClick={()=>btnAction(item.group.id, "PARTICIPANT")}>Выйти из группы</button>;
+                                                    btnActionGroup=<button onClick={()=>{
+                                                                                btnAction(item.group.id, "PARTICIPANT")
+                                                                                this.setState({
+                                                                                    idExit: item.group.id
+                                                                                })
+                                                                            }}
+                                                                            className="friends-and-groups-list__list__item__content__btns_danger"
+                                                                    >
+                                                                        Выйти из группы
+                                                                    </button>;
+                                                    currentStatusGroup="Состоите в группе"
                                                 }
 
-
-
                                                 return(
-                                                    <div key={item.group.id}>
-                                                        {index+1}
-                                                        <li className="myFriends_item"
-                                                            onClick={()=>funcGoItem(item.group.id)}
-                                                            >
-                                                            <div>
-                                                                <img className="myFriends_item_img" src={"data:image/jpg;base64," + item.group.photo} alt="photoGroup"/>
-                                                                <span>{item.group.name}</span>
+                                                    <li key={item.group.id} className={classItem}>
+                                                        <div onClick={()=>funcGoItem(item.group.id)}>
+                                                            <img className="friends-and-groups-list__list__item__img" src={"data:image/jpg;base64," + item.group.photo} alt="photoGroup"/>
+                                                        </div>
+                                                        <div className="friends-and-groups-list__list__item__content">
+                                                            <span onClick={()=>funcGoItem(item.group.id)} className="friends-and-groups-list__list__item__content_name">{item.group.name}</span>
+                                                            <div className="friends-and-groups-list__list__item__content_current-status"><span>{currentStatusGroup}</span></div>
+                                                            <div className="friends-and-groups-list__list__item__content__btns">
+                                                                {btnActionGroup}
                                                             </div>
-                                                        </li>
-                                                        {btnActionGroup}
-                                                    </div>
+                                                        </div>
+                                                    </li>
                                                 )
                                             })
                                         
@@ -81,6 +117,12 @@ class AllGroups extends Component{
                                         }}
                                         messageNotContent={"У вас пока нет групп"}
                                         nameList={"групп"}
+                                        totalSize={(size)=>{
+                                            this.setState({
+                                                totalSize: size
+                                            })
+                                          }}
+                                        totalSizeReturn={this.state.totalSize}
                                     />
             </div>
          )

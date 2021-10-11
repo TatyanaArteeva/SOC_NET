@@ -3,19 +3,25 @@ import {connect} from 'react-redux';
 import {allSearchValue, idForDialogFriends} from '../../actions';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router";
+import SpinnerMini from '../spinnerMini/spinnerMini';
+import './allSearchPage.scss';
 
 class AllSearchPage extends Component{
+    _cleanupFunction=false;
     constructor(props){
         super(props);
         this.state={
             searchValue: '',
             searchUsers: [],
-            searchGroups: []
+            searchGroups: [],
+            spinnerForGroupSearch: true,
+            spinnerForUsersSearch: true
         }
 
         const {Service}=this.props;
 
         this.componentDidMount=()=>{
+            this._cleanupFunction=true;
             this.setState({
                 searchValue: this.props.valueSearch
             },()=>{
@@ -24,9 +30,12 @@ class AllSearchPage extends Component{
                         console.log(res)
                         this.props.allSearchValue("")
                         if(res.status===200){
-                            this.setState({
-                                searchUsers: res.data.accounts
-                            })
+                            if(this._cleanupFunction){
+                                this.setState({
+                                    searchUsers: res.data.accounts,
+                                    spinnerForUsersSearch: false
+                                })
+                            }
                         }
                     })
 
@@ -35,9 +44,12 @@ class AllSearchPage extends Component{
                         console.log(res)
                         this.props.allSearchValue("")
                         if(res.status===200){
-                            this.setState({
-                                searchGroups: res.data.groups
-                            })
+                            if(res.status===200){
+                                this.setState({
+                                    searchGroups: res.data.groups,
+                                    spinnerForGroupSearch: false
+                                })
+                            }
                         }
                     })
                 })
@@ -46,7 +58,9 @@ class AllSearchPage extends Component{
 
         this.searchValue=(e)=>{
             this.setState({
-                searchValue: e.target.value
+                searchValue: e.target.value,
+                spinnerForGroupSearch: true,
+                spinnerForUsersSearch: true
             })
 
             Service.getResultForSearch(`/api/account/all?start=0&end=5`, {params:{name: e.target.value}})
@@ -54,7 +68,8 @@ class AllSearchPage extends Component{
                 console.log(res)
                 if(res.status===200){
                     this.setState({
-                        searchUsers: res.data.accounts
+                        searchUsers: res.data.accounts,
+                        spinnerForUsersSearch: false
                     })
                 }
             })
@@ -64,7 +79,8 @@ class AllSearchPage extends Component{
                     console.log(res)
                     if(res.status===200){
                         this.setState({
-                            searchGroups: res.data.groups
+                            searchGroups: res.data.groups,
+                            spinnerForGroupSearch: false,
                         })
                     }
                 })
@@ -264,14 +280,22 @@ class AllSearchPage extends Component{
                         })
         }
 
+        this.componentWillUnmount=()=>{
+            this._cleanupFunction=false
+        }
+
 
     }
 
     render(){
 
-        let listUsersSearch=<div>
+        let listUsersSearch=null;
+
+        if(this.state.searchUsers.length===0){
+            listUsersSearch=<div>
                                 Пользователей не найдено
                             </div>;
+        }
 
         
         if(this.state.searchUsers.length>0){
@@ -279,12 +303,12 @@ class AllSearchPage extends Component{
                                 let buttonForActionRelationships=null;
                                 let btnActionRejectFriend=null;
                                 let btnActionWriteMessage=null;
-                                const btnAddFriends=<button onClick={()=>this.addFriends(el.account.id)} className="add_photo">Добавить в друзья</button>;
-                                const btnCancelAddFriends=<button onClick={()=>this.cancelAddFriends(el.account.id)} className="add_photo">Отменить заявку</button>;
-                                const btnConfirmAddFriends=<button onClick={()=>this.addFriends(el.account.id)} className="add_photo">Подтвердить друга</button>;
-                                const btnRejectFriend=<button onClick={()=>this.rejectFriends(el.account.id)} className="add_photo">Отклонить друга</button>;
-                                const btnDeleteFriends= <button onClick={()=>this.deleteFriends(el.account.id)} className="add_photo">Удалить из друзей</button>;
-                                const btnWriteMessage= <button onClick={()=>this.writeMessage(el.account.id)} className="add_photo">Написать сообщение</button>;
+                                const btnAddFriends=<button onClick={()=>this.addFriends(el.account.id)} className="search-page__list__content__item__btns_main">Добавить в друзья</button>;
+                                const btnCancelAddFriends=<button onClick={()=>this.cancelAddFriends(el.account.id)} className="search-page__list__content__item__btns_warning">Отменить заявку</button>;
+                                const btnConfirmAddFriends=<button onClick={()=>this.addFriends(el.account.id)} className="search-page__list__content__item__btns_main">Подтвердить друга</button>;
+                                const btnRejectFriend=<button onClick={()=>this.rejectFriends(el.account.id)} className="search-page__list__content__item__btns_warning">Отклонить друга</button>;
+                                const btnDeleteFriends= <button onClick={()=>this.deleteFriends(el.account.id)} className="search-page__list__content__item__btns_warning">Удалить из друзей</button>;
+                                const btnWriteMessage= <button onClick={()=>this.writeMessage(el.account.id)} className="search-page__list__content__item__btns_main">Написать сообщение</button>;
 
                                 if(el.info.friendRelationStatus==="NO_RELATION"){
                                     buttonForActionRelationships=btnAddFriends;
@@ -303,31 +327,39 @@ class AllSearchPage extends Component{
                                     btnActionWriteMessage=btnWriteMessage;
                                 }
 
-                                return <div>
-                                            <li key={el.account.id} onClick={()=>this.goToUserPage(el.account.id)}>
-                                                <div>
-                                                    <img src={"data:image/jpg;base64," + el.account.photo} alt="photoUser"/>
-                                                </div>
-                                                <div>
+                                return <li key={el.account.id} className="search-page__list__content__item">
+                                            <div onClick={()=>this.goToUserPage(el.account.id)}>
+                                                <img src={"data:image/jpg;base64," + el.account.photo} alt="photoUser" className="search-page__list__content__item_img"/>
+                                            </div>
+                                            <div>
+                                                <span onClick={()=>this.goToUserPage(el.account.id)} className="search-page__list__content__item_name">
                                                     {el.account.firstName} {el.account.lastName}
+                                                </span>
+                                                <div className="search-page__list__content__item__btns">
+                                                    {buttonForActionRelationships}
+                                                    {btnActionRejectFriend}
+                                                    {btnActionWriteMessage}
                                                 </div>
-                                            </li>
-                                            {buttonForActionRelationships}
-                                            {btnActionRejectFriend}
-                                            {btnActionWriteMessage}
-                                        </div>
+                                            </div>
+                                        </li>
                             })
         }
 
-        let listGroupsSearch=<div>
-                                Групп не найдено
-                            </div>;
+        const contentUsers=this.state.spinnerForUsersSearch? <SpinnerMini/> : listUsersSearch;
+
+        let listGroupsSearch=null;
+
+        if(this.state.searchGroups.length===0){
+            listGroupsSearch=<div>
+                            Групп не найдено
+                        </div>;
+        }
 
         if(this.state.searchGroups.length>0){
             listGroupsSearch=  this.state.searchGroups.map(el=>{
                                     let buttonForActionGroup=null;
-                                    const joinGroup=<button onClick={()=>this.joinGroup(el.group.id)}>Вступить в группу</button>
-                                    const goOutGroup=<button onClick={()=>this.goOutGroup(el.group.id)}>Выйти из группы</button>
+                                    const joinGroup=<button onClick={()=>this.joinGroup(el.group.id)} className="search-page__list__content__item__btns_main">Вступить в группу</button>
+                                    const goOutGroup=<button onClick={()=>this.goOutGroup(el.group.id)} className="search-page__list__content__item__btns_warning">Выйти из группы</button>
                                     if(el.info.groupRelationStatus==="NONE"){
                                         buttonForActionGroup=joinGroup;
                                     }
@@ -335,41 +367,54 @@ class AllSearchPage extends Component{
                                     if(el.info.groupRelationStatus==="PARTICIPANT"){
                                         buttonForActionGroup=goOutGroup;
                                     }
-                                    return <div>
-                                                <li key={el.group.id} onClick={()=>this.goToGroupsPage(el.group.id)}>
-                                                    <div>
-                                                        <img src={"data:image/jpg;base64," + el.group.photo} alt="photoUser"/>
-                                                    </div>
-                                                    <div>
+                                    return <li key={el.group.id} className="search-page__list__content__item">
+                                                <div onClick={()=>this.goToGroupsPage(el.group.id)}>
+                                                    <img src={"data:image/jpg;base64," + el.group.photo} alt="photoUser" className="search-page__list__content__item_img"/>
+                                                </div>
+                                                <div>
+                                                    <span onClick={()=>this.goToGroupsPage(el.group.id)} className="search-page__list__content__item_name">
                                                         {el.group.name} 
+                                                    </span>
+                                                    <div className="search-page__list__content__item__btns">
+                                                        {buttonForActionGroup}
                                                     </div>
-                                                </li>
-                                                {buttonForActionGroup}
-                                            </div>
+                                                </div>
+                                            </li>
                                 })
         }
+
+        const contentGroups= this.state.spinnerForGroupSearch ? <SpinnerMini/> : listGroupsSearch
          
         return(
-            <div>
+            <div className="search-page">
                 <div>
                     <form>
                         <input placeholder="Поиск всех групп и пользователей" 
                                 value={this.state.searchValue}
                                 onChange={this.searchValue}
+                                className='search-page__search'
                         />
                     </form>
                 </div>
 
                 <div>
-                    <ul>
-                        Пользователи:
-                        <button onClick={this.goToAllUsers}>Показать всех</button>
-                        { listUsersSearch }
+                    <ul className="search-page__list">
+                        <div className="search-page__list__wrapper">
+                            <span className="search-page__list__title">Пользователи:</span>
+                            <button onClick={this.goToAllUsers} className="search-page__list__btn-show-all">Показать больше</button>
+                        </div>
+                        <div className="search-page__list__content">
+                            {contentUsers}
+                        </div>
                     </ul>
-                    <ul>
-                        Группы:
-                        <button onClick={this.goToAllGroups}>Показать всех</button>
-                        { listGroupsSearch }
+                    <ul className="search-page__list">
+                        <div className="search-page__list__wrapper">
+                            <span className="search-page__list__title">Группы:</span>
+                            <button onClick={this.goToAllGroups} className="search-page__list__btn-show-all">Показать больше</button>
+                        </div>
+                        <div className="search-page__list__content">
+                            {contentGroups}
+                        </div>
                     </ul>
                 </div>
                 

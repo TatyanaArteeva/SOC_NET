@@ -1,7 +1,112 @@
-.ModalWindowForOptonMainPhoto {
+@import '../../variables';
+@import '../../mixins';
+
+.modal-window-for-opton-main-photo {
     position: absolute;
-    background: blueviolet;
-    width: 200px;
-    height: 200px;
-    z-index: 3;
+    background: $background-color-modal;
+    width: 340px;
+    height: 150px;
+    z-index: 2;
+    transform: translateY(-102%);
+    padding: 20px;
+    border-radius: 5px;
+    &__input-file{
+        &__input{
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+        }
+    }
+    &__wrapper{
+        &__btn{
+            display:flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            
+        }
+        &__input-file{
+            width: 200px;
+            height: 35px;
+            background-color: $main-color-light;
+            border-radius: 10px;
+            position: relative;
+            margin: 10px auto;
+            &:hover{
+                transform: scale(1.1);
+            }
+            &__label{
+                padding: 5px 10px;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                &_img{
+                    width: 30px;
+                    height: 30px;
+                    display: block;
+                    & img{
+                        width: 20px;
+                        height: 20px;
+                        margin: 5px 3px;
+                    }
+                }
+                &_name{
+                    display: block;
+                    margin-left: 15px;
+                    margin-bottom: 5px;
+                    color: $main-color;
+                    font-weight: 600;
+                }
+                &_border{
+                    width: 1px;
+                    height: 25px;
+                    background-color: $background-color-modal;
+                    margin-left: 10px;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+    &__btn{
+        padding: 5px;
+        width: 130px;
+        border-radius: 10px;
+        color: $input-text;
+        font-size: 13px;
+        background: rgba(243, 246, 220, 0.3);
+        border: 2.5px solid $secondary-color;
+        &:hover{
+            background: $secondary-color-light;
+            transform: scale(1.1);
+        }
+    }
+    &__cancel{
+        position: relative;
+        & img{
+            position: absolute;
+            left: 93%;
+            top: -8px;
+            &:hover{
+                transform: rotate(30deg) scale(1.1);
+            }
+        }
+    }
+    &__text{
+        margin: 10px auto;
+        text-align: center;
+        height: 30px;
+        &_final{
+            margin-top: 35px;
+            text-align: center
+        }
+    }
+    &__invalid-file{
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        &_text{
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
 }
