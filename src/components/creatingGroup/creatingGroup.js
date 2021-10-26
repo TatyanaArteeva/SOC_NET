@@ -27,7 +27,9 @@ class CreatingGroup extends Component{
             nav:true,
             listSelectTheme: false,
             adminFirstName:'',
-            adminLastName: ''
+            adminLastName: '',
+            error: false,
+            mouseInBlockModalWindow:false
         }
         const {Service} = this.props;
 
@@ -48,6 +50,14 @@ class CreatingGroup extends Component{
                         this.setState({
                             adminFirstName: res.data.account.firstName,
                             adminLastName: res.data.account.lastName,
+                            nav: false
+                        })
+                    }
+                }).catch(err=>{
+                    if(this._cleanupFunction){
+                        this.setState({
+                            adminFirstName: "Что-то пошло не так! Администратор не известен!",
+                            adminLastName: '',
                             nav: false
                         })
                     }
@@ -174,9 +184,7 @@ class CreatingGroup extends Component{
            
             Service.postNewGroup('/api/group/create', formData)
                 .then(res=>{
-                    console.log(res)
                     if(res.status===200){
-                        console.log(res.data.id)
                         this.setState({
                             spinner: false,
                             nav: true
@@ -187,11 +195,13 @@ class CreatingGroup extends Component{
                             if(blockingTimerCloseNotificationSuccessfulCreatingGroup===false){
                                 this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup()
                             }
-                        }, 1000)
-                        
-                        
-                        
+                        }, 1000)              
                     }
+                }).catch(err=>{
+                    this.setState({
+                        spinner: false,
+                        error: true
+                    })
                 })
         }
 
@@ -214,10 +224,39 @@ class CreatingGroup extends Component{
         }
 
         this.mouseLeaveThemeGroupList=()=>{
-            console.log("вышли за блок")
-            this.toggleBtnForThemeGroupList()
+            // this.toggleBtnForThemeGroupList()
         }
 
+
+        this.closeErrorWindowCreatingGroup=()=>{
+            this.setState({
+                error: false
+            })
+        }
+
+        this.inBlockModalFalse=()=>{
+            this.setState({
+                mouseInBlockModalWindow:false
+            })
+        }
+
+        this.inBlockModalTrue=()=>{
+            this.setState({
+                mouseInBlockModalWindow:true
+            })
+        }
+
+        this.creatingGroupSuccesfullyCloseOverlay=()=>{
+            if(!this.state.mouseInBlockModalWindow){
+                this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup()
+            }
+        }
+
+        this.closeModalWindowErrorCreatingGroup=()=>{
+            if(!this.state.mouseInBlockModalWindow){
+                this.closeErrorWindowCreatingGroup()
+            }
+        }
 
     }
     
@@ -227,12 +266,19 @@ class CreatingGroup extends Component{
     window.addEventListener('popstate',()=>this.goToBack());
 
 
-    const modalWindowUserNotificationCreatingGroup=this.props.modalWindowUserNotificationCreatingGroup? <div className="creating-group__message-save-modification">
-                                                                                                            <div className="creating-group__message-save-modification__modal">
+    const modalWindowUserNotificationCreatingGroup=this.props.modalWindowUserNotificationCreatingGroup? <div className="creating-group__message-save-modification" onClick={this.creatingGroupSuccesfullyCloseOverlay}>
+                                                                                                            <div className="creating-group__message-save-modification__modal" onMouseLeave={this.inBlockModalFalse} onMouseEnter={this.inBlockModalTrue}>
                                                                                                                 <img className="creating-group__message-save-modification__modal_btn" onClick={this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup} src={cancel} alt="cancel"/>
                                                                                                                 <div className="creating-group__message-save-modification__modal_message">Группа успешно создана!</div>
                                                                                                             </div>
                                                                                                         </div> :null;
+
+    const errorModalWindowCreatingGroup=this.state.error ? <div className="creating-group__message-save-modification" onClick={this.closeModalWindowErrorCreatingGroup}>
+                                                                <div className="creating-group__message-save-modification__modal" onMouseLeave={this.inBlockModalFalse} onMouseEnter={this.inBlockModalTrue}>
+                                                                    <img className="creating-group__message-save-modification__modal_btn" src={cancel} alt="cancel" onClick={this.closeErrorWindowCreatingGroup} />
+                                                                    <div className="creating-group__message-save-modification__modal_message">Что-то пошло не так! группа не создана!</div>
+                                                                </div>
+                                                            </div> :null;
 
     const invalidFileMessage= <div className="creating-group__input-file__invalid-file">
                                     <div className="creating-group__input-file__invalid-file_message">
@@ -316,7 +362,8 @@ class CreatingGroup extends Component{
                                         </div>
                                         <div className="creating-group__wrapper-theme">
                                         <label className="creating-group__label">Тема группы: </label>
-                                        <div className="creating-group__select__btn" onClick={this.toggleBtnForThemeGroupList}>{this.state.theme}</div>
+                                        <div>
+                                            <div className="creating-group__select__btn" onClick={this.toggleBtnForThemeGroupList}>{this.state.theme}</div>
                                             <ul className={listClassTheme} onMouseLeave={this.mouseLeaveThemeGroupList}>
                                                 <li onClick={this.valueThemeGroup}>Не выбрано</li>
                                                 <li onClick={this.valueThemeGroup}>Авто и автовладельцы</li>
@@ -346,6 +393,7 @@ class CreatingGroup extends Component{
                                                 <li onClick={this.valueThemeGroup}>Финансы</li>
                                                 <li onClick={this.valueThemeGroup}>Другое</li>
                                             </ul>
+                                        </div>
                                         </div>
                                         { selectionTheme}
                                         <div className="creating-group__wrapper">
@@ -380,6 +428,7 @@ class CreatingGroup extends Component{
                                         <div className="creating-group__cancel" onClick={this.goToBackGroup}>Отмена</div>
                                     </form>
                                     {modalWindowUserNotificationCreatingGroup}
+                                    {errorModalWindowCreatingGroup}
                                 </div>
 
         const content=this.state.spinner? <Spinner/>: contentCreatingGroup;

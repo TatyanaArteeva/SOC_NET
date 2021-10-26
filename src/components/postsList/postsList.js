@@ -7,6 +7,7 @@ import './postsList.scss';
 import SpinnerMini from '../spinnerMini/spinnerMini';
 import send from './send.svg';
 import { withRouter, useHistory} from "react-router-dom";
+import note from './note.svg'
 
 
 let req=false;
@@ -27,6 +28,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
     const [end, setEnd]=useState(10);
     const [spinnerMini, setSpinnerMini]= useState(false);
     const [loading, setLoading]=useState(true);
+    const [error, setError]=useState(false);
     const { push } = useHistory();
 
     function getSimpleAccount(){
@@ -90,6 +92,8 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                                 setLoading(false);
                             }
                            }
+                       }).catch(err=>{
+                           setError(true)
                        }) 
             return () => { cleanupFunction = true;};
         }
@@ -232,8 +236,20 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
 
         postContent=useMemo(()=>{
             let posts=null;
+
             if(totalSizePosts===0 && typeof postsArr!=="string"){
-                posts=<div className="public-messages__null">Пока нет новостей</div>
+                posts=<div className="public-messages__null">
+                            <img src={note} alt=""/>
+                        </div>
+
+                return posts
+            }
+
+            if(totalSizePosts===0 && error){
+                posts=<div className="public-messages__null">
+                        Что-то пошло не так! Новости не доступны!
+                    </div>
+
                 return posts
             }
     

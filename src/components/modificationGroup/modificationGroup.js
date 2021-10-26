@@ -25,7 +25,11 @@ class ModificationGroup extends Component{
             id:'',
             nav:true,
             spinner:true,
-            listSelectTheme: false
+            listSelectTheme: false, 
+            errorLoadingContent: false,
+            errorModification: false,
+            adminFirstName:'',
+            adminLastName: '',
         }
 
         const {Service} = this.props;
@@ -33,9 +37,10 @@ class ModificationGroup extends Component{
         this.componentDidMount=()=>{
             this._cleanupFunction=true;
             const inf=async()=>{
-                    const res=await Service.getGroup(`/api/group/${id}`);
-                    console.log(res)
-                      if(this._cleanupFunction){
+                const res=await Service.getGroup(`/api/group/${id}`);
+                console.log(res)
+                try{
+                    if(this._cleanupFunction){
                         this.setState({
                             name: res.data.name,
                             theme: res.data.theme,
@@ -44,6 +49,8 @@ class ModificationGroup extends Component{
                             description: res.data.description,
                             photoName: res.data.photoName,
                             id: res.data.id,
+                            adminFirstName: res.data.owner.firstName,
+                            adminLastName: res.data.owner.lastName,
                             nav:false,
                             spinner: false
                         }) 
@@ -68,6 +75,14 @@ class ModificationGroup extends Component{
                             photo: file
                         })
                       }  
+                }catch{
+                    if(this._cleanupFunction){
+                        this.setState({
+                            spinner: false,
+                            errorLoadingContent:true
+                        })
+                    }
+                }
                 
             } 
             inf() 
@@ -159,7 +174,7 @@ class ModificationGroup extends Component{
         let blockingTimerCloseNotificationSuccessfulModificationGroup=false
 
         this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup=()=>{
-            blockingTimerCloseNotificationSuccessfulModificationGroup=true
+            blockingTimerCloseNotificationSuccessfulModificationGroup=true;
             this.props.modalWindowForUserNotificationCreatingGroupClose();
             this.props.history.push(`/groups/${this.props.idGroup}`)
         }
@@ -222,6 +237,11 @@ class ModificationGroup extends Component{
                             }
                         }, 1000)
                     }
+                }).catch(err=>{
+                    this.setState({
+                        spinner:false,
+                        errorModification:true,
+                    })
                 })
         }
 
@@ -242,6 +262,12 @@ class ModificationGroup extends Component{
             window.addEventListener('popstate',()=>this.goToBack());
         }
 
+        this.closeModalWindowErrorModificationGroup=()=>{
+            this.setState({
+                errorModification: false
+            })
+        }
+
         this.componentWillUnmount=()=>{
             window.removeEventListener('popstate',()=>this.goToBack())
             this._cleanupFunction=false;
@@ -252,12 +278,19 @@ class ModificationGroup extends Component{
 
    render(){
     console.log(this.state.nav)
-    const modalWindowUserNotificationCreatingGroup=this.props.modalWindowUserNotificationCreatingGroup? <div className="modification-group__message-save-modification">
+    const modalWindowUserNotificationModificationGroup=this.props.modalWindowUserNotificationCreatingGroup? <div className="modification-group__message-save-modification">
                                                                                                             <div className="modification-group__message-save-modification__modal">
                                                                                                                 <img className="modification-group__message-save-modification__modal_btn" onClick={this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup} src={cancel} alt="cancel"/>
                                                                                                                 <div className="modification-group__message-save-modification__modal_message">Изменения успешно сохранены!</div>
                                                                                                             </div>
                                                                                                         </div> :null;
+
+    const errorModificationModalWindow=this.state.errorModification ? <div className="modification-group__message-save-modification">
+                                                                            <div className="modification-group__message-save-modification__modal">
+                                                                                <img className="modification-group__message-save-modification__modal_btn" onClick={this.closeModalWindowErrorModificationGroup} src={cancel} alt="cancel"/>
+                                                                                <div className="modification-group__message-save-modification__modal_message">Изменения успешно сохранены!</div>
+                                                                            </div>
+                                                                        </div> :null;
 
     const invalidFileMessage= <div className="modification-group__input-file__invalid-file">
                                 <div className="modification-group__input-file__invalid-file_message">
@@ -326,12 +359,8 @@ class ModificationGroup extends Component{
         listClassTheme="activeListTheme"
     }
 
-    // const navBlock=!this.state.nav ? <PromptNav when={this.state.nav===false}/> : null;
-
-
-    const contentModification=<div>
+    let contentModification=<div>
                                 <PromptNav when={this.state.nav===false}/>
-                                {/* {navBlock} */}
                                 <form onSubmit={this.modificationGroup} className="modification-group">
                                     <h2 className="modification-group__title">Редактирование:</h2>
                                     <div className="modification-group__wrapper">
@@ -347,36 +376,38 @@ class ModificationGroup extends Component{
                                     </div>
                                     <div className="modification-group__wrapper-theme">
                                         <label className="modification-group__label">Тема группы: </label>
-                                        <div className="modification-group__select__btn" onClick={this.toggleBtnForThemeGroupList}>{this.state.theme}</div>
-                                        <ul className={listClassTheme} onMouseLeave={this.mouseLeaveThemeGroupList}>
-                                            <li onClick={this.valueThemeGroup}>Не выбрано</li>
-                                            <li onClick={this.valueThemeGroup}>Авто и автовладельцы</li>
-                                            <li onClick={this.valueThemeGroup}>Благотворительность</li>
-                                            <li onClick={this.valueThemeGroup}>Велосипеды</li>
-                                            <li onClick={this.valueThemeGroup}>Видеоигры</li>
-                                            <li onClick={this.valueThemeGroup}>Водный транспорт</li>
-                                            <li onClick={this.valueThemeGroup}>Городское сообщество</li>
-                                            <li onClick={this.valueThemeGroup}>Дизайн, интерьер</li>
-                                            <li onClick={this.valueThemeGroup}>Дикие животные</li>
-                                            <li onClick={this.valueThemeGroup}>Домашние животные</li>
-                                            <li onClick={this.valueThemeGroup}>Друзья</li>
-                                            <li onClick={this.valueThemeGroup}>Еда</li>
-                                            <li onClick={this.valueThemeGroup}>Здоровье</li>
-                                            <li onClick={this.valueThemeGroup}>Компьютеры, интернет</li>
-                                            <li onClick={this.valueThemeGroup}>Красота</li>
-                                            <li onClick={this.valueThemeGroup}>Кулинария</li>
-                                            <li onClick={this.valueThemeGroup}>Медицина</li>
-                                            <li onClick={this.valueThemeGroup}>Недвижимость</li>
-                                            <li onClick={this.valueThemeGroup}>Образование</li>
-                                            <li onClick={this.valueThemeGroup}>Объявления</li>
-                                            <li onClick={this.valueThemeGroup}>Отношения, семья</li>
-                                            <li onClick={this.valueThemeGroup}>Развлечения</li>
-                                            <li onClick={this.valueThemeGroup}>Спорт</li>
-                                            <li onClick={this.valueThemeGroup}>Туризм, путешествия</li>
-                                            <li onClick={this.valueThemeGroup}>Увлечения, хобби</li>
-                                            <li onClick={this.valueThemeGroup}>Финансы</li>
-                                            <li onClick={this.valueThemeGroup}>Другое</li>
-                                        </ul>
+                                        <div>
+                                            <div className="modification-group__select__btn" onClick={this.toggleBtnForThemeGroupList}>{this.state.theme}</div>
+                                            <ul className={listClassTheme} onMouseLeave={this.mouseLeaveThemeGroupList}>
+                                                <li onClick={this.valueThemeGroup}>Не выбрано</li>
+                                                <li onClick={this.valueThemeGroup}>Авто и автовладельцы</li>
+                                                <li onClick={this.valueThemeGroup}>Благотворительность</li>
+                                                <li onClick={this.valueThemeGroup}>Велосипеды</li>
+                                                <li onClick={this.valueThemeGroup}>Видеоигры</li>
+                                                <li onClick={this.valueThemeGroup}>Водный транспорт</li>
+                                                <li onClick={this.valueThemeGroup}>Городское сообщество</li>
+                                                <li onClick={this.valueThemeGroup}>Дизайн, интерьер</li>
+                                                <li onClick={this.valueThemeGroup}>Дикие животные</li>
+                                                <li onClick={this.valueThemeGroup}>Домашние животные</li>
+                                                <li onClick={this.valueThemeGroup}>Друзья</li>
+                                                <li onClick={this.valueThemeGroup}>Еда</li>
+                                                <li onClick={this.valueThemeGroup}>Здоровье</li>
+                                                <li onClick={this.valueThemeGroup}>Компьютеры, интернет</li>
+                                                <li onClick={this.valueThemeGroup}>Красота</li>
+                                                <li onClick={this.valueThemeGroup}>Кулинария</li>
+                                                <li onClick={this.valueThemeGroup}>Медицина</li>
+                                                <li onClick={this.valueThemeGroup}>Недвижимость</li>
+                                                <li onClick={this.valueThemeGroup}>Образование</li>
+                                                <li onClick={this.valueThemeGroup}>Объявления</li>
+                                                <li onClick={this.valueThemeGroup}>Отношения, семья</li>
+                                                <li onClick={this.valueThemeGroup}>Развлечения</li>
+                                                <li onClick={this.valueThemeGroup}>Спорт</li>
+                                                <li onClick={this.valueThemeGroup}>Туризм, путешествия</li>
+                                                <li onClick={this.valueThemeGroup}>Увлечения, хобби</li>
+                                                <li onClick={this.valueThemeGroup}>Финансы</li>
+                                                <li onClick={this.valueThemeGroup}>Другое</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     { selectionTheme}
                                     <div className="modification-group__wrapper">
@@ -400,14 +431,23 @@ class ModificationGroup extends Component{
                                                 className="modification-group__label_input-description"
                                                 /> 
                                     </div>
-                                    <div>
-                                        {inputPhoto}
+                                    {inputPhoto}
+                                    <div className="modification-group__wrapper">
+                                            <label className="modification-group__label">Администратор группы:</label>
+                                            <span className="modification-group__label_admin">
+                                                {this.state.adminFirstName} {this.state.adminLastName}
+                                            </span>
                                     </div>
                                     <button className="modification-group__submit" type="submit">Сохранить</button>
                                     <div className="modification-group__cancel" onClick={this.goToBackGroup}>Отмена</div>
                                 </form>
-                                {modalWindowUserNotificationCreatingGroup}
+                                {modalWindowUserNotificationModificationGroup}
+                                {errorModificationModalWindow}
                             </div>
+        
+        if(this.state.errorLoadingContent){
+            contentModification=<div>Что-то пошло не так! Контент не доступен!</div>
+        }
 
         const content=this.state.spinner? <Spinner/> : contentModification
 

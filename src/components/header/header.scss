@@ -2,11 +2,9 @@
 @import '../../mixins';
 @import './animation.scss';
 
-
-
-
 .header{
-    background: rgba(137, 216, 194, .1);
+    background-color: $background-color-modal;
+    box-shadow: 1px 2px 4px 1px $background-color-modal-shadow;
     border-radius: 7px;
     width: 100%;
     display: flex;
@@ -19,10 +17,19 @@
         height: 40px;
         animation: logoAnimation 8s ease infinite;
         margin-left: 10px;
+        
     }
     &__menu{
         display: flex;
         justify-content: space-between;
+        &__settings-and-exit{
+            display: flex;
+            justify-content: space-between;
+        }
+        &__mini-size{
+            display: none;
+            position: relative;
+        }
         &__wrapper{
             display: flex;
             flex-direction: column;
@@ -107,6 +114,148 @@
         }
     }
     
+}
+
+@media (max-width: 1200px){
+    .header{
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 992px){
+    .header{
+        &__logo{
+            width: 33px;
+            height: 33px;
+            margin-left: 7px;
+        }
+        &__menu{
+            &__item{
+                width: 33px;
+                height: 33px;
+                margin: 0 8px 0 8px;
+            }
+        }
+        
+    }
+}
+@media (max-width: 768px){
+    .header{
+        &__logo{
+            width: 35px;
+            height: 35px;
+        }
+        &__menu{
+            &__item{
+                width: 35px;
+                height: 35px;
+                margin: 0 8px 0 8px;
+            }
+        }
+        
+    }
+}
+
+
+
+@media (max-width: 576px){
+    .header{
+        &__logo{
+            width: 0px;
+            height: 0px;
+            display: none;
+        }
+        &__menu{
+            display: none;
+            &__mini-size{
+                display: block;
+            }
+            &__wrapper{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                cursor: pointer;
+                &:hover{
+                    .header__menu__item__count_notifications{
+                        font-size: 20px;
+                    }
+                    .header__menu__item__count{
+                        font-size: 20px;
+                    }
+                    .header__menu__item__label{
+                        visibility: visible;
+                    }
+                    .header__menu__item__label_last{
+                        visibility: visible;
+                    }
+                    .header__menu__item{
+                        width: 35px;
+                        height: 35px;
+                        padding: 0;
+                    }
+                }
+    
+            }
+            &__item{
+                width: 35px;
+                height: 35px;
+                padding: 0 3px 0 3px;
+                margin: 0 10px 0 10px;
+                &__label{
+                    position: absolute;
+                    visibility: hidden;
+                    padding: 3px 3px 3px 3px;
+                    color: #026670;
+                    font-size: 13px;
+                    font-weight: 100;
+                    transform: translate(0, 100%);
+                    margin-top: 14px;
+                    z-index: 3;
+                    margin-left: 27px;
+                    background-color: rgba(137, 216, 194, 0.1);
+                    border-radius: 0 7px 7px 7px;
+                    border: 1px solid rgba(137, 216, 194, 0.6);
+                    &_last{
+                        position: absolute;
+                        visibility: hidden;
+                        padding: 3px 3px 3px 3px;
+                        color: #026670;
+                        font-size: 13px;
+                        font-weight: 100;
+                        transform: translate(0, 100%);
+                        margin-top: 14px;
+                        z-index: 3;
+                        margin-left: -20px;
+                        background-color: rgba(137, 216, 194, 0.1);
+                        border-radius: 7px 0 7px 7px;
+                        border: 1px solid rgba(137, 216, 194, 0.6);
+                    }
+                }
+                &__count{
+                    color: $main-color;
+                    position: absolute;
+                    margin-left: -17px;
+                    padding: 0px 0 20px 5px;
+                    margin-top: -5px;
+                    font-size: 18px;
+                    font-weight: 800;
+                    z-index: 1;
+                    &_notifications{
+                        position: absolute;
+                        margin-left: 39px;
+                        color: $main-color;
+                        padding: 0px 0 20px 5px;
+                        margin-top: -5px;
+                        font-size: 18px;
+                        font-weight: 800;
+                        z-index: 1;
+                    }
+                }
+            }
+        }
+        
+    }
 }
 
 

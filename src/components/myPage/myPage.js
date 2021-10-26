@@ -7,6 +7,7 @@ import PostsList from '../postsList/postsList';
 import InfoUser from '../infoUser/infoUser';
 import {connect} from 'react-redux';
 import Spinner from '../spinner/spinner';
+import eyeClose from './eyeClose.svg';
 
 
 class MyPage extends Component{
@@ -16,8 +17,9 @@ class MyPage extends Component{
             postsContent=<PostsList idForPosts={this.props.idInUrl}  messageOnWallType={"ACCOUNT"}/>
         }
         if((this.props.info.friendRelationStatus==="NO_RELATION" && this.props.info.friendRelationStatus!==undefined) || (this.props.info.friendRelationStatus==="INPUT" && this.props.info.friendRelationStatus!==undefined) || (this.props.info.friendRelationStatus==="OUTPUT" && this.props.info.friendRelationStatus!==undefined)){
-            console.log("зашли");
-            postsContent=<div className="profile__information__public-messages_not-access">Новости не доступны!</div>;
+            postsContent=<div className="profile__information__public-messages_not-access">
+                            <img src={eyeClose} alt="contentNotAccess"/>
+                        </div>;
         }
 
         let spinner=null;

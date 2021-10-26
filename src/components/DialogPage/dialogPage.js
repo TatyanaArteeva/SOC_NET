@@ -34,7 +34,8 @@ class DialogPage extends Component{
             totalSizeMessage: '',
             spinner: true,
             spinnerMini: false,
-            oneRequest:false
+            oneRequest:false,
+            error:false
         }
 
         this.refListMessage=React.createRef();
@@ -96,6 +97,11 @@ class DialogPage extends Component{
                         })
                     }
                     
+                }).catch(res=>{
+                    this.setState({
+                        spinner:false,
+                        error:true
+                    })
                 })
         }
 
@@ -159,9 +165,7 @@ class DialogPage extends Component{
         this.componentDidUpdate=()=>{
             const heightList=this.refListMessage.current.scrollHeight;
             const windowMessage=document.querySelector('.dialog__list__wrapper');
-
                 if(this.state.oneRequest){
-                    console.log("зашли в условие", this.state.oneRequest, this.props.inputMessage.length)
                     windowMessage.scrollTop = windowMessage.scrollHeight;
                 }
                 if(this.props.inputMessage.length>0){
@@ -186,10 +190,6 @@ class DialogPage extends Component{
                             if (scrollInBottom) {
                                 windowMessage.scrollTop = windowMessage.scrollHeight;
                                 Service.postMessageRead('/api/message/acceptMessages', [el.id])
-                                    .then(res=>{
-                                        console.log(res)
-                                        console.log("элемент принят и прочитан")
-                                    })
                             }
                         })
                     }
@@ -246,6 +246,11 @@ class DialogPage extends Component{
                                             spinnerMini: false,
                                         })
                                     }
+                                }).catch(res=>{
+                                    this.setState({
+                                        spinner:false,
+                                        error:true
+                                    })
                                 })
                         })
                     }
@@ -283,34 +288,42 @@ class DialogPage extends Component{
         const linkToFriendPage=`/${this.state.idFriends}`;
         const linkToMyPage=`/${this.props.id}`;
 
-        const messages= this.state.allAndOutputMessage.map(el=>{
-                            const dateMilliseconds=new Date(el.sendDate).getTime();
-                            const timeZone=new Date(el.sendDate).getTimezoneOffset()*60*1000;
-                            const currentDateMilliseconds=dateMilliseconds-(timeZone);
-                            const currentDate=new Date(currentDateMilliseconds);
-                            let classMessage="dialog__list__wrapper__list__user";
-                            let nameUser=<Link to={linkToMyPage}><span className="dialog__list__wrapper__list__user_name">{this.state.firstNameUser} {this.state.lastNameUser}</span></Link>
-                            if(el.destinationId===this.props.id){
-                                classMessage="dialog__list__wrapper__list__friend"
-                                nameUser=<Link to={linkToFriendPage}><span className="dialog__list__wrapper__list__friend_name">{this.state.firstNameFriends} {this.state.lastNameFriends}</span></Link>
-                            }
+        let messages=null;
 
-                            return  <li key={el.id} className={classMessage}>
-                                            <div className="dialog__list__wrapper__list__content">
-                                                {nameUser}
-                                            </div>
-                                            <div className="dialog__list__wrapper__list__content_message">
-                                                {el.content}
-                                            </div>
-                                            <span className="dialog__list__wrapper__list__content_time">
-                                                    <Moment locale="ru"
-                                                            date={currentDate}
-                                                            format={localFormatDateByVersionLibMomentReact}
-                                                            
-                                                    />
-                                            </span>
-                                    </li>
-                        })
+        if(this.state.error){
+            messages=<div>Что-то пошло не так! Контент не доступен!</div>
+        }
+
+        if(!this.state.error){
+            messages= this.state.allAndOutputMessage.map(el=>{
+                const dateMilliseconds=new Date(el.sendDate).getTime();
+                const timeZone=new Date(el.sendDate).getTimezoneOffset()*60*1000;
+                const currentDateMilliseconds=dateMilliseconds-(timeZone);
+                const currentDate=new Date(currentDateMilliseconds);
+                let classMessage="dialog__list__wrapper__list__user";
+                let nameUser=<Link to={linkToMyPage}><span className="dialog__list__wrapper__list__user_name">{this.state.firstNameUser} {this.state.lastNameUser}</span></Link>
+                if(el.destinationId===this.props.id){
+                    classMessage="dialog__list__wrapper__list__friend"
+                    nameUser=<Link to={linkToFriendPage}><span className="dialog__list__wrapper__list__friend_name">{this.state.firstNameFriends} {this.state.lastNameFriends}</span></Link>
+                }
+
+                return  <li key={el.id} className={classMessage}>
+                                <div className="dialog__list__wrapper__list__content">
+                                    {nameUser}
+                                </div>
+                                <div className="dialog__list__wrapper__list__content_message">
+                                    {el.content}
+                                </div>
+                                <span className="dialog__list__wrapper__list__content_time">
+                                        <Moment locale="ru"
+                                                date={currentDate}
+                                                format={localFormatDateByVersionLibMomentReact}
+                                                
+                                        />
+                                </span>
+                        </li>
+            })
+        }
 
 
         const content=this.state.spinner? <Spinner/>: messages

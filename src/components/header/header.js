@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {  Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
-import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe, inputNotificationObj, pathLink} from '../../actions';
+import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe, inputNotificationObj, pathLink, openAndCloseDropDownMenu} from '../../actions';
 import { withRouter } from "react-router";
 import './header.scss';
 import HeaderSearch from '../headerSearch/headerSearch';
@@ -15,6 +15,9 @@ import notifications from './bell.svg';
 import settings from './settings.svg';
 import exit from './exit.svg';
 import sunflower from './sunflower.svg';
+import menu from './menu.svg';
+import menuNotNull from './menuNotNull.svg';
+import DropDownMenu from '../drop-down-menu-header/drop-down-menu-header';
 
 
 
@@ -76,6 +79,10 @@ class Header extends Component{
             }
         }
 
+        this.toggleDropDownMenu=()=>{
+            this.props.openAndCloseDropDownMenu(!this.props.dropDownMenu)
+        }
+
 
     }
     
@@ -86,9 +93,11 @@ class Header extends Component{
 
         let countMessage=null;
 
-        
+        let menuItem=menu;
+
         if(this.props.inputMessageCount.length>0){
-            countMessage=this.props.inputMessageCount.length
+            countMessage=this.props.inputMessageCount.length;
+            menuItem=menuNotNull;
         }
 
         let countNotifications=null;
@@ -103,15 +112,20 @@ class Header extends Component{
             listNotifications=<UserNotificationsList/>
         }
 
-        // if(this.props.mouseLeaveNotificationsList){
-        //     listNotifications=null;
-        // }
+        if(this.props.mouseLeaveNotificationsList){
+            listNotifications=null;
+        }
 
+        let dropDownMenu=null;
+        if(this.props.dropDownMenu){
+            dropDownMenu=<DropDownMenu/>
+        }
+        
         
         return (
             <header>
                 <nav className="header">
-                    <div><img src={sunflower} alt="logo" className="header__logo"/></div>
+                    <img src={sunflower} alt="logo" className="header__logo"/>
 
                     <div className="header__menu__wrapper">
                             <img className="header__menu__item" src={notifications} alt="notifications" onClick={this.openNotificationsList}/> 
@@ -158,9 +172,15 @@ class Header extends Component{
 
                     <HeaderSearch/>
 
-                    <div className="header__menu">
+                    <div className="header__menu__mini-size">
+                        <img className="header__menu__item" src={menuItem} alt="menu" onClick={this.toggleDropDownMenu}/>
+                        {dropDownMenu}
+                    </div>
+
+
+                    <div className="header__menu__settings-and-exit">
                         
-                        <div className="header__menu">
+                        <div className="header__menu__settings-and-exit">
                             <div className="header__menu__wrapper">
                                 <img src={settings} alt="Настройки" onClick={()=>this.goToSettings()} className="header__menu__item"/>
                                 <span className="header__menu__item__label">
@@ -193,7 +213,8 @@ const mapStateToProps=(state)=>{
         mainPage: state.loginMainPage,
         inputMessageCount: state.inputMessageObj,
         inputNotificationObjCount: state.inputNotificationObj,
-        mouseLeaveNotificationsListstate: state.mouseLeaveNotificationsList
+        mouseLeaveNotificationsListstate: state.mouseLeaveNotificationsList,
+        dropDownMenu: state.dropDownMenu
     }
 }
 
@@ -203,7 +224,8 @@ const mapDispatchToProps={
         inputMessageObj,
         unsubscribe,
         inputNotificationObj,
-        pathLink
+        pathLink,
+        openAndCloseDropDownMenu
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Header)));

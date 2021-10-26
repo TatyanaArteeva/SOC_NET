@@ -50,7 +50,8 @@ const initialState={
     loadingInfoProfile: false,
     loadingPhotoProfile: false,
     mouseLeaveNotificationsList: false,
-    returnFromModificationPage: false
+    returnFromModificationPage: false,
+    dropDownMenu:false
 }
 
 
@@ -452,6 +453,11 @@ const reducer=(state=initialState, action)=>{
                 ...state,
                 returnFromModificationPage: action.returnFromModificationPage
             }
+        case 'OPEN_AND_CLOSE_DROP_DOWN_MENU':
+                return{
+                ...state,
+                dropDownMenu: action.openAndCloseDropDownMenu
+                }
         default:
             return state;
     }

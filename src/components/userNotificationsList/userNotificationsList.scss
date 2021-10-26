@@ -6,7 +6,7 @@
     height: 372px;
     display: block;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     margin-top: 11px;
     top: 40px;
     overflow-y: auto;
@@ -98,8 +98,127 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 25px;
-        font-weight: 500;
-        color: $secondary-color;
+        & img {
+            width: 70px;
+            height: 70px;
+        }
+    }
+}
+
+@media (max-width: 1200px){
+    .user-notifications-list{
+        transform: translateX(-15px);
+    }
+}
+
+@media (max-width: 992px){
+    .user-notifications-list{
+        width: 300px;
+        height: 300px;
+        &__wrapper {
+            padding: 7px;
+        }
+        &__list{
+            padding: 0px 7px 0px 7px;
+            &__item{
+                margin: 5px 0;
+                &__content{
+                    &__img{
+                        border-radius: 100%;
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 7px;
+                    }
+                    &__name{
+                        &_name{
+                            font-weight: 700;
+                            font-size: 14px;
+                        }
+                        &_message{
+                            max-width: 100%;
+                            display: flex;
+                            justify-content: flex-start;
+                            margin: 2px 0;
+                            font-weight: 600;
+                            font-size: 13px;
+                        }
+                    }
+                }
+                &__time{
+                    font-size: 9px;
+                }
+            }
+        }
+        &__spinner-wrapper{
+            width: 285px;
+            height: 285px;
+        }
+        &__not-notifications{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px){
+    .user-notifications-list{
+        width: 300px;
+        height: 300px;
+        &__wrapper {
+            padding: 0px;
+        }
+        &__list{
+            padding: 0px 5px 0px 5px;
+            &__item{
+                margin: 3px 0;
+                &__content{
+                    &__img{
+                        border-radius: 100%;
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 5px;
+                    }
+                    &__name{
+                        &_name{
+                            font-weight: 600;
+                            font-size: 16px;
+                        }
+                        &_message{
+                            max-width: 100%;
+                            display: flex;
+                            justify-content: flex-start;
+                            margin: 0;
+                            font-weight: 500;
+                            font-size: 15px;
+                        }
+                    }
+                }
+                &__time{
+                    font-size: 11px;
+                }
+            }
+        }
+        &__spinner-wrapper{
+            width: 300px;
+            height: 285px;
+            display: flex;
+            align-items: center;
+        }
+        &__not-notifications{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & img {
+                width: 50px;
+                height: 50px;
+            }
+        }
     }
 }

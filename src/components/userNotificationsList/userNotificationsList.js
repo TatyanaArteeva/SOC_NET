@@ -7,6 +7,7 @@ import { deleteNotificationFromInputNotificationObj, mouseLeaveNotificationsList
 import 'moment/locale/ru';
 import Moment from 'react-moment';
 import SpinnerMini from '../spinnerMini/spinnerMini';
+import bell from './bell.svg';
 
 const localFormatDateByVersionLibMomentReact='lll'
 
@@ -21,7 +22,8 @@ class UserNotificationsList extends Component{
             totalSizeNotifications: '',
             renderItems:false,
             req: false,
-            spinner:true
+            spinner:true,
+            error: false
         }
 
         let start=0;
@@ -45,13 +47,8 @@ class UserNotificationsList extends Component{
                     if(res.status===200){
                         res.data.notifications.forEach(el=>{
                             if(el.accepted===false){
-                                // console.log(el)
                                 this.props.deleteNotificationFromInputNotificationObj(el);
                                 Service.postNotificationRead('/api/notification/acceptNotifications', [el.id])
-                                    .then(res=>{
-                                        // console.log(res)
-                                        // console.log("оповещение принято и прочитано")
-                                    })
                             }
                         })
 
@@ -66,6 +63,11 @@ class UserNotificationsList extends Component{
                         }
 
                     }
+                }).catch(err=>{
+                    this.setState({
+                        spinner: false,
+                        error: true
+                    })
                 })
         }
 
@@ -200,11 +202,17 @@ class UserNotificationsList extends Component{
         let notificationsContent=null;
 
         if(this.state.arrNotifications.length===0 && !this.state.spinner){
-            notificationsContent=<div className="user-notifications-list__not-notifications"><span>Уведомлений пока нет</span></div>;
+            notificationsContent=<div className="user-notifications-list__not-notifications">
+                                    <img src={bell} alt="no-bell"/>
+                                 </div>;
+        }
+
+        if(this.state.arrNotifications.length===0 && !this.state.spinner && this.state.error){
+            notificationsContent=<div className="user-notifications-list__not-notifications"><span>Что-то пошло не так! Уведомления не доступны!</span></div>;
         }
 
         if((this.state.arrNotifications.length>0 && !this.state.spinner) || (this.props.inputNotificationObj.length>0 && !this.state.spinner)){
-            notificationsContent= <ul ref={this.refList} className="user-notifications-list__list" onMouseLeave={this.mouseLeave}>
+            notificationsContent= <ul ref={this.refList} className="user-notifications-list__list">
                                         {
                                             this.state.arrNotifications.map((el,index)=>{
                                                 const dateMilliseconds=new Date(el.createDate).getTime();
@@ -285,7 +293,7 @@ class UserNotificationsList extends Component{
 
         return (
             <div className="user-notifications-list">
-                <div className="user-notifications-list__wrapper">
+                <div className="user-notifications-list__wrapper" onMouseLeave={this.mouseLeave}>
                     {content}
                 </div>
             </div>

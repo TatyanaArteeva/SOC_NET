@@ -4,6 +4,7 @@ import WithService from '../hoc/hoc';
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import {connect} from 'react-redux';
 import NavigationGroups from '../navigationGroups/navigationGroups';
+import group from './group.svg';
 
 
 
@@ -86,7 +87,7 @@ class Groups extends Component{
                                                             <div onClick={()=>funcGoItem(item.group.id)}>
                                                                 <img className="friends-and-groups-list__list__item__img" src={"data:image/jpg;base64," + item.group.photo} alt="photoGroup"/>
                                                             </div>
-                                                            <div>
+                                                            <div className="friends-and-groups-list__list__item__content">
                                                                 <span onClick={()=>funcGoItem(item.group.id)} className="friends-and-groups-list__list__item__content_name">{item.group.name}</span>
                                                                 <div className="friends-and-groups-list__list__item__content__btns">
                                                                     {btnActionGroup}
@@ -116,7 +117,7 @@ class Groups extends Component{
                                                 arr: [...items.groups]
                                             })
                                         }}
-                                        messageNotContent={"У вас пока нет групп"}
+                                        messageNotContent={<img src={group} alt="myGroups"/>}
                                         nameList={"у вас групп"}
                                         totalSize={(size)=>{
                                             this.setState({

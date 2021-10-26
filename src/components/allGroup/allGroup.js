@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import NavigationGroups from '../navigationGroups/navigationGroups';
+import allGroups from './allGroups.svg';
 
 class AllGroups extends Component{
     constructor(props){
@@ -115,7 +116,7 @@ class AllGroups extends Component{
                                                 arr: [...items.groups]
                                             })
                                         }}
-                                        messageNotContent={"У вас пока нет групп"}
+                                        messageNotContent={<img src={allGroups} alt="allGroups"/>}
                                         nameList={"групп"}
                                         totalSize={(size)=>{
                                             this.setState({

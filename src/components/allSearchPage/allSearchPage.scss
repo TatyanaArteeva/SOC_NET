@@ -3,7 +3,7 @@
 
 .search-page{
     margin-top: 7px;
-    width: 1140px;
+    width: 100%;
     &__search{
         @include input;
         display: block;
@@ -30,14 +30,53 @@
         &__content{
             margin: 15px auto;
             padding: 0;
-            width: 1000px;
+            width: 80%;
             &__item{
                 margin: 15px;
                 height: 200px;
                 display: flex;
-                background-color: rgba(254, 249, 199, 0.3);
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
                 padding: 15px;
                 border-radius: 20px;
+                &:hover{
+                    transform: scale(1.02);
+                }
+                &_warning{
+                    margin: 15px;
+                    height: 200px;
+                    display: flex;
+                    background-color: rgba(254, 249, 199, .8);
+                    padding: 15px;
+                    border-radius: 20px;
+                    box-shadow: 3px 3px 3px 3px $secondary-color;
+                }
+                &_danger{
+                    margin: 15px;
+                    height: 200px;
+                    display: flex;
+                    background-color: rgba(167, 167, 167, .1);
+                    padding: 15px;
+                    border-radius: 20px;
+                    box-shadow: 3px 3px 3px 3px $background-color-modal-shadow;
+                }
+                &__wrapper-content{
+                    position: relative;
+                    width: 100%;
+                }
+                &_current-status{
+                    display: flex;
+                    justify-content: flex-end;
+                    position: absolute;
+                    width: 100%;
+                    & span{
+                        color: $background-color-modal-shadow;
+                        font-size: 18px;
+                        font-weight: 500;
+                        padding: 5px 7px;
+                        background-color: $background-color;
+                        border-radius: 5px;
+                    }
+                }
                 &_img{
                     width: 170px;
                     height: 170px;
@@ -47,8 +86,14 @@
                 }
                 &_name{
                     font-size: 19px;
+                    display: block;
+                    width: 650px;
+                    height: 25px;
                     color: #026670;
                     font-weight: 600;
+                    overflow: hidden;
+                    word-wrap: break-word;
+                    white-space: pre-wrap;
                 }
                 &__btns{
                     height: 100%;
@@ -70,6 +115,438 @@
                         margin-right: 15px;
                     }
                 }
+            }
+        }
+    }
+    &__overlay{
+        @include backgroundModal;
+    }
+    &__modal{
+        @include ModalWindow;
+        width: 300px;
+        height: 170px;
+        &_close{
+            position: relative;
+            & img{
+                position: absolute;
+                left: 90%;
+                &:hover{
+                    transform: rotate(30deg) scale(1.1);
+                }
+            }
+        }
+        &_message{
+            text-align: center;
+            margin-top: 45px;
+        }
+    }
+}
+
+@media (max-width: 1200px){
+    .search-page{
+        margin-top: 7px;
+        &__search{
+            @include input;
+            display: block;
+            margin: 20px auto;
+            width: 400px;
+        }
+        &__list{
+            &__title{
+                font-size: 18px;
+                margin-left: 26px;
+            }
+            &__btn-show-all{
+                @include btnMini;
+                width: 200px;
+                height: 30px;
+                margin-right: 41px;
+            }
+            &__content{
+                margin: 15px auto;
+                &__item{
+                    margin: 15px;
+                    height: 180px;
+                    padding: 15px;
+                    &_warning{
+                        margin: 15px;
+                        height: 180px;
+                        padding: 15px;
+                    }
+                    &_danger{
+                        margin: 15px;
+                        height: 180px;
+                        padding: 15px;
+                    }
+                    &_current-status{
+                        & span{
+                            font-size: 16px;
+                            padding: 5px 7px;
+                        }
+                    }
+                    &_img{
+                        width: 150px;
+                        height: 150px;
+                        margin-right: 25px;
+                    }
+                    &_name{
+                        font-size: 18px;
+                        height: 25px;
+                        width: 550px;
+                    }
+                    &__btns{
+                        height: 100%;
+                        display: flex;
+                        align-items: flex-end;
+                        &_main{
+                            @include btnMini;
+                            border: 2px solid $main-color-light;
+                            margin-bottom: 40px;
+                            margin-right: 15px;
+                            &:hover{
+                                background-color:rgba(137, 216, 194, .2);
+                                border-color: $main-color-light;
+                            }
+                        }
+                        &_warning{
+                            @include btnMini;
+                            margin-bottom: 40px;
+                            margin-right: 15px;
+                        }
+                    }
+                }
+            }
+        }
+        &__overlay{
+            @include backgroundModal;
+        }
+        &__modal{
+            @include ModalWindow;
+            width: 300px;
+            height: 170px;
+            &_close{
+                position: relative;
+                & img{
+                    position: absolute;
+                    left: 90%;
+                    &:hover{
+                        transform: rotate(30deg) scale(1.1);
+                    }
+                }
+            }
+            &_message{
+                text-align: center;
+                margin-top: 45px;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px){
+    .search-page{
+        margin-top: 7px;
+        &__search{
+            @include input;
+            display: block;
+            margin: 20px auto;
+            width: 400px;
+        }
+        &__list{
+            &__title{
+                font-size: 17px;
+                margin-left: 15px;
+            }
+            &__btn-show-all{
+                @include btnMini;
+                width: 200px;
+                height: 30px;
+                margin-right: 30px;
+            }
+            &__content{
+                margin: 15px auto;
+                &__item{
+                    margin: 15px;
+                    height: 180px;
+                    padding: 15px;
+                    &_warning{
+                        margin: 15px;
+                        height: 180px;
+                        padding: 15px;
+                    }
+                    &_danger{
+                        margin: 15px;
+                        height: 180px;
+                        padding: 15px;
+                    }
+                    &_current-status{
+                        & span{
+                            font-size: 16px;
+                            padding: 5px 7px;
+                        }
+                    }
+                    &_img{
+                        width: 150px;
+                        height: 150px;
+                        margin-right: 25px;
+                    }
+                    &_name{
+                        font-size: 18px;
+                        height: 25px;
+                        width: 380px;
+                    }
+                    &__btns{
+                        height: 100%;
+                        display: flex;
+                        align-items: flex-end;
+                        &_main{
+                            @include btnMini;
+                            border: 2px solid $main-color-light;
+                            margin-bottom: 40px;
+                            margin-right: 15px;
+                            &:hover{
+                                background-color:rgba(137, 216, 194, .2);
+                                border-color: $main-color-light;
+                            }
+                        }
+                        &_warning{
+                            @include btnMini;
+                            margin-bottom: 40px;
+                            margin-right: 15px;
+                        }
+                    }
+                }
+            }
+        }
+        &__overlay{
+            @include backgroundModal;
+        }
+        &__modal{
+            @include ModalWindow;
+            width: 300px;
+            height: 170px;
+            &_close{
+                position: relative;
+                & img{
+                    position: absolute;
+                    left: 90%;
+                    &:hover{
+                        transform: rotate(30deg) scale(1.1);
+                    }
+                }
+            }
+            &_message{
+                text-align: center;
+                margin-top: 45px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .search-page{
+        margin-top: 7px;
+        &__search{
+            @include input;
+            display: block;
+            margin: 20px auto;
+            width: 350px;
+            height: 35px;
+        }
+        &__list{
+            &__title{
+                font-size: 17px;
+                margin-left: 15px;
+            }
+            &__btn-show-all{
+                @include btnMini;
+                width: 200px;
+                height: 30px;
+                margin-right: 15px;
+            }
+            &__content{
+                margin: 15px auto;
+                width: 90%;
+                &__item{
+                    margin: 15px;
+                    height: 160px;
+                    padding: 10px;
+                    &_warning{
+                        margin: 15px;
+                        height: 160px;
+                        padding: 15px;
+                    }
+                    &_danger{
+                        margin: 15px;
+                        height: 160px;
+                        padding: 15px;
+                    }
+                    &_current-status{
+                        & span{
+                            font-size: 16px;
+                            padding: 5px 7px;
+                        }
+                    }
+                    &_img{
+                        width: 130px;
+                        height: 130px;
+                        margin-right: 10px;
+                    }
+                    &_name{
+                        font-size: 17px;
+                        height: 25px;
+                        width: 320px;
+                    }
+                    &__btns{
+                        height: 100%;
+                        display: flex;
+                        align-items: flex-end;
+                        &_main{
+                            @include btnMini;
+                            border: 2px solid $main-color-light;
+                            margin-bottom: 40px;
+                            margin-right: 15px;
+                            &:hover{
+                                background-color:rgba(137, 216, 194, .2);
+                                border-color: $main-color-light;
+                            }
+                        }
+                        &_warning{
+                            @include btnMini;
+                            margin-bottom: 40px;
+                            margin-right: 15px;
+                        }
+                    }
+                }
+            }
+        }
+        &__overlay{
+            @include backgroundModal;
+        }
+        &__modal{
+            @include ModalWindow;
+            width: 300px;
+            height: 170px;
+            &_close{
+                position: relative;
+                & img{
+                    position: absolute;
+                    left: 90%;
+                    &:hover{
+                        transform: rotate(30deg) scale(1.1);
+                    }
+                }
+            }
+            &_message{
+                text-align: center;
+                margin-top: 45px;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px){
+    .search-page{
+        margin-top: 7px;
+        &__search{
+            @include input;
+            display: block;
+            margin: 15px auto;
+            width: 200px;
+            height: 35px;
+        }
+        &__list{
+            &__title{
+                font-size: 15px;
+                margin-left: 15px;
+            }
+            &__btn-show-all{
+                @include btnMini;
+                width: 200px;
+                height: 30px;
+                margin-right: 15px;
+            }
+            &__content{
+                margin: 15px auto;
+                width: 90%;
+                &__item{
+                    margin: 15px;
+                    height: 120px;
+                    padding: 5px;
+                    &_warning{
+                        margin: 15px;
+                        height: 120px;
+                        padding: 15px;
+                    }
+                    &_danger{
+                        margin: 15px;
+                        height: 160px;
+                        padding: 15px;
+                    }
+                    &_current-status{
+                        justify-content: center;
+                        & span{
+                            font-size: 8px;
+                            padding: 0;
+                        }
+                    }
+                    &_img{
+                        width: 100px;
+                        height: 100px;
+                        margin-right: 10px;
+                    }
+                    &_name{
+                        font-size: 9px;
+                        height: 15px;
+                        width: 120px;
+                        text-align: center;
+                    }
+                    &__btns{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        height: 100%;
+                        justify-content: center;
+                        &_main{
+                            @include btnMini;
+                            border: 2px solid $main-color-light;
+                            margin-bottom: 40px;
+                            margin: 3px;
+                            height: 24px;
+                            &:hover{
+                                background-color:rgba(137, 216, 194, .2);
+                                border-color: $main-color-light;
+                            }
+                        }
+                        &_warning{
+                            @include btnMini;
+                            margin-bottom: 40px;
+                            margin: 3px;
+                            height: 24px;
+                        }
+                    }
+                }
+            }
+        }
+        &__overlay{
+            @include backgroundModal;
+        }
+        &__modal{
+            @include ModalWindow;
+            width: 300px;
+            height: 170px;
+            &_close{
+                position: relative;
+                & img{
+                    position: absolute;
+                    left: 90%;
+                    &:hover{
+                        transform: rotate(30deg) scale(1.1);
+                    }
+                }
+            }
+            &_message{
+                text-align: center;
+                margin-top: 45px;
             }
         }
     }

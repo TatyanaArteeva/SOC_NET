@@ -4,15 +4,9 @@ import {actionTransitionModification} from '../../actions';
 import './modalWindowTransitionModification.scss';
 
 class ModalWindowTransitionModification extends Component{
-    constructor(props){
-        super(props);
-    }
-    
+   
     render(){
         let classModal="transition";
-        // if(this.props.visible===true){
-        //     classModal+=" active"
-        // }
         return(
             <div className={classModal}>
                 <div className="transition__modal">

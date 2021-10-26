@@ -10,6 +10,7 @@ import SpinnerMini from '../spinnerMini/spinnerMini';
 import cancel from './cancel.svg';
 import download from './download.svg';
 import remove from './delete.svg';
+import noPhotos from './no-photos.svg';
 
 let startIndex=0;
 
@@ -465,7 +466,9 @@ class SliderCarusel extends Component{
 
 
         if(this.props.arrImagesGallery.length===0 && !this.state.spinner){
-            gallerySlider=<div className="profile-photos__null">Фото пока не загружены</div>
+            gallerySlider=<div className="profile-photos__null">
+                                <img src={noPhotos} alt="no-photos"/>
+                            </div>
         }
 
         if(this.props.arrImagesGallery.length>0 && !this.state.spinner){

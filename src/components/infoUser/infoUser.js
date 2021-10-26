@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import WithService from '../hoc/hoc';
 import './infoUser.scss';
+import './font.scss';
 import { withRouter } from "react-router";
 import {connect} from 'react-redux';
 import { userInformation, rights, infoRelation, currentIdLocation, loadingInfoProfile} from '../../actions';
 import DetailedInformationBlock from '../detailedInformationBlock/detailedInformationBlock';
 import Spinner from '../spinner/spinner';
+import up from './up.svg';
+import down from './down.svg';
 
 class InfoUser extends Component{
     _cleanupFunction=false;
@@ -15,7 +18,6 @@ class InfoUser extends Component{
             btnDetailedInformation:false,
             firstName: '',
             lastName: '',
-            birthDate: '',
             spinner: true
         }
         const {Service} = this.props;
@@ -41,7 +43,6 @@ class InfoUser extends Component{
                             this.setState({
                                 firstName: this.props.information.firstName,
                                 lastName: this.props.information.lastName,
-                                birthDate: this.props.information.birthDate,
                                 spinner: false
                             })
                         }
@@ -89,27 +90,21 @@ class InfoUser extends Component{
 
         
         let name=null;
-        let birthDate=null;
 
         if(this.state.firstName.length>0 || this.state.lastName.length>0){
-            name=<div className="profile-information__content">Мое имя: <span>{this.state.firstName} {this.state.lastName}</span></div>
+            name=<div className="profile-information__content_name">{this.state.firstName} {this.state.lastName}</div>
         }
 
-        if(this.state.birthDate.length>0){
-            birthDate=<div className="profile-information__content">День рождения: <span>{this.state.birthDate}</span></div>
-        }
-
-        let btnDetailInformationBlock="Показать подробную информацию"
+        let btnDetailInformationBlock=<img src={down} alt="down"/>
 
         if(this.state.btnDetailedInformation){
-            btnDetailInformationBlock="Скрыть подробную информацию"
+            btnDetailInformationBlock=<img src={up} alt="up"/>
         }
 
         const contentInformation=<>
                                     {btnModification}
                                     <div className="profile-information__content__wrapper">
                                         {name}
-                                        {birthDate}
                                     </div>
                                     <button onClick={this.detailedInformation} className="profile-information__content__btn_detailed">{btnDetailInformationBlock}</button>
                                 </>

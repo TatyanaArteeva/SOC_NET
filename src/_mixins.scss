@@ -7,6 +7,7 @@
     border-color: $main-color-light;
     color: $input-text;
     transition: 0.5s all;
+    font-size: 13px;
     &:hover {
         border-color: white;
         box-shadow: 1px 1px 1px 1px $main-color;
@@ -92,7 +93,31 @@
         background: $secondary-color-light;
         transform: scale(1.1);
     }
+
+    @media (max-width: 1200px){
+        width: 120px;
+        font-size: 10px;
+    }
+
+    @media (max-width: 992px){
+        width: 152px;
+        font-size: 13px;
+    }
+
+    @media (max-width: 768px){
+        width: 152px;
+        font-size: 13px;
+    }
+
+    @media (max-width: 576px){
+        width: 115px;
+        font-size: 10px;
+        padding: 3px 3px;
+    }
+
+    
 }
+
 
 @mixin inputMessage{
     resize: none;

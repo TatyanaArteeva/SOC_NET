@@ -12,6 +12,10 @@ import home from './home.svg';
 import friends from './friends.svg';
 import messages from './message.svg';
 import group from './group.svg';
+import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
+import cancel from './cancel.svg';
+import './font.scss';
+import eyeClose from './eyeClose.svg';
 
 const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRelation, infoRelation, currentIdLocation, openModalAllParticipantsGroup, modalAllParticipantsGroup, idUser, inputMessageCount})=>{
     const[nameGroup, setNameGroup]=useState();
@@ -24,7 +28,11 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
     const [administratorGroup, setAdministratorGroup]=useState({})
     const[userInGroup, setUsersInGroup]=useState([]);
     const [totalSizeUserInGroup, setTotalSizeUserInGroup]=useState();
-    const [spinner, setSpinner]=useState(true)
+    const [spinner, setSpinner]=useState(true);
+    const [error, setError]=useState(false);
+    const [errorMessage, setErrorMessage]=useState('');
+    const [inBlockErrorMessage, setInBlockErrorMessage]=useState(false);
+    const [errorReq, setErrorReq]=useState(false);
     const { push } = useHistory();
     const idUserForUrl=`/${idUser}`;
     
@@ -34,7 +42,6 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
             const information=async () =>{
             try{
                 const res=await Service.getGroup(`/api/group/${idInUrl}/page-info`);
-                console.log(res)
                 const userGroup=await Service.getUserGroup(`/api/group-relation/get-group-accounts/${idInUrl}?start=0&end=6`);
                     if(!cleanupFunction){
                         groupId(idInUrl)
@@ -59,8 +66,9 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                         groupAccesses(res.data.accesses);
                         groupInfoRelation(res.data.info);  
                     }
-            }catch(e){
-                console.log(e)
+            }catch{
+                setErrorReq(true)
+                setSpinner(false)
             }
              
         }
@@ -93,6 +101,16 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                             setTotalSizeUserInGroup(res.data.totalSize)
                         })
                 }
+            }).catch(err=>{
+                console.log("ошибка")
+                const error=errorMessageForUser(err.response.data.code);
+                console.log(error)
+                setError(true);
+                setErrorMessage(error)
+                Service.getGroup(`/api/group/${idInUrl}/page-info`)
+                        .then(res=>{
+                            groupInfoRelation(res.data.info);
+                        })
             })
     }
 
@@ -110,6 +128,16 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                             setTotalSizeUserInGroup(res.data.totalSize)
                         })
                 }
+            }).catch(err=>{
+                console.log("ошибка")
+                const error=errorMessageForUser(err.response.data.code);
+                console.log(error)
+                setError(true);
+                setErrorMessage(error)
+                Service.getGroup(`/api/group/${idInUrl}/page-info`)
+                        .then(res=>{
+                            groupInfoRelation(res.data.info);
+                        })
             })
     }
 
@@ -138,6 +166,11 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
         });
     }
 
+    function closeModalErrorForActionsUser(){
+        setErrorMessage('');
+        setError(false)
+    }
+
     let btnModificationGroup=null;
     let btnActionGroup=null;
     if(accesses.canModify){
@@ -155,8 +188,9 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
         btnActionGroup=<button onClick={()=>exitFromGroup()}>Выйти из группы</button>;
     }
 
-    let postsContent=<div className="group__information__posts_not-access">Контент не доступен</div>
-    console.log(infoRelation)
+    let postsContent=<div className="group__information__posts_not-access">
+                            <img src={eyeClose} alt="contentNotAccess"/>
+                        </div>
     if(infoRelation.groupRelationStatus==="OWNER" || infoRelation.groupRelationStatus==="PARTICIPANT"){
         postsContent=<PostsList idForPosts={idInUrl} messageOnWallType={"GROUP"}/>
     }
@@ -180,19 +214,54 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
     let description=null;
 
     if(themeGroup!==undefined && themeGroup.length>0 ){
-        theme=<div className="group__information__data__content">Тема: <span>{themeGroup}</span></div>
+        theme=<div className="group__information__data__content"><div className="group__information__data__content_title">Тема:</div> <span className="group__information__data__content_content">{themeGroup}</span></div>
     }
 
     if(subThemeGroup!==undefined && subThemeGroup.length>0){
-        subTheme=<div className="group__information__data__content">Субтема: <span>{subThemeGroup}</span></div>
+        subTheme=<div className="group__information__data__content"><div className="group__information__data__content_title">Субтема:</div> <span className="group__information__data__content_content">{subThemeGroup}</span></div>
     }
 
     if(descriptionGroup!==undefined && descriptionGroup.length>0){
-        description=<div className="group__information__data__content_description"><div>Описание:</div> <span>{descriptionGroup}</span></div>
+        description=<div className="group__information__data__content"><div className="group__information__data__content_title">Описание:</div> <span className="group__information__data__content_content">{descriptionGroup}</span></div>
     }
 
+    let modalWindowErrorActionsUserGroup=null;
 
-    const groupContent= <>
+    function inBlockErrorMessageFalse(){
+        setInBlockErrorMessage(false)
+    }
+
+    function inBlockErrorMessageTrue(){
+        setInBlockErrorMessage(true)
+    }
+
+    function closeModalWindowErrorMessage(){
+        if(!inBlockErrorMessage){
+            closeModalErrorForActionsUser()
+        }
+    }
+
+    if(error){
+        setTimeout(closeModalErrorForActionsUser, 2000)
+    }
+    
+
+    if(errorMessage.length>0){
+        modalWindowErrorActionsUserGroup=<div className="group__overlay" onClick={closeModalWindowErrorMessage}>
+                                                <div className="group__modal" onMouseLeave={inBlockErrorMessageFalse} onMouseEnter={inBlockErrorMessageTrue}>
+                                                    <div className="group__modal_cancel">
+                                                        <img src={cancel} alt="cancel" onClick={closeModalErrorForActionsUser}/>
+                                                    </div>
+                                                    <div className="group__modal_message">
+                                                        {errorMessage}
+                                                    </div>
+                                                </div>
+                                            </div>;
+    }
+
+    
+
+    let groupContent= <>
                             <div className="group__photo-and-btns">
                                <div className="group__photo-and-btns__wrapper">
                                 <div className="group__photo-and-btns__photo">
@@ -201,45 +270,51 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                                         </div>
                                     </div>
                                     <div className="group__photo-and-btns__btns">
-                                        {blockActionsBtn}
                                         <div className="group__photo-and-btns__btns__navigation">
-                                            <div >
-                                                <button className="group__photo-and-btns__btns__navigation__main-btn">Навигация</button>
-                                            </div>
-                                        <div className="group__photo-and-btns__btns__navigation__menu">
-                                                <div className="group__photo-and-btns__btns__navigation__wrapper">
-                                                    <img className="group__photo-and-btns__btns__navigation__item" src={home} alt="Домой"/>
-                                                    <Link to={idUserForUrl}>
-                                                        <span className="group__photo-and-btns__btns__navigation__item__label">Домой</span>
-                                                    </Link>
-                                                </div>
-                                                <div className="group__photo-and-btns__btns__navigation__wrapper">
-                                                    <img className="group__photo-and-btns__btns__navigation__item" src={friends} alt="Друзья"/>
-                                                    <Link to="/friends">
-                                                        <span className="group__photo-and-btns__btns__navigation__item__label">Друзья</span>
-                                                    </Link>
-                                                </div>
-                                                <div className="group__photo-and-btns__btns__navigation__wrapper">
-                                                    <img className="group__photo-and-btns__btns__navigation__item" src={messages} alt="Письма"/> 
-                                                    <span className="group__photo-and-btns__btns__navigation__item__count">
-                                                        {countMessage}
-                                                    </span>
-                                                    <Link to="/messages">
-                                                        <span className="group__photo-and-btns__btns__navigation__item__label">Письма 
-                                                            <span className="group__photo-and-btns__btns__navigation__item__label__count">
-                                                                {countMessage}
-                                                            </span>
+                                            <button className="group__photo-and-btns__btns__navigation__main-btn">Навигация</button>
+                                            <div className="group__photo-and-btns__btns__navigation__menu">
+                                                    <div className="group__photo-and-btns__btns__navigation__wrapper">
+                                                        <Link to={idUserForUrl}>
+                                                            <img className="group__photo-and-btns__btns__navigation__item" src={home} alt="Домой"/>
+                                                        </Link>
+                                                        <Link to={idUserForUrl}>
+                                                            <span className="group__photo-and-btns__btns__navigation__item__label">Домой</span>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="group__photo-and-btns__btns__navigation__wrapper">
+                                                        <Link to="/friends">
+                                                            <img className="group__photo-and-btns__btns__navigation__item" src={friends} alt="Друзья"/>
+                                                        </Link>
+                                                        <Link to="/friends">
+                                                            <span className="group__photo-and-btns__btns__navigation__item__label">Друзья</span>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="group__photo-and-btns__btns__navigation__wrapper">
+                                                        <Link to="/messages">
+                                                            <img className="group__photo-and-btns__btns__navigation__item" src={messages} alt="Письма"/>
+                                                        </Link> 
+                                                        <span className="group__photo-and-btns__btns__navigation__item__count">
+                                                            {countMessage}
                                                         </span>
-                                                    </Link>
-                                                </div>
-                                                <div className="group__photo-and-btns__btns__navigation__wrapper">
-                                                    <img className="group__photo-and-btns__btns__navigation__item" src={group} alt="Группы"/>
-                                                    <Link to="/groups">
-                                                        <span className="group__photo-and-btns__btns__navigation__item__label">Группы</span>
-                                                    </Link>
-                                                </div>
+                                                        <Link to="/messages">
+                                                            <span className="group__photo-and-btns__btns__navigation__item__label">Письма 
+                                                                <span className="group__photo-and-btns__btns__navigation__item__label__count">
+                                                                    {countMessage}
+                                                                </span>
+                                                            </span>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="group__photo-and-btns__btns__navigation__wrapper">
+                                                        <Link to="/groups">
+                                                            <img className="group__photo-and-btns__btns__navigation__item" src={group} alt="Группы"/>
+                                                        </Link>
+                                                        <Link to="/groups">
+                                                            <span className="group__photo-and-btns__btns__navigation__item__label">Группы</span>
+                                                        </Link>
+                                                    </div>
+                                            </div>
                                         </div>
-                                        </div>
+                                        {blockActionsBtn}
                                     </div>
                                </div>
                             </div>
@@ -247,16 +322,16 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                                 <div className="group__information__data">
                                     {btnModificationGroup}
                                     <div className="group__information__data__content__wrapper">
-                                        <div className="group__information__data__content">Название группы: <span>{nameGroup}</span></div>
+                                        <div className="group__information__data__content"><span className="group__information__data__content_name">{nameGroup}</span></div>
                                         {theme}
                                         {subTheme}
                                         {description}
-                                        <div className="group__information__data__content_admin">Администратор группы: <span onClick={goToPageAdminGroup}>{administratorGroup.firstName} {administratorGroup.lastName}</span></div>
+                                        <div className="group__information__data__content"><div className="group__information__data__content_title">Администратор группы:</div> <span onClick={goToPageAdminGroup} className="group__information__data__content_content">{administratorGroup.firstName} {administratorGroup.lastName}</span></div>
                                     </div>
                                 </div>
                                 <div className="group__information__participants">
                                     <div className="group__information__participants__count-and-btn">
-                                        <div className="group__information__participants__count-and-btn_count">Участники группы: <span>{totalSizeUserInGroup}</span></div>
+                                        <div className="group__information__participants__count-and-btn_count"><div>Участники группы:</div> <span>{totalSizeUserInGroup}</span></div>
                                         <button className="group__information__participants__count-and-btn_btn" onClick={openAllUserGroup}>Показать всех</button>
                                         {modalWindowAllParticipants}
                                     </div>
@@ -280,7 +355,12 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                                     {postsContent}
                                 </div>
                             </div>
+                            {modalWindowErrorActionsUserGroup}
                         </>
+
+        if(errorReq){
+            groupContent=<div>Что-то пошло не так, контент не доступен!</div>
+        }
 
         const content=spinner? <Spinner/>: groupContent;
 

@@ -1,4 +1,5 @@
 @import './variables';
+@import './bootstrap-reboot.min';
 
 *{
   box-sizing: border-box;
@@ -18,12 +19,32 @@
       }
 }
 
+button{
+  &:focus{
+    outline: none;
+  }
+}
+
+input{
+  &:focus{
+    outline: none;
+  }
+}
+
+hr{
+  margin: 0;
+}
+
+
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $background-color;
+  background: #fff;
+  overflow: auto;
   scrollbar-color: $background-color $main-color-light;
   scrollbar-width: auto ; 
+  outline: none;
   &::-webkit-scrollbar {
       width: 10px;
       border-radius: 100%;
@@ -58,3 +79,7 @@ body {
       }
   }
 }
+
+
+
+

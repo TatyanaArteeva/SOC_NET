@@ -1,5 +1,6 @@
 import React from 'react';
-import spinnerMiniMini from './1234.gif';
+// import spinnerMiniMini from './1234.gif';
+import spinnerMiniMini from './751.svg';
 import './spinnerMiniMini.scss';
 
 

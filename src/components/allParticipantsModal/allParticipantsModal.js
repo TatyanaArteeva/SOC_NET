@@ -19,7 +19,8 @@ class AllParticipantsModal extends Component{
             totalSize: '',
             searchValue: '',
             spinner: true,
-            miniSpinner: false
+            miniSpinner: false, 
+            error: false
         }
 
         this.refList=React.createRef();
@@ -35,12 +36,21 @@ class AllParticipantsModal extends Component{
             end=10;
             Service.getItems(this.props.getItems(start, end))
                 .then(res=>{
+                    if(res.status===200){
+                        if(this._cleanupFunction){
+                            this.setState({
+                                totalSize: res.data.totalSize,
+                                spinner: false
+                            })
+                            this.props.arrItems(res.data);
+                        }
+                    }
+                }).catch(err=>{
                     if(this._cleanupFunction){
                         this.setState({
-                            totalSize: res.data.totalSize,
+                            error:true,
                             spinner: false
                         })
-                        this.props.arrItems(res.data);
                     }
                 })
          
@@ -105,13 +115,22 @@ class AllParticipantsModal extends Component{
     
                         Service.getItems(this.props.getItems(start, end))
                             .then(res=>{
+                                if(res.status===200){
+                                    if(this._cleanupFunction){
+                                        this.setState({
+                                            totalSize: res.data.totalSize,
+                                            req: false,
+                                            miniSpinner: false
+                                        })
+                                        this.props.arrItems(res.data)
+                                    }
+                                }
+                            }).catch(err=>{
                                 if(this._cleanupFunction){
                                     this.setState({
-                                        totalSize: res.data.totalSize,
-                                        req: false,
-                                        miniSpinner: false
+                                        error:true,
+                                        spinner: false
                                     })
-                                    this.props.arrItems(res.data)
                                 }
                             })
                         
@@ -142,8 +161,6 @@ class AllParticipantsModal extends Component{
 
     render(){
 
-       console.log(this.props.openModalAllParticipantsGroup)
-
         let contentAndMessageNotContent=null;
 
         if(this.props.renderItems.length===0 && !this.state.spinner){
@@ -161,6 +178,12 @@ class AllParticipantsModal extends Component{
                                             </div> 
                                             {miniSpinner}
                                         </div>                         
+        }
+
+        if(this.state.error && !this.state.spinner){
+            contentAndMessageNotContent=<div className="participants-list__not-content">
+                                            <span>Что-то пошло не так!</span>
+                                        </div>
         }
         const content=this.state.spinner? <Spinner/>: contentAndMessageNotContent
 

@@ -29,3 +29,9 @@
         background-color: $main-color;
     }
 }
+
+@media (max-width: 1200px){
+    .devizLabel{
+        display: none;
+    }
+}

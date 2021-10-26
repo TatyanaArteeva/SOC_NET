@@ -95,7 +95,7 @@
                     display: flex;
                     justify-content: flex-end;
                     position: absolute;
-                    bottom: 20px;
+                    bottom: 10px;
                     right: 20px;
                     font-size: 12px;
                     color: $background-color-modal-shadow;
@@ -119,15 +119,302 @@
         }
     }
     &__null{
+        width: 320px;
+        height: 320px;
         margin: 0 auto;
-        margin-top: 60px;
-        margin-bottom: 30px;
-        width: 80%;
-        padding: 0 15px;
-        text-align: center;
-        font-size: 30px;
-        font-weight: 500;
-        color: #FDD544;
+        margin-top: 30px;
+        & img{
+            width: 320px;
+            height: 320px;
+        }
+    }
+}
+
+@media (max-width: 1200px){
+    .public-messages{
+        &__input{
+            @include inputMessage;
+            width: 515px;
+        }
+        &__wrapper{
+            @include input;
+            width: 553px;
+            height: 150px;
+            padding: 20px 33px 20px 0;
+            box-shadow: 1px 1px 1px 1px $main-color-light;
+            border: none;
+            position: relative;
+            background-color:white;
+            margin: 0 auto;
+            &:hover {
+                border-color: rgba(254, 249, 199, .01);
+                box-shadow: 2px 2px 2px 2px $main-color;
+            }
+            &:focus{
+                border-color: rgba(254, 249, 199, .01);
+                box-shadow: 2px 2px 2px 2px $main-color;
+            }
+        }
+        &__list{
+            width: 553px;
+        }
+        &__item{
+            &__content{
+                &__message{
+                    width: 340px;
+                    margin: 10px 0;
+                    font-size: 16px;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                }
+            }
+        }
+        &__total-size{
+            color: $main-color;
+            font-size: 19px;
+            & span{
+                color: $input-text;
+            }
+        }
+        &__null{
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            margin-top: 30px;
+            & img{
+                width: 280px;
+                height: 280px;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px){
+    .public-messages{
+        &__input{
+            @include inputMessage;
+            width: 585px;
+        }
+        &__wrapper{
+            @include input;
+            width: 630px;
+            height: 150px;
+            padding: 20px 33px 20px 0;
+            box-shadow: 1px 1px 1px 1px $main-color-light;
+            border: none;
+            position: relative;
+            background-color:white;
+            margin: 0 auto;
+            &:hover {
+                border-color: rgba(254, 249, 199, .01);
+                box-shadow: 2px 2px 2px 2px $main-color;
+            }
+            &:focus{
+                border-color: rgba(254, 249, 199, .01);
+                box-shadow: 2px 2px 2px 2px $main-color;
+            }
+        }
+        &__list{
+            width: 630px;
+        }
+        &__item{
+            &__content{
+                &__message{
+                    width: 415px;
+                    margin: 10px 0;
+                    font-size: 16px;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                }
+            }
+        }
+        &__total-size{
+            color: $main-color;
+            font-size: 19px;
+            & span{
+                color: $input-text;
+            }
+        }
+        &__null{
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            margin-top: 30px;
+            & img{
+                width: 280px;
+                height: 280px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .public-messages{
+        &__input{
+            @include inputMessage;
+            width: 463px;
+        }
+        &__wrapper{
+            @include input;
+            width: 508px;
+            height: 150px;
+            padding: 20px 33px 20px 0;
+            box-shadow: 1px 1px 1px 1px $main-color-light;
+            border: none;
+            position: relative;
+            background-color:white;
+            margin: 0 auto;
+            &:hover {
+                border-color: rgba(254, 249, 199, .01);
+                box-shadow: 2px 2px 2px 2px $main-color;
+            }
+            &:focus{
+                border-color: rgba(254, 249, 199, .01);
+                box-shadow: 2px 2px 2px 2px $main-color;
+            }
+        }
+        &__send{
+            width: 33px;
+            height: 35px;
+        }
+        &__list{
+            width: 508px;
+        }
+        &__total-size{
+            font-size: 17px;
+        }
+        &__item{
+            margin-top: 20px;
+            &__img{
+                width: 100px;
+                height: 100px;
+                margin-right: 20px;
+                & img{
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+            &__content{
+                &__info{
+                    &_name{
+                        font-size: 15px;
+                    }
+                    &_time{
+                        font-size: 10px;
+                    }
+                }
+                &__message{
+                    width: 355px;
+                    margin: 5px 0;
+                    font-size: 15px;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                }
+            }
+        }
+        &__total-size{
+            color: $main-color;
+            font-size: 19px;
+            & span{
+                color: $input-text;
+            }
+        }
+        &__null{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            margin-top: 30px;
+            & img{
+                width: 200px;
+                height: 200px;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px){
+    .public-messages{
+        &__input{
+            @include inputMessage;
+            width: 250px;
+        }
+        &__wrapper{
+            @include input;
+            width: 290px;
+            height: 150px;
+            padding: 20px 33px 20px 0;
+            box-shadow: 1px 1px 1px 1px $main-color-light;
+            border: none;
+            position: relative;
+            background-color:white;
+            margin: 0 auto;
+            &:hover {
+                border-color: rgba(254, 249, 199, .01);
+                box-shadow: 2px 2px 2px 2px $main-color;
+            }
+            &:focus{
+                border-color: rgba(254, 249, 199, .01);
+                box-shadow: 2px 2px 2px 2px $main-color;
+            }
+        }
+        &__send{
+            width: 30px;
+            height: 32px;
+        }
+        &__list{
+            width: 290px;
+        }
+        &__total-size{
+            font-size: 15px;
+            margin: 20px auto;
+        }
+        &__item{
+            margin-top: 20px;
+            &__img{
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+                & img{
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            &__content{
+                &__info{
+                    &_name{
+                        font-size: 14px;
+                    }
+                    &_time{
+                        font-size: 9px;
+                        right: 15px;
+                    }
+                }
+                &__message{
+                    width: 200px;
+                    margin: 5px 0;
+                    font-size: 15px;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                }
+            }
+        }
+        &__total-size{
+            color: $main-color;
+            font-size: 17px;
+            & span{
+                color: $input-text;
+            }
+        }
+        &__null{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            margin-top: 30px;
+            & img{
+                width: 200px;
+                height: 200px;
+            }
+        }
     }
 }
 

@@ -16,8 +16,10 @@ class DetailedInformationBlock extends Component{
             familyStatus: '',
             employment: '',
             description: '',
+            birthDate: '',
             partner:{},
-            spinner: true
+            spinner: true,
+            error:false
         }
 
         const {Service} = this.props;
@@ -53,7 +55,13 @@ class DetailedInformationBlock extends Component{
                         familyStatus: this.props.information.familyStatus,
                         employment: this.props.information.employment,
                         description: this.props.information.description,
+                        birthDate: this.props.information.birthDate,
                         spinner: false
+                    })
+                }).catch(err=>{
+                    this.setState({
+                        spinner: false,
+                        error:true
                     })
                 })    
         }
@@ -76,38 +84,47 @@ class DetailedInformationBlock extends Component{
             partnerPrefix="c"
         }
 
+        let birthDate=null;
         let sex=null;
         let city=null;
         let phone=null;
         let familyStatus=null;
         let employment=null;
         let description=null;
+        
+
+        if(this.state.birthDate.length>0){
+            birthDate=<div className="profile-information-detailed__content"><div className="profile-information-detailed__content__name">День рождения:</div> <span>{this.state.birthDate}</span></div>
+        }
 
         if(this.state.sex.length>0){
-            sex=<div className="profile-information-detailed__content">Пол: <span>{this.state.sex}</span></div>
+            sex=<div className="profile-information-detailed__content"><div className="profile-information-detailed__content__name">Пол: </div><span>{this.state.sex}</span></div>
         }
         
         if(this.state.city.length>0){
-            city=<div className="profile-information-detailed__content">Город: <span>{this.state.city}</span></div>
+            city=<div className="profile-information-detailed__content"><div className="profile-information-detailed__content__name">Город:</div> <span>{this.state.city}</span></div>
         }
 
         if(this.state.phone.length>0){
-            phone=<div className="profile-information-detailed__content">Мой номер телефона: <span>{this.state.phone}</span></div>
+            phone=<div className="profile-information-detailed__content"><div className="profile-information-detailed__content__name">Номер телефона:</div> <span>{this.state.phone}</span></div>
         }
 
         if(this.state.familyStatus.length>0){
-            familyStatus=<div className="profile-information-detailed__content">Семейное положение: <span>{this.state.familyStatus} {partnerPrefix} {partnerName}</span></div>
+            familyStatus=<div className="profile-information-detailed__content"><div className="profile-information-detailed__content__name">Семейное положение:</div> <span>{this.state.familyStatus} {partnerPrefix} {partnerName}</span></div>
         }
 
         if(this.state.employment.length>0){
-            employment=<div className="profile-information-detailed__content_employment"><div>Место учебы или работы:</div> <span>{this.state.employment}</span></div>
+            employment=<div className="profile-information-detailed__content"><div className="profile-information-detailed__content__name">Деятельность:</div> <span>{this.state.employment}</span></div>
         }
 
         if(this.state.description.length>0){
-            description=<div className="profile-information-detailed__content_description"><div>Обо мне:</div> <span>{this.state.description}</span></div> 
+            description=<div className="profile-information-detailed__content"><div className="profile-information-detailed__content__name">О себе:</div> <span>{this.state.description}</span></div> 
         }
 
+        
+
         let contentDetailedInformation=<div className="profile-information-detailed__content__wrapper">
+                                            {birthDate}
                                             {sex}
                                             {city}
                                             {phone}
@@ -119,7 +136,13 @@ class DetailedInformationBlock extends Component{
             contentDetailedInformation=<div className="profile-information-detailed__content_null">Информация отсутствует</div>
         }
 
-        const content=this.state.spinner? <SpinnerMini/>: contentDetailedInformation        
+        if(this.state.sex.length===0 && this.state.city.length===0 && this.state.familyStatus.length===0 && this.state.phone.length===0 && this.state.employment.length===0 && this.state.description.length===0 && this.state.error){
+            contentDetailedInformation=<div className="profile-information-detailed__content_null">Что-то пошло не так! Информация не доступна!</div>
+        }
+
+        const content=this.state.spinner? <SpinnerMini/>: contentDetailedInformation;
+        
+        
 
         return (
             <div className="profile-information-detailed">

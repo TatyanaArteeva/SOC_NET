@@ -2,12 +2,14 @@
 @import '../../mixins';
 
 .modification-group{
-    margin: 30px auto;
+    margin: 7px auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 600px;
+    width: 55%;
+    box-shadow: -1px 1px 1px 1px $secondary-color-light;
+    border-radius: 20px;
     &__title{
         margin: 5px 0 15px 0;
         width: 100%;
@@ -69,10 +71,32 @@
             margin-left: 10px;
             margin-top: 0;
             resize: none;
+            scrollbar-color: $background-color $main-color-light;
+            scrollbar-width: thin ; 
+            &::-webkit-scrollbar {
+                width: 5px;
+                border-radius: 100%;
+                background-color: $background-color;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: $main-color-light;
+                border-radius: 4px;
+                box-shadow: inset 1px 1px 3px $secondary-color-light;
+            }
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: $main-color;
+            }
         }
         &_input-hidden{
             opacity: 0;
             visibility: hidden;
+            position: absolute;
+            width: 100%;
+        }
+        &_admin{
+            margin-left: 0;
+            font-size: 18px;
+            font-weight: 600;
         }
     }
     &__input-file{
@@ -104,12 +128,10 @@
             height: 25px;
             background-color: $background-color-modal;
             margin-left: 10px;
-            margin-bottom: 5px;
         }
         &_message{
             display: block;
             margin-left: 15px;
-            margin-bottom: 5px;
             color: $main-color;
             font-weight: 600;
         }
@@ -165,10 +187,12 @@
     }
     &__submit{
         @include inputButton;
+        width: 90%;
         margin: 20px auto;
     }
     &__cancel{
         @include inputButton;
+        width: 90%;
         margin: 0 auto;
         margin-bottom: 20px;
         text-align: center;
@@ -209,7 +233,7 @@
     height: 150px;
     border-radius: 8px;
     right: 10px;
-    transform: translateY(100px);
+    transform: translateY(-7px);
     z-index: 2;
     overflow: auto;
     scrollbar-color: $background-color $main-color-light;
@@ -237,5 +261,375 @@
             background-color: $main-color-light;
             border-radius: 8px;
         }
+    }
+}
+
+
+@media (max-width: 1200px){
+    .modification-group{
+        &__title{
+            font-size: 25px;
+        }
+        &__label{
+            margin: 10px;
+            font-size: 17px;
+            width: 220px;
+            &_input{
+                @include input;
+                width: 300px;
+                margin-left: 0;
+            }
+            &_input-description{
+                @include input;
+                width: 300px;
+                height: 100px;
+                margin-left: 0;
+            }
+        }
+        &__input-file{
+            margin-left: 0;
+            margin-bottom: 0;
+            margin-top: 6px;
+            margin-right: 0;
+            &:hover{
+                transform: scale(1.0);
+            }
+        }
+        &__select{
+            &__btn{
+                width: 300px;
+                margin-left: 0;
+            }
+            &__list{
+                display: none;
+            }
+        }
+        &__submit{
+            @include inputButton;
+            width: 90%;
+            margin: 20px auto;
+        }
+        &__cancel{
+            @include inputButton;
+            width: 90%;
+        }
+    }
+    
+    
+    
+    .activeListTheme{
+        width: 300px;
+    }
+}
+
+
+@media (max-width: 992px){
+    .modification-group{
+        width: 70%;
+        &__label{
+            width: 200px;
+        }
+        &__input-file{
+            margin-left: 0;
+            margin-bottom: 0;
+            margin-top: 6px;
+            margin-right: 0;
+            &:hover{
+                transform: scale(1.0);
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .modification-group{
+        width: 70%;
+        &__wrapper{
+            margin: 10px 0;
+            position: relative;
+            width: 100%;
+        }
+        &__message{
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            & img {
+                margin-top: 5px;
+                &:hover{
+                    cursor: pointer;
+                    transform: scale(1.4);
+                }
+            }
+        }
+        &__wrapper-description{
+            display: block;
+            width: 100%;
+        }
+        &__wrapper-theme{
+            display: block;
+            width: 100%;
+        }
+        &__label{
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            &_input{
+                @include input;
+                width: 300px;
+                display: block;
+                margin: 0 auto;
+            }
+            &_input-description{
+                @include input;
+                width: 300px;
+                height: 100px;
+                display: block;
+                margin: 0 auto;
+            }
+            &_input-hidden{
+                opacity: 0;
+                visibility: hidden;
+                position: absolute;
+            }
+            &_admin{
+                display: block;
+                text-align: center;
+            }
+        }
+        &__input-file{
+            margin: 0 auto;
+            &:hover{
+                transform: scale(1.0);
+            }
+            &_img{
+                width: 30px;
+                height: 30px;
+                display: block;
+                    & img{
+                        width: 20px;
+                        height: 20px;
+                        margin: 5px 3px;
+                    }
+            }
+            &_line{
+                width: 1px;
+                height: 25px;
+                background-color: $background-color-modal;
+                margin-left: 10px;
+            }
+            &_message{
+                display: block;
+                margin-left: 15px;
+                color: $main-color;
+                font-weight: 600;
+            }
+            &__invalid-file{
+                height: 40px;
+                position: absolute;
+                top: 40px;
+                width: 270px;
+                left: 0;
+                &_message{
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+            }
+        }
+        &__select{
+            &__btn{
+                display: block;
+                margin: 0 auto;
+            }
+            &__list{
+                display: none;
+            }
+        }
+        &__submit{
+            @include inputButton;
+            width: 90%;
+            margin: 20px auto;
+        }
+        &__cancel{
+            @include inputButton;
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 3px;
+        }
+        &__message-save-modification{
+            @include backgroundModal;
+            &__modal{
+                position: relative;
+                width: 300px;
+                height: 170px;
+                @include ModalWindow;
+                background: radial-gradient(at 25% 85%, $secondary-color, $main-color-light, $background-color);
+                box-shadow: 5px 10px 5px 3px #b5b59b;
+                z-index: 2;
+                &_message{
+                    text-align: center;
+                    margin-top: 65px;
+                    font-size: 17px;
+                }
+                &_btn{
+                    position: absolute;
+                    right: 10px
+                }
+            }
+        }
+    }
+    
+    .activeListTheme{
+        display: block;
+        position: absolute;
+        width: 300px;
+        height: 150px;
+        right: 50%;
+        transform: translateY(0px);
+        transform: translateX(50%);
+    }
+    
+    
+}
+
+@media (max-width: 576px){
+    .modification-group{
+        width: 90%;
+        &__title{
+            font-size: 23px;
+        }
+        &__wrapper{
+            margin: 10px 0;
+            position: relative;
+            width: 100%;
+        }
+        &__message{
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            & img {
+                margin-top: 5px;
+                &:hover{
+                    cursor: pointer;
+                    transform: scale(1.4);
+                }
+            }
+        }
+        &__wrapper-description{
+            display: block;
+            width: 100%;
+        }
+        &__wrapper-theme{
+            display: block;
+            width: 100%;
+        }
+        &__label{
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            &_input{
+                @include input;
+                width: 260px;
+                display: block;
+                margin: 0 auto;
+            }
+            &_input-description{
+                @include input;
+                width: 260px;
+                height: 100px;
+                display: block;
+                margin: 0 auto;
+            }
+            &_input-hidden{
+                opacity: 0;
+                visibility: hidden;
+                position: absolute;
+            }
+            &_admin{
+                display: block;
+                text-align: center;
+            }
+        }
+        &__input-file{
+            margin: 0 auto;
+            &:hover{
+                transform: scale(1.0);
+            }
+            &_img{
+                width: 30px;
+                height: 30px;
+                display: block;
+                    & img{
+                        width: 20px;
+                        height: 20px;
+                        margin: 5px 3px;
+                    }
+            }
+            &_line{
+                width: 1px;
+                height: 25px;
+                background-color: $background-color-modal;
+                margin-left: 10px;
+            }
+            &_message{
+                display: block;
+                margin-left: 15px;
+                color: $main-color;
+                font-weight: 600;
+            }
+            &__invalid-file{
+                height: 40px;
+                position: absolute;
+                top: 40px;
+                width: 260px;
+                left: 0;
+                &_message{
+                    font-size: 9px;
+                    font-weight: 500;
+                }
+            }
+        }
+        &__select{
+            &__btn{
+                display: block;
+                margin: 0 auto;
+                width: 260px;
+            }
+            &__list{
+                display: none;
+            }
+        }
+        &__message-save-modification{
+            @include backgroundModal;
+            &__modal{
+                position: relative;
+                width: 250px;
+                height: 130px;
+                @include ModalWindow;
+                background: radial-gradient(at 25% 85%, $secondary-color, $main-color-light, $background-color);
+                box-shadow: 5px 10px 5px 3px #b5b59b;
+                z-index: 2;
+                &_message{
+                    text-align: center;
+                    margin-top: 45px;
+                    font-size: 16px;
+                }
+                &_btn{
+                    position: absolute;
+                    right: 10px
+                }
+            }
+        }
+    }
+    
+    .activeListTheme{
+        display: block;
+        position: absolute;
+        width: 260px;
+        height: 150px;
+        right: 50%;
+        transform: translateY(0px);
+        transform: translateX(50%);
     }
 }

@@ -4,9 +4,8 @@ import BirthDatePicker from '../birthDatePicker/birthDatePicker';
 import {closeModalRegistration, loginMainPage, registrationSuccessful} from '../../actions';
 import './registrationWindow.scss';
 import WithService from '../hoc/hoc';
-import cancel from './cancel.svg';
 import Spinner from '../spinner/spinner';
-
+import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
 
 
 
@@ -22,7 +21,9 @@ class RegistrationWindow extends Component{
             birthDate: null,
             invalidPassword: false,
             hiddenPassword: true,
-            spinner:false
+            spinner:false,
+            errorMessage: '',
+            error: false
         }
 
         const {Service} = this.props;
@@ -54,6 +55,13 @@ class RegistrationWindow extends Component{
         this.closeModalWindowInvalidPassword=()=>{
             this.setState({
                 invalidPassword: false
+            })
+        }
+
+        this.closeModalWindowError=()=>{
+            this.setState({
+                error: false,
+                errorMessage: ''
             })
         }
 
@@ -89,11 +97,16 @@ class RegistrationWindow extends Component{
                             this.props.closeModalRegistration()
                         }
                     })
-                    .catch(res=>{
+                    .catch(err=>{
+                        console.log(err.response)
+                        const error=errorMessageForUser(err.response.data.code);
+                        console.log(error)
                         this.setState({
-                            spinner:false
+                            spinner:false,
+                            error: true,
+                            errorMessage: error
                         })
-                        this.props.closeModalRegistration()
+                        // this.props.closeModalRegistration()
                         // дописать окно для ошибки регистрации
                     })
                 }else{
@@ -133,7 +146,17 @@ class RegistrationWindow extends Component{
             setTimeout(this.closeModalWindowInvalidPassword, 2000)
         }
 
-        let passwordRequirements = <div className="passwordRequirements_null"></div>;
+        let errorModal=null;
+
+        if(this.state.error){
+            setTimeout(this.closeModalWindowError, 2000)
+        }
+
+        if(this.state.errorMessage.length>0){
+            errorModal=<div className="passwordRequirements">{this.state.errorMessage}</div>
+        }
+
+        let passwordRequirements = null;
         
         if (this.state.password.length < 5) {
             passwordRequirements = <div className="passwordRequirements">Пароль должен содержать минимум 5 символов и не должен содержать пробелы!</div>
@@ -176,6 +199,7 @@ class RegistrationWindow extends Component{
                                                     </span>
                                         </div>
                                         {passwordRequirements}
+                                        {errorModal}
                                         <button onClick={this.valueBirtDay} type = "submit" className="registration-window__modal__btn">Зарегистрироваться</button>
                                         <button onClick={()=> this.props.closeModalRegistration()} className="registration-window__modal__btn">Вернуться</button>
                                 </form>

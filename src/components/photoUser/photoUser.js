@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import './photoUser.scss';
 import {connect} from 'react-redux';
@@ -11,11 +10,19 @@ import home from './home.svg';
 import friends from './friends.svg';
 import messages from './message.svg';
 import group from './group.svg';
+import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
+import cancel from './cancel.svg';
 
 class PhotoUser extends Component{
 
     constructor(props){
         super(props);
+        this.state={
+            errorActionsWithFriends:false,
+            errorMessageWithActionsFriends: '',
+            inBlockMessageError: false
+        }
+
         this.changePhoto=()=>{
             this.props.modalWindowForMainPhotoOptionsOpen();
         }
@@ -23,6 +30,13 @@ class PhotoUser extends Component{
         const {Service}=this.props;
 
         let photo=null;
+
+        this.closeModalWindowErrorMessageWithActionsFriends=()=>{
+            this.setState({
+                errorActionsWithFriends: false,
+                errorMessageWithActionsFriends: ''
+            })
+        }
 
 
         this.inf=()=>{
@@ -66,10 +80,24 @@ class PhotoUser extends Component{
                             .then(res=>{
                                 if(res.status===200){
                                     this.props.infoRelation(res.data.info);
-                                    console.log(this.props.info)
+                                    
                                 }
                             })
                     }
+                }).catch(err=>{
+                    console.log("зашли в блок ошибок")
+                    const error=errorMessageForUser(err.response.data.code);
+                    console.log(error)
+                    this.setState({
+                        errorActionsWithFriends:true,
+                        errorMessageWithActionsFriends: error
+                    })
+                    Service.getAccountInfo(`/api/account/${this.props.idForPhoto}/page-info`)
+                            .then(res=>{
+                                if(res.status===200){
+                                    this.props.infoRelation(res.data.info);
+                                }
+                            })
                 })
         }
 
@@ -86,12 +114,25 @@ class PhotoUser extends Component{
                                 }
                             })
                     }
+                }).catch(err=>{
+                    console.log("зашли в блок ошибок")
+                    const error=errorMessageForUser(err.response.data.code);
+                    console.log(error)
+                    this.setState({
+                        errorActionsWithFriends:true,
+                        errorMessageWithActionsFriends: error
+                    })
+                    Service.getAccountInfo(`/api/account/${this.props.idForPhoto}/page-info`)
+                            .then(res=>{
+                                if(res.status===200){
+                                    this.props.infoRelation(res.data.info);
+                                    
+                                }
+                            })
                 })
         }
 
         this.deleteFriends=()=>{
-            console.log("delete")
-
             Service.postDeleteFriend(`/api/friend/removeFriend/${this.props.idForPhoto}`)
             .then(res=>{
                 if(res.status===200){
@@ -103,6 +144,22 @@ class PhotoUser extends Component{
                             }
                         })
                 }
+            }).catch(err=>{
+                console.log("зашли в блок ошибок")
+                console.log(err.response)
+                const error=errorMessageForUser(err.response.data.code);
+                console.log(error)
+                this.setState({
+                    errorActionsWithFriends:true,
+                    errorMessageWithActionsFriends: error
+                })
+                Service.getAccountInfo(`/api/account/${this.props.idForPhoto}/page-info`)
+                            .then(res=>{
+                                if(res.status===200){
+                                    this.props.infoRelation(res.data.info);
+                                    
+                                }
+                            })
             })
         }
 
@@ -118,6 +175,21 @@ class PhotoUser extends Component{
                             }
                         })
                 }
+            }).catch(err=>{
+                console.log("зашли в блок ошибок")
+                const error=errorMessageForUser(err.response.data.code);
+                console.log(error)
+                this.setState({
+                    errorActionsWithFriends:true,
+                    errorMessageWithActionsFriends: error
+                })
+                Service.getAccountInfo(`/api/account/${this.props.idForPhoto}/page-info`)
+                            .then(res=>{
+                                if(res.status===200){
+                                    this.props.infoRelation(res.data.info);
+                                    
+                                }
+                            })
             })
         }
 
@@ -127,9 +199,31 @@ class PhotoUser extends Component{
             this.props.history.push('/dialog')
         }
 
+        this.inBlockMessageEnterTrue=()=>{
+            this.setState({
+                inBlockMessageError: true
+            })
+        }
+
+        this.inBlockMessageEnterFalse=()=>{
+            this.setState({
+                inBlockMessageError: false
+            })
+        }
+
+        this.closeModalWindowErrorActionsFriend=()=>{
+            if(!this.state.inBlockMessageError){
+                this.closeModalWindowErrorActionsFriend()
+            }
+        }
+
     }
 
     render(){
+
+        if(this.state.errorMessageWithActionsFriends.length>0){
+            setTimeout(this.closeModalWindowErrorMessageWithActionsFriends, 2000)
+        }
 
         const {idUser}=this.props;
         const id=`/${idUser}`;
@@ -174,6 +268,22 @@ class PhotoUser extends Component{
         if(this.props.inputMessageCount.length>0){
             countMessage=this.props.inputMessageCount.length
         }
+
+        let modalWindowForError=null;
+
+        if(this.state.errorMessageWithActionsFriends.length>0){
+            modalWindowForError=<div className="photo-and-main-btn__overlay" onClick={this.closeModalWindowErrorActionsFriend}>
+                                    <div className="photo-and-main-btn__modal" onMouseEnter={()=>this.inBlockMessageEnterTrue()} onMouseLeave={()=>this.inBlockMessageEnterFalse()}>
+                                        <div className="photo-and-main-btn__modal_close">
+                                            <img src={cancel} alt="cancel" onClick={()=>this.closeModalWindowErrorMessageWithActionsFriends()}/>
+                                        </div>
+                                        <div className="photo-and-main-btn__modal_message">
+                                            {this.state.errorMessageWithActionsFriends}
+                                        </div>
+                                    </div>
+                                </div>
+        }
+
         
         return(
             <div className="photo-and-main-btn">
@@ -190,24 +300,28 @@ class PhotoUser extends Component{
                         {btnActionsElementsPage}
                     </div>
                     <div className="photo-and-main-btn__btns__navigation">
-                        <div >
-                            <button className="photo-and-main-btn__btns__navigation__main-btn">Навигация</button>
-                        </div>
+                        <button className="photo-and-main-btn__btns__navigation__main-btn">Навигация</button>
                         <div className="photo-and-main-btn__btns__navigation__menu">
                                 <div className="photo-and-main-btn__btns__navigation__wrapper">
+                                    <Link to={id}>
                                         <img className="photo-and-main-btn__btns__navigation__item" src={home} alt="Домой"/>
+                                    </Link>
                                     <Link to={id}>
                                         <span className="photo-and-main-btn__btns__navigation__item__label">Домой</span>
                                     </Link>
                                 </div>
                                 <div className="photo-and-main-btn__btns__navigation__wrapper">
+                                    <Link to="/friends/">
                                         <img className="photo-and-main-btn__btns__navigation__item" src={friends} alt="Друзья"/>
+                                    </Link>
                                     <Link to="/friends/">
                                         <span className="photo-and-main-btn__btns__navigation__item__label">Друзья</span>
                                     </Link>
                                 </div>
                                 <div className="photo-and-main-btn__btns__navigation__wrapper">
+                                    <Link to="/messages">
                                         <img className="photo-and-main-btn__btns__navigation__item" src={messages} alt="Письма"/> 
+                                    </Link>
                                         <span className="photo-and-main-btn__btns__navigation__item__count">
                                             {countMessage}
                                         </span>
@@ -220,7 +334,9 @@ class PhotoUser extends Component{
                                     </Link>
                                 </div>
                                 <div className="photo-and-main-btn__btns__navigation__wrapper">
+                                    <Link to="/groups/">
                                         <img className="photo-and-main-btn__btns__navigation__item" src={group} alt="Группы"/>
+                                    </Link>
                                     <Link to="/groups/">
                                         <span className="photo-and-main-btn__btns__navigation__item__label">Группы</span>
                                     </Link>
@@ -228,6 +344,7 @@ class PhotoUser extends Component{
                         </div>
                     </div>
                 </div>
+                {modalWindowForError}
             </div>
         )
     }

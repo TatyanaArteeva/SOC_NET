@@ -17,33 +17,42 @@
         font-size: 17px;
         font-weight: 600;
         color: $main-color;
-        &:first-child{
-            & span{
-                // color: $main-color;
-                // font-weight: 700;
-                font-size: 19px;
-            }
+        &_name{
+            width: 100%;
+            font-family: "Marck Script", sans-serif;
+            color: $main-color;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-size: 30px;
+            font-weight: 500;
+            padding-left: 3px;
+            
         }
         & span{
             color: $input-text;
             word-wrap: break-word;
             white-space: pre-wrap;
+            font-weight: 500;
         }
         &__btn{
             &_detailed{
                 display: block;
                 margin: 10px auto;
-                width: 600px;
-                height: 40px;
                 background: none;
-                border: 2px solid rgba(137, 216, 194, .3);;
-                border-radius: 12px;
-                font-size: 20px;
-                font-weight: 400;
+                border: none;
+                width: 600px;
+                border-radius: 10px;
                 &:hover{
-                    border: 2px solid $main-color-light;
                     transform: scale(1.1);
                     cursor: pointer;
+                    background-color: $background-color-modal;
+                    & img{
+                        transform: scale(1.1);
+                    }
+                }
+                & img{
+                    width: 30px;
+                    height: 30px;
                 }
             }
         }
@@ -51,6 +60,104 @@
             margin: 15px 15px 15px 15px;
             width: 640px;
             overflow: hidden;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+    }
+}
+
+@media (max-width: 1200px){
+    .profile-information{
+        margin: 7px 15px 0 15px;
+        width: 583px;
+        &__modification-btn{
+            @include btnMini;
+        }
+        &__content{
+            &__btn{
+                &_detailed{
+                    width: 540px;
+                }
+            }
+            &__wrapper{
+                width: 553px;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px){
+    .profile-information{
+        margin: 7px 15px 0 15px;
+        width: 698px;
+        &__content{
+            &__btn{
+                &_detailed{
+                    width: 600px;
+                }
+            }
+            &__wrapper{
+                width: 668px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .profile-information{
+        margin: 7px 15px 0 15px;
+        width: 508px;
+        &__content{
+            &__btn{
+                &_detailed{
+                    width: 406px;
+                }
+            }
+            &__wrapper{
+                width: 475px;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px){
+    .profile-information{
+        margin: 7px 10px 0 10px;
+        width: 280px;
+        &__modification-btn{
+            @include btnMini;
+            &__wrapper{
+                display: flex;
+                justify-content: center;
+            }
+        }
+        &__content{
+            width: 100%;
+            margin: 10px 0;
+            font-size: 17px;
+            font-weight: 600;
+            &_name{
+                width: 100%;
+                font-size: 26px;
+                font-weight: 500;
+                padding-left: 3px;
+                text-align: center;
+                
+            }
+            &__btn{
+                &_detailed{
+                    margin: 10px auto;
+                    width: 260px;
+                    & img{
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+            &__wrapper{
+                margin: 15px 10px 15px 10px;
+                width: 250px;
+            }
         }
     }
 }

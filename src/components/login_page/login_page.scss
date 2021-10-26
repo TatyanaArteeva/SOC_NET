@@ -184,3 +184,94 @@
         }
     }
 }
+
+
+@media (max-width: 1200px){
+    .label{
+        margin-left: 20px;
+    }
+
+    .passwordRequirements{
+        &_null{
+            height: 20px;
+        }
+    }
+
+    .login-page{
+        &__form{
+            &__remmember-me{
+                margin: 10px;
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 992px){
+
+}
+
+@media (max-width: 768px){
+
+}
+
+@media (max-width: 576px){
+    .login-page{
+        width: 300px;
+        margin: 15px auto;
+        padding: 5px;
+        &__form{
+            &__input{ 
+                @include input;
+                width: 280px;
+                &__password{
+                    @include input;
+                    width: 280px;
+                    padding: 3px 46px 3px 10px;
+                }
+            }
+            &__submit{
+                @include inputButton;
+                width: 95%;
+            }
+        }
+        &__offer-to-registration{
+            &__button{
+                @include inputButton;
+                width: 95%;
+                margin: 0 10px;
+            }
+        }
+    }
+
+    .passwordRequirements{
+        margin: 0 10px;
+    }
+
+
+    .registration-successfully{
+        &__modal{
+            width: 230px;
+            height: 150px;
+            &__wrapper{
+                margin-top: 35px;
+            }
+            &__message {
+                width: 80%;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .label{
+        &__text{
+            margin-top: 15px;
+        }
+    }
+}
+    
+// @media (max-width: 1200px);
+// @media (max-width: 992px);
+// @media (max-width: 768px);
+// @media (max-width: 576px);

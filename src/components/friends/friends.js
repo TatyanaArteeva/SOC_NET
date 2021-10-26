@@ -4,6 +4,7 @@ import WithService from '../hoc/hoc';
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import {connect} from 'react-redux';
 import NavigationFriends from '../navigationFriends/navigationFriends';
+import friends from './friends.svg';
 
 
 class Friends extends Component{
@@ -99,7 +100,7 @@ class Friends extends Component{
                                             arr: [...items.accounts]
                                         })
                                     }}
-                                    messageNotContent={"У вас пока нет друзей"}
+                                    messageNotContent={<img src={friends} alt="noFriends"/>}
                                     nameList={"у вас друзей"}
                                     totalSize={(size)=>{
                                         this.setState({

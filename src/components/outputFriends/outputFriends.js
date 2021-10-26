@@ -3,6 +3,7 @@ import { withRouter} from "react-router";
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import {connect} from 'react-redux';
 import NavigationFriends from '../navigationFriends/navigationFriends';
+import outputFriends from './outputFriends.svg';
 
 
 class OutputFriends extends Component{
@@ -109,7 +110,7 @@ class OutputFriends extends Component{
                                             arr: [...items.accounts]
                                         })
                                     }}
-                                    messageNotContent={"У вас пока нет исходящих заявок"}
+                                    messageNotContent={<img src={outputFriends} alt="incomingFriends"/>}
                                     nameList={"исходящих заявок"}
                                     totalSize={(size)=>{
                                         this.setState({

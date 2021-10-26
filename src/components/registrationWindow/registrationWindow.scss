@@ -32,3 +32,40 @@
     }
 }
 
+
+@media (max-width: 1200px){
+
+}
+
+@media (max-width: 992px){
+
+} 
+
+@media (max-width: 768px){
+
+}
+
+@media (max-width: 576px){
+
+    .registration-window{
+        &__modal {
+            width: 300px;
+            padding: 5px;
+            &__input{
+                @include input;
+                width: 280px;
+                &_password{
+                    @include input;
+                    width: 280px;
+                    padding: 3px 46px 3px 10px;
+                }
+            }
+            &__btn{
+               @include inputButton;
+               margin-top: 15px;
+               width: 95%;
+            }
+        }
+    }
+
+}

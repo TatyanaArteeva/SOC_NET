@@ -1,5 +1,5 @@
 import React from 'react';
-import spinner from './1234.gif';
+import spinner from './751.svg';
 import './spinner.scss';
 
 

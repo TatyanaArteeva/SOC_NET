@@ -53,6 +53,9 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
     const [spinnerMiniMini, setSpinnerMiniMini]=useState(false);
     const [listClassActiveFamilyStatus, setListClassActiveFamilyStatus]=useState(false);
     const [familyStatusText ,setFamilyStatusText]=useState('');
+    const [errorLoadingContent, setErrorLoadingContent]=useState(false);
+    const [errorModificitation, setErrorModification]=useState(false);
+    const[errorLoadingPartnersList, setErrorLoadingPartnersList]=useState(false);
     const partnersListRef=useRef();
     let newFormatDate=null;
     
@@ -119,8 +122,9 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
                     setBirthtDate(newDate)
                     userInformation(res.data)
                 }
-            }catch(e){
-                console.log(e)
+            }catch{
+                setSpinner(false)
+                setErrorLoadingContent(true)
             }
 
         }
@@ -196,6 +200,7 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
     }
 
     function openModalSelectPartner(){
+        // setListClassActiveFamilyStatus(false)
         setModalWindowSelectPartner(true)
     }
 
@@ -236,6 +241,9 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
                             setAccountsPartners(accountArr)
                             setTotalSizePartners(res.data.totalSize);
                     }
+                }).catch(err=>{
+                    setSpinnerMini(false);
+                    setErrorLoadingPartnersList(true)
                 })
             }
 
@@ -320,6 +328,7 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
     useEffect(()=>{
         if(!searchPartner){
             setListPartnerStyle("modification-account__family__selection-partner__modification__wrapper__select-partner__list")
+            setErrorLoadingPartnersList(false)
         }
     }, [searchPartner])
     
@@ -372,6 +381,9 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
                 }
             }).then(res=>{
                 setTimeout(closeModalWindowAndTransitionMyPage, 1000)
+            }).catch(err=>{
+                setSpinner(false);
+                setErrorModification(true)
             })
     }
 
@@ -381,7 +393,7 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
     let accountsPartnersList=null;
 
     if(accountsPartners.length===0 && !spinnerMini){
-        accountsPartnersList=<div className="modification-account__family__selection-partner__modification__wrapper__select-partner__list__item_null">Возможных партнеров не найдено</div>
+        accountsPartnersList=<div className="modification-account__family__selection-partner__modification__wrapper__select-partner__list__item_null">Партнеров нет, так как список друзей пуст</div>
     }
 
     if(accountsPartners.length>0 && !spinnerMini){
@@ -396,8 +408,11 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
                         })
     }
 
+    if(errorLoadingPartnersList){
+        accountsPartnersList=<div className="modification-account__family__selection-partner__modification__wrapper__select-partner__list__item_null">Что-то пошло не так! Партнеры не доступны!</div>
+    }
+
     function mouseLeavePartnersList(){
-        console.log('вышли за блок')
         setSearchPartner(false)
     }
 
@@ -415,22 +430,24 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
                         <label className="modification-account__label">
                             <button className="modification-account__family__selection-partner__btn" onClick={closeModalSelectPartner}>Закрыть</button>
                         </label>
-                        <input placeholder="Введите имя партнера"
-                         type="text" 
-                         name="selectPartner" 
-                         value={searchSelectPartner} 
-                         onChange={valueSearchPartner}
-                         onClick={searchPartnerTrue}
-                         className="modification-account__family__selection-partner__input"
-                         autoComplete="off"
-                         />
-                        <ul className={listPartnerStyle} ref={partnersListRef} onMouseLeave={mouseLeavePartnersList}>
-                            {
-                                accountsPartnersList
-                            }
-                            {miniSpinner}
-                            {miniMiniSpinner}
-                        </ul>
+                        <div>
+                            <input placeholder="Введите имя партнера"
+                            type="text" 
+                            name="selectPartner" 
+                            value={searchSelectPartner} 
+                            onChange={valueSearchPartner}
+                            onClick={searchPartnerTrue}
+                            className="modification-account__family__selection-partner__input"
+                            autoComplete="off"
+                            />
+                            <ul className={listPartnerStyle} ref={partnersListRef} onMouseLeave={mouseLeavePartnersList}>
+                                {
+                                    accountsPartnersList
+                                }
+                                {miniSpinner}
+                                {miniMiniSpinner}
+                            </ul>
+                        </div>
                         
                     </div>;
 
@@ -485,10 +502,10 @@ if(selectPartner.length>0 && !searchPartner && !modalWindowSelectPartner && sear
         informationAboutConfirmationRelationships=null
     }
     messageSelectPartner=<div className="modification-account__family__selection-partner__modification__wrapper__select-partner__select">
-                            <label className="modification-account__label">Ваш партнер:</label>
+                            <label className="modification-account__label">Партнер:</label>
                             <span>
                                 <span>
-                                    {selectElem.firstName} {selectElem.lastName} 
+                                    {selectElem.firstName} {selectElem.lastName}
                                     <img onClick={deleteSelectPartner} src={deletee} alt="delete"/>
                                 </span>
                                 {informationAboutConfirmationRelationships}
@@ -525,20 +542,31 @@ useEffect(()=>{
 function selectFamilyStatus(e){
     setFamilyStatus(e.target.dataset.value)
     setFamilyStatusText(e.target.innerText)
-    toggleBtnFamilyStatusList()
+    setListClassActiveFamilyStatus(false)
+    // toggleBtnFamilyStatusList()
     
 }
 
-const modalWindowUserNotification=modalWindowUserNotificationTrue? <ModalWindow message={"Изменения успешно сохранены!"}/> :null;
-
-function mouseLeaveFamilyStatus(){
-    toggleBtnFamilyStatusList()
+function closeModalWindowErrorModification(){
+    setErrorModification(false)
 }
 
-const contentModification=<form onSubmit={postModificationForm} className="modification-account">
+const modalWindowUserNotification=modalWindowUserNotificationTrue? <ModalWindow message={"Изменения успешно сохранены!"}/> :null;
+const modalWindowUserNotificationError=errorModificitation? <ModalWindow message={"Что-то пошло не так! Изменения не сохранены!"}/> :null;
+
+if(errorModificitation){
+    setTimeout(closeModalWindowErrorModification, 2000)
+}
+
+function mouseLeaveFamilyStatus(){
+    setListClassActiveFamilyStatus(false)
+    // toggleBtnFamilyStatusList()
+}
+
+let contentModification=<form onSubmit={postModificationForm} className="modification-account">
                             <h2 className="modification-account__title">Редактирование:</h2>
                             <div className="modification-account__wrapper">
-                            <label className="modification-account__label">Моё имя:</label>
+                            <label className="modification-account__label">Имя:</label>
                                 <input 
                                     onChange={valueFirstName} 
                                     type="text" 
@@ -549,7 +577,7 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                                     required/> 
                             </div>
                             <div className="modification-account__wrapper">
-                                <label className="modification-account__label">Моя фамилия: </label>
+                                <label className="modification-account__label">Фамилия: </label>
                                     <input 
                                         onChange={valueLastName} 
                                         type="text" 
@@ -559,7 +587,7 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                                         value={lastName}/> 
                             </div>
                             <div className="modification-account__wrapper">
-                                <label className="modification-account__label">Мой пол:</label>
+                                <label className="modification-account__label">Пол:</label>
                                 <div className="modification-account__wrapper-sex">
                                     <input  value="FEMALE"
                                             onChange={valueSex} 
@@ -594,7 +622,7 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                                 </div> 
                             </div>
                             <div className="modification-account__wrapper">
-                                <label className="modification-account__label">Мой день рождения:  </label>
+                                <label className="modification-account__label">День рождения:  </label>
                                 <DatePicker dateFormat="dd.MM.yyyy" 
                                             filterDate={futureDays}
                                             selected={birthDate} 
@@ -608,7 +636,7 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                                         />
                             </div>
                             <div className="modification-account__wrapper">
-                                <label className="modification-account__label">Мой город: </label>
+                                <label className="modification-account__label">Город: </label>
                                 <input 
                                     onChange={valueCity} 
                                     type="text" 
@@ -618,22 +646,24 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                                     value={city}/> 
                             </div>
                             <div className="modification-account__wrapper-family">
-                                <label className="modification-account__label">Моё семейное положение: </label>
-                                <div className="modification-account__family__btn" onClick={toggleBtnFamilyStatusList}>{familyStatusText}</div>
+                                <label className="modification-account__label">Семейное положение: </label>
+                                <div className="modification-account__wrapper-family__wrapper-list">
+                                    <div className="modification-account__family__btn" onClick={toggleBtnFamilyStatusList}>{familyStatusText}</div>
                                     <ul className={listClass} onMouseLeave={mouseLeaveFamilyStatus}>
                                         <li className="modification-account__family__item" data-value="" onClick={selectFamilyStatus}>Не выбрано</li>
                                         <li className="modification-account__family__item" data-value="RELATION" onClick={selectFamilyStatus}>В отношениях</li>
                                         <li className="modification-account__family__item" data-value="NO_RELATION" onClick={selectFamilyStatus}>Не в отношениях</li>
                                         <li className="modification-account__family__item" data-value="ACTIVE_SEARCH" onClick={selectFamilyStatus}>В активном поиске</li>
                                     </ul>
+                                </div>
                             </div>
                             <div className="modification-account__family__selection-partner__wrapper">
-                                { selectionPartner}
+                                {selectionPartner}
                                 {selectPartnerBtn}
                                 {messageSelectPartner}
                             </div>
                             <div className="modification-account__wrapper">
-                                <label className="modification-account__label">Мой номер телефона:</label>
+                                <label className="modification-account__label">Телефон:</label>
                                 <PhoneInput
                                     placeholder="Укажите свой номер телефона"
                                     value={phone}
@@ -642,7 +672,7 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                             </div>
                             
                             <div className="modification-account__wrapper">
-                                <label className="modification-account__label">Моё место работы или учёбы: </label>
+                                <label className="modification-account__label">Место работы или учёбы: </label>
                                 <input 
                                     onChange={valueEmployment} 
                                     type="text" 
@@ -654,7 +684,7 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                             </div>     
                             <div className="modification-account__wrapper-description">
                                 <label className="modification-account__label">
-                                    Обо мне: 
+                                    О себе: 
                                 </label>
                                 <textarea  
                                     onChange={valueDescription} 
@@ -668,6 +698,10 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                             </button>
                         </form>
 
+    if(errorLoadingContent){
+        contentModification=<div>Что-то пошло не так! Контент не доступен!</div>
+    }
+
     const content=spinner?<Spinner/>: contentModification;
 
 
@@ -676,6 +710,7 @@ const contentModification=<form onSubmit={postModificationForm} className="modif
                 <PromptNav when={nav===false}/>
                 {content}
                 {modalWindowUserNotification}
+                {modalWindowUserNotificationError}
         </div>
     )
 }

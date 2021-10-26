@@ -216,6 +216,10 @@ export const returnFromModificationPage=(returnFromModificationPage)=>{
     return({type:'RETURN_FROM_MODIFICATION_PAGE', returnFromModificationPage: returnFromModificationPage})
 }
 
+export const openAndCloseDropDownMenu=(openAndCloseDropDownMenu)=>{
+    return({type:'OPEN_AND_CLOSE_DROP_DOWN_MENU', openAndCloseDropDownMenu:openAndCloseDropDownMenu })
+}
+
 
 
 

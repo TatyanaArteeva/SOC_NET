@@ -9,6 +9,7 @@ import ListFriendsForAddDialog from '../listFriendsForAddDialog/listFriendsForAd
 import Spinner from '../spinner/spinner';
 import SpinnerMini from '../spinnerMini/spinnerMini';
 import {openModalAllParticipantsGroup} from '../../actions';
+import messages from './message.svg';
 
 const localFormatDateByVersionLibMomentReact='lll'
 
@@ -22,7 +23,8 @@ class Messages extends Component{
             listForAddDialog: false,
             req: false,
             spinner:true,
-            miniSpinner: false
+            miniSpinner: false,
+            error:false
         }
         const {Service}=this.props;
         this.refList=React.createRef();
@@ -37,11 +39,21 @@ class Messages extends Component{
             Service.getMessagesAll(`/api/dialog/list?start=${start}&end=${end}`)
                 .then(res=>{
                     if(res.status===200){
+                        if(this._cleanupFunction){
+                            this.setState({
+                                dialogs: res.data.dialogs,
+                                totalSizeDialogs: res.data.totalSize,
+                                req: false,
+                                spinner:false
+                            })
+                        }
+                    }
+                }).catch(res=>{
+                    if(res.status===200){
                         this.setState({
-                            dialogs: res.data.dialogs,
-                            totalSizeDialogs: res.data.totalSize,
                             req: false,
-                            spinner:false
+                            spinner:false,
+                            error: true
                         })
                     }
                 })
@@ -186,6 +198,10 @@ class Messages extends Component{
             })
         }
 
+        this.componentWillUnmount=()=>{
+            this._cleanupFunction=false;
+        }
+
     }
 
 
@@ -252,8 +268,14 @@ class Messages extends Component{
     }
 
     if(this.state.dialogs.length===0 && !this.state.spinner){
+        content=<div className="dialogs-list__null">
+                    <img src={messages} alt="noMessages"/>
+                </div>
+    }
+
+    if(!this.state.spinner && this.state.error){
         content=<div>
-                    У вас пока нет диалогов!
+                    Что-то пошло не так! Диалоги не доступны!
                 </div>
     }
 

@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 import {allSearchValue, idForDialogFriends} from '../../actions';
 import Spinner from '../spinnerMini/spinnerMini';
 import SpinnerMini from '../spinnerMini/spinnerMini';
+import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
+import cancel from './cancel.svg';
 
 class FriendsAndGroupsList extends Component{
     _cleanupFunction=false;
@@ -17,7 +19,11 @@ class FriendsAndGroupsList extends Component{
             totalSize: '',
             searchValue: '',
             spinner: true,
-            miniSpinner: false
+            miniSpinner: false,
+            errorAction: false,
+            errorMessageWithActions: '',
+            inBlockErrorMessage: false,
+            error: false
         }
 
         this.refList=React.createRef();
@@ -48,6 +54,11 @@ class FriendsAndGroupsList extends Component{
                             console.log(res.data.totalSize)
                             this.props.totalSize(res.data.totalSize)
                         }
+                    }).catch(err=>{
+                        this.setState({
+                            spinner: false,
+                            error:true
+                        })
                     })
             }else{
                 Service.getItems(this.props.getItems(start, end))
@@ -63,6 +74,11 @@ class FriendsAndGroupsList extends Component{
                                 this.props.totalSize(res.data.totalSize)
                             }
                         }
+                    }).catch(err=>{
+                        this.setState({
+                            spinner: false,
+                            error:true
+                        })
                     })
             }
             
@@ -131,6 +147,11 @@ class FriendsAndGroupsList extends Component{
                                         this.props.arrItems(res.data)
                                         this.props.totalSize(res.data.totalSize)
                                     }
+                                }).catch(err=>{
+                                    this.setState({
+                                        spinner: false,
+                                        error:true
+                                    })
                                 })
                         }else{
                             Service.getItems(this.props.getItems(start, end))
@@ -144,6 +165,11 @@ class FriendsAndGroupsList extends Component{
                                         this.props.arrItems(res.data)
                                         this.props.totalSize(res.data.totalSize)
                                     }
+                                }).catch(err=>{
+                                    this.setState({
+                                        spinner: false,
+                                        error:true
+                                    })
                                 })
                         }
                     }
@@ -167,6 +193,17 @@ class FriendsAndGroupsList extends Component{
                                         })
                                     
                             }
+                        }).catch(err=>{
+                            const error=errorMessageForUser(err.response.data.code);
+                            this.setState({
+                                errorAction:true,
+                                errorMessageWithActions: error
+                            })
+                            Service.getGroup(`/api/group/${id}/page-info`)
+                                .then(res=>{
+                                    console.log(res.data.group.id)
+                                    this.props.arrItemModification(res.data)
+                                })
                         })
                 
             }
@@ -184,6 +221,17 @@ class FriendsAndGroupsList extends Component{
                                         })
                                     
                             }
+                        }).catch(err=>{
+                            const error=errorMessageForUser(err.response.data.code);
+                            this.setState({
+                                errorAction:true,
+                                errorMessageWithActions: error
+                            })
+                            Service.getGroup(`/api/group/${id}/page-info`)
+                                .then(res=>{
+                                    console.log(res.data.group.id)
+                                    this.props.arrItemModification(res.data)
+                                })
                         })
                 
             }
@@ -211,6 +259,27 @@ class FriendsAndGroupsList extends Component{
                                         })
                                 })
                             }
+                        }).catch(err=>{
+                            const error=errorMessageForUser(err.response.data.code);
+                            this.setState({
+                                errorAction:true,
+                                errorMessageWithActions: error
+                            })
+                            Service.getAccountInfo(`/api/account/${id}/page-info`)
+                                    .then(res=>{
+                                       objInfo=res.data;
+                                       Service.getAccountPhoto(`/api/account/${id}/photo`,{
+                                            responseType: 'arraybuffer'
+                                       })
+                                        .then(res => {
+                                            photo=Buffer.from(res.data, 'binary').toString('base64');
+                                        })
+                                        .then(res=>{
+                                            photo=
+                                            objInfo.account['photo']=photo;
+                                            this.props.arrItemModification(objInfo)
+                                        })
+                                })
                         })
                 
             }
@@ -238,6 +307,27 @@ class FriendsAndGroupsList extends Component{
                                         })
                                 })
                             }
+                        }).catch(err=>{
+                            const error=errorMessageForUser(err.response.data.code);
+                            this.setState({
+                                errorAction:true,
+                                errorMessageWithActions: error
+                            })
+                            Service.getAccountInfo(`/api/account/${id}/page-info`)
+                                    .then(res=>{
+                                       objInfo=res.data;
+                                       Service.getAccountPhoto(`/api/account/${id}/photo`,{
+                                            responseType: 'arraybuffer'
+                                       })
+                                        .then(res => {
+                                            photo=Buffer.from(res.data, 'binary').toString('base64');
+                                        })
+                                        .then(res=>{
+                                            photo=
+                                            objInfo.account['photo']=photo;
+                                            this.props.arrItemModification(objInfo)
+                                        })
+                                })
                         })
                 
             }
@@ -265,6 +355,27 @@ class FriendsAndGroupsList extends Component{
                                         })
                                 })
                             }
+                        }).catch(err=>{
+                            const error=errorMessageForUser(err.response.data.code);
+                            this.setState({
+                                errorAction:true,
+                                errorMessageWithActions: error
+                            })
+                            Service.getAccountInfo(`/api/account/${id}/page-info`)
+                                    .then(res=>{
+                                       objInfo=res.data;
+                                       Service.getAccountPhoto(`/api/account/${id}/photo`,{
+                                            responseType: 'arraybuffer'
+                                       })
+                                        .then(res => {
+                                            photo=Buffer.from(res.data, 'binary').toString('base64');
+                                        })
+                                        .then(res=>{
+                                            photo=
+                                            objInfo.account['photo']=photo;
+                                            this.props.arrItemModification(objInfo)
+                                        })
+                                })
                         })
                 
             }
@@ -292,6 +403,27 @@ class FriendsAndGroupsList extends Component{
                                         })
                                 })
                             }
+                        }).catch(err=>{
+                            const error=errorMessageForUser(err.response.data.code);
+                            this.setState({
+                                errorAction:true,
+                                errorMessageWithActions: error
+                            })
+                            Service.getAccountInfo(`/api/account/${id}/page-info`)
+                                    .then(res=>{
+                                       objInfo=res.data;
+                                       Service.getAccountPhoto(`/api/account/${id}/photo`,{
+                                            responseType: 'arraybuffer'
+                                       })
+                                        .then(res => {
+                                            photo=Buffer.from(res.data, 'binary').toString('base64');
+                                        })
+                                        .then(res=>{
+                                            photo=
+                                            objInfo.account['photo']=photo;
+                                            this.props.arrItemModification(objInfo)
+                                        })
+                                })
                         })
                 
             }
@@ -318,6 +450,26 @@ class FriendsAndGroupsList extends Component{
                                         })
                                     })
                             }
+                        }).catch(err=>{
+                            const error=errorMessageForUser(err.response.data.code);
+                            this.setState({
+                                errorAction:true,
+                                errorMessageWithActions: error
+                            })
+                            Service.getAccountInfo(`/api/account/${id}/page-info`)
+                                    .then(res=>{
+                                    objInfo=res.data;
+                                    Service.getAccountPhoto(`/api/account/${id}/photo`,{
+                                        responseType: 'arraybuffer'
+                                    })
+                                    .then(res => {
+                                        photo=Buffer.from(res.data, 'binary').toString('base64');
+                                        })
+                                        .then(res=>{
+                                            photo=objInfo.account['photo']=photo;
+                                            this.props.arrItemModification(objInfo)
+                                        })
+                                    })
                         })
 
             }
@@ -347,23 +499,80 @@ class FriendsAndGroupsList extends Component{
                         this.props.arrItemsSearch(res.data);
                         this.props.totalSize(res.data.totalSize)
                     }
+                }).catch(err=>{
+                    this.setState({
+                        spinner: false,
+                        error:true
+                    })
                 })
+        }
+
+        this.closeModalWindowErrorActions=()=>{
+            console.log("зашли в функцию")
+            this.setState({
+                errorAction: false,
+                errorMessageWithActions: ''
+            })
+        }
+
+        this.inBlockErrorMessageTrue=()=>{
+            this.setState({
+                inBlockErrorMessage: true
+            })
+        }
+
+        this.inBlockErrorMessageFalse=()=>{
+            this.setState({
+                inBlockErrorMessage: false
+            })
+        }
+
+        this.closeModalWindowErrorActionsOverlay=()=>{
+            if(this.state.inBlockErrorMessage===false){
+                this.closeModalWindowErrorActions()
+            }
         }
 
         this.componentWillUnmount=()=>{
             this._cleanupFunction=false
         }
 
+        
+
     }
 
     render(){
-
+        console.log(this.state.errorAction)
         let contentAndMessageNotContent=null;
+        let modalWindowErrorMessageActions=null;
+
+        if(this.state.errorAction){
+            modalWindowErrorMessageActions=<div className="friends-and-groups-list__overlay" onClick={()=>this.closeModalWindowErrorActionsOverlay()}>
+                                                <div className="friends-and-groups-list__modal" onMouseEnter={this.inBlockErrorMessageTrue} onMouseLeave={this.inBlockErrorMessageFalse}>
+                                                    <div className="friends-and-groups-list__modal_close">
+                                                        <img src={cancel} alt="cancel" onClick={()=>this.closeModalWindowErrorActions()}/>
+                                                    </div>
+                                                    <div className="friends-and-groups-list__modal_message">
+                                                        {this.state.errorMessageWithActions}
+                                                    </div>
+                                                </div>
+                                            </div>
+        }
+
+        if(this.state.errorAction){
+            setTimeout(this.closeModalWindowErrorActions, 2000)
+        }
 
         if(this.props.renderItems.length===0){
             contentAndMessageNotContent=<div className="friends-and-groups-list__not-content">
                                         {this.props.messageNotContent}
                                       </div>
+        }
+
+        if(this.props.renderItems.length===0 && this.state.error){
+            contentAndMessageNotContent=<div className="friends-and-groups-list__not-content">
+                                            Что-то пошло не так! Контент не доступен!
+                                        </div>
         }
 
         if(this.props.renderItems.length>0){
@@ -400,6 +609,7 @@ class FriendsAndGroupsList extends Component{
                         />
                 </div>
                {content}
+               {modalWindowErrorMessageActions}
             </div>
         )
      }

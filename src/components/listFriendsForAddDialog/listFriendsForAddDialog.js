@@ -4,6 +4,7 @@ import WithService from '../hoc/hoc';
 import {connect} from 'react-redux';
 import AllParticipantsModal from '../allParticipantsModal/allParticipantsModal';
 import {closeModalAllParticipantsGroup} from '../../actions';
+import friends from './friends.svg';
 
 class ListFriendsForAddDialog extends Component{
 
@@ -50,7 +51,7 @@ class ListFriendsForAddDialog extends Component{
                                             })
                                             
                                         }}
-                                        messageNotContent={"Друзей для диалога не найдено"}
+                                        messageNotContent={<img src={friends} alt="friends" className=""/>}
                                         nameList={"Всего друзей:"}
                                     />
             

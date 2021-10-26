@@ -3,7 +3,6 @@
 
 .dialog{
     width: 100%;
-    background-color:$background-color;
     margin-top: 7px;
     margin-bottom: 50px;
     display: flex;
@@ -15,7 +14,7 @@
     }
     &__form-message{
         @include input;
-        width: 830px;
+        width: 70%;
         height: 120px;
         padding: 20px 33px 20px 0;
         box-shadow: 1px 1px 1px 1px $main-color-light;
@@ -35,7 +34,7 @@
         }
         &_input{
             @include inputMessage;
-            width: 750px;
+            width: 95%;
         }
         &_send{
             width: 35px;
@@ -58,17 +57,17 @@
         }
     }
     &__header{
-        width: 830px;
+        width: 70%;
         margin: 7px auto;
         display: flex;
         justify-content: center;
-        background-color: rgba(254, 249, 199, 0.3);
+        background-color: $background-color-modal;
         border-radius: 10px;
         &__content{
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 830px;
+            width: 100%;
             margin: 0 15px;
             &__wrapper{
                 display: flex;
@@ -93,7 +92,7 @@
         }
     }
     &__list{
-        width: 830px;
+        width: 70%;
         height: 410px;
         margin-bottom: 5px;
         margin-top: 5px;
@@ -102,6 +101,7 @@
         align-items: center;
         background-color: white;
         border-radius: 10px;
+        box-shadow: -1px 1px 1px 1px $secondary-color-light;
         &__wrapper{
             width: 100%;
             height: 400px;
@@ -124,16 +124,16 @@
                 background-color: $main-color;
             }
             &__list{
-                width: 815px;
+                width: 100%;
                 height: 400px;
                 padding: 0;
                 &__friend{
-                    background-color: rgba(254, 249, 199, .4);
+                    background-color: rgba(253, 234, 168, .3);
                     list-style-type: none;
                     text-align: start;
                     display: flex;
                     flex-direction: column;
-                    width: 400px;
+                    width: 50%;
                     white-space: pre-wrap;
                     word-wrap: break-word;
                     margin-left: 5px;
@@ -152,7 +152,7 @@
                     text-align: start;
                     display: flex;
                     flex-direction: column;
-                    width: 400px;
+                    width: 50%;
                     margin-left: 50%;
                     white-space: pre-wrap;
                     word-wrap: break-word;
@@ -184,5 +184,278 @@
             }
         }
         
+    }
+}
+
+@media (max-width: 1200px){
+    .dialog{
+        &__form-message{
+            @include input;
+            width: 70%;
+            height: 120px;
+            &_input{
+                @include inputMessage;
+                width: 95%;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 992px){
+    .dialog{
+        width: 100%;
+        margin-top: 7px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        & a{
+            text-decoration: none;
+        }
+        &__form-message{
+            @include input;
+            width: 70%;
+            height: 100px;
+            padding: 20px 33px 20px 0;
+            &_input{
+                @include inputMessage;
+                width: 95%;
+                font-size: 15px;
+            }
+            &_send{
+                width: 32px;
+                height: 35px;
+            }
+        }
+        &__header{
+            &__content{
+                width: 100%;
+                &__wrapper{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                &_img{
+                    width: 33px;
+                    height: 33px;
+                }
+                &_name{
+                    font-size: 16px;
+                }
+            }
+        }
+        &__list{
+            width: 70%;
+            height: 410px;
+            &__wrapper{
+                width: 100%;
+                height: 400px;
+                &__list{
+                    width: 100%;
+                    height: 400px;
+                    padding: 0;
+                    &__friend{
+                        width: 50%;
+                        padding: 10px;
+                        &_name{
+                            font-size: 16px;
+                        }
+                    }
+                    &__user{
+                        width: 50%;
+                        padding: 10px;
+                        &_name{
+                            font-size: 16px;
+                        }
+                    }
+                    &__content{
+                        &_time{
+                            margin-top: 5px;
+                        }
+                        &_message{
+                            margin-top: 5px;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .dialog{
+        width: 100%;
+        margin-top: 7px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        & a{
+            text-decoration: none;
+        }
+        &__form-message{
+            @include input;
+            width: 90%;
+            height: 100px;
+            padding: 20px 33px 20px 0;
+            margin-top: 5px;
+            &_input{
+                @include inputMessage;
+                width: 95%;
+                font-size: 15px;
+            }
+            &_send{
+                width: 32px;
+                height: 35px;
+            }
+        }
+        &__header{
+            width: 90%;
+            &__content{
+                width: 100%;
+                &__wrapper{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                &_img{
+                    width: 33px;
+                    height: 33px;
+                }
+                &_name{
+                    font-size: 15px;
+                }
+            }
+        }
+        &__list{
+            width: 90%;
+            height: 300px;
+            &__wrapper{
+                width: 100%;
+                height: 290px;
+                &__list{
+                    width: 100%;
+                    height: 400px;
+                    padding: 0;
+                    &__friend{
+                        width: 50%;
+                        padding: 10px;
+                        &_name{
+                            font-size: 15px;
+                        }
+                    }
+                    &__user{
+                        width: 50%;
+                        padding: 10px;
+                        &_name{
+                            font-size: 15px;
+                        }
+                    }
+                    &__content{
+                        &_time{
+                            margin-top: 5px;
+                            font-size: 7px;
+                        }
+                        &_message{
+                            margin-top: 5px;
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+@media (max-width: 576px){
+    .dialog{
+        width: 100%;
+        margin-top: 7px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        & a{
+            text-decoration: none;
+        }
+        &__form-message{
+            @include input;
+            width: 90%;
+            height: 100px;
+            padding: 20px 33px 20px 0;
+            margin-top: 5px;
+            &_input{
+                @include inputMessage;
+                width: 95%;
+                font-size: 13px;
+            }
+            &_send{
+                width: 30px;
+                height: 33px;
+            }
+        }
+        &__header{
+            width: 90%;
+            &__content{
+                width: 100%;
+                &__wrapper{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                &_img{
+                    width: 30px;
+                    height: 30px;
+                }
+                &_name{
+                    font-size: 14px;
+                }
+            }
+        }
+        &__list{
+            width: 90%;
+            height: 300px;
+            &__wrapper{
+                width: 100%;
+                height: 290px;
+                &__list{
+                    width: 100%;
+                    height: 400px;
+                    padding: 0;
+                    &__friend{
+                        width: 70%;
+                        padding: 10px;
+                        &_name{
+                            font-size: 14px;
+                        }
+                    }
+                    &__user{
+                        width: 70%;
+                        padding: 7px;
+                        margin-left: 30%;
+                        &_name{
+                            font-size: 14px;
+                        }
+                    }
+                    &__content{
+                        &_time{
+                            margin-top: 3px;
+                            font-size: 7px;
+                        }
+                        &_message{
+                            margin-top: 3px;
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+            
+        }
     }
 }

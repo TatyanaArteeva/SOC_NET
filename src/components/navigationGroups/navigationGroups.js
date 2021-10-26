@@ -21,20 +21,20 @@ class NavigationGroups extends Component{
     render(){
 
         return(
-            <div className="navigation">
-                <div className="navigation__wrapper">
+            <div className="navigation-group">
+                <div className="navigation-group__wrapper">
                     <button 
-                        className={this.props.location.pathname==="/groups/" ? "navigation__btn_active" : "navigation__btn"}
+                        className={this.props.location.pathname==="/groups/" ? "navigation-group__btn_active" : "navigation-group__btn"}
                         onClick={()=>this.activeMyGroups()}>
                         Мои группы
                     </button>
                     <button 
-                        className={this.props.location.pathname==="/groups/all" ? "navigation__btn_active" : "navigation__btn"}
+                        className={this.props.location.pathname==="/groups/all" ? "navigation-group__btn_active" : "navigation-group__btn"}
                         onClick={()=>this.activeAllGroups()}>
                         Показать все группы
                     </button>
                     <button 
-                        className="navigation__btn"
+                        className="navigation-group__btn"
                         onClick={()=>this.goToCreateGroup()}>
                         Создать группу
                     </button>

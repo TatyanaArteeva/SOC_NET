@@ -3,6 +3,7 @@ import { withRouter} from "react-router";
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
 import {connect} from 'react-redux';
 import NavigationFriends from '../navigationFriends/navigationFriends';
+import allUsers from './allUsers.svg';
 
 class AllUsers extends Component{
     constructor(props){
@@ -165,7 +166,7 @@ class AllUsers extends Component{
                                         arr: [...items.accounts]
                                     })
                                 }}
-                                  messageNotContent={"Пользователей пока нет"}
+                                  messageNotContent={<img src={allUsers} alt="allUsers"/>}
                                   nameList={"пользователей"}
                                   totalSize={(size)=>{
                                     this.setState({

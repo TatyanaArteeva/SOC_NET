@@ -15,6 +15,23 @@
     transform: translateX(calc(-50% + 164px));
 }
 
+@media (max-width: 575px){
+    .input{
+        @include input;
+        width: 280px;
+    }
+
+    .calendar{
+        background-color:$background-color;
+        font-size: 16px;
+        font-family: Raleway, sans-serif;
+        font-weight: 500;
+        border: none;
+        left: 0px;
+        transform: translate(10%, 30px);
+    }
+}
+
 .buttonCleaner{
     top: 8px;
 }

@@ -228,7 +228,7 @@ class ModalWindowForOptonMainPhoto extends Component{
                                         <img src={cancel} alt="cancel" onClick={this.modalWindowForModificationMainPhotoClose}/>
                                     </div>
                                     <div className="modal-window-for-opton-main-photo__text_final">
-                                        Пожалуйста, выберите новое фото!
+                                        Выберите новое фото!
                                     </div>
                                     <div className="modal-window-for-opton-main-photo__wrapper__input-file">
                                         <form>

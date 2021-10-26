@@ -6,15 +6,11 @@ import {openModalRegistration, loginMainPage, errorWindowLoginOpen, errorWindowL
 import MainPage from '../main_page/mainPage';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router";
-// import icon from './icon.svg';
-// import error from './error.svg';
-import leaf from './leaf.svg';
-// import eye from './eye.svg';
-// import eyeBlocked from './eyeBlocked.svg';
 import cancel from './cancel.svg';
 import Spinner from '../spinner/spinner';
 import sunflower from './sunflower.svg';
 import LoginPageDeviz from '../loginPageDeviz/loginPageDeviz';
+import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
 
 class LoginPage extends Component  {
     constructor(props){
@@ -24,7 +20,8 @@ class LoginPage extends Component  {
             password: '',
             rememberMe: false,
             hiddenPassword: true,
-            spinner:false
+            spinner:false,
+            errorMessage: ''
         }
 
         const {Service} = this.props;
@@ -32,14 +29,16 @@ class LoginPage extends Component  {
         this.valueLogin=(event)=>{
             this.props.errorWindowLoginClose()
             this.setState({
-                login: event.target.value
+                login: event.target.value,
+                errorMessage: ''
             })
         }
 
         this.valuePassword=(event)=>{
             this.props.errorWindowLoginClose()
             this.setState({
-                password: event.target.value
+                password: event.target.value,
+                errorMessage: ''
             })
         }
 
@@ -51,7 +50,6 @@ class LoginPage extends Component  {
 
         this.postFormLogin=(event)=>{
             if(this.state.password.length>=5){
-                console.log("ok")
                 event.preventDefault();
                 localStorage.setItem('remmemberMeUser', this.state.rememberMe)
                 const formData=new FormData();
@@ -87,8 +85,11 @@ class LoginPage extends Component  {
                         })
                     }
                 }).catch(err=>{
+                    const error=errorMessageForUser(err.response.data.code);
+                    console.log(error)
                     this.setState({
-                        spinner: false
+                        spinner: false,
+                        errorMessage: error
                     })
                     this.props.errorWindowLoginOpen()
                 })
@@ -114,6 +115,7 @@ class LoginPage extends Component  {
             if(this.props.logoutStatus && this.props.location.hash.length!==0 && !this.props.mainPage){
                 this.props.history.push("")
             }
+
         }
     }
 
@@ -147,7 +149,8 @@ class LoginPage extends Component  {
         
         if(loginErrorWindow){
             passwordRequirements=<div className="passwordRequirements">
-                                    Введен неправильный логин или пароль
+                                    {this.state.errorMessage}
+                                    {/* Введен неправильный логин или пароль */}
                                 </div>
         }
 
