@@ -319,13 +319,13 @@ class PhotoUser extends Component{
                                     </Link>
                                 </div>
                                 <div className="photo-and-main-btn__btns__navigation__wrapper">
-                                    <Link to="/messages">
+                                    <Link to="/dialogs">
                                         <img className="photo-and-main-btn__btns__navigation__item" src={messages} alt="Письма"/> 
                                     </Link>
                                         <span className="photo-and-main-btn__btns__navigation__item__count">
                                             {countMessage}
                                         </span>
-                                    <Link to="/messages">
+                                    <Link to="/dialogs">
                                         <span className="photo-and-main-btn__btns__navigation__item__label">Письма 
                                             <span className="photo-and-main-btn__btns__navigation__item__label__count">
                                                 {countMessage}

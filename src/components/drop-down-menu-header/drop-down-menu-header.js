@@ -26,7 +26,7 @@ class DropDownMenu extends Component{
         }
 
         this.goToMessages=()=>{
-            this.props.history.push('/messages')
+            this.props.history.push('/dialogs')
             this.props.openAndCloseDropDownMenu(false)
         }
 

@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import WithService from '../hoc/hoc';
-import {groupId, modalWindowInvalidFilesOpen, modalWindowInvalidFilesClose, modalWindowForUserNotificationCreatingGroupOpen, modalWindowForUserNotificationCreatingGroupClose} from '../../actions';
+import {groupId, modalWindowInvalidFilesOpen, modalWindowInvalidFilesClose, modalWindowForUserNotificationCreatingGroupOpen, modalWindowForUserNotificationCreatingGroupClose, popstate, actionTransitionModification} from '../../actions';
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
 import PromptNav from'../PromptNav/promptNav';
@@ -31,14 +31,12 @@ class ModificationGroup extends Component{
             adminFirstName:'',
             adminLastName: '',
         }
-
         const {Service} = this.props;
         const id=localStorage.getItem('idGroup')
         this.componentDidMount=()=>{
             this._cleanupFunction=true;
             const inf=async()=>{
                 const res=await Service.getGroup(`/api/group/${id}`);
-                console.log(res)
                 try{
                     if(this._cleanupFunction){
                         this.setState({
@@ -54,7 +52,7 @@ class ModificationGroup extends Component{
                             nav:false,
                             spinner: false
                         }) 
-                        
+                        window.addEventListener('popstate',()=>this.goToBack());
                         function dataURItoBlob(dataURI) {
                             let byteString = atob(dataURI);
                             let mimeString = {type: "image/jpg"};
@@ -69,7 +67,6 @@ class ModificationGroup extends Component{
 
                         const newImg=dataURItoBlob(res.data.photo);
                         const file = new File([newImg], this.state.photoName, {type: "image/jpeg"});
-                        console.log(file)
 
                         this.setState({
                             photo: file
@@ -88,13 +85,6 @@ class ModificationGroup extends Component{
             inf() 
         }
 
-        
-
-        this.componentWillUnmount=()=>{
-            this._cleanupFunction=false
-        }
-
-
         this.valueGroupName=(event)=>{
             this.setState({
                 name: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
@@ -102,18 +92,19 @@ class ModificationGroup extends Component{
         }
 
         this.valueThemeGroup=(event)=>{
-            // console.log(event.target.innerHTML)
             if(event.target.innerHTML!=="Другое"){
                 this.setState({
                     theme: event.target.innerHTML,
-                    ownTheme: ''
+                    ownTheme: '',
+                    listSelectTheme: false
+                    
                 })
             }else if(event.target.innerHTML==="Другое"){
                 this.setState({
                     theme: event.target.innerHTML,
+                    listSelectTheme: false
                 })
             }
-            this.toggleBtnForThemeGroupList()
         }
 
 
@@ -250,16 +241,14 @@ class ModificationGroup extends Component{
                 this.setState({
                     nav: true
                 })
+                this.props.actionTransitionModification(true)
             }
         }
 
         this.mouseLeaveThemeGroupList=()=>{
-            this.toggleBtnForThemeGroupList()
-        }
-
-
-        this.componentDidUpdate=()=>{
-            window.addEventListener('popstate',()=>this.goToBack());
+            this.setState({
+                listSelectTheme: false
+            })
         }
 
         this.closeModalWindowErrorModificationGroup=()=>{
@@ -270,14 +259,15 @@ class ModificationGroup extends Component{
 
         this.componentWillUnmount=()=>{
             window.removeEventListener('popstate',()=>this.goToBack())
+            this.props.actionTransitionModification('')
             this._cleanupFunction=false;
+
         }
 
     }
     
 
    render(){
-    console.log(this.state.nav)
     const modalWindowUserNotificationModificationGroup=this.props.modalWindowUserNotificationCreatingGroup? <div className="modification-group__message-save-modification">
                                                                                                             <div className="modification-group__message-save-modification__modal">
                                                                                                                 <img className="modification-group__message-save-modification__modal_btn" onClick={this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup} src={cancel} alt="cancel"/>
@@ -358,9 +348,9 @@ class ModificationGroup extends Component{
     if(this.state.listSelectTheme===true){
         listClassTheme="activeListTheme"
     }
+    
 
     let contentModification=<div>
-                                <PromptNav when={this.state.nav===false}/>
                                 <form onSubmit={this.modificationGroup} className="modification-group">
                                     <h2 className="modification-group__title">Редактирование:</h2>
                                     <div className="modification-group__wrapper">
@@ -449,11 +439,22 @@ class ModificationGroup extends Component{
             contentModification=<div>Что-то пошло не так! Контент не доступен!</div>
         }
 
-        const content=this.state.spinner? <Spinner/> : contentModification
+        const content=this.state.spinner? <Spinner/> : contentModification;
 
+        // let nav=null;
+
+        // if(!this.state.nav){
+        //     nav=<PromptNav when={true}/>
+        // }
+
+        // if(this.state.nav){
+        //     nav=<PromptNav when={false}/>
+        // }
 
         return (
             <>
+                {/* {nav} */}
+                <PromptNav when={this.state.nav===false}/>
                 {content}
             </>
         )
@@ -473,7 +474,9 @@ const mapDispatchToProps = {
     modalWindowInvalidFilesOpen,
     modalWindowInvalidFilesClose,
     modalWindowForUserNotificationCreatingGroupOpen,
-    modalWindowForUserNotificationCreatingGroupClose
+    modalWindowForUserNotificationCreatingGroupClose,
+    popstate,
+    actionTransitionModification
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(ModificationGroup)))

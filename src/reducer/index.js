@@ -51,7 +51,8 @@ const initialState={
     loadingPhotoProfile: false,
     mouseLeaveNotificationsList: false,
     returnFromModificationPage: false,
-    dropDownMenu:false
+    dropDownMenu:false,
+    popstate:false
 }
 
 
@@ -336,7 +337,6 @@ const reducer=(state=initialState, action)=>{
            
             }
         case 'INFO_RELATION_GROUP': 
-        console.log(action.groupInfoRelation)
             return {
                 ...state,
                 groupInfoRelation: action.groupInfoRelation
@@ -381,7 +381,6 @@ const reducer=(state=initialState, action)=>{
                 inputMessageObj: newArr
             }
         case 'DELETE_NOTIFICATION_FROM_INPUT_NOTIFICATION_OBJ': 
-                // console.log(action.notification)
             const indexNotification=state.inputNotificationObj.findIndex(el=>{
                 return el.id===action.notification.id
             })
@@ -454,10 +453,15 @@ const reducer=(state=initialState, action)=>{
                 returnFromModificationPage: action.returnFromModificationPage
             }
         case 'OPEN_AND_CLOSE_DROP_DOWN_MENU':
-                return{
-                ...state,
-                dropDownMenu: action.openAndCloseDropDownMenu
-                }
+            return{
+            ...state,
+            dropDownMenu: action.openAndCloseDropDownMenu
+            }
+        case 'POPSTATE':
+            return{
+            ...state,
+            popstate: action.popstate
+            }
         default:
             return state;
     }

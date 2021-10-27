@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Header from '../header/header';
-import{HashRouter, Route, Switch} from 'react-router-dom';
+import{HashRouter, BrowserRouter, Route, Switch} from 'react-router-dom';
 import MyPage from '../myPage/myPage';
 import Friends from '../friends/friends';
 import Messages from '../messages/messages';
@@ -23,6 +23,7 @@ import WebSocketsPosts from '../webSocketsPosts/webSocketsPosts';
 import WebSocketsNotifications from '../webSocketsNotifications/webSocketsNotifications';
 import DialogPage from '../DialogPage/dialogPage';
 import DevizLabel from '../devizLabel/devixLabel';
+import myPage from '../myPage/myPage';
 
 class MainPage extends Component{
     constructor(props){
@@ -30,32 +31,28 @@ class MainPage extends Component{
 
         this.componentDidMount=()=>{
             const {idUser}=this.props;
-            const id=`/${idUser}`;
+            const id=`${idUser}`;
     
     
-            if (this.props.location.hash === "" ) {
-                this.props.history.push("#" + id)
-            }
-        }
-
-        this.componentDidUpdate=()=>{
-            const {idUser}=this.props;
-            const id=`/${idUser}`;
-    
-    
-            if (this.props.location.hash === "" ) {
-                this.props.history.push("#" + id)
+            if (this.props.location.pathname === "/" ) {
+                this.props.history.push(id)
             }
         }
     }
     
     render(){
        
+        if (this.props.location.pathname === "/" ) {
+            const {idUser}=this.props;
+            const id=`${idUser}`;
+            return <MyPage idInUrl={id}/>
+        }
 
         return(
             <>
-                <HashRouter getUserConfirmation={() => {
+                <BrowserRouter getUserConfirmation={() => {
                     }}
+                        
                     >
                     <Header/>
                     <DevizLabel/>
@@ -67,7 +64,7 @@ class MainPage extends Component{
                         <Route path= "/friends/incoming" component={IncomingFriends} />
                         <Route path= "/friends/output" component={OutputFriends} />
                         <Route path= "/friends/allUsers" component={AllUsers} />
-                        <Route path="/messages" component={Messages} />
+                        <Route path="/dialogs/" component={Messages} />
                         <Route path="/groups/" exact component={Groups} />
                         <Route path="/groups/all" component={AllGroups} />
                         <Route path="/modification" component={Modification}/>
@@ -81,6 +78,7 @@ class MainPage extends Component{
                             return <Group idInUrl={id}/>
                         }}/>
                         <Route path="/:id" exact component={({match})=>{
+                            console.log(match.params.id)
                             const id=match.params.id;
                             return <MyPage idInUrl={id}/>
                         }}/>
@@ -88,7 +86,7 @@ class MainPage extends Component{
                             return <MyPage idInUrl={id}/>
                         }}/> */}
                     </Switch>
-                </HashRouter>
+                </BrowserRouter>
             </>
         )
     }
@@ -107,8 +105,6 @@ const mapDispatchToProps = {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));
-
-
 
 
 

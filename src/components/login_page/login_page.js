@@ -112,7 +112,7 @@ class LoginPage extends Component  {
         }
 
         this.componentDidUpdate=()=>{
-            if(this.props.logoutStatus && this.props.location.hash.length!==0 && !this.props.mainPage){
+            if(this.props.logoutStatus && this.props.location.pathname!=='/' && !this.props.mainPage){
                 this.props.history.push("")
             }
 

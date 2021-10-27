@@ -143,7 +143,7 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
     useEffect(()=>{
         if(!nav){
             returnFromModificationPage(false)
-            window.addEventListener('popstate', ()=>goToBack())
+            // window.addEventListener('popstate', ()=>goToBack())
         }
 
         if(nav===true){

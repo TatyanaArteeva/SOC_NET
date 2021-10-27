@@ -126,7 +126,6 @@ export const groupAccesses=(groupAccesses)=>{
     return({type: 'ACCESSES_GROUP', groupAccesses:groupAccesses})
 }
 export const groupInfoRelation=(groupInfoRelation)=>{
-    console.log(groupInfoRelation)
     return({type: 'INFO_RELATION_GROUP', groupInfoRelation:groupInfoRelation})
 }
 
@@ -219,6 +218,13 @@ export const returnFromModificationPage=(returnFromModificationPage)=>{
 export const openAndCloseDropDownMenu=(openAndCloseDropDownMenu)=>{
     return({type:'OPEN_AND_CLOSE_DROP_DOWN_MENU', openAndCloseDropDownMenu:openAndCloseDropDownMenu })
 }
+
+export const popstate=(popstate)=>{
+    return({type:'POPSTATE', popstate:popstate })
+}
+
+
+
 
 
 

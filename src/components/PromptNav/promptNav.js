@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import ModalWindowTransitionModification from '../modalWindowTransitionModification/modalWindowTransitionModification';
 import { connect } from 'react-redux';
-import {actionTransitionModification} from '../../actions';
+import {actionTransitionModification, popstate} from '../../actions';
 
 
-const PromptNav=({when, actionTransitionModification, actionTransitionModificationState})=>{
+const PromptNav=({when, actionTransitionModification, actionTransitionModificationState, popstateStatus, popstate})=>{
     const history = useHistory();
     const [showPrompt, setShowPrompt]=useState(false);
     const [currentPath, setCurrentPath] = useState("");
     const [permissionShowPrompt, setPermissionShowPrompt]=useState(false);
+    console.log(when)
 
     useEffect(()=>{
         if(when===true){
             history.block((prompt)=>{
-                console.log(prompt.pathname)
                 setCurrentPath(prompt.pathname);
                 setPermissionShowPrompt(true)
-                return "true";       
+                return "true";  
             })
         }else{
             history.block(() => {});
         }
-
     },[when])
-
-
-
 
     useEffect(()=>{
         if(permissionShowPrompt===true){
@@ -40,7 +36,6 @@ const PromptNav=({when, actionTransitionModification, actionTransitionModificati
         if(actionTransitionModificationState===true){
             actionTransitionModification('');
             history.block(() => {});
-            console.log(currentPath)
             history.push(currentPath);
         }
 
@@ -63,12 +58,14 @@ const PromptNav=({when, actionTransitionModification, actionTransitionModificati
 
 const mapStateToProps=(state)=>{
     return{
-        actionTransitionModificationState: state.actionTransitionModification
+        actionTransitionModificationState: state.actionTransitionModification,
+        popstateStatus:state.popstate
     }
 }
 
 const mapDispatchToProps = {
-    actionTransitionModification
+    actionTransitionModification,
+    popstate
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PromptNav);

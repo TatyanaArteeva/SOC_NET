@@ -82,6 +82,7 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                 startLoadTime: date,
                 targetId: idForPosts
             }
+
     
             Service.getAllPosts(`/api/message/getMessagesOnWall`, objDataForPosts)
                        .then(res=>{
@@ -93,7 +94,10 @@ const PostsList=({Service, currentIdLocation, idForPosts, newPostInput, messageO
                             }
                            }
                        }).catch(err=>{
-                           setError(true)
+                           console.log("зашли в ошибку")
+                           if(!cleanupFunction){
+                            setError(true)
+                           }
                        }) 
             return () => { cleanupFunction = true;};
         }

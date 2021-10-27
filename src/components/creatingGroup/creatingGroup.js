@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import WithService from '../hoc/hoc';
 import { withRouter } from "react-router-dom";
-import {groupId, modalWindowInvalidFilesOpen, modalWindowInvalidFilesClose, modalWindowForUserNotificationCreatingGroupOpen, modalWindowForUserNotificationCreatingGroupClose} from '../../actions';
+import {groupId, modalWindowInvalidFilesOpen, modalWindowInvalidFilesClose, modalWindowForUserNotificationCreatingGroupOpen, modalWindowForUserNotificationCreatingGroupClose, actionTransitionModification} from '../../actions';
 import {connect} from 'react-redux';
 import Spinner from '../spinner/spinner';
 import './creatingGroup.scss';
@@ -39,10 +39,18 @@ class CreatingGroup extends Component{
             })
         }
 
+        this.goToBack=()=>{
+            if(this._cleanupFunction){
+                this.setState({
+                    nav: true
+                })
+                this.props.actionTransitionModification(true)
+            }
+        }
+
         this.componentDidMount=()=>{
-            console.log('создаю компонент')
             this._cleanupFunction=true;
-            console.log(this.props.id)
+            window.addEventListener('popstate', ()=>this.goToBack());
             Service.getAccountInfo(`/api/account/${this.props.id}/page-info`)
                 .then(res=>{
                     console.log(res)
@@ -71,13 +79,6 @@ class CreatingGroup extends Component{
             this._cleanupFunction=false;
         }
 
-        this.goToBack=()=>{
-            console.log('go to back')
-            this.setState({
-                nav: true
-            })
-        }
-       
 
         this.valueThemeGroup=(event)=>{
             if(event.target.innerHTML!=="Другое"){
@@ -215,16 +216,10 @@ class CreatingGroup extends Component{
             })
         }
 
-        this.goToBack=()=>{
-            if(this._cleanupFunction){
-                this.setState({
-                    nav: true
-                })
-            }
-        }
-
         this.mouseLeaveThemeGroupList=()=>{
-            // this.toggleBtnForThemeGroupList()
+            this.setState({
+                listSelectTheme: false
+            })
         }
 
 
@@ -263,9 +258,6 @@ class CreatingGroup extends Component{
 
    render(){
     
-    window.addEventListener('popstate',()=>this.goToBack());
-
-
     const modalWindowUserNotificationCreatingGroup=this.props.modalWindowUserNotificationCreatingGroup? <div className="creating-group__message-save-modification" onClick={this.creatingGroupSuccesfullyCloseOverlay}>
                                                                                                             <div className="creating-group__message-save-modification__modal" onMouseLeave={this.inBlockModalFalse} onMouseEnter={this.inBlockModalTrue}>
                                                                                                                 <img className="creating-group__message-save-modification__modal_btn" onClick={this.creatingGroupSuccessfullyCreatingAndTransitionAllGroup} src={cancel} alt="cancel"/>
@@ -458,7 +450,8 @@ const mapDispatchToProps = {
     modalWindowInvalidFilesOpen,
     modalWindowInvalidFilesClose,
     modalWindowForUserNotificationCreatingGroupOpen,
-    modalWindowForUserNotificationCreatingGroupClose
+    modalWindowForUserNotificationCreatingGroupClose,
+    actionTransitionModification
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(CreatingGroup)))
