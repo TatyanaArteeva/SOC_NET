@@ -1,10 +1,10 @@
-
 import React, { Component} from 'react';
 import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
 import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
-import {Link, HashRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import NavigationFriends from '../navigationFriends/navigationFriends';
+import friends from './friends.svg';
 
 
 class Friends extends Component{
@@ -13,25 +13,18 @@ class Friends extends Component{
         super(props)
         this.state={
             arr: [],
+            id: '',
+            totalSize: ''
+            
         }
 
     }
 
    render(){
-
+    
     return (
         <div>
-            <div>
-                <HashRouter>
-                    <Link to="/friends/incoming"><button>Входящие заявки в друзья</button></Link>
-                </HashRouter>
-                <HashRouter>
-                    <Link to="/friends/output"><button>Исходящие заявки в друзья</button></Link>
-                </HashRouter>
-                <HashRouter>
-                    <Link to="/friends/allUsers"><button>Все пользователи</button></Link>
-                </HashRouter>
-            </div>
+            <NavigationFriends/>
             <FriendsAndGroupsList  getItems={(start,end)=>
                                         `/api/friend/get-friends/${this.props.id}?start=${start}&end=${end}`
                                     }
@@ -41,33 +34,51 @@ class Friends extends Component{
                                       })
                                     }}
                                     path={(id)=>{
-                                      this.props.history.push(id)
+                                      this.props.history.push(`/${id}`)
                                     }
                                     }
                                     titleItem={(el, funcGoItem, btnAction, writeMessageBtn)=>{
-                                        return el.map((item, index)=>{
+                                        return el.map(item=>{
                                             let btnActionFriend=null;
 
                                             let writeMessage=null;
 
-                                            if(item.info.friendRelationStatus==="FULL"){
-                                                btnActionFriend=<button onClick={()=>btnAction(item.account.id, "FULL")}>Удалить из друзей</button>
-                                                writeMessage= <button onClick={()=>writeMessageBtn(item.account.id)}>Написать сообщение</button>
+                                            let classItem="friends-and-groups-list__list__item";
+
+                                            if(this.state.id===item.account.id && this.state.id.length>0){
+                                                classItem="friends-and-groups-list__list__item_warning"
                                             }
 
-                                           
-
-                                            return  <div key={item.account.id}>
-                                                        <li className="myFriends_item" onClick={()=>funcGoItem(item.account.id)}>
-                                                            {index+1}
-                                                            <div>
-                                                                <img className="myFriends_item_img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
-                                                                <span>{item.account.firstName} {item.account.lastName}</span>
+                                            if(item.info.friendRelationStatus==="FULL"){
+                                                btnActionFriend=<button onClick={()=>{
+                                                                                btnAction(item.account.id, "FULL"); 
+                                                                                this.setState({
+                                                                                    id: item.account.id,
+                                                                                    totalSize: this.state.totalSize-1
+                                                                                })
+                                                                                
+                                                                        }}
+                                                                        className="friends-and-groups-list__list__item__content__btns_danger">
+                                                                    Удалить из друзей
+                                                                </button>
+                                                writeMessage=   <button onClick={()=>writeMessageBtn(item.account.id)}
+                                                                        className="friends-and-groups-list__list__item__content__btns_main">
+                                                                    Написать сообщение
+                                                                </button>
+                                            }
+                                            
+                                            return  <li key={item.account.id} className={classItem}>
+                                                        <div onClick={()=>funcGoItem(item.account.id)}>
+                                                            <img className="friends-and-groups-list__list__item__img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
+                                                        </div>
+                                                        <div className="friends-and-groups-list__list__item__content">
+                                                            <span onClick={()=>funcGoItem(item.account.id)} className="friends-and-groups-list__list__item__content_name">{item.account.firstName} {item.account.lastName}</span>
+                                                            <div className="friends-and-groups-list__list__item__content__btns">
+                                                                {writeMessage}
+                                                                {btnActionFriend}
                                                             </div>
-                                                        </li>
-                                                        {btnActionFriend}
-                                                        {writeMessage}
-                                                    </div>
+                                                        </div>
+                                                    </li>
                                         })
                                     }}
                                     arrItemModification={(item)=>{
@@ -78,7 +89,8 @@ class Friends extends Component{
                                         const after=this.state.arr.slice(index+1);
                                         const newArr=[...before, ...after]
                                         this.setState({
-                                            arr: newArr
+                                            arr: newArr,
+                                            id:''
                                         })
                                     }}    
                                     renderItems={this.state.arr}
@@ -88,8 +100,14 @@ class Friends extends Component{
                                             arr: [...items.accounts]
                                         })
                                     }}
-                                    messageNotContent={"У вас пока нет друзей"}
+                                    messageNotContent={<img src={friends} alt="noFriends"/>}
                                     nameList={"у вас друзей"}
+                                    totalSize={(size)=>{
+                                        this.setState({
+                                            totalSize: size
+                                        })
+                                      }}
+                                      totalSizeReturn={this.state.totalSize}
                                     />
         </div>
     )

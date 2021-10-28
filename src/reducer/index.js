@@ -1,4 +1,3 @@
-import { Action } from "history"
 
 const initialState={
     windowRegistrationOpen: false,
@@ -47,6 +46,13 @@ const initialState={
     accessesToPosts:{},
     pathLink: '',
     actionTransitionModification: '',
+    openModalAllParticipantsGroup: false,
+    loadingInfoProfile: false,
+    loadingPhotoProfile: false,
+    mouseLeaveNotificationsList: false,
+    returnFromModificationPage: false,
+    dropDownMenu:false,
+    popstate:false
 }
 
 
@@ -135,7 +141,7 @@ const reducer=(state=initialState, action)=>{
             const information=action.information;
             for(let key in information){
                         if(information[key]===null || information[key]===undefined || information[key].length===0){
-                            information[key]= "Информация отсутствует"
+                            information[key]= ""
                         }
                     }
             if(information.sex==="MALE"){
@@ -143,7 +149,7 @@ const reducer=(state=initialState, action)=>{
             }else if(information.sex==="FEMALE"){
                 information.sex="женский"
             }else if(information.sex.length===0 || information.sex===null){
-                information.sex="Не выбрано"
+                information.sex=""
             }
 
             if(information.familyStatus==="RELATION"){
@@ -168,11 +174,11 @@ const reducer=(state=initialState, action)=>{
                 "11": "ноября",
                 "12": "декабря",
             }
-            let newData= "Информация отсутствует";
+            let newData= "";
             const date=information.birthDate;
             const dateArr=date.split("-");
             const month=months[dateArr[1]];
-            if(date!==null && date!==undefined  && date!== "Информация отсутствует"){
+            if(date!==null && date!==undefined && date.length>0){
                 newData=`${dateArr[2]} ${month} ${dateArr[0]} г.`;
             }
             return {
@@ -331,7 +337,6 @@ const reducer=(state=initialState, action)=>{
            
             }
         case 'INFO_RELATION_GROUP': 
-        console.log(action.groupInfoRelation)
             return {
                 ...state,
                 groupInfoRelation: action.groupInfoRelation
@@ -376,7 +381,6 @@ const reducer=(state=initialState, action)=>{
                 inputMessageObj: newArr
             }
         case 'DELETE_NOTIFICATION_FROM_INPUT_NOTIFICATION_OBJ': 
-                // console.log(action.notification)
             const indexNotification=state.inputNotificationObj.findIndex(el=>{
                 return el.id===action.notification.id
             })
@@ -409,18 +413,55 @@ const reducer=(state=initialState, action)=>{
                 newPost: action.newPost
             }
         case 'PATH_LINK': 
-        console.log(action.pathLink)
             return {
                 ...state,
                 pathLink: action.pathLink
             }
         case 'ACTION_TRANSITION_MODIFICATION': 
-            console.log(action.actionTransitionModification)
             return {
                 ...state,
                 actionTransitionModification: action.actionTransitionModification
             }
-        
+        case 'OPEN_MODAL_ALL_PARTICIPANTS_GROUP':
+            return{
+                ...state,
+                openModalAllParticipantsGroup:true
+            }
+        case 'CLOSE_MODAL_ALL_PARTICIPANTS_GROUP':
+            return{
+                ...state,
+                openModalAllParticipantsGroup:false
+            }
+        case 'LOADING_INFO_PROFILE':
+            return{
+                ...state,
+                loadingInfoProfile: action.loadingInfoProfile
+            }
+        case 'LOADING_PHOTO_PROFILE':
+            return{
+                ...state,
+                loadingPhotoProfile: action.loadingPhotoProfile
+            }
+        case 'MOUSE_LEAVE_NOTIFICATIONS_LIST':
+            return{
+                ...state,
+                mouseLeaveNotificationsList: action.mouseLeaveNotificationsList
+            }
+        case 'RETURN_FROM_MODIFICATION_PAGE':
+            return{
+                ...state,
+                returnFromModificationPage: action.returnFromModificationPage
+            }
+        case 'OPEN_AND_CLOSE_DROP_DOWN_MENU':
+            return{
+            ...state,
+            dropDownMenu: action.openAndCloseDropDownMenu
+            }
+        case 'POPSTATE':
+            return{
+            ...state,
+            popstate: action.popstate
+            }
         default:
             return state;
     }

@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import ModalWindowTransitionModification from '../modalWindowTransitionModification/modalWindowTransitionModification';
 import { connect } from 'react-redux';
-import {actionTransitionModification} from '../../actions';
+import {actionTransitionModification, popstate} from '../../actions';
 
 
-const PromptNav=({when, actionTransitionModification, actionTransitionModificationState})=>{
+const PromptNav=({when, actionTransitionModification, actionTransitionModificationState, popstateStatus, popstate})=>{
     const history = useHistory();
-    const location=useLocation()
     const [showPrompt, setShowPrompt]=useState(false);
     const [currentPath, setCurrentPath] = useState("");
-    const [permissionShowPrompt, setPermissionShowPrompt]=useState(false)
+    const [permissionShowPrompt, setPermissionShowPrompt]=useState(false);
+    console.log(when)
 
     useEffect(()=>{
-        if(when){
+        if(when===true){
             history.block((prompt)=>{
                 setCurrentPath(prompt.pathname);
                 setPermissionShowPrompt(true)
-                return "true";       
+                return "true";  
             })
-            
         }else{
             history.block(() => {});
         }
@@ -33,20 +32,16 @@ const PromptNav=({when, actionTransitionModification, actionTransitionModificati
         }
     },[permissionShowPrompt])
 
-    console.log(location)
-
-
     useEffect(()=>{
         if(actionTransitionModificationState===true){
             actionTransitionModification('');
             history.block(() => {});
-            history.push(currentPath);      
+            history.push(currentPath);
         }
 
         if(actionTransitionModificationState===false){
             actionTransitionModification(''); 
             setPermissionShowPrompt(false)
-            
         }
 
     }, [actionTransitionModificationState])
@@ -54,7 +49,7 @@ const PromptNav=({when, actionTransitionModification, actionTransitionModificati
 
     return showPrompt ? (
         <ModalWindowTransitionModification
-            title={"Вы уверены, что хотите покинуть страницу модификации?"}
+            title={"Вы уверены, что хотите покинуть страницу? Изменения не будут сохранены!"}
         />
     ): null;
 
@@ -63,12 +58,14 @@ const PromptNav=({when, actionTransitionModification, actionTransitionModificati
 
 const mapStateToProps=(state)=>{
     return{
-        actionTransitionModificationState: state.actionTransitionModification
+        actionTransitionModificationState: state.actionTransitionModification,
+        popstateStatus:state.popstate
     }
 }
 
 const mapDispatchToProps = {
-    actionTransitionModification
+    actionTransitionModification,
+    popstate
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PromptNav);

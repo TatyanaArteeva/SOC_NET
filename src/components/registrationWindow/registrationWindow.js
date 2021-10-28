@@ -4,9 +4,8 @@ import BirthDatePicker from '../birthDatePicker/birthDatePicker';
 import {closeModalRegistration, loginMainPage, registrationSuccessful} from '../../actions';
 import './registrationWindow.scss';
 import WithService from '../hoc/hoc';
-import cancel from './cancel.svg';
 import Spinner from '../spinner/spinner';
-
+import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
 
 
 
@@ -22,7 +21,9 @@ class RegistrationWindow extends Component{
             birthDate: null,
             invalidPassword: false,
             hiddenPassword: true,
-            spinner:false
+            spinner:false,
+            errorMessage: '',
+            error: false
         }
 
         const {Service} = this.props;
@@ -54,6 +55,13 @@ class RegistrationWindow extends Component{
         this.closeModalWindowInvalidPassword=()=>{
             this.setState({
                 invalidPassword: false
+            })
+        }
+
+        this.closeModalWindowError=()=>{
+            this.setState({
+                error: false,
+                errorMessage: ''
             })
         }
 
@@ -89,11 +97,16 @@ class RegistrationWindow extends Component{
                             this.props.closeModalRegistration()
                         }
                     })
-                    .catch(res=>{
+                    .catch(err=>{
+                        console.log(err.response)
+                        const error=errorMessageForUser(err.response.data.code);
+                        console.log(error)
                         this.setState({
-                            spinner:false
+                            spinner:false,
+                            error: true,
+                            errorMessage: error
                         })
-                        this.props.closeModalRegistration()
+                        // this.props.closeModalRegistration()
                         // дописать окно для ошибки регистрации
                     })
                 }else{
@@ -133,11 +146,20 @@ class RegistrationWindow extends Component{
             setTimeout(this.closeModalWindowInvalidPassword, 2000)
         }
 
-        let passwordRequirements = <div className="passwordRequirements_null"></div>;
+        let errorModal=null;
+
+        if(this.state.error){
+            setTimeout(this.closeModalWindowError, 2000)
+        }
+
+        if(this.state.errorMessage.length>0){
+            errorModal=<div className="passwordRequirements">{this.state.errorMessage}</div>
+        }
+
+        let passwordRequirements = null;
+        
         if (this.state.password.length < 5) {
-            passwordRequirements = <div className="passwordRequirements">
-                Пароль должен содержать минимум 5 символов и не должен содержать пробелы!
-            </div>
+            passwordRequirements = <div className="passwordRequirements">Пароль должен содержать минимум 5 символов и не должен содержать пробелы!</div>
         }
 
         if(this.state.invalidPassword){
@@ -147,11 +169,8 @@ class RegistrationWindow extends Component{
         }
 
         const contentRegistration=<form onSubmit={this.postFormRegistration} className="registration-window__modal">
-                                    <div>
-                                        <span onClick={()=> this.props.closeModalRegistration()} className="registration-window__modal__close"><img src={cancel} alt="cancel" className="registration-window__modal__close__img"/></span>
+                                        {/* <span onClick={()=> this.props.closeModalRegistration()} className="registration-window__modal__close"><img src={cancel} alt="cancel" className="registration-window__modal__close__img"/></span> */}
                                         <h2 className="registration-window__modal__title">Регистрация</h2>
-                                    </div>
-                                    <div>
                                         <input onChange={this.valueFirstName} placeholder="Укажите свое имя" type="text" name="firstName" required className="registration-window__modal__input" value={this.state.firstName}/>
                                         <input onChange={this.valueLastName} placeholder="Укажите свою фамилию" type="text" name="lastName" required className="registration-window__modal__input" value={this.state.lastName}/>
                                         <input onChange={this.valueEmail} placeholder="Введите свой e-mail" type="email" name="email" required className="registration-window__modal__input"/>
@@ -162,7 +181,7 @@ class RegistrationWindow extends Component{
                                                     type={this.state.hiddenPassword ? 'password' : 'text'}
                                                     name="password" 
                                                     required 
-                                                    className="registration-window__modal__input"/>
+                                                    className="registration-window__modal__input_password"/>
                                                     <span   className="registration-window__modal__input_show" 
                                                             onClick={this.toggleShowPassword}>
                                                             {this.state.hiddenPassword? <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -180,8 +199,9 @@ class RegistrationWindow extends Component{
                                                     </span>
                                         </div>
                                         {passwordRequirements}
+                                        {errorModal}
                                         <button onClick={this.valueBirtDay} type = "submit" className="registration-window__modal__btn">Зарегистрироваться</button>
-                                    </div>
+                                        <button onClick={()=> this.props.closeModalRegistration()} className="registration-window__modal__btn">Вернуться</button>
                                 </form>
 
         const content=this.state.spinner ? <Spinner/> : contentRegistration

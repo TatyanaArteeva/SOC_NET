@@ -1,11 +1,17 @@
 @keyframes logoAnimation {
     from {
-        transform: rotate(30deg) skewX(-10deg);
+        transform: scale(0.8) skewX(0deg) rotate(0deg);
+    }
+    25%{
+        transform: scale(1)skewX(15deg) rotate(30deg);
     }
     50% {
-        transform: rotate(30deg) skewX(15deg);
+        transform: scale(0.8) skewX(0deg) rotate(0deg);
+    }
+    75%{
+        transform: scale(1)skewX(-15deg) rotate(-30deg);
     }
     to {
-        transform: rotate(30deg) skewX(-10deg);
+        transform: scale(0.8) skewX(0deg) rotate(0deg);
     }
 }

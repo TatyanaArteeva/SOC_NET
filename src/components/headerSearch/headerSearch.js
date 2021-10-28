@@ -7,8 +7,8 @@ import { withRouter } from "react-router";
 import MyPage from '../myPage/myPage';
 import Group from '../group/group';
 import search from './search.svg';
-import SpinnerUsers from '../spinner/spinner';
-import SpinnerGroups from '../spinner/spinner';
+import Spinner from '../spinnerMini/spinnerMini';
+
 
 
 class HeaderSearch extends Component{
@@ -20,6 +20,10 @@ class HeaderSearch extends Component{
             searchUsers:[],
             searchGroups:[],
             transition: false,
+            errorUsers: false,
+            errorGroups: false,
+            spinner: false,
+            
         }
 
         const {Service}=this.props;
@@ -38,20 +42,25 @@ class HeaderSearch extends Component{
                 searchValue: e.target.value
             })
             this.setState({
-                spinnerUsers: true,
-                spinnerGroups: true,
+                spinner: true
             })
             Service.getResultForSearch(`/api/account/all?start=0&end=3`, {params:{name: e.target.value}})
                 .then(res=>{
                     console.log(res)
                     if(res.status===200){
-                        console.log(this._cleanupFunction)
                         if(this._cleanupFunction){
                             this.setState({
                                 searchUsers: res.data.accounts,
-                                spinnerUsers: false
+                                spinner: false,
                             })
                         }
+                    }
+                }).catch(err=>{
+                    if(this._cleanupFunction){
+                        this.setState({
+                            spinner: false,
+                            errorUsers: true
+                        })
                     }
                 })
             Service.getResultForSearch(`/api/group/all?start=0&end=3`, {params:{name: e.target.value}})
@@ -60,9 +69,16 @@ class HeaderSearch extends Component{
                         if(this._cleanupFunction){
                             this.setState({
                                 searchGroups: res.data.groups,
-                                spinnerGroups:false
+                                spinner:false
                             })
                         }
+                    }
+                }).catch(err=>{
+                    if(this._cleanupFunction){
+                        this.setState({
+                            spinner:false,
+                            errorGroups:true
+                        })
                     }
                 })
             
@@ -136,18 +152,24 @@ class HeaderSearch extends Component{
         
         let styleForSearchList="header-search-form__wrapper__list";
         if(this.state.searchValue.length>0){
-            styleForSearchList +=" active";
+            styleForSearchList +=" active-header-search-list";
         }
 
         let listUsersSearch=null;
 
-        if(!this.state.spinnerUsers && this.state.searchUsers.length===0){
+        if(!this.state.spinner && this.state.searchUsers.length===0){
             listUsersSearch=<div className="header-search-form__wrapper__list__null">
                                 Пользователей не найдено
                             </div>;
         }
 
-        if(this.state.searchUsers.length>0 && !this.state.spinnerUsers){
+        if(this.state.errorUsers && !this.state.spinner){
+            listUsersSearch=<div className="header-search-form__wrapper__list__null">
+                                Что-то пошло не так! Пользователи не доступны!
+                            </div>;
+        }
+
+        if(this.state.searchUsers.length>0 && !this.state.spinner){
             listUsersSearch=this.state.searchUsers.map(el=>{
                                 return <li key={el.account.id} 
                                             className="header-search-form__wrapper__list__item"
@@ -165,13 +187,19 @@ class HeaderSearch extends Component{
 
         let listGroupsSearch=null;
 
-        if(!this.state.spinnerGroups && this.state.searchGroups.length===0){
+        if(!this.state.spinner && this.state.searchGroups.length===0){
             listGroupsSearch=<div className="header-search-form__wrapper__list__null">
                                 Групп не найдено
                             </div>;
         }
 
-        if(this.state.searchGroups.length>0 && !this.state.spinnerGroups){
+        if(!this.state.spinner && this.state.errorGroups){
+            listGroupsSearch=<div className="header-search-form__wrapper__list__null">
+                                Что-то пошлоне так! Группы не найдены!
+                            </div>;
+        }
+
+        if(this.state.searchGroups.length>0 && !this.state.spinner){
             listGroupsSearch=  this.state.searchGroups.map(el=>{
                                     return <li key={el.group.id} 
                                                 className="header-search-form__wrapper__list__item"
@@ -187,27 +215,25 @@ class HeaderSearch extends Component{
                                 })
         }
 
-        const contentGroups=this.state.spinnerGroups? <SpinnerGroups/> : listUsersSearch;
-        const contentUsers=this.state.spinnerUsers ? <SpinnerUsers/> : listGroupsSearch;
+        const content=this.state.spinner ? <Spinner/> : <>
+                                                            <ul>
+                                                                <span className="header-search-form__title">Пользователи</span>
+                                                                    {listUsersSearch}
+                                                            </ul>
+                                                            <ul>
+                                                                <span className="header-search-form__title">Группы</span>
+                                                                    {listGroupsSearch}
+                                                            </ul>
+                                                        </>
         
 
         return(
             <form className="header-search-form">
                 <div className="header-search-form__wrapper">
                     <input type="text" className="header-search-form__wrapper__search" placeholder="Поиск по всем группам и пользователям" onChange={this.searchInput} value={this.state.searchValue}  onKeyPress={this.keyPressEnter}/>
-                    {/* <button className="header-search-form__wrapper__button" onClick={this.saveSearchValue}>Найти</button> */}
                     <span className="header-search-form__wrapper__button" onClick={this.saveSearchValue}><img src={search} alt="search"/></span>
                     <div className={styleForSearchList}>
-                    <ul>
-                        <span>Пользователи</span>
-                            {contentUsers}
-                        {/* { listUsersSearch } */}
-                    </ul>
-                    <ul>
-                        <span>Группы</span>
-                            {contentGroups}
-                        {/* { listGroupsSearch } */}
-                    </ul>
+                        {content}
                     </div>
                 </div>
             </form>

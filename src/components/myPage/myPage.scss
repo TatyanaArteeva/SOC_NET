@@ -1,125 +1,245 @@
+@import '../../variables';
+@import '../../mixins';
+
 .profile{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 398px 698px;
+    column-gap: 40px;
+    box-sizing:border-box;
+    &__photo{
+        box-sizing:border-box;
+        position: fixed;
+        margin-top: 10px;
+        padding-top: 10px;
+        grid-column: 1;
+        width: 398px;
+        height: 550px;
+        border-radius: 10px;
+        box-shadow: -1px 1px 1px 1px $secondary-color-light;
+    }
+    &__information{
+        grid-column: 2;
+        box-sizing:border-box;
+        display: grid;
+        grid-template-rows: auto auto auto;
+        row-gap: 30px;
+        margin-top: 10px;
+        &__data{
+            grid-row: 1;
+            min-height: 150px;
+            border-radius: 10px;
+            box-shadow: -1px 1px 1px 1px $secondary-color-light;
+        }
+        &__photos{
+            box-sizing:border-box;
+            position: relative;
+            grid-row: 2;
+            width: 100%;
+            height: 450px;
+            border-radius: 10px;
+            box-shadow: -1px 1px 1px 1px $secondary-color-light;
+        }
+        &__public-messages{
+            box-sizing:border-box;
+            grid-row: 3;
+            width: 100%;
+            box-shadow: -1px 1px 1px 1px $secondary-color-light;
+            border-radius: 10px;
+            margin: 0 auto;
+            min-height: 200px;
+            &_not-access{
+                margin: 0 auto;
+                margin-top: 60px;
+                width: 320px;
+                height: 320px;
+                & img{
+                    width: 320px;
+                    height: 320px;
+                }
+            }
+        }
+    }
+    
 }
 
-.profile_photo {
-    width: 400px;
-    height: 350px;
-    background: blue;
+@media (max-width: 1200px){
+    .profile{
+        grid-template-columns: 326px 635px;
+        column-gap: 30px;
+        &__photo{
+            width: 300px;
+            height: 450px;
+            margin-left: 26px;
+        }
+        &__information{
+            margin-right: 26px;
+            width: 583px;
+            &__data{
+                min-height: 150px;
+                border-radius: 10px;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+            }
+            &__photos{
+                margin-right: 26px;
+            }
+            &__public-messages{
+                margin-right: 26px;
+            }
+        }
+        
+    }
 }
 
-.profile_name {
-    max-width: 300px;
-    min-height: 50px;
+
+@media (max-width: 992px){
+    .profile{
+        width: 95%;
+        display: block;
+        box-sizing:border-box;
+        margin: 0 20px 0 20px;
+        &__photo{
+            margin-left: 0;
+            position: relative;
+            width: 718px;
+            height: 450px;
+            
+        }
+        &__information{
+            box-sizing:border-box;
+            display: grid;
+            grid-template-rows: auto auto auto;
+            row-gap: 30px;
+            margin-top: 30px;
+            &__data{
+                min-height: 150px;
+                border-radius: 10px;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+            }
+            &__photos{
+                box-sizing:border-box;
+                position: relative;
+                width: 100%;
+                height: 450px;
+                border-radius: 10px;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+            }
+            &__public-messages{
+                box-sizing:border-box;
+                width: 100%;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+                border-radius: 10px;
+                margin: 0 auto;
+                min-height: 200px;
+                &_not-access{
+                    margin: 0 auto;
+                    margin-top: 60px;
+                    width: 300px;
+                    height: 300px;
+                    & img{
+                        width: 300px;
+                        height: 300px;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+@media (max-width: 768px){
+    .profile{
+        &__photo{
+            margin-left: 0;
+            position: relative;
+            width: 538px;
+            height: 450px;
+            
+        }
+        &__information{
+            width: 538px;
+            &__data{
+                min-height: 150px;
+                border-radius: 10px;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+            }
+            &__photos{
+                box-sizing:border-box;
+                position: relative;
+                width: 100%;
+                height: 450px;
+                border-radius: 10px;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+            }
+            &__public-messages{
+                box-sizing:border-box;
+                width: 100%;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+                border-radius: 10px;
+                margin: 0 auto;
+                min-height: 200px;
+                &_not-access{
+                    margin: 0 auto;
+                    margin-top: 60px;
+                    width: 200px;
+                    height: 200px;
+                    & img{
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+@media (max-width: 576px){
+    .profile{
+        margin: 0 10px 0 10px;
+        &__photo{
+            margin-left: 0;
+            position: relative;
+            width: 300px;
+            height: 330px;
+            
+        }
+        &__information{
+            width: 300px;
+            &__data{
+                min-height: 150px;
+                border-radius: 10px;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+            }
+            &__photos{
+                box-sizing:border-box;
+                position: relative;
+                width: 100%;
+                height: 450px;
+                border-radius: 10px;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+            }
+            &__public-messages{
+                box-sizing:border-box;
+                width: 100%;
+                box-shadow: -1px 1px 1px 1px $secondary-color-light;
+                border-radius: 10px;
+                margin: 0 auto;
+                min-height: 200px;
+                &_not-access{
+                    margin: 0 auto;
+                    margin-top: 60px;
+                    width: 200px;
+                    height: 200px;
+                    & img{
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+            }
+        }
+        
+    }
 }
 
-.profile_information {
-    width: 600px;
-    min-height: 300px;
-    margin-left: 50px;
-    background: red
-}
 
-.profile_information_title {
-    width: 200px;
-    height: 50px;
-}
-
-.profile_information__birthday {
-    width: 100px;
-}
-
-.profile_information__city {
-    width: 100px;
-}
-
-.profile_information__familyStatus {
-    width: 100px;
-}
-
-.profile_information__education {
-    width: 100px;
-}
-
-.profile_information__personal {
-    width: 100px;
-}
-
-.profile_editing {
-    width: 100px;
-}
-
-.profile_photos {
-    width: 100%;
-    height: 400px;
-    background: green;
-}
-
-// .profile_photos_wrapper{
-//     margin: 0 auto;
-//     width: 80%;
-//     height: 330px;
-// }
-
-// .photo_deleteBtn {
-//     position: absolute;
-//     bottom: 6%;
-//     transform: translate(50%,100%);
-//     display: block;
-//     margin: 0 auto;
-// }
-
-// .ModalWindowForDeleteImage {
-//     position: absolute;
-//     background: blueviolet;
-//     width: 400px;
-//     min-height: 200px;
-//     z-index: 5;
-// }
-
-.profile_publicMessages{
-    width: 70%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background: orange;
-    margin: 0 auto;
-    min-height: 200px;
-}
-
-// .image-gallery-slide  {
-//     width: 100%;
-//     height: 330px;
-// }
-
-// .image-gallery-slide img {
-//     width: 100%;
-//     height: 330px;
-// }
-
-
-// .image-gallery {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// }
-
-// .fullscreen {
-//     width: 100%;
-// }
-
-// .fullscreen .image-gallery-slide  {
-//     width: 100%;
-//     height: 100%; 
-// }
-
-// .fullscreen .image-gallery-slide  img{
-//     width: 700px;
-//     height: 700px; 
-// }
 
 

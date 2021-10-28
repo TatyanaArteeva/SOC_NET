@@ -7,7 +7,9 @@ import {outputMessage, deleteMessageFromInputMessageObj} from '../../actions';
 import 'moment/locale/ru';
 import Moment from 'react-moment';
 import Spinner from '../spinner/spinner';
-import SpinnerMini from '../spinner/spinner';
+import SpinnerMini from '../spinnerMini/spinnerMini';
+import send from './send.svg';
+import {  Link } from 'react-router-dom';
 
 const localFormatDateByVersionLibMomentReact='lll'
 
@@ -31,7 +33,9 @@ class DialogPage extends Component{
             lastNameUser: '', 
             totalSizeMessage: '',
             spinner: true,
-            spinnerMini: false
+            spinnerMini: false,
+            oneRequest:false,
+            error:false
         }
 
         this.refListMessage=React.createRef();
@@ -74,7 +78,6 @@ class DialogPage extends Component{
                 })
         }
 
-
         this.getOldMessages=()=>{
             const objDataForMessages={
                 end: end,
@@ -89,14 +92,16 @@ class DialogPage extends Component{
                         this.setState({
                             allAndOutputMessage:  arrReverse,
                             totalSizeMessage: res.data.totalSize,
-                            spinner:false
+                            spinner:false,
+                            oneRequest:true
                         })
                     }
-                })
-                .then(res=>{
-                    const windowMessage=document.querySelector('.wrapperListMessage');
-                    windowMessage.scrollTop = windowMessage.scrollHeight;
-                    windowMessage.pageYOffset=windowMessage.scrollHeight;
+                    
+                }).catch(res=>{
+                    this.setState({
+                        spinner:false,
+                        error:true
+                    })
                 })
         }
 
@@ -141,7 +146,7 @@ class DialogPage extends Component{
                                     newMessage: '',
                                     allAndOutputMessage:[...this.state.allAndOutputMessage, res.data]
                                 },()=>{
-                                    const windowMessage=document.querySelector('.wrapperListMessage');
+                                    const windowMessage=document.querySelector('.dialog__list__wrapper');
                                     windowMessage.scrollTop = windowMessage.scrollHeight;
                                 })
                                 
@@ -159,8 +164,19 @@ class DialogPage extends Component{
 
         this.componentDidUpdate=()=>{
             const heightList=this.refListMessage.current.scrollHeight;
-            const windowMessage=document.querySelector('.wrapperListMessage');
-            windowMessage.scrollTop = windowMessage.scrollHeight;
+            const windowMessage=document.querySelector('.dialog__list__wrapper');
+                if(this.state.oneRequest){
+                    windowMessage.scrollTop = windowMessage.scrollHeight;
+                }
+                if(this.props.inputMessage.length>0){
+                    this.props.inputMessage.forEach(el=>{
+                        if(el.sourceId===this.state.idFriends){
+                            console.log(el.sourceId, this.state.idFriends)
+                            windowMessage.scrollTop = windowMessage.scrollHeight;
+                        }
+                    })
+                }
+
                 this.props.inputMessage.map(el=>{
                     if(el.sourceId===localStorage.getItem("idForDialogFriends")){
                         this.props.deleteMessageFromInputMessageObj(el)
@@ -174,21 +190,26 @@ class DialogPage extends Component{
                             if (scrollInBottom) {
                                 windowMessage.scrollTop = windowMessage.scrollHeight;
                                 Service.postMessageRead('/api/message/acceptMessages', [el.id])
-                                    .then(res=>{
-                                        console.log(res)
-                                        console.log("элемент принят и прочитан")
-                                    })
                             }
                         })
                     }
                 })
 
             windowMessage.addEventListener('scroll', ()=>{
+
+                if((windowMessage.scrollTop)<= heightList/100*95 && !this.state.req){
+                    if(this.state.oneRequest){
+                        console.log("условие для фолс")
+                        this.setState({
+                            oneRequest:false
+                        })
+                    }
+                }
+
                 if((windowMessage.scrollTop)<= heightList/100*20 && !this.state.req){
-        
+
                     start=end;
                     end=end+50;
-
 
                     if(start===this.state.totalSizeMessage){
                         return
@@ -225,6 +246,11 @@ class DialogPage extends Component{
                                             spinnerMini: false,
                                         })
                                     }
+                                }).catch(res=>{
+                                    this.setState({
+                                        spinner:false,
+                                        error:true
+                                    })
                                 })
                         })
                     }
@@ -240,6 +266,14 @@ class DialogPage extends Component{
                 
         }
 
+        this.keyDown=(e)=>{
+            if(e.key==='Enter' && e.ctrlKey===true){
+                this.setState({
+                    newMessage: this.state.newMessage + "\r\n"
+                })
+            }
+        }
+
         this.componentWillUnmount=()=>{
             this._cleanupFunction=false
         }
@@ -249,68 +283,86 @@ class DialogPage extends Component{
 
     render(){
 
-        const messages= this.state.allAndOutputMessage.map(el=>{
-                            const dateMilliseconds=new Date(el.sendDate).getTime();
-                            const timeZone=new Date(el.sendDate).getTimezoneOffset()*60*1000;
-                            const currentDateMilliseconds=dateMilliseconds-(timeZone);
-                            const currentDate=new Date(currentDateMilliseconds)
+        console.log(this.state.oneRequest)
 
-                            let classMessage="user";
-                            let nameUser=<span>{this.state.firstNameUser} {this.state.lastNameUser}</span>
+        const linkToFriendPage=`/${this.state.idFriends}`;
+        const linkToMyPage=`/${this.props.id}`;
 
-                            if(el.destinationId===this.props.id){
-                                classMessage="friend"
-                                nameUser=<span>{this.state.firstNameFriends} {this.state.firstNameFriends}</span>
-                            }
+        let messages=null;
 
-                            return  <li key={el.id} className={classMessage}>
-                                            {nameUser}
-                                            {el.content}
-                                            <Moment locale="ru"
-                                                    date={currentDate}
-                                                    format={localFormatDateByVersionLibMomentReact}
-                                                    
-                                            />
-                                            
-                                    </li>
-                        })
+        if(this.state.error){
+            messages=<div>Что-то пошло не так! Контент не доступен!</div>
+        }
+
+        if(!this.state.error){
+            messages= this.state.allAndOutputMessage.map(el=>{
+                const dateMilliseconds=new Date(el.sendDate).getTime();
+                const timeZone=new Date(el.sendDate).getTimezoneOffset()*60*1000;
+                const currentDateMilliseconds=dateMilliseconds-(timeZone);
+                const currentDate=new Date(currentDateMilliseconds);
+                let classMessage="dialog__list__wrapper__list__user";
+                let nameUser=<Link to={linkToMyPage}><span className="dialog__list__wrapper__list__user_name">{this.state.firstNameUser} {this.state.lastNameUser}</span></Link>
+                if(el.destinationId===this.props.id){
+                    classMessage="dialog__list__wrapper__list__friend"
+                    nameUser=<Link to={linkToFriendPage}><span className="dialog__list__wrapper__list__friend_name">{this.state.firstNameFriends} {this.state.lastNameFriends}</span></Link>
+                }
+
+                return  <li key={el.id} className={classMessage}>
+                                <div className="dialog__list__wrapper__list__content">
+                                    {nameUser}
+                                </div>
+                                <div className="dialog__list__wrapper__list__content_message">
+                                    {el.content}
+                                </div>
+                                <span className="dialog__list__wrapper__list__content_time">
+                                        <Moment locale="ru"
+                                                date={currentDate}
+                                                format={localFormatDateByVersionLibMomentReact}
+                                                
+                                        />
+                                </span>
+                        </li>
+            })
+        }
 
 
         const content=this.state.spinner? <Spinner/>: messages
 
         const miniSpinner=this.state.spinnerMini ? <SpinnerMini/> : null;
-
+        
         return(
             <div className="dialog">
-            <div className="dialog__wrapper">
                 <div className="dialog__header" onClick={this.goToPageFriends}>
-                    <div className="dialog__header__img">
-                        <img src={this.state.photoFriends} alt="photoFriends"/>
+                    <div className="dialog__header__content">
+                        <Link to={linkToFriendPage}>
+                            <div className="dialog__header__content__wrapper">
+                                <img src={this.state.photoFriends} alt="photoFriends" className="dialog__header__content_img"/>
+                                <span className="dialog__header__content_name">{this.state.firstNameFriends} {this.state.lastNameFriends}</span>
+                            </div>
+                        </Link>
                     </div>
-                    <div>{this.state.firstNameFriends} {this.state.lastNameFriends}</div>
+                </div>
+                <div className="dialog__list"> 
+                    <div ref={this.refListMessage} className="dialog__list__wrapper">
+                        <ul className="dialog__list__wrapper__list">
+                            {miniSpinner}
+                            {
+                            content
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div className="dialog__form-message" onKeyPress={this.keyPressEnter} onKeyDown={this.keyDown}>
+                        <textarea   className="dialog__form-message_input" 
+                                    type="text" placeholder="Введите текст сообщения" 
+                                    value={this.state.newMessage}
+                                    required
+                                    onChange={this.valueMessage}/>
+                        <div className="dialog__form-message_send" onClick={this.postMessage}>
+                            <img src={send} alt="send"/>
+                        </div>
                 </div>
             </div>
-            <div className="dialog__list"> 
-                <div ref={this.refListMessage} className="wrapperListMessage">
-                    <ul>
-                        {miniSpinner}
-                        {
-                          content
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div className="dialog__inputMessage">
-                <form onSubmit={this.postMessage} className="dialog__inputMessage__form" onKeyPress={this.keyPressEnter}>
-                    <textarea   className="dialog__inputMessage__form__input" 
-                                type="text" placeholder="Введите текст сообщения" 
-                                value={this.state.newMessage}
-                                required
-                                onChange={this.valueMessage}/>
-                    <button type="submit" className="dialog__inputMessage__form__button">Отправить</button>
-                </form>
-            </div>
-        </div>
         )
     }
 
@@ -321,7 +373,6 @@ const mapStateToProps=(state)=>{
     return{
         id: state.userId,
         idForDialogFriends: state.idForDialogFriends,
-        // messageObj: state.outputMessage,
         inputMessage:state.inputMessageObj,
     }
 }

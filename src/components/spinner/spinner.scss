@@ -1,0 +1,19 @@
+@import '../../variables';
+@import '../../mixins';
+
+.spinner{
+    @include backgroundModal;
+    background: $background-color;
+    &__modal{
+        @include ModalWindow;
+        background: none;
+        width: 150px;
+        height: 150px;
+        padding: 0;
+        box-shadow:none
+    }
+    &__img{
+        width: 150px;
+        height: 150px;
+    }
+}

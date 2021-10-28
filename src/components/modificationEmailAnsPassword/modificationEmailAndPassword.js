@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import eye from './eye.svg';
 import eyeBlocked from './eyeBlocked.svg';
 import Spinner from '../spinner/spinner';
+import './modificationEmailAndPassword.scss';
+import cancel from './cancel.svg';
+import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
 
 class ModificationEmailAndPasswordPage extends Component {
     constructor(props) {
@@ -28,6 +31,10 @@ class ModificationEmailAndPasswordPage extends Component {
             hiddenNewPassword: true,
             hiddenRepiatNewPassword: true,
             spinner:false,
+            errorMessageEmail: '',
+            errorEmail: false,
+            errorMessagePassword: '',
+            errorPassword: false
         }
 
 
@@ -146,7 +153,6 @@ class ModificationEmailAndPasswordPage extends Component {
                                 Service.getUserAccountId(this.props.id)
                                     .then(res => {
                                         if (res.status === 200) {
-                                            console.log(res)
                                             this.setState({
                                                 email: res.data.email,
                                                 accountId: res.data.id
@@ -154,6 +160,14 @@ class ModificationEmailAndPasswordPage extends Component {
                                         }
                                     })
                             }
+                        })
+                        .catch(err=>{
+                            const error=errorMessageForUser(err.response.data.code)
+                            this.setState({
+                                spinner:false,
+                                errorEmail: true,
+                                errorMessageEmail: error
+                            })
                         })
                 }
             }
@@ -255,14 +269,19 @@ class ModificationEmailAndPasswordPage extends Component {
                             Service.postModificationUser('/api/account/change-credentials', passwordModificationObj)
                                 .then(res => {
                                     if (res.status === 200) {
-                                        console.log("пароль заменили");
-                                        console.log(res)
-                                        console.log(this.state)
                                         this.setState({
                                             spinner:false
                                         })
                                         this.updatingData()
                                     }
+                                })
+                                .catch(err=>{
+                                    const error=errorMessageForUser(err.response.data.code)
+                                    this.setState({
+                                        spinner:false,
+                                        errorPassword:true,
+                                        errorMessagePassword: error
+                                    })
                                 })
                         } else {
                             this.setState({
@@ -299,12 +318,24 @@ class ModificationEmailAndPasswordPage extends Component {
             })
         }
 
+        this.closeModalErrorModificationEmail=()=>{
+            this.setState({
+                errorEmail: false,
+                errorMessageEmail: ''
+            })
+        }
+
+        this.closeModalErrorModificationPassword=()=>{
+            this.setState({
+                errorPassword: false,
+                errorMessagePassword: ''
+            })
+        }
+
     }
 
 
     render() {
-
-        console.log(this.state)
 
         if (this.state.modalWindowSuccessfullyPasswordChanged) {
             setTimeout(this.closeModalWindowSuccessfullyPaswordChange, 2000)
@@ -326,162 +357,219 @@ class ModificationEmailAndPasswordPage extends Component {
             setTimeout(this.closeModalWindowIdenticalPassword, 2000)
         }
 
+        if(this.state.errorEmail){
+            setTimeout(this.closeModalErrorModificationEmail, 2000)
+        }
+
+        if(this.state.errorPassword){
+            setTimeout(this.closeModalErrorModificationPassword, 2000)
+        }
+
         let modalWindowSuccessfullyEmailChanged = null;
 
         let modalWindowNewEmailIsNull = null;
 
-        let modalWindowIdenticalEmail=null;
+        let modalWindowIdenticalEmail=<div></div>;
 
         if(this.state.modalWindowIdenticalEmail){
-            modalWindowIdenticalEmail=<div>
-                                        <button onClick={this.closeModalWindowEdenticalEmail}>Закрыть</button>
-                                        Текущая почта и новая идентичны!
-                                    </div>
+            modalWindowIdenticalEmail= <div className="modification-email-and-password__warning">
+                                            Текущая почта и новая идентичны!
+                                        </div>
         }
 
         if (this.state.modalWindowNewEmailIsNull === true) {
-            modalWindowNewEmailIsNull = <div>
-                <div>новый Email не был введен!</div>
-                <div>
-                    <button onClick={this.closeModalWindowNewEmailIsNull}>Закрыть</button>
-                </div>
-            </div>
+            modalWindowNewEmailIsNull = <div className="modification-email-and-password__warning">
+                                            <div>новый Email не был введен!</div>
+                                        </div>
         }
 
         if (this.state.modalWindowSuccessfullyEmailChanged) {
-            modalWindowSuccessfullyEmailChanged = <div>
-                <div>Email успешно изменен!</div>
-                <div>
-                    <button onClick={this.closeModalWindowSuccessfullyEmailChange}>Закрыть</button>
-                </div>
-            </div>
+            modalWindowSuccessfullyEmailChanged =   <div className="modification-email-and-password__modal-successfully">
+                                                        <div className="modification-email-and-password__modal-successfully__window">
+                                                            <img onClick={this.closeModalWindowSuccessfullyEmailChange} className="modification-email-and-password__modal-successfully__window__close" src={cancel} alt="cancel"/>
+                                                            <div className="modification-email-and-password__modal-successfully__window__message">
+                                                                Email успешно изменен!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+        }
+
+        let inputExistentEmail=null;
+
+        if(this.state.errorMessageEmail.length>0){
+            inputExistentEmail=<div className="modification-email-and-password__warning">
+                                    <div>{this.state.errorMessageEmail}</div>
+                                </div>
         }
 
         let newEmailBlock = null;
         if (this.state.modificationEmail) {
             newEmailBlock = <div>
                 <form onSubmit={this.modificationEmail}>
-                    <label>
-                        Введите новый E-mail:
-                        <input placeholder="Введите новый E-mail" type="email" onChange={this.valueNewEmail} required />
-                    </label>
-                    <button type="submit">Сохранить</button>
+                    <div className="modification-email-and-password__external-block">
+                        <label className="modification-email-and-password__external-block__label">
+                            Введите новый E-mail:
+                        </label>
+                        <input  placeholder="Введите новый E-mail" 
+                                type="email" 
+                                onChange={this.valueNewEmail} 
+                                required 
+                                className="modification-email-and-password__input"
+                                />
+                        {modalWindowNewEmailIsNull}
+                        {modalWindowIdenticalEmail}
+                        {inputExistentEmail}
+                        <div className="modification-email-and-password__message">
+                            Ваш текущий E-mail: <span>{this.state.email}</span>
+                        </div>
+                    </div>
+                    <div className="modification-email-and-password__btns__wrapper">
+                        <button type="submit" className="modification-email-and-password__btns__item">Сохранить</button>
+                    </div>
                 </form>
-                <button onClick={this.closeModificationEmail}>Отменить</button>
             </div>
         }
 
         let modalWindowSuccessfullyPasswordChange = null;
         if (this.state.modalWindowSuccessfullyPasswordChanged) {
-            modalWindowSuccessfullyPasswordChange = <div>
-                <button onClick={this.closeModalWindowSuccessfullyPaswordChange}>Закрыть</button>
-                Пароль успешно изменен!
-            </div>
+            modalWindowSuccessfullyPasswordChange = <div className="modification-email-and-password__modal-successfully">
+                                                        <div className="modification-email-and-password__modal-successfully__window">
+                                                            <img onClick={this.closeModalWindowSuccessfullyPaswordChange} className="modification-email-and-password__modal-successfully__window__close" src={cancel} alt="cancel"/>
+                                                            <div className="modification-email-and-password__modal-successfully__window__message">
+                                                                Пароль успешно изменен!
+                                                            </div>
+                                                        </div>
+                                                    </div>
         }
 
         let modalWindowInvalidPasswordMessage = null;
 
         if (this.state.invalidPasswordMessage) {
-            modalWindowInvalidPasswordMessage = <div>
-                <button onClick={this.closeMessageInvalidPassword}>Закрыть</button>
-                Пароль содержит не допустимые символы!
-            </div>
+            modalWindowInvalidPasswordMessage = <div className="modification-email-and-password__warning">
+                                                    Новый пароль содержит не допустимые символы!
+                                                </div>
         }
 
 
         let newPasswordBlock = null;
 
-        let passwordRequirements = null;
+        let passwordRequirements = <div></div>;
         if (this.state.newPassword.length < 5) {
-            passwordRequirements = <div>
-                Пароль должен содержать минимум 5 символов и не должен содержать пробелы!
-            </div>
+            passwordRequirements =  <div className="modification-email-and-password__warning">
+                                        Пароль должен содержать минимум 5 символов и не должен содержать пробелы!
+                                    </div>
         }
 
         let passwordDontMatchMessageModalWindow = null;
 
         if (this.state.passwordDontMatchMessage) {
-            passwordDontMatchMessageModalWindow = <div>
-                Пароли не совпадают!
-                <button onClick={this.closeMessagepasswordDontMatch}>Закрыть</button>
-            </div>
-        }
-
-        if (this.state.modificationPassword) {
-            newPasswordBlock = <div>
-                <form onSubmit={this.modificationPassword}>
-                    <label>
-                        {passwordRequirements}
-                        Введите старый пароль:
-                        <input  placeholder="Введите старый пароль" 
-                                type={this.state.hiddenOldPassword ? 'password' : 'text'}
-                                onChange={this.valueOldPassword} 
-                                required />
-                        <span onClick={this.toggleShowOldPassword}><img src={this.state.hiddenOldPassword ? eye : eyeBlocked} alt="eye"/></span>
-                    </label>
-                    <label>
-                        Введите новый пароль:
-                        <input  placeholder="Введите новый пароль" 
-                                type={this.state.hiddenNewPassword? 'password' : 'text'}
-                                onChange={this.valueNewPassword} 
-                                required />
-                        <span onClick={this.toggleShowNewPassword}><img src={this.state.hiddenNewPassword ? eye : eyeBlocked} alt="eye"/></span>
-                    </label>
-                    <label>
-                        Повторите новый пароль:
-                        <input  placeholder="Повторите новый пароль" 
-                                type={this.state.hiddenRepiatNewPassword? 'password' : 'text'}
-                                onChange={this.repiatValueNewPassword} 
-                                required />
-                        <span onClick={this.toggleShowRepiatNewPassword}><img src={this.state.hiddenRepiatNewPassword ? eye : eyeBlocked} alt="eye"/></span>
-                    </label>
-                    <button type="submit">Сохранить</button>
-                </form>
-                <button onClick={this.closeModificationPassword}>Отменить</button>
-            </div>
-        }
-
-        let buttonModificationEmail = <button onClick={this.openModificationEmail}>Изменить E-mail</button>;
-        if (this.state.modificationEmail) {
-            buttonModificationEmail = null;
-        }
-
-        let buttonModificationPassword = <button onClick={this.openModificationPassword}>Изменить пароль</button>;
-        if (this.state.modificationPassword) {
-            buttonModificationPassword = null;
+            passwordDontMatchMessageModalWindow = <div className="modification-email-and-password__warning">
+                                                    Пароли не совпадают!
+                                                  </div>
         }
 
         let modalWindowIdenticalPassword=null;
 
         if(this.state.modalWindowIdenticalPassword){
-            modalWindowIdenticalPassword=<div>
-                                            <button onClick={this.closeModalWindowIdenticalPassword}>Закрыть</button>
+            modalWindowIdenticalPassword=<div className="modification-email-and-password__warning">
                                             Старый пароль и новый идентичны!
+                                        </div>
+        }
+
+        let modalWindowErrorInputOldPassword=null;
+
+        if(this.state.errorMessagePassword.length>0){
+            modalWindowErrorInputOldPassword=<div className="modification-email-and-password__warning">
+                                                {this.state.errorMessagePassword}
                                             </div>
         }
 
-        const contentModificationEmail=<div>
-                                    Изменение E-mail:
-                                    <br />
-                                    <hr />
-                                    Ваш текущий E-mail: <span>{this.state.email}</span>
-                                    {buttonModificationEmail}
-                                    {newEmailBlock}
-                                    {modalWindowSuccessfullyEmailChanged}
-                                    {modalWindowNewEmailIsNull}
-                                    {modalWindowIdenticalEmail}
-                                </div>
+        if (this.state.modificationPassword) {
+            newPasswordBlock = <div>
+                <form onSubmit={this.modificationPassword}>
+                    <div className="modification-email-and-password__external-block">
+                        <label className="modification-email-and-password__external-block__label">Введите старый пароль:</label>
+                       <span className="modification-email-and-password__external-block__wrapper-input">
+                            <input  placeholder="Введите старый пароль" 
+                                    type={this.state.hiddenOldPassword ? 'password' : 'text'}
+                                    onChange={this.valueOldPassword} 
+                                    required 
+                                    className="modification-email-and-password__input_password"
+                                    />
+                            <span onClick={this.toggleShowOldPassword} className="modification-email-and-password__input_show">
+                                <img src={this.state.hiddenOldPassword ? eye : eyeBlocked} alt="eye"/>
+                            </span>
+                            {modalWindowErrorInputOldPassword}
+                       </span>
+                    </div>
+                    <div className="modification-email-and-password__external-block">
+                        <label className="modification-email-and-password__external-block__label">Введите новый пароль:</label>
+                        <span className="modification-email-and-password__external-block__wrapper-input">
+                            <input  placeholder="Введите новый пароль" 
+                                type={this.state.hiddenNewPassword? 'password' : 'text'}
+                                onChange={this.valueNewPassword} 
+                                required 
+                                className="modification-email-and-password__input_password"
+                                />
+                            <span onClick={this.toggleShowNewPassword} className="modification-email-and-password__input_show"><img src={this.state.hiddenNewPassword ? eye : eyeBlocked} alt="eye"/></span>
+                            {passwordRequirements}
+                            {modalWindowInvalidPasswordMessage}
+                            {modalWindowIdenticalPassword}
+                        </span>
+                    </div>
+                    <div className="modification-email-and-password__external-block">
+                    <label className="modification-email-and-password__external-block__label">Повторите новый пароль:</label>
+                        <span className="modification-email-and-password__external-block__wrapper-input">
+                            <input  placeholder="Повторите новый пароль" 
+                                type={this.state.hiddenRepiatNewPassword? 'password' : 'text'}
+                                onChange={this.repiatValueNewPassword} 
+                                required 
+                                className="modification-email-and-password__input_password"
+                                />
+                            <span onClick={this.toggleShowRepiatNewPassword} className="modification-email-and-password__input_show"><img src={this.state.hiddenRepiatNewPassword ? eye : eyeBlocked} alt="eye"/></span>
+                            {passwordDontMatchMessageModalWindow}
+                        </span>
+                    </div>
+                    <div className="modification-email-and-password__btns__wrapper">
+                        <button type="submit" className="modification-email-and-password__btns__item">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        }
+        let buttonModificationEmail = <button onClick={this.openModificationEmail} className="modification-email-and-password__external-block__btn">
+                                        Изменить E-mail
+                                    </button>;
+        if (this.state.modificationEmail) {
+            buttonModificationEmail = <button onClick={this.closeModificationEmail} className="modification-email-and-password__external-block__btn">Отменить</button>
+        }
 
-        const contentModificationPassword=<div>
-                                            Изменение пароля:
-                                            <br />
-                                            <hr />
-                                            {buttonModificationPassword}
+        let buttonModificationPassword = <button onClick={this.openModificationPassword} className="modification-email-and-password__external-block__btn">
+                                            Изменить пароль
+                                        </button>;
+        if (this.state.modificationPassword) {
+            buttonModificationPassword = <button onClick={this.closeModificationPassword} className="modification-email-and-password__external-block__btn">Отменить</button>;
+        }
+
+        const contentModificationEmail=<div className="modification-email-and-password__email">
+                                            <div className="modification-email-and-password__external-block">
+                                                <label className="modification-email-and-password__external-block__label">
+                                                    E-mail:
+                                                </label>
+                                                {buttonModificationEmail}
+                                            </div>
+                                            {newEmailBlock}
+                                            {modalWindowSuccessfullyEmailChanged}
+                                        </div>
+
+        const contentModificationPassword=<div className="modification-email-and-password__password">
+                                            <div className="modification-email-and-password__external-block">
+                                                <label className="modification-email-and-password__external-block__label">
+                                                    Пароль:
+                                                </label>
+                                                {buttonModificationPassword}
+                                            </div>
                                             {newPasswordBlock}
-                                            {modalWindowInvalidPasswordMessage}
-                                            {passwordDontMatchMessageModalWindow}
                                             {modalWindowSuccessfullyPasswordChange}
-                                            {modalWindowIdenticalPassword}
                                         </div>
 
         const allContent=<>
@@ -489,9 +577,10 @@ class ModificationEmailAndPasswordPage extends Component {
                             {contentModificationPassword}
                         </>
         const content=this.state.spinner ? <Spinner/> : allContent;
-        // const contentPassword=this.state.spinnerEmail ? <SpinnerPassword/> : contentModificationPassword;
+
         return (
-            <div>
+            <div className="modification-email-and-password">
+                <h2 className="modification-email-and-password__title">Редактировать</h2>
                 {content}
             </div>
         )

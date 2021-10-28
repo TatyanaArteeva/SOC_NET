@@ -2,34 +2,25 @@
 @import '../../mixins';
 
 .registration-window{
-    @include backgroundModal;
     &__modal {
-        @include ModalWindow;
-        width: 350px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         &__title{
             text-align: center;
             color: $input-text;
             margin-bottom: 15px;
-        }
-        &__close{
-            display: inline-block;
-            position: absolute;
-            right: 17px;
-            top: -15px;
-            &__img{
-                transition: 0.5s all;
-                &:hover{
-                    border-radius: 100%;
-                    transform: rotate(30deg) scale(1.2);
-                }
-            }
         }
         &_wrapper-password{
             display:flex;
         }
         &__input{
             @include input;
-            padding: 3px 46px 3px 10px;
+            &_password{
+                @include input;
+                padding: 3px 46px 3px 10px;
+            }
             &_show{
                 @include inputShowPassword;
             }
@@ -41,15 +32,40 @@
     }
 }
 
-.passwordRequirements{
-    display: flex;
-    justify-content: center;
-    height: 15px;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    color: $input-text;
-    font-size: 10px;
-    &_null{
-        height: 40px;
+
+@media (max-width: 1200px){
+
+}
+
+@media (max-width: 992px){
+
+} 
+
+@media (max-width: 768px){
+
+}
+
+@media (max-width: 576px){
+
+    .registration-window{
+        &__modal {
+            width: 300px;
+            padding: 5px;
+            &__input{
+                @include input;
+                width: 280px;
+                &_password{
+                    @include input;
+                    width: 280px;
+                    padding: 3px 46px 3px 10px;
+                }
+            }
+            &__btn{
+               @include inputButton;
+               margin-top: 15px;
+               width: 95%;
+            }
+        }
     }
+
 }

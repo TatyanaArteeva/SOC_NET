@@ -1,9 +1,10 @@
 import React, { Component} from 'react';
 import { withRouter } from "react-router-dom";
 import WithService from '../hoc/hoc';
-import FriendsAndGroupsList from '../friendsAndGroupsList/friendsAndGroupsList';
-import {Link, HashRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import AllParticipantsModal from '../allParticipantsModal/allParticipantsModal';
+import {closeModalAllParticipantsGroup} from '../../actions';
+import friends from './friends.svg';
 
 class ListFriendsForAddDialog extends Component{
 
@@ -18,43 +19,42 @@ class ListFriendsForAddDialog extends Component{
    render(){
 
     return (
-        <div className="listFriendsForAddDialog">
-            <FriendsAndGroupsList  getItems={(start,end)=>
-                                        `/api/friend/get-friends/${this.props.id}?start=${start}&end=${end}`
-                                    }
-                                    arrItems={(items)=>{
-                                      this.setState({
-                                         arr: [...this.state.arr, ...items.accounts]
-                                      })
-                                    }}
-                                    path={(id)=>{
-                                        localStorage.setItem('idForDialogFriends', id);
-                                        this.props.history.push('/dialog')
-                                    }
-                                    }
-                                    titleItem={(el, funcGoItem)=>{
-                                        return el.map((item, index)=>{
-                                            return  <div key={item.account.id}>
-                                                        <li className="myFriends_item" onClick={()=>funcGoItem(item.account.id)}>
-                                                            {index+1}
-                                                            <div>
-                                                                <img className="myFriends_item_img" src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
-                                                                <span>{item.account.firstName} {item.account.lastName}</span>
-                                                            </div>
-                                                        </li>
-                                                    </div>
-                                        })
-                                    }}    
-                                    renderItems={this.state.arr}
-                                    searchName={"Поиск друзей"}
-                                    arrItemsSearch={(items)=>{
-                                        this.setState({
-                                            arr: [...items.accounts]
-                                        })
-                                    }}
-                                    messageNotContent={"У вас пока нет друзей"}
-                                    nameList={"у вас друзей"}
+        <div>
+                <AllParticipantsModal getItems={(start,end)=>
+                                            `/api/friend/get-friends/${this.props.id}?start=${start}&end=${end}`
+                                        }
+                                        arrItems={(items)=>{
+                                            console.log(items)
+                                            this.setState({
+                                                arr: [...this.state.arr, ...items.accounts]
+                                            })
+                                        }}
+                                        path={(id)=>{
+                                            this.props.closeModalAllParticipantsGroup()
+                                            localStorage.setItem('idForDialogFriends', id);
+                                            this.props.history.push('/dialog')
+                                            }
+                                        }
+                                        renderItems={this.state.arr}
+                                        titleItem={(el, funcGoItem)=>{
+                                            return el.map(item=>{
+                                                return  <div key={item.account.id}>
+                                                            <li className="participants-list__item" onClick={()=>funcGoItem(item.account.id)}>
+                                                                <div className="participants-list__item__content">
+                                                                    <div className="participants-list__item__content__img">
+                                                                        <img src={"data:image/jpg;base64," + item.account.photo} alt="photoGroup"/>
+                                                                    </div>
+                                                                    <span className="participants-list__item__content__name">{item.account.firstName} {item.account.lastName}</span>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                            })
+                                            
+                                        }}
+                                        messageNotContent={<img src={friends} alt="friends" className=""/>}
+                                        nameList={"Всего друзей:"}
                                     />
+            
         </div>
     )
    }
@@ -66,6 +66,10 @@ const mapStateToProps=(state)=>{
     }
 }
 
+const mapDispatchToProps = {
+    closeModalAllParticipantsGroup
+}
 
 
-export default withRouter(connect(mapStateToProps)(WithService()(ListFriendsForAddDialog)));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(WithService()(ListFriendsForAddDialog)));

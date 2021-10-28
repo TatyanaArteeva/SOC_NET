@@ -6,6 +6,12 @@ import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
 import { imagesForGallery, imagesGalleryTotalSize, imagesForGalleryLoading, imagesGalleryDeletePhoto} from '../../actions';
 import { withRouter } from "react-router";
+import SpinnerMini from '../spinnerMini/spinnerMini';
+import cancel from './cancel.svg';
+import download from './download.svg';
+import remove from './delete.svg';
+import noPhotos from './no-photos.svg';
+
 let startIndex=0;
 
 class SliderCarusel extends Component{
@@ -21,7 +27,9 @@ class SliderCarusel extends Component{
             imagess: [],
             messageInvalidFile: false,
             deleteImageSuccessfully: false,
-            addImageSuccessfully: false
+            addImageSuccessfully: false,
+            spinner:true,
+            indicatorofBeingInModalWindow: false
         }
 
         let markingCloseModalWindowFromDeleteImage=false;
@@ -42,6 +50,12 @@ class SliderCarusel extends Component{
                     if(this._cleanupFunction){
                         this.props.imagesGalleryTotalSize(res.data.totalSize)
                         this.props.imagesForGallery(res.data.photos, start, end)
+                        this.setState({
+                            spinner:false
+                        })
+                        this.setState({
+                            imagess: this.props.arrImagesGallery
+                        })
                     }
                     arrEnd=this.props.totalSizeImages;
                     numberIndexToStart=arrEnd-10
@@ -54,6 +68,12 @@ class SliderCarusel extends Component{
                     .then(res=>{
                         if(this._cleanupFunction){
                             this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd)
+                            this.setState({
+                                spinner:false
+                            })
+                            this.setState({
+                                imagess: this.props.arrImagesGallery
+                            })
                         }
                     })
                 })
@@ -71,6 +91,13 @@ class SliderCarusel extends Component{
                 console.log("update photos")
                 this.getImagesByLoading()
             }
+
+            if(prevProps.arrImagesGallery.length!==this.props.arrImagesGallery.length){
+                this.setState({
+                    imagess: this.props.arrImagesGallery
+                })
+            }
+ 
         }
 
         this.componentWillUnmount=()=>{
@@ -83,6 +110,11 @@ class SliderCarusel extends Component{
                 deleteImageModalWindow: true,
                 currentImageIndex: imageIndex
             })
+            if (document.body.style.overflow !== "hidden") {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "scroll";
+            }
    
         }
 
@@ -90,6 +122,12 @@ class SliderCarusel extends Component{
             this.setState({
                 deleteImageModalWindow: false
             })
+
+            if (document.body.style.overflow !== "hidden") {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "scroll";
+            }
         }
 
         this.userNotificationDeleteImageClose=()=>{
@@ -120,7 +158,12 @@ class SliderCarusel extends Component{
                             deleteImageModalWindow: false,
                         })
                         if(markingCloseModalWindowFromDeleteImage===false){
-                            setTimeout(this.closeModalWindowFromDeleteImageSuccessfully, 3000)
+                            setTimeout(this.closeModalWindowFromDeleteImageSuccessfully, 1000)
+                            if (document.body.style.overflow !== "hidden") {
+                                document.body.style.overflow = "hidden";
+                            } else {
+                                document.body.style.overflow = "scroll";
+                            }
                         }
                         start=0;
                         end=start+10;
@@ -131,6 +174,9 @@ class SliderCarusel extends Component{
                                 }
                                 this.props.imagesGalleryTotalSize(res.data.totalSize)
                                 this.props.imagesForGalleryLoading(res.data.photos, start, end)
+                                this.setState({
+                                    imagess: this.props.arrImagesGallery
+                                })
                                 arrEnd=this.props.totalSizeImages;
                                 numberIndexToStart=arrEnd-10
                                 if(numberIndexToStart<0){
@@ -141,6 +187,9 @@ class SliderCarusel extends Component{
                                     })
                                     .then(res=>{
                                         this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd);
+                                        this.setState({
+                                            imagess: this.props.arrImagesGallery
+                                        })
                                     })
                             })
                     }
@@ -151,6 +200,11 @@ class SliderCarusel extends Component{
             this.setState({
                 addImageModalWindow: true
             })
+            if (document.body.style.overflow !== "hidden") {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "scroll";
+            }
         }
 
         this.modalWindowInvalidFilesClose=()=>{
@@ -194,6 +248,11 @@ class SliderCarusel extends Component{
                 this.setState({
                     addImageModalWindow: false
                 })
+                if (document.body.style.overflow !== "hidden") {
+                    document.body.style.overflow = "hidden";
+                } else {
+                    document.body.style.overflow = "scroll";
+                }
                 if(this.state.newImage.length>0 && this.state.newImageName.length>0){
                     this.setState({
                         newImage: [],
@@ -227,6 +286,11 @@ class SliderCarusel extends Component{
                     addImageSuccessfully:false
                 })
                 markingCloseModalWindowFromAddImage=false;
+                if (document.body.style.overflow !== "hidden") {
+                    document.body.style.overflow = "hidden";
+                } else {
+                    document.body.style.overflow = "scroll";
+                }
             }
 
             this.postNewImages=(event)=>{
@@ -245,7 +309,7 @@ class SliderCarusel extends Component{
                                 newImageName: []
                             })
                             if(markingCloseModalWindowFromAddImage===false){
-                                setTimeout(this.closeModalWindowFromAddImageSuccessfully, 2000)
+                                setTimeout(this.closeModalWindowFromAddImageSuccessfully, 1000)
                             }
                             start=0;
                             end=10;
@@ -256,6 +320,9 @@ class SliderCarusel extends Component{
                                     }
                                     this.props.imagesGalleryTotalSize(res.data.totalSize)
                                     this.props.imagesForGallery(res.data.photos, start, end)
+                                    this.setState({
+                                        imagess: this.props.arrImagesGallery
+                                    })
                                     arrEnd=this.props.totalSizeImages;
                                     numberIndexToStart=arrEnd-10;
                                     if(numberIndexToStart<0){
@@ -266,6 +333,9 @@ class SliderCarusel extends Component{
                                         })
                                         .then(res=>{
                                             this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd);
+                                            this.setState({
+                                                imagess: this.props.arrImagesGallery
+                                            })
                                         })
                                 })
                         }
@@ -301,6 +371,9 @@ class SliderCarusel extends Component{
                     .then(res=>{
                         console.log("вперед")
                         this.props.imagesForGalleryLoading(res.data.photos, start, end)
+                        this.setState({
+                            imagess: this.props.arrImagesGallery
+                        })
                     })
             }
 
@@ -327,9 +400,53 @@ class SliderCarusel extends Component{
                     .then(res=>{
                         console.log("назад")
                         this.props.imagesForGalleryLoading(res.data.photos, numberIndexToStart, arrEnd)
+                        this.setState({
+                            imagess: this.props.arrImagesGallery
+                        })
                     })
             }
        
+        }
+
+        this.closeModalWindowDeleteImage=()=>{
+            if(!this.state.indicatorofBeingInModalWindow){
+                this.cancelDeleteImage();
+            }
+            
+        }
+
+        this.closeModalWindowFromDeleteImageSuccessfullyByOverlay=()=>{
+            if(!this.state.indicatorofBeingInModalWindow){
+                this.closeModalWindowFromDeleteImageSuccessfully()
+            }
+        }
+
+        this.closeModalWindowFromAddImageByOverlay=()=>{
+            if(!this.state.indicatorofBeingInModalWindow){
+                this.cancelAddImage()
+
+            }
+        }
+
+        this.closeModalWindowFromAddImageSuccessfullyByOverlay=()=>{
+            if(!this.state.indicatorofBeingInModalWindow){
+                this.closeModalWindowFromAddImageSuccessfully()
+            }
+        }
+
+        this.exitFromBlock=()=>{
+            console.log("вызли за блок")
+            this.setState({
+                indicatorofBeingInModalWindow: false
+            })
+            
+        }
+
+        this.enteredInBlock=()=>{
+            console.log("вошли в блок")
+            this.setState({
+                indicatorofBeingInModalWindow: true
+            })
         }
 
 
@@ -337,25 +454,28 @@ class SliderCarusel extends Component{
     render(){
         let btnAddPhoto=null;
         let btnRemovePhoto=null;
+        let gallerySlider=null;
 
         if(this.props.listRights.canModify){
-            btnAddPhoto=<button onClick={this.addImageModalWindowOpen}>Добавить фото</button>;
+            btnAddPhoto=<button onClick={this.addImageModalWindowOpen} className="profile-photos__btns__add-photo">Добавить фото</button>;
         }
  
         if(this.props.arrImagesGallery.length>0 && this.props.listRights.canModify){
-            btnRemovePhoto=<button className="photo_deleteBtn" onClick={this.deleteImageModalWindowOpen}>Удалить фото</button>
+            btnRemovePhoto=<button onClick={this.deleteImageModalWindowOpen} className="profile-photos__btns__remove-photo">Удалить фото</button>
         }
 
-        let gallerySlider=null;
 
-        if(this.props.arrImagesGallery.length===0){
-            gallerySlider=<div>У вас нет фото!</div>
+        if(this.props.arrImagesGallery.length===0 && !this.state.spinner){
+            gallerySlider=<div className="profile-photos__null">
+                                <img src={noPhotos} alt="no-photos"/>
+                            </div>
         }
 
-        if(this.props.arrImagesGallery.length>0){
+        if(this.props.arrImagesGallery.length>0 && !this.state.spinner){
             gallerySlider=<ImageGallery
                                 ref={i => this.imageGallery = i}
-                                items={this.props.arrImagesGallery}
+                                // items={this.props.arrImagesGallery}
+                                items={this.state.imagess}
                                 thumbnailPosition="left"
                                 showIndex={true}
                                 onSlide={this.onSlide}
@@ -363,34 +483,37 @@ class SliderCarusel extends Component{
                             />
         }
 
-        const messageInvalidFile= <div>
-                                        <div>Не верный формат файла!</div>
-                                        <div>Допустимые значения: .jpg, .jpeg, .png</div>
+        const messageInvalidFile= <div className="profile-photos__modal__actions-image__invalid-file">
+                                        <div className="profile-photos__modal__actions-image__invalid-file__text">
+                                            Не верный формат! Разрешены: .jpg, .jpeg, .png
+                                        </div>
                                     </div>
 
-        const modalWindowMessageInvalidFile=this.state.messageInvalidFile ? messageInvalidFile : null;
+        const modalWindowMessageInvalidFile=this.state.messageInvalidFile ? messageInvalidFile : <div className="profile-photos__modal__actions-image__invalid-file"></div>;
 
-        let modalWindowFromDeleteImage=<div className="ModalWindowForImage">
-                                            <div>Вы уверены что хотите удалить фото номер {this.state.currentImageIndex+1}?</div>
-                                            <div>
-                                                <button onClick={this.deleteImage}>Удалить фото</button>
-                                                <button onClick={this.cancelDeleteImage}>Отмена</button>
-                                            </div>
-                                        </div>
-        
-        const modalWindowDeleteImage=this.state.deleteImageModalWindow ? modalWindowFromDeleteImage : null;
-
-        const modalWindowFromDeleteImageSuccessfully=<div className="ModalWindowForImage">
-                                                        <button onClick={this.closeModalWindowFromDeleteImageSuccessfully}>Закрыть</button> 
-                                                        Фото успешно удалено!
+        const modalWindowFromDeleteImageSuccessfully=<div className="profile-photos__modal__actions-image" onClick={this.closeModalWindowFromDeleteImageSuccessfullyByOverlay}>
+                                                        <div className="profile-photos__modal__actions-image__window" onMouseLeave={this.exitFromBlock} onMouseEnter={this.enteredInBlock}>
+                                                            <div onClick={this.closeModalWindowFromDeleteImageSuccessfully} className="profile-photos__modal__actions-image__window__cancel">
+                                                                <img src={cancel} alt="cancel"/>
+                                                            </div> 
+                                                            <div className="profile-photos__modal__actions-image__text_final">
+                                                                Фото успешно удалено!
+                                                            </div>
+                                                        </div>
                                                     </div>
 
         const modalWindowDeleteImageSuccessfully=this.state.deleteImageSuccessfully ? modalWindowFromDeleteImageSuccessfully : null;
         
-        const modalWindowFromAddImageSuccessfully=<div className="ModalWindowForImage">
-                                        <button onClick={this.closeModalWindowFromAddImageSuccessfully}>Закрыть</button> 
-                                        Фото успешно добавлено!
-                                    </div>
+        const modalWindowFromAddImageSuccessfully=<div className="profile-photos__modal__actions-image" onClick={this.closeModalWindowFromAddImageSuccessfullyByOverlay}>
+                                                        <div className="profile-photos__modal__actions-image__window" onMouseLeave={this.exitFromBlock} onMouseEnter={this.enteredInBlock}>
+                                                            <div onClick={this.closeModalWindowFromAddImageSuccessfully} className="profile-photos__modal__actions-image__window__cancel">
+                                                                <img src={cancel} alt="cancel"/>
+                                                            </div> 
+                                                            <div className="profile-photos__modal__actions-image__text_final">
+                                                                Фото успешно добавлено
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
         const modalWindowAddImageSuccessfully=this.state.addImageSuccessfully ? modalWindowFromAddImageSuccessfully : null;
 
@@ -398,57 +521,105 @@ class SliderCarusel extends Component{
 
         if(this.state.newImageName.length>0 && this.state.newImageName!==undefined && this.state.newImage.length>0 && this.state.newImage!== undefined){
             listNewImage=<div>
-                            Вы выбрали файлы: 
+                            <div className="profile-photos__modal__actions-image__text">
+                                Вы выбрали файлы: 
+                            </div>
                             <ul>
                                 {
                                     this.state.newImageName.map((el, index)=>{
                                         return(
-                                            <li key={index}>
-                                                {el} 
-                                                <button onClick={()=>this.deleteNewImageFromList(index)}>Удалить элемент</button>
+                                            <li key={index} className="profile-photos__modal__actions-image__window__wrapper__input-file__item">
+                                                <span>{el}</span>
+                                                <img onClick={()=>this.deleteNewImageFromList(index)}  src={remove} alt="delete"/>
                                             </li>  
                                         )  
                                     })
                                 }
                             </ul>
-                                <button onClick={this.postNewImages}>Загрузить фото</button>
+                                
+                            <div className="profile-photos__modal__actions-image__btn">
+                                <button onClick={this.postNewImages} className="profile-photos__modal__actions-image__btn__item">Загрузить фото</button>
+                            </div>
                         </div>
         }
 
-        const modalWindowFromAddImage=<div className="ModalWindowForImage">
-                                        Пожалуйста, добавьте фото для загрузки!
-                                        <form>
-                                            <input  name="photos" 
-                                                    type="file" 
-                                                    accept="image/jpeg,image/png" 
-                                                    multiple
-                                                    onChange={this.valueAndNameNewImage}
-                                                    />
-                                        </form>
-                                        {modalWindowMessageInvalidFile}
-                                        {listNewImage}
-                                        <div>
-                                            <button onClick={this.cancelAddImage}>
-                                                Отмена
-                                            </button>
-                                        </div>
+        let inputPhoto=<div className="profile-photos__modal__actions-image__window__wrapper__input-file">
+                            <form>
+                                <input  name="photos" 
+                                        type="file" 
+                                        accept="image/jpeg,image/png" 
+                                        multiple
+                                        onChange={this.valueAndNameNewImage}
+                                        className="profile-photos__modal__actions-image__window__input-file__input"
+                                        id="inputFiles"
+                                        />
+                                <label for="inputFiles" className="profile-photos__modal__actions-image__window__wrapper__input-file__label">
+                                    <span className="profile-photos__modal__actions-image__window__wrapper__input-file__label_img"><img src={download} alt="inputFile"/></span>
+                                    <div className="profile-photos__modal__actions-image__window__wrapper__input-file__label_border"></div>
+                                    <span className="profile-photos__modal__actions-image__window__wrapper__input-file__label_name">Выберите файл</span>
+                                </label>
+                            </form>
+                        </div>
+
+        if(this.state.newImage.length>=5){
+            inputPhoto=<div className="profile-photos__modal__actions-image__text_warninig">За один раз возможно загрузить не больше 5 фото!</div>
+        }
+
+        const modalWindowFromAddImage=<div className="profile-photos__modal__actions-image" onClick={this.closeModalWindowFromAddImageByOverlay}>
+                                            <div className="profile-photos__modal__actions-image__window" onMouseLeave={this.exitFromBlock} onMouseEnter={this.enteredInBlock}>
+                                                <div className="profile-photos__modal__actions-image__window__cancel" onClick={this.cancelAddImage}>
+                                                    <img src={cancel} alt="cancel"/>
+                                                </div>
+                                                <div className="profile-photos__modal__actions-image__text_final">
+                                                    Добавьте фото для загрузки!
+                                                </div>
+                                                {inputPhoto}
+                                                {modalWindowMessageInvalidFile}
+                                                {listNewImage}
+                                            </div>
                                       </div>
 
+        let modalWindowFromDeleteImage=<div className="profile-photos__modal__actions-image" onClick={this.closeModalWindowDeleteImage}>
+                                          <div className="profile-photos__modal__actions-image__window" onMouseLeave={this.exitFromBlock} onMouseEnter={this.enteredInBlock}>
+                                                <div className="profile-photos__modal__actions-image__text">
+                                                    Вы уверены что хотите удалить данное фото?
+                                                </div>
+                                                <div className="profile-photos__modal__actions-image__btns">
+                                                    <button onClick={this.deleteImage} className="profile-photos__modal__actions-image__btns__item">
+                                                        Удалить фото
+                                                    </button>
+                                                    <button onClick={this.cancelDeleteImage} className="profile-photos__modal__actions-image__btns__item">
+                                                        Отмена
+                                                    </button>
+                                                </div>
+                                          </div>
+                                        </div>
+
+        const modalWindowDeleteImage=this.state.deleteImageModalWindow ? modalWindowFromDeleteImage : null;                             
+
         const modalWindowAddImage=this.state.addImageModalWindow ? modalWindowFromAddImage : null;
+
+        const content=this.state.spinner? <div className="profile-photos__spinner-wrapper"><SpinnerMini/></div>: <>
+                                                            <div className="profile-photos">
+                                                                {btnAddPhoto}
+                                                                {btnRemovePhoto}
+                                                                <div className="profile-photos__wrapper">
+                                                                    {modalWindowDeleteImageSuccessfully}
+                                                                    {modalWindowDeleteImage}
+                                                                    {modalWindowAddImage}
+                                                                    {modalWindowAddImageSuccessfully}
+                                                                    {gallerySlider}
+                                                                </div>
+                                                            </div>
+                                                        </>
+
+                                                    
         
 
         return(
-            <div>
-                 <div className="profile_photos_wrapper">
-                                {btnAddPhoto}
-                                {btnRemovePhoto}
-                                {modalWindowDeleteImageSuccessfully}
-                                {modalWindowAddImage}
-                                {modalWindowAddImageSuccessfully}
-                                {gallerySlider}
-                                {modalWindowDeleteImage}
-                            </div>
-            </div>
+            <>
+                {content}
+            </>
         )
     }
 }

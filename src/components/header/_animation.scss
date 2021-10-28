@@ -1,0 +1,17 @@
+@keyframes logoAnimation {
+    from {
+        transform: rotate(90deg);
+    }
+    25%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(-90deg);
+    }
+    75%{
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}

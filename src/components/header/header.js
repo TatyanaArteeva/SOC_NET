@@ -2,13 +2,24 @@ import React, {Component} from 'react';
 import {  Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
-import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe, inputNotificationObj, pathLink} from '../../actions';
+import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe, inputNotificationObj, pathLink, openAndCloseDropDownMenu} from '../../actions';
 import { withRouter } from "react-router";
 import './header.scss';
-import logo from './leaf.svg';
-import arrow from './arrow.svg';
 import HeaderSearch from '../headerSearch/headerSearch';
 import UserNotificationsList from '../userNotificationsList/userNotificationsList';
+import home from './home.svg';
+import friends from './friends.svg';
+import messages from './message.svg';
+import group from './group.svg';
+import notifications from './bell.svg';
+import settings from './settings.svg';
+import exit from './exit.svg';
+import sunflower from './sunflower.svg';
+import menu from './menu.svg';
+import menuNotNull from './menuNotNull.svg';
+import DropDownMenu from '../drop-down-menu-header/drop-down-menu-header';
+
+
 
 class Header extends Component{
 
@@ -62,21 +73,31 @@ class Header extends Component{
             })
         }
 
+        this.componentDidUpdate=()=>{
+            if(this.props.mouseLeaveNotificationsListstate){
+                this.openNotificationsList()
+            }
+        }
+
+        this.toggleDropDownMenu=()=>{
+            this.props.openAndCloseDropDownMenu(!this.props.dropDownMenu)
+        }
+
 
     }
     
     render(){
-
-
 
         const {idUser}=this.props;
         const id=`/${idUser}`;
 
         let countMessage=null;
 
-        
+        let menuItem=menu;
+
         if(this.props.inputMessageCount.length>0){
-            countMessage=this.props.inputMessageCount.length
+            countMessage=this.props.inputMessageCount.length;
+            menuItem=menuNotNull;
         }
 
         let countNotifications=null;
@@ -91,28 +112,91 @@ class Header extends Component{
             listNotifications=<UserNotificationsList/>
         }
 
+        if(this.props.mouseLeaveNotificationsList){
+            listNotifications=null;
+        }
+
+        let dropDownMenu=null;
+        if(this.props.dropDownMenu){
+            dropDownMenu=<DropDownMenu/>
+        }
+        
+        
         return (
             <header>
                 <nav className="header">
-                    <div><img src={logo} alt="logo" className="header__logo"/></div>
-                    <HeaderSearch/>
-                    <ul className="header__menu">
+                    <img src={sunflower} alt="logo" className="header__logo"/>
+
+                    <div className="header__menu__wrapper">
+                            <img className="header__menu__item" src={notifications} alt="notifications" onClick={this.openNotificationsList}/> 
+                            <span className="header__menu__item__count_notifications">
+                                {countNotifications}
+                            </span>
+                            <span className="header__menu__item__label">
+                                Уведомления
+                            </span>
+                    </div>
+                        {listNotifications}
+
+                    <div className="header__menu">
                         <div className="header__menu__wrapper">
-                            <h1 className="header__menu__wrapper__button">Меню <img src={arrow} alt="arrow"/>{countMessage}</h1>
-                            <ul className="header__menu__wrapper__list">
-                                {/* <HashRouter> */}
-                                    <li className="header__menu__wrapper__list__item" onClick={()=>this.props.pathLink(`${id}`)}><Link to={id}>Моя страница</Link></li>
-                                    <li className="header__menu__wrapper__list__item"><Link to="/friends" onClick={()=>this.props.pathLink("/friends")}>Друзья</Link></li>
-                                    <li className="header__menu__wrapper__list__item"><Link to="/messages" onClick={()=>this.props.pathLink("/messages")}>Сообщения</Link></li>
-                                    <li className="header__menu__wrapper__list__item"><Link to="/groups" onClick={()=>this.props.pathLink("/groups")}>Группы</Link></li>
-                                {/* </HashRouter> */}
-                            </ul>
+                            <Link to={id}>
+                                <img className="header__menu__item" src={home} alt="Домой"/>
+                            </Link>
+                            <span className="header__menu__item__label">Домой</span>
                         </div>
-                    </ul>
-                    <button onClick={this.openNotificationsList}>Уведомления {countNotifications}</button>
-                    {listNotifications}
-                    <button onClick={()=>this.goToSettings()}>Настройки</button>
-                    <button onClick={()=>this.exit()}>Выход</button>
+                        <div className="header__menu__wrapper">
+                         <Link to="/friends/">
+                             <img className="header__menu__item" src={friends} alt="Друзья"/>
+                         </Link>
+                         <span className="header__menu__item__label">Друзья</span>
+                        </div>
+                        <div className="header__menu__wrapper">
+                            <Link to="/dialogs">
+                                    <img className="header__menu__item" src={messages} alt="Письма"/> 
+                                    <span className="header__menu__item__count">
+                                        {countMessage}
+                                    </span>
+                            </Link>
+                            <span className="header__menu__item__label">Письма</span>
+                        </div>
+
+                        <div className="header__menu__wrapper">
+                            <Link to="/groups/">
+                                <img className="header__menu__item" src={group} alt="Группы"/>
+                            </Link>
+                            <span className="header__menu__item__label">Группы</span>
+                        </div>
+
+                    </div>
+
+                    <HeaderSearch/>
+
+                    <div className="header__menu__mini-size">
+                        <img className="header__menu__item" src={menuItem} alt="menu" onClick={this.toggleDropDownMenu}/>
+                        {dropDownMenu}
+                    </div>
+
+
+                    <div className="header__menu__settings-and-exit">
+                        
+                        <div className="header__menu__settings-and-exit">
+                            <div className="header__menu__wrapper">
+                                <img src={settings} alt="Настройки" onClick={()=>this.goToSettings()} className="header__menu__item"/>
+                                <span className="header__menu__item__label">
+                                    Настройки
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="header__menu__wrapper">
+                            <img src={exit} alt="Выход" onClick={()=>this.exit()} className="header__menu__item"/>
+                            <span className="header__menu__item__label_last">
+                                Выход
+                            </span>
+                        </div>
+                    </div>
+                    
                 </nav>
             </header>
         )
@@ -128,7 +212,9 @@ const mapStateToProps=(state)=>{
         logoutStatus: state.logout,
         mainPage: state.loginMainPage,
         inputMessageCount: state.inputMessageObj,
-        inputNotificationObjCount: state.inputNotificationObj
+        inputNotificationObjCount: state.inputNotificationObj,
+        mouseLeaveNotificationsListstate: state.mouseLeaveNotificationsList,
+        dropDownMenu: state.dropDownMenu
     }
 }
 
@@ -138,7 +224,8 @@ const mapDispatchToProps={
         inputMessageObj,
         unsubscribe,
         inputNotificationObj,
-        pathLink
+        pathLink,
+        openAndCloseDropDownMenu
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Header)));
