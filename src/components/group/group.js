@@ -290,13 +290,13 @@ const Group =({Service, idInUrl, groupId, groupAccesses, accesses, groupInfoRela
                                                         </Link>
                                                     </div>
                                                     <div className="group__photo-and-btns__btns__navigation__wrapper">
-                                                        <Link to="/messages">
+                                                        <Link to="/dialogs">
                                                             <img className="group__photo-and-btns__btns__navigation__item" src={messages} alt="Письма"/>
                                                         </Link> 
                                                         <span className="group__photo-and-btns__btns__navigation__item__count">
                                                             {countMessage}
                                                         </span>
-                                                        <Link to="/messages">
+                                                        <Link to="/dialogs">
                                                             <span className="group__photo-and-btns__btns__navigation__item__label">Письма 
                                                                 <span className="group__photo-and-btns__btns__navigation__item__label__count">
                                                                     {countMessage}

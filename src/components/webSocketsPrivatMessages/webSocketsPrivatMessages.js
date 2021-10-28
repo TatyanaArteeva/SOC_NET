@@ -19,7 +19,7 @@ const WebSocketsPrivatMessages = ({ inputMessageObj, unsubscribe}) => {
             reconnectDelay: 5000,
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
-            webSocketFactory: () => new SockJS('/messages'),
+            webSocketFactory: () => new SockJS('/ws/messages'),
         });
 
         

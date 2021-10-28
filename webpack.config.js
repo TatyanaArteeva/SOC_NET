@@ -22,7 +22,7 @@ module.exports = {
         target: 'http://localhost:8080',
         changeOrigin: true,
       },
-      '/messages': {
+      '/ws': {
         target: 'http://localhost:8080',
         changeOrigin: true,
       }

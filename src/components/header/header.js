@@ -152,7 +152,7 @@ class Header extends Component{
                          <span className="header__menu__item__label">Друзья</span>
                         </div>
                         <div className="header__menu__wrapper">
-                            <Link to="/messages">
+                            <Link to="/dialogs">
                                     <img className="header__menu__item" src={messages} alt="Письма"/> 
                                     <span className="header__menu__item__count">
                                         {countMessage}

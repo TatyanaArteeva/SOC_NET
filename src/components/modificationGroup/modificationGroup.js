@@ -237,11 +237,11 @@ class ModificationGroup extends Component{
         }
 
         this.goToBack=()=>{
+            this.props.actionTransitionModification(true)
             if(this._cleanupFunction){
                 this.setState({
                     nav: true
                 })
-                this.props.actionTransitionModification(true)
             }
         }
 

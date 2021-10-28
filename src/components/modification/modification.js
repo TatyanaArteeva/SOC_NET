@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {connect} from 'react-redux';
 import WithService from '../hoc/hoc';
-import {userInformation, modalWindowForUserNotificationOpen, modalWindowForUserNotificationClose, pathLink,  returnFromModificationPage} from '../../actions';
+import {userInformation, modalWindowForUserNotificationOpen, modalWindowForUserNotificationClose, pathLink,  returnFromModificationPage, actionTransitionModification} from '../../actions';
 import DatePicker from "react-datepicker";
 import ru from "date-fns/locale/ru";
 import parseISO from 'date-fns/parseISO';
@@ -18,10 +18,11 @@ import Spinner from '../spinner/spinner';
 import SpinnerMini from '../spinnerMini/spinnerMini';
 import SpinnerMiniMini from '../spinnerMiniMini/spinnerMiniMini';
 import deletee from './delete.svg';
+import { setUncaughtExceptionCaptureCallback } from 'process';
 
 let req=false;
 
-const Modification=({Service, userInformation, id, modalWindowForUserNotificationOpen, modalWindowForUserNotificationClose, modalWindowUserNotificationTrue,  returnFromModificationPage, returnFromModificationPageState, })=>{
+const Modification=({Service, userInformation, id, modalWindowForUserNotificationOpen, modalWindowForUserNotificationClose, modalWindowUserNotificationTrue,  returnFromModificationPage, returnFromModificationPageState, actionTransitionModification})=>{
     const idLink=`/${id}`;
     const { push } = useHistory();
     registerLocale("ru", ru);
@@ -138,16 +139,20 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
             returnFromModificationPage(false);    
         }
 
+        // setNav(true)
+        // actionTransitionModification(true)
+
     }
 
     useEffect(()=>{
         if(!nav){
             returnFromModificationPage(false)
-            // window.addEventListener('popstate', ()=>goToBack())
+            window.addEventListener('popstate', ()=>goToBack())
         }
 
         if(nav===true){
             window.removeEventListener('popstate', ()=>goToBack())
+            actionTransitionModification('')
         }
 
         
@@ -157,6 +162,7 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
 
     useEffect(()=>{
         if(returnFromModificationPageState){
+            actionTransitionModification(true)
             setNav(true)
         }
     },[returnFromModificationPageState])
@@ -200,7 +206,6 @@ const Modification=({Service, userInformation, id, modalWindowForUserNotificatio
     }
 
     function openModalSelectPartner(){
-        // setListClassActiveFamilyStatus(false)
         setModalWindowSelectPartner(true)
     }
 
@@ -543,7 +548,6 @@ function selectFamilyStatus(e){
     setFamilyStatus(e.target.dataset.value)
     setFamilyStatusText(e.target.innerText)
     setListClassActiveFamilyStatus(false)
-    // toggleBtnFamilyStatusList()
     
 }
 
@@ -560,7 +564,6 @@ if(errorModificitation){
 
 function mouseLeaveFamilyStatus(){
     setListClassActiveFamilyStatus(false)
-    // toggleBtnFamilyStatusList()
 }
 
 let contentModification=<form onSubmit={postModificationForm} className="modification-account">
@@ -730,7 +733,8 @@ const mapDispatchToProps={
     modalWindowForUserNotificationOpen,
     modalWindowForUserNotificationClose,
     pathLink,
-    returnFromModificationPage
+    returnFromModificationPage,
+    actionTransitionModification
 }
 
 
