@@ -1,68 +1,80 @@
 @import '../../variables';
 @import '../../mixins';
 
-.header-search-form{
-    &__wrapper{
+.header-search-form {
+    &__wrapper {
         position: relative;
-        & ul{
+
+        & ul {
             padding: 0px;
-            &:hover{
+
+            &:hover {
                 cursor: default;
             }
         }
-        &__button{
+
+        &__button {
             width: 18px;
             height: 18px;
             position: absolute;
             right: 5px;
             top: 2px;
             cursor: pointer;
-            & img{
+
+            & img {
                 width: 18px;
                 height: 18px;
             }
         }
-        &__search{
+
+        &__search {
             @include input;
             height: 30px;
             margin-top: 0px;
             padding: 3px 28px 3px 10px;
         }
-        &__list{
+
+        &__list {
             position: absolute;
             visibility: hidden;
             width: 320px;
             box-shadow: 2px 2px 3px 3px #a7a7a7;
             border-radius: 10px;
             opacity: 0;
-            background-color:$background-color;
+            background-color: $background-color;
             padding: 10px 20px 0px 20px;
             margin-top: 6px;
-            &__item{
+
+            &__item {
                 list-style-type: none;
                 height: 50px;
                 display: flex;
                 justify-content: center;
                 padding: 8px 10px;
-                &:nth-last-child(1){
+
+                &:nth-last-child(1) {
                     margin-bottom: 10px;
                 }
-                &:hover{
+
+                &:hover {
                     cursor: pointer;
                     background-color: $main-color-light;
                     border-radius: 8px;
                 }
-                &__img{
+
+                &__img {
                     width: 35px;
                     height: 35px;
-                    & img{
+
+                    & img {
                         width: 35px;
                         height: 35px;
                         object-fit: cover;
                         border-radius: 100%;
                     }
                 }
-                &__name{
+
+                &__name {
                     display: flex;
                     justify-content: left;
                     align-items: center;
@@ -70,7 +82,8 @@
                     margin-left: 10px;
                 }
             }
-            &__null{
+
+            &__null {
                 list-style-type: none;
                 height: 50px;
                 padding: 8px 10px;
@@ -78,9 +91,9 @@
                 color: $secondary-color;
             }
         }
-
     }
-    &__title{
+
+    &__title {
         margin: 5px 0;
         color: #026670;
         font-size: 18px;
@@ -89,31 +102,30 @@
     }
 }
 
-
-.active-header-search-list{
-    visibility:visible;
+.active-header-search-list {
+    visibility: visible;
     opacity: 1;
-    transition: visibility,  opacity, 1s all;
+    transition: visibility, opacity, 1s all;
     z-index: 4;
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1200px) {}
 
-}
-
-@media (max-width: 992px){
-    .header-search-form{
-        &__wrapper{
-            &__button{
+@media (max-width: 992px) {
+    .header-search-form {
+        &__wrapper {
+            &__button {
                 width: 15px;
                 height: 15px;
                 top: 3px;
-                & img{
+
+                & img {
                     width: 15px;
                     height: 15px;
                 }
             }
-            &__search{
+
+            &__search {
                 @include input;
                 width: 270px;
                 height: 30px;
@@ -121,86 +133,102 @@
                 padding: 5px 25px 5px 7px;
                 font-size: 12px;
             }
-            &__list{
+
+            &__list {
                 width: 270px;
-                &__item{
+
+                &__item {
                     height: 45px;
                     display: flex;
                     justify-content: center;
                     padding: 5px 7px;
-                    &__img{
+
+                    &__img {
                         width: 33px;
                         height: 33px;
-                        & img{
+
+                        & img {
                             width: 33px;
                             height: 33px;
                         }
                     }
-                    &__name{
+
+                    &__name {
                         margin-left: 10px;
                         font-size: 15px;
                     }
                 }
             }
         }
-        &__title{
+
+        &__title {
             margin: 5px 0;
             font-size: 17px;
         }
     }
-
 }
 
-@media (max-width: 768px){
-    .header-search-form{
+@media (max-width: 768px) {
+    .header-search-form {
         width: 35px;
         height: 35px;
         margin: 0 8px 0 8px;
-        &__wrapper{
+
+        &__wrapper {
             width: 35px;
             height: 35px;
-            &__button{
+
+            &__button {
                 width: 35px;
                 height: 35px;
                 top: -1px;
-                & img{
+
+                & img {
                     width: 35px;
                     height: 35px;
                 }
             }
-            &__search{
+
+            &__search {
                 display: none;
             }
-            &__list{
+
+            &__list {
                 display: none;
             }
         }
-        &__title{
+
+        &__title {
             margin: 3px 0;
             font-size: 16px;
         }
     }
 }
 
-@media (max-width: 576px){
-    .header-search-form{
+@media (max-width: 576px) {
+    .header-search-form {
         margin: 0 10px 0 10px;
-        &__wrapper{
+
+        &__wrapper {
             width: 35px;
             height: 35px;
-            &__button{
+
+            &__button {
                 width: 35px;
                 height: 35px;
                 top: -1px;
-                & img{
+
+                & img {
                     width: 35px;
                     height: 35px;
                 }
             }
-            &__search{
+
+            &__search {
                 display: none;
             }
-            &__list{
+
+            &__list {
                 display: none;
             }
         }

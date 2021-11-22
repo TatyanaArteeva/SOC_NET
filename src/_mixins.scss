@@ -8,15 +8,18 @@
     color: $input-text;
     transition: 0.5s all;
     font-size: 13px;
+
     &:hover {
         border-color: white;
         box-shadow: 1px 1px 1px 1px $main-color;
     }
-    &:focus{
-        outline:none;
+
+    &:focus {
+        outline: none;
         border-color: white;
         box-shadow: 1px 1px 1px 1px $main-color;
     }
+
     &::placeholder {
         color: $main-color-light;
         opacity: 1;
@@ -28,8 +31,9 @@
     position: absolute;
     right: 20px;
     border-radius: 100%;
+
     & svg {
-         margin-top: 21.5px;
+        margin-top: 21.5px;
     }
 }
 
@@ -44,17 +48,19 @@
     background-color: $background-color;
     border: 2px solid $secondary-color;
     transition: 0.5s all;
-        &:hover{
-            background-color: $secondary-color-light;
-            transform: scale(1.1);
-        }
-        &:focus{
-            background-color: $secondary-color-light;
-            transform: scale(1.1);
-        }
+
+    &:hover {
+        background-color: $secondary-color-light;
+        transform: scale(1.1);
+    }
+
+    &:focus {
+        background-color: $secondary-color-light;
+        transform: scale(1.1);
+    }
 }
 
-@mixin backgroundModal{
+@mixin backgroundModal {
     display: block;
     position: fixed;
     width: 100%;
@@ -66,7 +72,7 @@
     transition: 1s all;
 }
 
-@mixin ModalWindow{
+@mixin ModalWindow {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -78,7 +84,7 @@
     z-index: 2;
 }
 
-@mixin btnMini{
+@mixin btnMini {
     width: 152px;
     height: 30px;
     border-radius: 10px;
@@ -88,38 +94,39 @@
     color: $input-text;
     font-size: 13px;
     font-weight: 500;
-    &:hover{
+
+    &:hover {
         border: 2px solid $secondary-color;
         background: $secondary-color-light;
         transform: scale(1.1);
     }
 
-    @media (max-width: 1200px){
+    @media (max-width: 1200px) {
         width: 120px;
         font-size: 10px;
     }
 
-    @media (max-width: 992px){
+    @media (max-width: 992px) {
         width: 152px;
         font-size: 13px;
     }
 
-    @media (max-width: 768px){
+    @media (max-width: 768px) {
         width: 152px;
         font-size: 13px;
     }
 
-    @media (max-width: 576px){
+    @media (max-width: 576px) {
         width: 115px;
         font-size: 10px;
         padding: 3px 3px;
     }
 
-    
+
 }
 
 
-@mixin inputMessage{
+@mixin inputMessage {
     resize: none;
     word-wrap: break-word;
     width: 595px;
@@ -132,20 +139,24 @@
     outline: none;
     font-size: 16px;
     scrollbar-color: rgba(254, 249, 199, .01) $main-color-light;
-    scrollbar-width: thin ; 
+    scrollbar-width: thin;
+
     &::-webkit-scrollbar {
         width: 5px;
         border-radius: 100%;
         background-color: rgba(254, 249, 199, .01);
     }
+
     &::-webkit-scrollbar-thumb {
         background-color: $main-color-light;
         border-radius: 4px;
         box-shadow: inset 1px 1px 3px $secondary-color-light;
     }
+
     &::-webkit-scrollbar-thumb:hover {
         background-color: $main-color;
     }
+
     &::placeholder {
         color: $main-color-light;
         opacity: 1;

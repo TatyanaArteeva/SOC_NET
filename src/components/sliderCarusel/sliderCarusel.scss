@@ -1,26 +1,28 @@
 @import '../../variables';
 @import '../../mixins';
 
-
-.profile-photos{
-    &__wrapper{
+.profile-photos {
+    &__wrapper {
         margin: 0 auto;
         margin-top: 60px;
         margin-bottom: 30px;
         width: 100%;
         padding: 0 15px;
     }
-    &__null{
+
+    &__null {
         width: 320px;
         height: 320px;
         margin: 0 auto;
-        & img{
+
+        & img {
             width: 320px;
             height: 320px;
         }
     }
-    &__btns{
-        &__add-photo{
+
+    &__btns {
+        &__add-photo {
             position: absolute;
             right: 0;
             top: 7px;
@@ -28,125 +30,160 @@
             border-radius: 6px;
             @include btnMini;
         }
-        &__remove-photo{
+
+        &__remove-photo {
             margin-top: 7px;
             margin-left: 15px;
             border-radius: 6px;
             @include btnMini;
         }
     }
-    &__modal{
-        &__actions-image{
+
+    &__modal {
+        &__actions-image {
             @include backgroundModal;
             z-index: 5;
-            &__invalid-file{
+
+            &__invalid-file {
                 height: 20px;
                 display: flex;
                 flex-direction: column;
-                align-items:center;
+                align-items: center;
                 text-align: center;
-                &__text{
+
+                &__text {
                     font-size: 12px;
                     font-weight: 500;
                 }
             }
-            &__window{
+
+            &__window {
                 @include ModalWindow;
                 width: 360px;
                 min-height: 120px;
-                &__cancel{
+
+                & ul {
+                    padding: 0;
+                }
+
+                &__cancel {
                     position: relative;
-                    & img{
+
+                    & img {
                         position: absolute;
                         left: 90%;
-                        &:hover{
+
+                        &:hover {
                             transform: rotate(30deg) scale(1.1);
                         }
                     }
                 }
-                &__input-file{
-                    &__input{
+
+                &__input-file {
+                    &__input {
                         opacity: 0;
                         visibility: hidden;
                         position: absolute;
                     }
                 }
-                &__wrapper{
-                    &__input-file{
+
+                &__wrapper {
+                    &__input-file {
                         width: 200px;
                         height: 35px;
                         background-color: $main-color-light;
                         border-radius: 10px;
                         position: relative;
                         margin: 10px auto;
-                        &__label{
+
+                        &__label {
                             padding: 5px 10px;
                             display: flex;
                             align-items: center;
                             margin-top: 25px;
-                            &_img{
+
+                            &_img {
                                 width: 30px;
                                 height: 30px;
                                 display: block;
-                                & img{
+
+                                & img {
                                     width: 20px;
                                     height: 20px;
                                     margin: 5px 3px;
                                 }
                             }
-                            &_name{
+
+                            &_name {
                                 display: block;
                                 margin-left: 15px;
                                 margin-bottom: 5px;
                                 color: $main-color;
                                 font-weight: 600;
                             }
-                            &_border{
+
+                            &_border {
                                 width: 1px;
                                 height: 25px;
                                 background-color: $background-color-modal;
                                 margin-left: 10px;
                                 margin-bottom: 5px;
                             }
-                            &:hover{
+
+                            &:hover {
                                 transform: scale(1.1);
                             }
                         }
-                        &__item{
+
+                        &__item {
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
                             font-size: 15px;
                             padding: 5px;
-                            & img{
+
+                            & img {
                                 width: 35px;
                                 height: 35px;
                                 padding: 6px;
                             }
-                            &:hover{
+
+                            & span {
+                                width: 300px;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
+
+                            &:hover {
                                 font-size: 16.5px;
-                                & img{
+
+                                & img {
                                     cursor: pointer;
                                     width: 35px;
                                     height: 35px;
                                     padding: 2px;
                                 }
                             }
-                            &:first-child{
+
+                            &:first-child {
                                 margin-top: 10px;
                             }
                         }
                     }
                 }
             }
-            &__text{
+
+            &__text {
                 text-align: center;
                 margin-top: 10px;
-                &_final{
+
+                &_final {
                     text-align: center;
                     margin-top: 60px;
                 }
-                &_warninig{
+
+                &_warninig {
                     text-align: center;
                     margin: 10px 0;
                     font-size: 17px;
@@ -154,37 +191,40 @@
                     color: $main-color;
                 }
             }
-            &__btns{
+
+            &__btns {
                 margin-top: 40px;
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-                &__item{
+
+                &__item {
                     @include btnMini;
                 }
             }
-            &__btn{
+
+            &__btn {
                 margin-top: 40px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                &__item{
+
+                &__item {
                     @include btnMini;
                 }
             }
         }
     }
-    &__spinner-wrapper{
+
+    &__spinner-wrapper {
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
     }
-    
 }
 
-
-.image-gallery-slide  {
+.image-gallery-slide {
     width: 100%;
     height: 330px;
 }
@@ -199,23 +239,24 @@
     width: 100%;
 }
 
-.fullscreen .image-gallery-slide  {
-    width: 100%;
-    height: 100%; 
-}
-
-
-.fullscreen .image-gallery-slide  img{
+.fullscreen .image-gallery-slide {
     width: 100%;
     height: 100%;
 }
 
-.image-gallery-thumbnail:focus,  .image-gallery-thumbnail:hover{
+
+.fullscreen .image-gallery-slide img {
+    width: 100%;
+    height: 100%;
+}
+
+.image-gallery-thumbnail:focus,
+.image-gallery-thumbnail:hover {
     border: 4px solid $main-color-light;
     border-radius: 10px;
 }
 
-.image-gallery-thumbnail.active{
+.image-gallery-thumbnail.active {
     border: 4px solid $main-color-light;
     border-radius: 10px;
 }
@@ -225,18 +266,20 @@
     object-fit: cover;
 }
 
-.image-gallery-svg{
+.image-gallery-svg {
     color: $main-color-light;
     z-index: 2;
 }
 
-.image-gallery-svg:hover, .image-gallery-svg:focus{
-    color:$main-color-light;
+.image-gallery-svg:hover,
+.image-gallery-svg:focus {
+    color: $main-color-light;
     z-index: 2;
 }
 
-.image-gallery-icon:hover, .image-gallery-icon:focus{
-    color:$main-color-light;
+.image-gallery-icon:hover,
+.image-gallery-icon:focus {
+    color: $main-color-light;
     z-index: 2;
 }
 
@@ -246,56 +289,66 @@
     top: -55px;
     border-radius: 5px;
     z-index: 2;
-    
+
 }
 
-@media (max-width: 1200px){
-    .profile-photos{
-        &__null{
+@media (max-width: 1200px) {
+    .profile-photos {
+        &__null {
             width: 280px;
             height: 280px;
             margin: 0 auto;
-            & img{
+
+            & img {
                 width: 280px;
                 height: 280px;
             }
         }
-        &__modal{
-            &__actions-image{
-                &__window{
+
+        &__modal {
+            &__actions-image {
+                &__window {
                     min-height: 120px;
-                    &__input-file{
-                        &__input{
+
+                    &__input-file {
+                        &__input {
                             opacity: 0;
                             visibility: hidden;
                             position: absolute;
                         }
                     }
-                    &__wrapper{
-                        &__input-file{
-                            &__item{
+
+                    &__wrapper {
+                        &__input-file {
+                            &__item {
                                 font-size: 15px;
-                                &:first-child{
+
+                                &:first-child {
                                     margin-top: 3px;
                                 }
                             }
                         }
                     }
                 }
-                &__text{
+
+                &__text {
                     text-align: center;
                     margin-top: 0;
-                    &_final{
+
+                    &_final {
                         margin-top: 30px;
                     }
-                    &_warninig{
+
+                    &_warninig {
                         font-size: 15px;
                     }
                 }
-                &__btns{
+
+                &__btns {
                     margin-top: 20px;
                 }
-                &__btn{
+
+                &__btn {
                     margin-top: 20px;
                 }
             }
@@ -303,139 +356,162 @@
     }
 }
 
-@media (max-width: 992px){}
+@media (max-width: 992px) {}
 
-@media (max-width: 768px){
-    .profile-photos{
-        &__null{
+@media (max-width: 768px) {
+    .profile-photos {
+        &__null {
             width: 200px;
             height: 200px;
             margin: 150px auto;
-            & img{
+
+            & img {
                 width: 200px;
                 height: 200px;
             }
         }
-        &__modal{
-            &__actions-image{
-                &__invalid-file{
-                    &__text{
+
+        &__modal {
+            &__actions-image {
+                &__invalid-file {
+                    &__text {
                         font-size: 11px;
                     }
                 }
-                &__window{
+
+                &__window {
                     @include ModalWindow;
                     width: 340px;
                     min-height: 120px;
                     padding: 10px 10px 15px 10px;
-                    &__input-file{
-                        &__input{
+
+                    &__input-file {
+                        &__input {
                             opacity: 0;
                             visibility: hidden;
                             position: absolute;
                         }
                     }
-                    &__wrapper{
-                        &__input-file{
+
+                    &__wrapper {
+                        &__input-file {
                             width: 200px;
                             height: 35px;
                             background-color: $main-color-light;
                             border-radius: 10px;
                             position: relative;
                             margin: 10px auto;
-                            &__label{
+
+                            &__label {
                                 padding: 5px 10px;
                                 display: flex;
                                 align-items: center;
                                 margin-top: 25px;
-                                &_img{
+
+                                &_img {
                                     width: 30px;
                                     height: 30px;
                                     display: block;
-                                    & img{
+
+                                    & img {
                                         width: 20px;
                                         height: 20px;
                                         margin: 5px 3px;
                                     }
                                 }
-                                &_name{
+
+                                &_name {
                                     display: block;
                                     margin-left: 15px;
                                     margin-bottom: 5px;
                                     color: $main-color;
                                     font-weight: 600;
                                 }
-                                &_border{
+
+                                &_border {
                                     width: 1px;
                                     height: 25px;
                                     background-color: $background-color-modal;
                                     margin-left: 10px;
                                     margin-bottom: 5px;
                                 }
-                                &:hover{
+
+                                &:hover {
                                     transform: scale(1.1);
                                 }
                             }
-                            &__item{
+
+                            &__item {
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
                                 font-size: 14px;
                                 padding: 3px;
-                                & img{
+
+                                & img {
                                     width: 30px;
                                     height: 30px;
                                     padding: 3px;
                                 }
-                                &:hover{
+
+                                &:hover {
                                     font-size: 16.5px;
-                                    & img{
+
+                                    & img {
                                         cursor: pointer;
                                         width: 35px;
                                         height: 35px;
                                         padding: 2px;
                                     }
                                 }
-                                &:first-child{
+
+                                &:first-child {
                                     margin-top: 0px;
                                 }
                             }
                         }
                     }
                 }
-                &__text{
+
+                &__text {
                     margin-top: 0px;
-                    &_final{
+
+                    &_final {
                         margin-top: 60px;
                         font-size: 14px;
                     }
-                    &_warninig{
+
+                    &_warninig {
                         margin: 5px 0;
                         font-size: 14px;
-                        
                     }
                 }
-                &__btns{
+
+                &__btns {
                     margin-top: 20px;
                     display: flex;
                     justify-content: space-around;
                     align-items: center;
-                    &__item{
+
+                    &__item {
                         @include btnMini;
                     }
                 }
-                &__btn{
+
+                &__btn {
                     margin-top: 20px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    &__item{
+
+                    &__item {
                         @include btnMini;
                     }
                 }
             }
         }
-        &__spinner-wrapper{
+
+        &__spinner-wrapper {
             width: 100%;
             height: 100%;
             display: flex;
@@ -444,78 +520,92 @@
     }
 }
 
-@media (max-width: 576px){
-    .profile-photos{
-        &__null{
+@media (max-width: 576px) {
+    .profile-photos {
+        &__null {
             width: 150px;
             height: 150px;
             margin: 150px auto;
-            & img{
+
+            & img {
                 width: 150px;
                 height: 150px;
             }
         }
-        &__modal{
-            &__actions-image{
+
+        &__modal {
+            &__actions-image {
                 @include backgroundModal;
                 z-index: 5;
-                &__invalid-file{
+
+                &__invalid-file {
                     height: 20px;
                     display: flex;
                     flex-direction: column;
-                    align-items:center;
+                    align-items: center;
                     text-align: center;
-                    &__text{
+
+                    &__text {
                         font-size: 11px;
                         font-weight: 500;
                     }
                 }
-                &__window{
+
+                &__window {
                     @include ModalWindow;
                     width: 250px;
                     min-height: 120px;
                     padding: 10px 3px 25px 3px;
-                    &__cancel{
+
+                    &__cancel {
                         position: relative;
-                        & img{
+
+                        & img {
                             position: absolute;
                             left: 87%;
-                            &:hover{
+
+                            &:hover {
                                 transform: rotate(30deg) scale(1.1);
                             }
                         }
                     }
-                    &__input-file{
-                        &__input{
+
+                    &__input-file {
+                        &__input {
                             opacity: 0;
                             visibility: hidden;
                             position: absolute;
                         }
                     }
-                    &__wrapper{
-                        &__input-file{
+
+                    &__wrapper {
+                        &__input-file {
                             width: 153px;
                             height: 30px;
                             margin: 10px auto;
                             background-color: $main-color-light;
                             border-radius: 10px;
                             position: relative;
-                            &__label{
+
+                            &__label {
                                 padding: 5px 7px;
                                 display: flex;
                                 align-items: center;
                                 margin-top: 15px;
-                                &_img{
+
+                                &_img {
                                     width: 17px;
                                     height: 17px;
                                     display: block;
-                                    & img{
+
+                                    & img {
                                         width: 17px;
                                         height: 17px;
                                         margin: -6px -2px 5px 3px;
                                     }
                                 }
-                                &_name{
+
+                                &_name {
                                     display: block;
                                     margin-left: 10px;
                                     margin-bottom: 7px;
@@ -523,52 +613,62 @@
                                     font-weight: 600;
                                     font-size: 13px;
                                 }
-                                &_border{
+
+                                &_border {
                                     width: 1px;
                                     height: 20px;
                                     background-color: $background-color-modal;
                                     margin-left: 10px;
                                     margin-bottom: 2px;
                                 }
-                                &:hover{
+
+                                &:hover {
                                     transform: scale(1.1);
                                 }
                             }
-                            &__item{
+
+                            &__item {
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
                                 font-size: 13px;
                                 padding: 3px;
-                                & img{
+
+                                & img {
                                     width: 25px;
                                     height: 25px;
                                     padding: 6px;
                                 }
-                                &:hover{
+
+                                &:hover {
                                     font-size: 13.5px;
-                                    & img{
+
+                                    & img {
                                         cursor: pointer;
                                         width: 25px;
                                         height: 25px;
                                     }
                                 }
-                                &:first-child{
+
+                                &:first-child {
                                     margin-top: 3px;
                                 }
                             }
                         }
                     }
                 }
-                &__text{
+
+                &__text {
                     text-align: center;
                     margin-top: 10px;
                     font-size: 13px;
-                    &_final{
+
+                    &_final {
                         text-align: center;
                         margin-top: 45px;
                     }
-                    &_warninig{
+
+                    &_warninig {
                         text-align: center;
                         margin: 10px 0;
                         font-size: 13px;
@@ -576,32 +676,33 @@
                         color: $main-color;
                     }
                 }
-                &__btns{
+
+                &__btns {
                     margin-top: 40px;
                     display: flex;
                     justify-content: space-around;
                     align-items: center;
-                    &__item{
+
+                    &__item {
                         @include btnMini;
                     }
                 }
-                &__btn{
+
+                &__btn {
                     margin-top: 20px;
                 }
             }
         }
-        &__spinner-wrapper{
+
+        &__spinner-wrapper {
             width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
         }
-        
     }
 
     .image-gallery-index {
         right: 59%;
     }
 }
-
-

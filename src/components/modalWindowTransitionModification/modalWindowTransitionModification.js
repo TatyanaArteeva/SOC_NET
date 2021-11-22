@@ -1,21 +1,29 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {actionTransitionModification} from '../../actions';
+import { actionTransitionModification } from '../../actions';
 import './modalWindowTransitionModification.scss';
 
-class ModalWindowTransitionModification extends Component{
-   
-    render(){
-        let classModal="transition";
-        return(
+class ModalWindowTransitionModification extends Component {
+    render() {
+        let classModal = "transition";
+
+        const { actionTransitionModification, title } = this.props;
+
+        return (
             <div className={classModal}>
                 <div className="transition__modal">
                     <div className="transition__modal__text">
-                        {this.props.title}
+                        {title}
                     </div>
                     <div className="transition__modal__wrapper">
-                        <button className="transition__modal__btn" onClick={()=>this.props.actionTransitionModification(true)}>Да</button>
-                        <button className="transition__modal__btn" onClick={()=>this.props.actionTransitionModification(false)}>Нет</button>
+                        <button className="transition__modal__btn"
+                            onClick={() => actionTransitionModification(true)}>
+                            Да
+                        </button>
+                        <button className="transition__modal__btn"
+                            onClick={() => actionTransitionModification(false)}>
+                            Нет
+                        </button>
                     </div>
                 </div>
             </div>
@@ -23,14 +31,12 @@ class ModalWindowTransitionModification extends Component{
     }
 }
 
-const mapStateToProps=(state)=>{
-    return{
-
-    }
+const mapStateToProps = (state) => {
+    return {}
 }
 
 const mapDispatchToProps = {
     actionTransitionModification
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalWindowTransitionModification);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalWindowTransitionModification)

@@ -1,0 +1,87 @@
+@import '../../variables';
+@import '../../mixins';
+
+.drop-down-menu {
+    background-color: $background-color-modal;
+    box-shadow: 1px 2px 4px 1px $background-color-modal-shadow;
+    border-radius: 7px;
+    top: 53px;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    padding: 0px 15px;
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 3;
+
+    &__menu {
+        display: flex;
+        justify-content: space-between;
+
+        &__wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+
+            &:hover {
+                .header__menu__item__count_notifications {
+                    font-size: 20px;
+                }
+
+                .header__menu__item__count {
+                    font-size: 20px;
+                }
+
+                .header__menu__item__label {
+                    visibility: visible;
+                }
+
+                .header__menu__item__label_last {
+                    visibility: visible;
+                }
+
+                .header__menu__item {
+                    width: 35px;
+                    height: 35px;
+                    padding: 0;
+                }
+            }
+        }
+
+        &__item {
+            width: 35px;
+            height: 35px;
+            padding: 0 5px 0 5px;
+            margin: 0 5px 0 5px;
+
+            &__label {
+                position: absolute;
+                visibility: hidden;
+                padding: 3px 3px 3px 3px;
+                color: #026670;
+                font-size: 13px;
+                font-weight: 100;
+                transform: translate(0, 100%);
+                margin-top: 14px;
+                z-index: 3;
+                margin-left: 27px;
+                background-color: rgba(137, 216, 194, 0.1);
+                border-radius: 0 7px 7px 7px;
+                border: 1px solid rgba(137, 216, 194, 0.6);
+            }
+
+            &__count {
+                color: $main-color;
+                position: absolute;
+                margin-left: 30px;
+                padding: 0px 0 20px 5px;
+                margin-top: -5px;
+                font-size: 18px;
+                font-weight: 800;
+                z-index: 1;
+            }
+        }
+    }
+}
