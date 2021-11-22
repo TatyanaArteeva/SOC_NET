@@ -1,71 +1,72 @@
 @import '../../variables';
 @import '../../mixins';
 
-.registration-window{
+.registration-window {
     &__modal {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        &__title{
+
+        &__title {
             text-align: center;
             color: $input-text;
             margin-bottom: 15px;
         }
-        &_wrapper-password{
-            display:flex;
+
+        &_wrapper-password {
+            display: flex;
         }
-        &__input{
+
+        &__input {
             @include input;
-            &_password{
+
+            &_password {
                 @include input;
                 padding: 3px 46px 3px 10px;
             }
-            &_show{
+
+            &_show {
                 @include inputShowPassword;
             }
         }
-        &__btn{
-           @include inputButton;
-           margin-top: 15px;
+
+        &__btn {
+            @include inputButton;
+            margin-top: 15px;
         }
     }
 }
 
+@media (max-width: 1200px) {}
 
-@media (max-width: 1200px){
+@media (max-width: 992px) {}
 
-}
+@media (max-width: 768px) {}
 
-@media (max-width: 992px){
+@media (max-width: 576px) {
 
-} 
-
-@media (max-width: 768px){
-
-}
-
-@media (max-width: 576px){
-
-    .registration-window{
+    .registration-window {
         &__modal {
             width: 300px;
             padding: 5px;
-            &__input{
+
+            &__input {
                 @include input;
                 width: 280px;
-                &_password{
+
+                &_password {
                     @include input;
                     width: 280px;
                     padding: 3px 46px 3px 10px;
                 }
             }
-            &__btn{
-               @include inputButton;
-               margin-top: 15px;
-               width: 95%;
+
+            &__btn {
+                @include inputButton;
+                margin-top: 15px;
+                width: 95%;
             }
         }
     }
-
 }

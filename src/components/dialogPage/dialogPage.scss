@@ -1,0 +1,562 @@
+@import '../../variables';
+@import '../../mixins';
+
+.dialog {
+    width: 100%;
+    margin-top: 7px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    & a {
+        text-decoration: none;
+    }
+
+    &__form-message {
+        @include input;
+        width: 70%;
+        height: 120px;
+        padding: 20px 33px 20px 0;
+        box-shadow: 1px 1px 1px 1px $main-color-light;
+        border: none;
+        position: relative;
+        background-color: white;
+        margin: 0 auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+
+        &:hover {
+            border-color: rgba(254, 249, 199, .01);
+            box-shadow: 2px 2px 2px 2px $main-color;
+        }
+
+        &:focus {
+            border-color: rgba(254, 249, 199, .01);
+            box-shadow: 2px 2px 2px 2px $main-color;
+        }
+
+        &_input {
+            @include inputMessage;
+            width: 95%;
+        }
+
+        &_send {
+            width: 35px;
+            height: 37px;
+            position: absolute;
+            right: 5px;
+            bottom: 0px;
+            transition: 1s all;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                right: 1px;
+                bottom: 0;
+            }
+
+            &:hover {
+                transform: scale(1.2);
+                cursor: pointer;
+            }
+        }
+
+        &_text {
+            @include input;
+            width: 70%;
+            height: 120px;
+            padding: 20px;
+            box-shadow: 1px 1px 1px 1px $main-color-light;
+            border: none;
+            position: relative;
+            background-color: white;
+            margin: 0 auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+
+            & span {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 15px;
+                color: $main-color;
+            }
+        }
+    }
+
+    &__header {
+        width: 70%;
+        margin: 7px auto;
+        display: flex;
+        justify-content: center;
+        background-color: $background-color-modal;
+        border-radius: 10px;
+
+        &__content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0 15px;
+
+            &__wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &_img {
+                width: 35px;
+                height: 35px;
+                object-fit: cover;
+                border-radius: 100%;
+                margin: 4px 0;
+                box-shadow: 1px 1px 1px 1px $background-color-modal-shadow;
+            }
+
+            &_name {
+                text-align: center;
+                color: $main-color;
+                font-weight: 600;
+                font-size: 19px;
+                margin-left: 15px;
+            }
+        }
+    }
+
+    &__list {
+        width: 70%;
+        height: 410px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: -1px 1px 1px 1px $secondary-color-light;
+
+        &__wrapper {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 10px;
+            overflow-y: scroll;
+            scrollbar-color: rgba(254, 249, 199, .01) $main-color-light;
+            scrollbar-width: thin;
+
+            &::-webkit-scrollbar {
+                width: 7px;
+                border-radius: 10%;
+                background-color: rgba(254, 249, 199, .01);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: $main-color-light;
+                border-radius: 4px;
+                box-shadow: inset 1px 1px 3px $secondary-color-light;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: $main-color;
+            }
+
+            &__list {
+                width: 100%;
+                height: 400px;
+                padding: 0;
+
+                &__friend {
+                    background-color: rgba(253, 234, 168, .3);
+                    list-style-type: none;
+                    text-align: start;
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                    margin-left: 5px;
+                    margin-top: 5px;
+                    border-radius: 10px;
+                    padding: 15px;
+
+                    &_name {
+                        color: $secondary-color;
+                        font-weight: 600;
+                        font-size: 17px;
+                    }
+                }
+
+                &__user {
+                    background-color: rgba(137, 216, 194, .1);
+                    list-style-type: none;
+                    text-align: start;
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    margin-left: 50%;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                    margin-right: 5px;
+                    margin-top: 5px;
+                    border-radius: 10px;
+                    padding: 15px;
+
+                    &_name {
+                        color: $main-color;
+                        font-weight: 600;
+                        font-size: 17px;
+                    }
+                }
+
+                &__content {
+                    &_time {
+                        color: $background-color-modal-shadow;
+                        font-size: 8px;
+                        display: block;
+                        width: 100%;
+                        text-align: end;
+                        margin-top: 10px;
+                    }
+
+                    &_message {
+                        font-size: 14px;
+                        font-weight: 500;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .dialog {
+        &__form-message {
+            @include input;
+            width: 70%;
+            height: 120px;
+
+            &_input {
+                @include inputMessage;
+                width: 95%;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .dialog {
+        width: 100%;
+        margin-top: 7px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        & a {
+            text-decoration: none;
+        }
+
+        &__form-message {
+            @include input;
+            width: 70%;
+            height: 100px;
+            padding: 20px 33px 20px 0;
+
+            &_input {
+                @include inputMessage;
+                width: 95%;
+                font-size: 15px;
+            }
+
+            &_send {
+                width: 32px;
+                height: 35px;
+            }
+        }
+
+        &__header {
+            &__content {
+                width: 100%;
+
+                &__wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                &_img {
+                    width: 33px;
+                    height: 33px;
+                }
+
+                &_name {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        &__list {
+            width: 70%;
+            height: 410px;
+
+            &__wrapper {
+                width: 100%;
+                height: 400px;
+
+                &__list {
+                    width: 100%;
+                    height: 400px;
+                    padding: 0;
+
+                    &__friend {
+                        width: 50%;
+                        padding: 10px;
+
+                        &_name {
+                            font-size: 16px;
+                        }
+                    }
+
+                    &__user {
+                        width: 50%;
+                        padding: 10px;
+
+                        &_name {
+                            font-size: 16px;
+                        }
+                    }
+
+                    &__content {
+                        &_time {
+                            margin-top: 5px;
+                        }
+
+                        &_message {
+                            margin-top: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .dialog {
+        width: 100%;
+        margin-top: 7px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        & a {
+            text-decoration: none;
+        }
+
+        &__form-message {
+            @include input;
+            width: 90%;
+            height: 100px;
+            padding: 20px 33px 20px 0;
+            margin-top: 5px;
+
+            &_input {
+                @include inputMessage;
+                width: 95%;
+                font-size: 15px;
+            }
+
+            &_send {
+                width: 32px;
+                height: 35px;
+            }
+        }
+
+        &__header {
+            width: 90%;
+
+            &__content {
+                width: 100%;
+
+                &__wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                &_img {
+                    width: 33px;
+                    height: 33px;
+                }
+
+                &_name {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        &__list {
+            width: 90%;
+            height: 300px;
+
+            &__wrapper {
+                width: 100%;
+                height: 290px;
+
+                &__list {
+                    width: 100%;
+                    height: 400px;
+                    padding: 0;
+
+                    &__friend {
+                        width: 50%;
+                        padding: 10px;
+
+                        &_name {
+                            font-size: 15px;
+                        }
+                    }
+
+                    &__user {
+                        width: 50%;
+                        padding: 10px;
+
+                        &_name {
+                            font-size: 15px;
+                        }
+                    }
+
+                    &__content {
+                        &_time {
+                            margin-top: 5px;
+                            font-size: 7px;
+                        }
+
+                        &_message {
+                            margin-top: 5px;
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .dialog {
+        width: 100%;
+        margin-top: 7px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        & a {
+            text-decoration: none;
+        }
+
+        &__form-message {
+            @include input;
+            width: 90%;
+            height: 100px;
+            padding: 20px 33px 20px 0;
+            margin-top: 5px;
+
+            &_input {
+                @include inputMessage;
+                width: 95%;
+                font-size: 13px;
+            }
+
+            &_send {
+                width: 30px;
+                height: 33px;
+            }
+
+            &_text {
+                font-size: 12px;
+            }
+        }
+
+        &__header {
+            width: 90%;
+
+            &__content {
+                width: 100%;
+
+                &__wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                &_img {
+                    width: 30px;
+                    height: 30px;
+                }
+
+                &_name {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        &__list {
+            width: 90%;
+            height: 300px;
+
+            &__wrapper {
+                width: 100%;
+                height: 290px;
+
+                &__list {
+                    width: 100%;
+                    height: 400px;
+                    padding: 0;
+
+                    &__friend {
+                        width: 70%;
+                        padding: 10px;
+
+                        &_name {
+                            font-size: 14px;
+                        }
+                    }
+
+                    &__user {
+                        width: 70%;
+                        padding: 7px;
+                        margin-left: 30%;
+
+                        &_name {
+                            font-size: 14px;
+                        }
+                    }
+
+                    &__content {
+                        &_time {
+                            margin-top: 3px;
+                            font-size: 7px;
+                        }
+
+                        &_message {
+                            margin-top: 3px;
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

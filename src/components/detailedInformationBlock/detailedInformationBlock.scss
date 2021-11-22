@@ -1,18 +1,24 @@
 @import '../../variables';
 @import '../../mixins';
 
-.profile-information-detailed{
+.profile-information-detailed {
     margin: 7px 15px 0 0;
     min-height: 100px;
     width: 100%;
-    &__content{
+
+    & a {
+        text-decoration: none;
+    }
+
+    &__content {
         width: 100%;
         font-size: 17px;
         font-weight: 600;
         color: $main-color;
         display: flex;
         justify-content: flex-start;
-        & span{
+
+        & span {
             color: $input-text;
             font-weight: 500;
             word-wrap: break-word;
@@ -20,7 +26,8 @@
             width: 420px;
             margin: 5px 0;
         }
-        &__name{
+
+        &__name {
             width: 220px;
             height: 20px;
             margin: 5px 0;
@@ -28,7 +35,8 @@
             font-weight: 500;
             color: $main-color;
         }
-        &_null{
+
+        &_null {
             margin: 15px 15px 15px 15px;
             width: 640px;
             overflow: hidden;
@@ -38,86 +46,111 @@
             font-weight: 600;
             color: $input-text;
         }
-        &__wrapper{
+
+        &__wrapper {
             margin: 15px 15px 15px 15px;
             width: 640px;
             overflow: hidden;
         }
+
+        &__partner {
+            color: $main-color;
+            font-weight: 500;
+            display: inline;
+
+            &:hover {
+                font-weight: 600;
+            }
+        }
     }
 }
 
-@media (max-width: 1200px){
-    .profile-information-detailed{
-        &__content{
+@media (max-width: 1200px) {
+    .profile-information-detailed {
+        &__content {
             font-size: 14px;
-            & span{
+
+            & span {
                 width: 338px;
             }
-            &__name{
+
+            &__name {
                 width: 215px;
             }
-            &_null{
+
+            &_null {
                 width: 553px;
                 font-size: 14px;
             }
-            &__wrapper{
+
+            &__wrapper {
                 width: 553px;
             }
         }
     }
 }
 
-@media (max-width: 992px){
-    .profile-information-detailed{
-        &__content{
+@media (max-width: 992px) {
+    .profile-information-detailed {
+        &__content {
             font-size: 17px;
-            & span{
+
+            & span {
                 width: 468px;
             }
-            &__name{
+
+            &__name {
                 width: 220px;
             }
-            &_null{
+
+            &_null {
                 width: 683px;
                 font-size: 17px;
             }
-            &__wrapper{
+
+            &__wrapper {
                 width: 683px;
             }
         }
     }
 }
 
-@media (max-width: 768px){
-    .profile-information-detailed{
-        &__content{
+@media (max-width: 768px) {
+    .profile-information-detailed {
+        &__content {
             font-size: 14px;
-            & span{
+
+            & span {
                 width: 276px;
             }
-            &__name{
+
+            &__name {
                 width: 215px;
             }
-            &_null{
+
+            &_null {
                 width: 491px;
                 font-size: 14px;
             }
-            &__wrapper{
+
+            &__wrapper {
                 width: 491px;
             }
         }
     }
 }
 
-@media (max-width: 576px){
-    .profile-information-detailed{
+@media (max-width: 576px) {
+    .profile-information-detailed {
         margin: 7px 10px 0 0;
         min-height: 100px;
         width: 100%;
-        &__content{
+
+        &__content {
             width: 100%;
             font-size: 12px;
-            & span{
+
+            & span {
                 color: $input-text;
                 font-weight: 500;
                 word-wrap: break-word;
@@ -125,13 +158,15 @@
                 width: 175px;
                 margin: 5px 0;
             }
-            &__name{
+
+            &__name {
                 width: 90px;
                 height: auto;
                 margin: 3px 0;
                 font-size: 12px;
             }
-            &_null{
+
+            &_null {
                 margin: 15px 15px 15px 15px;
                 width: 250px;
                 overflow: hidden;
@@ -141,7 +176,8 @@
                 font-weight: 600;
                 color: $input-text;
             }
-            &__wrapper{
+
+            &__wrapper {
                 margin: 10px 5px 10px 5px;
                 width: 260px;
                 overflow: hidden;

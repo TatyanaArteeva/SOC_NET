@@ -1,7 +1,7 @@
 @import '../../variables';
 @import '../../mixins';
 
-.activeList{
+.activeList {
     position: absolute;
     width: 320px;
     height: 150px;
@@ -12,30 +12,31 @@
     margin-top: 3px;
     margin-left: 10px;
     padding: 15px 10px 0px 15px;
-    visibility:visible;
+    visibility: visible;
     opacity: 1;
-    transition: visibility,  opacity, 1s all;
+    transition: visibility, opacity, 1s all;
     z-index: 2;
     scrollbar-color: $background-color $main-color-light;
-    scrollbar-width: thin ; 
+    scrollbar-width: thin;
+
     &::-webkit-scrollbar {
         width: 5px;
         border-radius: 100%;
         background-color: $background-color;
     }
+
     &::-webkit-scrollbar-thumb {
         background-color: $main-color-light;
         border-radius: 4px;
         box-shadow: inset 1px 1px 3px $secondary-color-light;
     }
+
     &::-webkit-scrollbar-thumb:hover {
         background-color: $main-color;
     }
 }
 
-
-
-.modification-account{
+.modification-account {
     margin: 7px auto;
     display: flex;
     flex-direction: column;
@@ -44,23 +45,29 @@
     width: 55%;
     box-shadow: -1px 1px 1px 1px $secondary-color-light;
     border-radius: 20px;
-    &__wrapper{
+
+    &__wrapper {
         margin: 10px 0;
     }
-    &__wrapper-description{
+
+    &__wrapper-description {
         display: flex;
     }
-    &__wrapper-sex{
+
+    &__wrapper-sex {
         display: inline-block;
-	    margin-right: 1px;
-        &_input-radio{
+        margin-right: 1px;
+
+        &_input-radio {
             opacity: 0;
-            visibility:hidden;
-            &:checked + label{
+            visibility: hidden;
+
+            &:checked+label {
                 background: $main-color-light;
             }
         }
-        &_label{
+
+        &_label {
             display: inline-block;
             cursor: pointer;
             padding: 5px 7px;
@@ -68,23 +75,26 @@
             border-radius: 8px;
             color: $input-text;
             transition: 0.5s transform;
-            &:hover{
+
+            &:hover {
                 transform: scale(1.1);
             }
         }
     }
-    &__wrapper-family{
+
+    &__wrapper-family {
         display: flex;
         align-items: center;
-        &__wrapper-list{
+
+        &__wrapper-list {
             display: flex;
             flex-direction: column;
             padding-left: 10px;
             position: relative;
         }
-        
     }
-    &__label{
+
+    &__label {
         margin: 10px;
         color: $main-color;
         font-size: 17px;
@@ -92,48 +102,57 @@
         display: inline-block;
         width: 250px;
         text-align: end;
-        &_input{
+
+        &_input {
             @include input;
             margin-left: 10px;
             margin-top: 0;
         }
-        &_input-description{
+
+        &_input-description {
             @include input;
             height: 100px;
             margin-left: 10px;
             margin-top: 0;
             resize: none;
             scrollbar-color: $background-color $main-color-light;
-            scrollbar-width: thin ; 
+            scrollbar-width: thin;
+
             &::-webkit-scrollbar {
                 width: 5px;
                 border-radius: 100%;
                 background-color: $background-color;
             }
+
             &::-webkit-scrollbar-thumb {
                 background-color: $main-color-light;
                 border-radius: 4px;
                 box-shadow: inset 1px 1px 3px $secondary-color-light;
             }
+
             &::-webkit-scrollbar-thumb:hover {
                 background-color: $main-color;
             }
         }
     }
-    &__title{
+
+    &__title {
         margin: 5px 0 15px 0;
         width: 100%;
         text-align: center;
         font-weight: 600;
     }
-    &__submit{
+
+    &__submit {
         @include inputButton;
         width: 90%;
         margin: 20px auto;
     }
-    &__family{
+
+    &__family {
         position: relative;
-        &__btn{
+
+        &__btn {
             width: 320px;
             height: 45px;
             border-radius: 8px;
@@ -141,15 +160,16 @@
             border-top: 2px solid $main-color;
             border-left: 2px solid $main-color;
             margin: 10px 10px 10px 0;
-            background-color: white; 
-            background-image: url('./down.svg'); 
+            background-color: white;
+            background-image: url('./down.svg');
             background-repeat: no-repeat, repeat;
             background-position: right .7em top 50%, 0 0;
-            background-size: .65em auto, 100%; 
+            background-size: .65em auto, 100%;
             text-align: center;
-            padding-top: 12px;
+            padding-top: 10px;
             transition: .5s all;
             font-weight: 600;
+
             &:hover {
                 border-top: 2px solid $background-color-modal-shadow;
                 border-left: 2px solid $background-color-modal-shadow;
@@ -157,8 +177,9 @@
                 border-bottom: 1px solid $background-color;
                 box-shadow: 1px 1px 1px 1px $main-color;
             }
-            &:focus{
-                outline:none;
+
+            &:focus {
+                outline: none;
                 border-top: 2px solid $background-color-modal-shadow;
                 border-left: 2px solid $background-color-modal-shadow;
                 border-right: 1px solid $background-color;
@@ -166,25 +187,30 @@
                 box-shadow: 1px 1px 1px 1px $main-color;
             }
         }
-        &__list{
+
+        &__list {
             display: none;
         }
-        &__item{
+
+        &__item {
             text-align: center;
             padding: 10px;
             font-size: 17px;
             font-weight: 500;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
                 background-color: $main-color-light;
                 border-radius: 8px;
             }
         }
-        &__selection-partner{
-            &__wrapper{
+
+        &__selection-partner {
+            &__wrapper {
                 width: 100%;
             }
-            &__btn{
+
+            &__btn {
                 display: inline-block;
                 cursor: pointer;
                 padding: 5px 15px;
@@ -194,22 +220,26 @@
                 transition: 0.5s transform;
                 font-size: 17px;
                 font-weight: 600;
-                background-color:$background-color;
+                background-color: $background-color;
                 margin: 10px;
-                &:hover{
+
+                &:hover {
                     transform: scale(1.05);
                 }
             }
-            &__input{
+
+            &__input {
                 @include input;
                 margin-left: 10px;
             }
-            &__modification{
-                &__wrapper{
-                    &__select-partner{
+
+            &__modification {
+                &__wrapper {
+                    &__select-partner {
                         position: relative;
                         display: flex;
-                        &__list{
+
+                        &__list {
                             position: absolute;
                             width: 320px;
                             height: 150px;
@@ -225,43 +255,51 @@
                             transition: visibility, opacity, 1s all;
                             z-index: 2;
                             scrollbar-color: $background-color $main-color-light;
-                            scrollbar-width: thin ; 
+                            scrollbar-width: thin;
+
                             &::-webkit-scrollbar {
                                 width: 5px;
                                 border-radius: 100%;
                                 background-color: $background-color;
                             }
+
                             &::-webkit-scrollbar-thumb {
                                 background-color: $main-color-light;
                                 border-radius: 4px;
                                 box-shadow: inset 1px 1px 3px $secondary-color-light;
                             }
+
                             &::-webkit-scrollbar-thumb:hover {
                                 background-color: $main-color;
                             }
-                            &__item{
-                                padding: 5px ;
+
+                            &__item {
+                                padding: 5px;
                                 display: flex;
                                 justify-content: flex-start;
                                 align-items: center;
-                                &:hover{
-                                    background-color:$main-color-light;
+
+                                &:hover {
+                                    background-color: $main-color-light;
                                     border-radius: 8px;
                                     cursor: pointer;
                                 }
-                                &_name{
+
+                                &_name {
                                     margin-left: 5px;
                                     font-size: 17px;
                                     font-weight: 500;
                                 }
-                                &_img{
+
+                                &_img {
                                     width: 30px;
                                     height: 30px;
                                     object-fit: cover;
                                     border-radius: 100%;
                                     margin-right: 10px;
                                 }
-                                &_null{
+
+                                &_null {
                                     text-align: center;
                                     font-size: 17px;
                                     font-weight: 600;
@@ -269,22 +307,26 @@
                                 }
                             }
                         }
-                        &__select{
-                            color:$main-color;
+
+                        &__select {
+                            color: $main-color;
                             font-size: 17px;
                             font-weight: 600;
                             display: flex;
-                            & span{
+                            align-items: center;
+
+                            & span {
                                 margin: 10px;
                                 width: 320px;
-                                & span{
+
+                                & span {
                                     position: relative;
                                     margin: 0;
                                     color: $input-text;
                                     font-size: 17px;
                                     font-weight: 500;
                                     background-color: rgba(137, 216, 194, .3);
-                                    padding:10px;
+                                    padding: 10px;
                                     border-radius: 10px;
                                     padding-right: 35px;
                                     max-width: 100%;
@@ -292,6 +334,7 @@
                                     overflow: hidden;
                                     white-space: nowrap;
                                     text-overflow: ellipsis;
+
                                     & img {
                                         width: 20px;
                                         height: 20px;
@@ -299,15 +342,16 @@
                                         bottom: 10px;
                                         left: 90%;
                                         transition: .5s all;
-                                        &:hover{
+
+                                        &:hover {
                                             cursor: pointer;
                                             transform: scale(1.4);
                                         }
                                     }
                                 }
-                                
                             }
-                            &__warning{
+
+                            &__warning {
                                 display: inline-block;
                                 color: black;
                                 font-weight: 500;
@@ -317,13 +361,12 @@
                         }
                     }
                 }
-                
             }
         }
     }
 }
 
-.activeListFamily{
+.activeListFamily {
     display: block;
     position: absolute;
     background-color: $background-color;
@@ -339,8 +382,8 @@
     border: none;
 }
 
-@media (max-width: 1200px){
-    .activeList{
+@media (max-width: 1200px) {
+    .activeList {
         position: absolute;
         width: 300px;
         height: 150px;
@@ -351,155 +394,179 @@
         margin-top: 3px;
         margin-left: 0;
         padding: 15px 10px 0px 15px;
-        visibility:visible;
+        visibility: visible;
         opacity: 1;
-        transition: visibility,  opacity, 1s all;
+        transition: visibility, opacity, 1s all;
         z-index: 2;
         scrollbar-color: $background-color $main-color-light;
-        scrollbar-width: thin ; 
+        scrollbar-width: thin;
+
         &::-webkit-scrollbar {
             width: 5px;
             border-radius: 100%;
             background-color: $background-color;
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: $main-color-light;
             border-radius: 4px;
             box-shadow: inset 1px 1px 3px $secondary-color-light;
         }
+
         &::-webkit-scrollbar-thumb:hover {
             background-color: $main-color;
         }
     }
-    
-    
-    
-    .modification-account{
-        &__wrapper{
+
+
+
+    .modification-account {
+        &__wrapper {
             margin: 10px 0;
         }
-        &__wrapper-description{
+
+        &__wrapper-description {
             display: flex;
         }
-        &__wrapper-sex{
+
+        &__wrapper-sex {
             display: inline-block;
             margin-right: 1px;
-            &_input-radio{
+
+            &_input-radio {
                 opacity: 0;
-                visibility:hidden;
+                visibility: hidden;
                 width: 0;
-                &:checked + label{
+
+                &:checked+label {
                     background: $main-color-light;
                 }
             }
-            &_label{
+
+            &_label {
                 padding: 4px 3px;
                 margin: 0px 5px;
-                &:hover{
+
+                &:hover {
                     transform: scale(1.0);
                 }
             }
         }
-        &__wrapper-family{
+
+        &__wrapper-family {
             display: flex;
             align-items: center;
-            &__wrapper-list{
+
+            &__wrapper-list {
                 display: flex;
                 flex-direction: column;
                 padding-left: 0;
                 position: relative;
             }
-            
         }
-        &__label{
+
+        &__label {
             width: 220px;
-            &_input{
+
+            &_input {
                 @include input;
                 width: 300px;
                 margin-left: 0;
                 margin-top: 0;
             }
-            &_input-description{
+
+            &_input-description {
                 @include input;
                 width: 300px;
                 height: 100px;
                 margin-left: 0;
             }
         }
-        &__title{
+
+        &__title {
             font-size: 25px;
         }
-        &__family{
+
+        &__family {
             position: relative;
-            &__btn{
+
+            &__btn {
                 width: 300px;
                 height: 45px;
             }
-            &__list{
+
+            &__list {
                 display: none;
             }
-            &__item{
+
+            &__item {
                 text-align: center;
                 padding: 10px;
                 font-size: 17px;
                 font-weight: 500;
-                &:hover{
+
+                &:hover {
                     cursor: pointer;
                     background-color: $main-color-light;
                     border-radius: 8px;
                 }
             }
-            &__selection-partner{
-                &__wrapper{
+
+            &__selection-partner {
+                &__wrapper {
                     width: 100%;
                 }
-                &__btn{
+
+                &__btn {
                     padding: 5px 15px;
                     font-size: 17px;
                     margin: 10px;
-                    &:hover{
+
+                    &:hover {
                         transform: scale(1.0);
                     }
                 }
-                &__input{
+
+                &__input {
                     @include input;
                     width: 300px;
                     margin-left: 0;
                 }
-                &__modification{
-                    &__wrapper{
-                        &__select-partner{
+
+                &__modification {
+                    &__wrapper {
+                        &__select-partner {
                             position: relative;
                             display: flex;
-                            &__list{
+
+                            &__list {
                                 width: 300px;
                                 height: 150px;
                                 margin-top: 3px;
                                 margin-left: 0;
                                 padding: 15px 10px 0px 15px;
                             }
-                            &__select{
-                                & span{
+
+                            &__select {
+                                & span {
                                     margin: 10px 0;
                                     width: 300px;
                                 }
                             }
                         }
                     }
-                    
                 }
             }
         }
     }
-    
-    .activeListFamily{
+
+    .activeListFamily {
         width: 300px;
     }
 }
 
-
-@media (max-width: 992px){
-    .activeList{
+@media (max-width: 992px) {
+    .activeList {
         position: absolute;
         width: 300px;
         height: 150px;
@@ -510,46 +577,50 @@
         margin-top: 3px;
         margin-left: 0;
         padding: 15px 10px 0px 15px;
-        visibility:visible;
+        visibility: visible;
         opacity: 1;
-        transition: visibility,  opacity, 1s all;
+        transition: visibility, opacity, 1s all;
         z-index: 2;
         scrollbar-color: $background-color $main-color-light;
-        scrollbar-width: thin ; 
+        scrollbar-width: thin;
+
         &::-webkit-scrollbar {
             width: 5px;
             border-radius: 100%;
             background-color: $background-color;
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: $main-color-light;
             border-radius: 4px;
             box-shadow: inset 1px 1px 3px $secondary-color-light;
         }
+
         &::-webkit-scrollbar-thumb:hover {
             background-color: $main-color;
         }
     }
-    
-    
-    
-    .modification-account{
+
+    .modification-account {
         width: 70%;
-        &__label{
+
+        &__label {
             width: 200px;
             font-size: 16px;
         }
-        &__family{
-            &__selection-partner{
-                &__btn{
+
+        &__family {
+            &__selection-partner {
+                &__btn {
                     padding: 5px 10px;
                 }
-                &__modification{
-                    &__wrapper{
-                        &__select-partner{
-                            &__select{
-                                & span{
-                                    & span{
+
+                &__modification {
+                    &__wrapper {
+                        &__select-partner {
+                            &__select {
+                                & span {
+                                    & span {
                                         max-width: 300px;
                                     }
                                 }
@@ -560,15 +631,14 @@
             }
         }
     }
-    
-    .activeListFamily{
+
+    .activeListFamily {
         width: 300px;
     }
 }
 
-
-@media (max-width: 768px){
-    .activeList{
+@media (max-width: 768px) {
+    .activeList {
         position: absolute;
         width: 300px;
         height: 150px;
@@ -579,87 +649,99 @@
         margin-top: 3px;
         margin-left: 0;
         padding: 15px 10px 0px 15px;
-        visibility:visible;
+        visibility: visible;
         opacity: 1;
-        transition: visibility,  opacity, 1s all;
+        transition: visibility, opacity, 1s all;
         z-index: 2;
         scrollbar-color: $background-color $main-color-light;
-        scrollbar-width: thin ; 
+        scrollbar-width: thin;
+
         &::-webkit-scrollbar {
             width: 5px;
             border-radius: 100%;
             background-color: $background-color;
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: $main-color-light;
             border-radius: 4px;
             box-shadow: inset 1px 1px 3px $secondary-color-light;
         }
+
         &::-webkit-scrollbar-thumb:hover {
             background-color: $main-color;
         }
     }
-    
-    
-    
-    .modification-account{
+
+    .modification-account {
         width: 70%;
-        &__wrapper{
+
+        &__wrapper {
             margin: 10px 0;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        &__wrapper-description{
+
+        &__wrapper-description {
             display: block;
             width: 100%;
         }
-        &__wrapper-sex{
+
+        &__wrapper-sex {
             display: block;
             width: 110px;
             margin: 3px auto;
-            &_input-radio{
+
+            &_input-radio {
                 opacity: 0;
-                visibility:hidden;
+                visibility: hidden;
                 width: 0;
                 position: absolute;
-                &:checked + label{
+
+                &:checked+label {
                     background: $main-color-light;
                 }
             }
-            &_label{
+
+            &_label {
                 padding: 4px 3px;
                 margin: 5px;
                 width: 100%;
                 text-align: center;
-                &:hover{
+
+                &:hover {
                     transform: scale(1.0);
                 }
             }
         }
-        &__wrapper-family{
+
+        &__wrapper-family {
             display: block;
             width: 100%;
-            &__wrapper-list{
+
+            &__wrapper-list {
                 display: flex;
                 flex-direction: column;
                 padding-left: 0;
                 position: relative;
             }
-            
         }
-        &__label{
+
+        &__label {
             width: 100%;
             text-align: center;
             font-size: 16px;
-            &_input{
+
+            &_input {
                 @include input;
                 width: 300px;
                 display: block;
                 margin: 0 auto;
             }
-            &_input-description{
+
+            &_input-description {
                 @include input;
                 width: 300px;
                 height: 100px;
@@ -667,100 +749,114 @@
                 margin: 0 auto;
             }
         }
-        &__title{
+
+        &__title {
             font-size: 25px;
         }
-        &__family{
+
+        &__family {
             position: relative;
-            &__btn{
+
+            &__btn {
                 width: 300px;
                 height: 45px;
                 display: block;
                 margin: 0 auto;
             }
-            &__list{
+
+            &__list {
                 display: none;
             }
-            &__item{
+
+            &__item {
                 text-align: center;
                 padding: 10px;
                 font-size: 17px;
                 font-weight: 500;
-                &:hover{
+
+                &:hover {
                     cursor: pointer;
                     background-color: $main-color-light;
                     border-radius: 8px;
                 }
             }
-            &__selection-partner{
-                &__wrapper{
+
+            &__selection-partner {
+                &__wrapper {
                     width: 100%;
                 }
-                &__btn{
+
+                &__btn {
                     padding: 5px 15px;
                     font-size: 16px;
                     margin: 10px;
-                    &:hover{
+
+                    &:hover {
                         transform: scale(1.0);
                     }
                 }
-                &__input{
+
+                &__input {
                     @include input;
                     width: 300px;
                     margin-left: 0;
                 }
-                &__modification{
-                    &__wrapper{
-                        &__select-partner{
+
+                &__modification {
+                    &__wrapper {
+                        &__select-partner {
                             position: relative;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            &__list{
+
+                            &__list {
                                 width: 300px;
                                 height: 150px;
                                 margin-top: 3px;
                                 margin-left: 0;
                                 padding: 15px 10px 0px 15px;
                             }
-                            &__select{
+
+                            &__select {
                                 display: block;
-                                & span{
+
+                                & span {
                                     width: 300px;
                                     display: flex;
                                     flex-direction: column;
                                     justify-content: center;
                                     align-items: center;
                                     margin: 0 auto;
-                                    & span{
+
+                                    & span {
                                         display: inline;
                                         text-align: center;
                                     }
                                 }
-                                &__warning{
+
+                                &__warning {
                                     margin-left: 0;
                                     margin-top: 0;
                                 }
                             }
                         }
                     }
-                    
                 }
             }
         }
     }
 
-
-    .activeListFamily{
+    .activeListFamily {
         width: 300px;
         left: 50%;
         transform: translate(-50%, 48px);
     }
 }
 
-@media (max-width: 576px){
-    .activeList{
+@media (max-width: 576px) {
+    .activeList {
         position: absolute;
         width: 260px;
         height: 150px;
@@ -771,91 +867,104 @@
         margin-top: 3px;
         margin-left: 0;
         padding: 15px 10px 0px 15px;
-        visibility:visible;
+        visibility: visible;
         opacity: 1;
-        transition: visibility,  opacity, 1s all;
+        transition: visibility, opacity, 1s all;
         z-index: 2;
         scrollbar-color: $background-color $main-color-light;
-        scrollbar-width: thin ; 
+        scrollbar-width: thin;
+
         &::-webkit-scrollbar {
             width: 5px;
             border-radius: 100%;
             background-color: $background-color;
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: $main-color-light;
             border-radius: 4px;
             box-shadow: inset 1px 1px 3px $secondary-color-light;
         }
+
         &::-webkit-scrollbar-thumb:hover {
             background-color: $main-color;
         }
     }
-    
-    
-    
-    .modification-account{
+
+    .modification-account {
         width: 90%;
-        &__title{
+
+        &__title {
             font-size: 23px;
         }
-        &__wrapper{
+
+        &__wrapper {
             margin: 10px 0;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        &__wrapper-description{
+
+        &__wrapper-description {
             display: block;
             width: 100%;
         }
-        &__wrapper-sex{
+
+        &__wrapper-sex {
             display: block;
             width: 110px;
             margin: 3px auto;
-            &_input-radio{
+
+            &_input-radio {
                 opacity: 0;
-                visibility:hidden;
+                visibility: hidden;
                 width: 0;
                 position: absolute;
-                &:checked + label{
+
+                &:checked+label {
                     background: $main-color-light;
                 }
             }
-            &_label{
+
+            &_label {
                 padding: 4px 3px;
                 margin: 5px;
                 width: 100%;
                 text-align: center;
-                &:hover{
+
+                &:hover {
                     transform: scale(1.0);
                 }
             }
         }
-        &__wrapper-family{
+
+        &__wrapper-family {
             display: block;
             width: 100%;
-            &__wrapper-list{
+
+            &__wrapper-list {
                 display: flex;
                 flex-direction: column;
                 padding-left: 0;
                 position: relative;
             }
-            
         }
-        &__label{
+
+        &__label {
             width: 100%;
             text-align: center;
             font-size: 16px;
             margin: 10px 0;
-            &_input{
+
+            &_input {
                 @include input;
                 width: 260px;
                 display: block;
                 margin: 0 auto;
             }
-            &_input-description{
+
+            &_input-description {
                 @include input;
                 width: 260px;
                 height: 100px;
@@ -863,97 +972,104 @@
                 margin: 0 auto;
             }
         }
-        &__family{
+
+        &__family {
             position: relative;
-            &__btn{
+
+            &__btn {
                 width: 260px;
                 height: 45px;
                 display: block;
                 margin: 0 auto;
             }
-            &__list{
+
+            &__list {
                 display: none;
             }
-            &__item{
+
+            &__item {
                 text-align: center;
                 padding: 10px;
                 font-size: 17px;
                 font-weight: 500;
-                &:hover{
+
+                &:hover {
                     cursor: pointer;
                     background-color: $main-color-light;
                     border-radius: 8px;
                 }
             }
-            &__selection-partner{
-                &__wrapper{
+
+            &__selection-partner {
+                &__wrapper {
                     width: 100%;
                 }
-                &__btn{
+
+                &__btn {
                     padding: 5px 15px;
                     font-size: 16px;
                     margin: 10px;
-                    &:hover{
+
+                    &:hover {
                         transform: scale(1.0);
                     }
                 }
-                &__input{
+
+                &__input {
                     @include input;
                     width: 260px;
                     margin-left: 0;
                 }
-                &__modification{
-                    &__wrapper{
-                        &__select-partner{
+
+                &__modification {
+                    &__wrapper {
+                        &__select-partner {
                             position: relative;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            &__list{
+
+                            &__list {
                                 width: 260px;
                                 height: 150px;
                                 margin-top: 3px;
                                 margin-left: 0;
                                 padding: 15px 10px 0px 15px;
                             }
-                            &__select{
+
+                            &__select {
                                 display: block;
-                                & span{
+
+                                & span {
                                     width: 260px;
                                     display: flex;
                                     flex-direction: column;
                                     justify-content: center;
                                     align-items: center;
                                     margin: 0 auto;
-                                    & span{
+
+                                    & span {
                                         display: inline;
                                         text-align: center;
                                     }
                                 }
-                                &__warning{
+
+                                &__warning {
                                     margin-left: 0;
                                     margin-top: 0;
                                 }
                             }
                         }
                     }
-                    
                 }
             }
         }
     }
 
-
-    .activeListFamily{
+    .activeListFamily {
         width: 260px;
         left: 50%;
         transform: translate(-50%, 48px);
     }
 }
-
-
-
-
-    
-    

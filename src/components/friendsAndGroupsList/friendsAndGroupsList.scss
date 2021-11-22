@@ -1,47 +1,57 @@
 @import '../../variables';
 @import '../../mixins';
 
-.friends-and-groups-list{
+.friends-and-groups-list {
     width: 1140px;
     margin-top: 7px;
-    &__wrapper-search{
+
+    &__wrapper-search {
         width: 100%;
     }
-    &__search{
+
+    &__search {
         @include input;
         display: block;
         margin: 10px auto;
         width: 550px;
     }
-    &__wrapper-content{
+
+    &__wrapper-content {
         width: 100%;
     }
-    &__total-size{
+
+    &__total-size {
         margin-left: 15px;
-        &_title{
+
+        &_title {
             font-weight: 500;
             color: $main-color;
             font-size: 19px;
         }
-        &_size{
+
+        &_size {
             font-size: 19px;
         }
     }
-    &__list{
+
+    &__list {
         margin: 15px auto;
         padding: 0;
         width: 80%;
-        &__item{
+
+        &__item {
             margin: 15px;
             height: 200px;
             display: flex;
             box-shadow: 1px 1px 1px 1px $secondary-color-light;
             padding: 15px;
             border-radius: 20px;
-            &:hover{
+
+            &:hover {
                 transform: scale(1.02);
             }
-            &_warning{
+
+            &_warning {
                 margin: 15px;
                 height: 200px;
                 display: flex;
@@ -50,7 +60,8 @@
                 border-radius: 20px;
                 box-shadow: 3px 3px 3px 3px $background-color-modal-shadow;
             }
-            &_confirmation{
+
+            &_confirmation {
                 margin: 15px;
                 height: 200px;
                 display: flex;
@@ -59,20 +70,24 @@
                 border-radius: 20px;
                 box-shadow: 3px 3px 3px 3px $secondary-color;
             }
-            &__img{
+
+            &__img {
                 width: 170px;
                 height: 170px;
                 border-radius: 100%;
                 object-fit: cover;
-                &:hover{
+
+                &:hover {
                     cursor: pointer;
                 }
             }
-            &__content{
+
+            &__content {
                 margin-left: 25px;
                 width: 100%;
                 position: relative;
-                &_name{
+
+                &_name {
                     display: block;
                     width: 650px;
                     height: 25px;
@@ -82,16 +97,19 @@
                     font-size: 19px;
                     color: $main-color;
                     font-weight: 600;
-                    &:hover{
+
+                    &:hover {
                         cursor: pointer;
                     }
                 }
-                &_current-status{
+
+                &_current-status {
                     display: flex;
                     justify-content: flex-end;
                     position: absolute;
                     width: 100%;
-                    & span{
+
+                    & span {
                         color: $background-color-modal-shadow;
                         font-size: 18px;
                         font-weight: 500;
@@ -100,20 +118,24 @@
                         border-radius: 5px;
                     }
                 }
-                &__btns{
+
+                &__btns {
                     display: flex;
                     align-items: flex-end;
                     height: 80%;
-                    &_main{
+
+                    &_main {
                         @include btnMini;
                         border-color: $main-color-light;
                         margin-right: 15px;
-                        &:hover{
-                            background-color:rgba(137, 216, 194, .2);
+
+                        &:hover {
+                            background-color: rgba(137, 216, 194, .2);
                             border-color: $main-color-light;
                         }
                     }
-                    &_danger{
+
+                    &_danger {
                         @include btnMini;
                         margin-right: 15px;
                     }
@@ -121,107 +143,131 @@
             }
         }
     }
-    &__not-content{
+
+    &__not-content {
         width: 320px;
         height: 320px;
         margin: 0 auto;
+
         & img {
             width: 320px;
             height: 320px;
         }
     }
-    &__overlay{
+
+    &__overlay {
         @include backgroundModal;
     }
-    &__modal{
+
+    &__modal {
         @include ModalWindow;
         width: 300px;
         height: 170px;
-        &_close{
+
+        &_close {
             position: relative;
-            & img{
+
+            & img {
                 position: absolute;
                 left: 90%;
-                &:hover{
+
+                &:hover {
                     transform: rotate(30deg) scale(1.1);
                 }
             }
         }
-        &_message{
+
+        &_message {
             text-align: center;
             margin-top: 45px;
         }
     }
 }
 
-@media (max-width: 1200px){
-    .friends-and-groups-list{
+@media (max-width: 1200px) {
+    .friends-and-groups-list {
         width: 993px;
         margin-top: 7px;
-        &__wrapper-search{
+
+        &__wrapper-search {
             width: 100%;
         }
-        &__search{
+
+        &__search {
             @include input;
             width: 400px;
             height: 40px;
         }
-        &__wrapper-content{
+
+        &__wrapper-content {
             width: 100%;
         }
-        &__total-size{
+
+        &__total-size {
             margin-left: 15px;
-            &_title{
+
+            &_title {
                 font-size: 18px;
             }
-            &_size{
+
+            &_size {
                 font-size: 18px;
             }
         }
-        &__list{
-            &__item{
+
+        &__list {
+            &__item {
                 margin: 15px;
                 height: 180px;
                 padding: 15px;
-                &_warning{
+
+                &_warning {
                     margin: 15px;
                     height: 180px;
                     padding: 15px;
                 }
-                &_confirmation{
+
+                &_confirmation {
                     margin: 15px;
                     height: 180px;
                     padding: 15px;
                 }
-                &__img{
+
+                &__img {
                     width: 150px;
                     height: 150px;
                 }
-                &__content{
+
+                &__content {
                     margin-left: 25px;
                     width: 100%;
                     position: relative;
-                    &_name{
+
+                    &_name {
                         width: 550px;
                         font-size: 18px;
                     }
-                    &_current-status{
-                        & span{
+
+                    &_current-status {
+                        & span {
                             font-size: 16px;
                             padding: 5px 7px;
                         }
                     }
-                    &__btns{
-                        &_main{
+
+                    &__btns {
+                        &_main {
                             @include btnMini;
                             border-color: $main-color-light;
                             margin-right: 15px;
-                            &:hover{
-                                background-color:rgba(137, 216, 194, .2);
+
+                            &:hover {
+                                background-color: rgba(137, 216, 194, .2);
                                 border-color: $main-color-light;
                             }
                         }
-                        &_danger{
+
+                        &_danger {
                             @include btnMini;
                             margin-right: 15px;
                         }
@@ -229,33 +275,41 @@
                 }
             }
         }
-        &__not-content{
+
+        &__not-content {
             width: 280px;
             height: 280px;
             margin: 0 auto;
+
             & img {
                 width: 280px;
                 height: 280px;
             }
         }
-        &__overlay{
+
+        &__overlay {
             @include backgroundModal;
         }
-        &__modal{
+
+        &__modal {
             @include ModalWindow;
             width: 300px;
             height: 170px;
-            &_close{
+
+            &_close {
                 position: relative;
-                & img{
+
+                & img {
                     position: absolute;
                     left: 90%;
-                    &:hover{
+
+                    &:hover {
                         transform: rotate(30deg) scale(1.1);
                     }
                 }
             }
-            &_message{
+
+            &_message {
                 text-align: center;
                 margin-top: 45px;
             }
@@ -264,74 +318,90 @@
 }
 
 
-@media (max-width: 992px){
-    .friends-and-groups-list{
+@media (max-width: 992px) {
+    .friends-and-groups-list {
         width: 769px;
         margin-top: 7px;
-        &__wrapper-search{
+
+        &__wrapper-search {
             width: 100%;
         }
-        &__search{
+
+        &__search {
             @include input;
             width: 400px;
             height: 40px;
         }
-        &__wrapper-content{
+
+        &__wrapper-content {
             width: 100%;
         }
-        &__total-size{
+
+        &__total-size {
             margin-left: 15px;
-            &_title{
+
+            &_title {
                 font-size: 17px;
             }
-            &_size{
+
+            &_size {
                 font-size: 17px;
             }
         }
-        &__list{
-            &__item{
+
+        &__list {
+            &__item {
                 margin: 15px;
                 height: 180px;
                 padding: 15px;
-                &_warning{
+
+                &_warning {
                     margin: 15px;
                     height: 180px;
                     padding: 15px;
                 }
-                &_confirmation{
+
+                &_confirmation {
                     margin: 15px;
                     height: 180px;
                     padding: 15px;
                 }
-                &__img{
+
+                &__img {
                     width: 150px;
                     height: 150px;
                 }
-                &__content{
+
+                &__content {
                     margin-left: 25px;
                     width: 100%;
                     position: relative;
-                    &_name{
+
+                    &_name {
                         width: 380px;
                         font-size: 18px;
                     }
-                    &_current-status{
-                        & span{
+
+                    &_current-status {
+                        & span {
                             font-size: 16px;
                             padding: 5px 7px;
                         }
                     }
-                    &__btns{
-                        &_main{
+
+                    &__btns {
+                        &_main {
                             @include btnMini;
                             border-color: $main-color-light;
                             margin-right: 15px;
-                            &:hover{
-                                background-color:rgba(137, 216, 194, .2);
+
+                            &:hover {
+                                background-color: rgba(137, 216, 194, .2);
                                 border-color: $main-color-light;
                             }
                         }
-                        &_danger{
+
+                        &_danger {
                             @include btnMini;
                             margin-right: 15px;
                         }
@@ -339,33 +409,41 @@
                 }
             }
         }
-        &__not-content{
+
+        &__not-content {
             width: 280px;
             height: 280px;
             margin: 0 auto;
+
             & img {
                 width: 280px;
                 height: 280px;
             }
         }
-        &__overlay{
+
+        &__overlay {
             @include backgroundModal;
         }
-        &__modal{
+
+        &__modal {
             @include ModalWindow;
             width: 300px;
             height: 170px;
-            &_close{
+
+            &_close {
                 position: relative;
-                & img{
+
+                & img {
                     position: absolute;
                     left: 90%;
-                    &:hover{
+
+                    &:hover {
                         transform: rotate(30deg) scale(1.1);
                     }
                 }
             }
-            &_message{
+
+            &_message {
                 text-align: center;
                 margin-top: 45px;
             }
@@ -373,76 +451,93 @@
     }
 }
 
-@media (max-width: 768px){
-    .friends-and-groups-list{
+@media (max-width: 768px) {
+    .friends-and-groups-list {
         width: 577px;
         margin-top: 7px;
-        &__wrapper-search{
+
+        &__wrapper-search {
             width: 100%;
         }
-        &__search{
+
+        &__search {
             @include input;
             width: 350px;
             height: 35px;
         }
-        &__wrapper-content{
+
+        &__wrapper-content {
             width: 100%;
         }
-        &__total-size{
+
+        &__total-size {
             margin-left: 15px;
-            &_title{
+
+            &_title {
                 font-size: 17px;
             }
-            &_size{
+
+            &_size {
                 font-size: 17px;
             }
         }
-        &__list{
+
+        &__list {
             width: 90%;
             margin: 15px auto;
-            &__item{
+
+            &__item {
                 margin: 15px;
                 height: 160px;
                 padding: 10px;
-                &_warning{
+
+                &_warning {
                     margin: 15px;
                     height: 160px;
                     padding: 15px;
                 }
-                &_confirmation{
+
+                &_confirmation {
                     margin: 15px;
                     height: 160px;
                     padding: 15px;
                 }
-                &__img{
+
+                &__img {
                     width: 130px;
                     height: 130px;
                 }
-                &__content{
+
+                &__content {
                     margin-left: 10px;
                     width: 100%;
                     position: relative;
-                    &_name{
+
+                    &_name {
                         width: 320px;
                         font-size: 17px;
                     }
-                    &_current-status{
-                        & span{
+
+                    &_current-status {
+                        & span {
                             font-size: 16px;
                             padding: 5px 7px;
                         }
                     }
-                    &__btns{
-                        &_main{
+
+                    &__btns {
+                        &_main {
                             @include btnMini;
                             border-color: $main-color-light;
                             margin-right: 15px;
-                            &:hover{
-                                background-color:rgba(137, 216, 194, .2);
+
+                            &:hover {
+                                background-color: rgba(137, 216, 194, .2);
                                 border-color: $main-color-light;
                             }
                         }
-                        &_danger{
+
+                        &_danger {
                             @include btnMini;
                             margin-right: 15px;
                         }
@@ -450,33 +545,41 @@
                 }
             }
         }
-        &__not-content{
+
+        &__not-content {
             width: 230px;
             height: 230px;
             margin: 0 auto;
+
             & img {
                 width: 230px;
                 height: 230px;
             }
         }
-        &__overlay{
+
+        &__overlay {
             @include backgroundModal;
         }
-        &__modal{
+
+        &__modal {
             @include ModalWindow;
             width: 300px;
             height: 170px;
-            &_close{
+
+            &_close {
                 position: relative;
-                & img{
+
+                & img {
                     position: absolute;
                     left: 90%;
-                    &:hover{
+
+                    &:hover {
                         transform: rotate(30deg) scale(1.1);
                     }
                 }
             }
-            &_message{
+
+            &_message {
                 text-align: center;
                 margin-top: 45px;
             }
@@ -484,56 +587,69 @@
     }
 }
 
-@media (max-width: 576px){
-    .friends-and-groups-list{
+@media (max-width: 576px) {
+    .friends-and-groups-list {
         width: 320px;
         margin-top: 7px;
-        &__wrapper-search{
+
+        &__wrapper-search {
             width: 100%;
         }
-        &__search{
+
+        &__search {
             @include input;
             width: 200px;
             height: 35px;
         }
-        &__wrapper-content{
+
+        &__wrapper-content {
             width: 100%;
         }
-        &__total-size{
+
+        &__total-size {
             margin-left: 15px;
-            &_title{
+
+            &_title {
                 font-size: 15px;
             }
-            &_size{
+
+            &_size {
                 font-size: 15px;
             }
         }
-        &__list{
+
+        &__list {
             width: 90%;
             margin: 15px auto;
-            &__item{
+
+            &__item {
                 margin: 15px;
                 height: 120px;
                 padding: 5px;
-                &_warning{
+
+                &_warning {
                     margin: 15px;
                     height: 160px;
                     padding: 15px;
                 }
-                &_confirmation{
+
+                &_confirmation {
                     margin: 15px;
                     height: 160px;
                     padding: 15px;
                 }
-                &__img{
+
+                &__img {
                     width: 100px;
                     height: 100px;
                 }
-                &__content{
+
+                &__content {
                     margin-left: 10px;
                     width: 100%;
                     position: relative;
-                    &_name{
+
+                    &_name {
                         height: 15px;
                         font-size: 9px;
                         width: 120px;
@@ -541,30 +657,36 @@
                         display: block;
                         text-align: center;
                     }
-                    &_current-status{
+
+                    &_current-status {
                         justify-content: center;
-                        & span{
+
+                        & span {
                             font-size: 8px;
                             padding: 0;
                         }
                     }
-                    &__btns{
+
+                    &__btns {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         height: 100%;
                         justify-content: center;
-                        &_main{
+
+                        &_main {
                             @include btnMini;
                             border-color: $main-color-light;
                             height: 24px;
                             margin: 3px;
-                            &:hover{
-                                background-color:rgba(137, 216, 194, .2);
+
+                            &:hover {
+                                background-color: rgba(137, 216, 194, .2);
                                 border-color: $main-color-light;
                             }
                         }
-                        &_danger{
+
+                        &_danger {
                             @include btnMini;
                             height: 24px;
                             margin: 3px;
@@ -573,33 +695,41 @@
                 }
             }
         }
-        &__not-content{
+
+        &__not-content {
             width: 200px;
             height: 200px;
             margin: 0 auto;
+
             & img {
                 width: 200px;
                 height: 200px;
             }
         }
-        &__overlay{
+
+        &__overlay {
             @include backgroundModal;
         }
-        &__modal{
+
+        &__modal {
             @include ModalWindow;
             width: 300px;
             height: 170px;
-            &_close{
+
+            &_close {
                 position: relative;
-                & img{
+
+                & img {
                     position: absolute;
                     left: 90%;
-                    &:hover{
+
+                    &:hover {
                         transform: rotate(30deg) scale(1.1);
                     }
                 }
             }
-            &_message{
+
+            &_message {
                 text-align: center;
                 margin-top: 45px;
             }

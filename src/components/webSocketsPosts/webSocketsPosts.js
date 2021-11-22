@@ -2,14 +2,16 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import SockJS from 'sockjs-client';
 import { connect } from 'react-redux';
 import { Client } from '@stomp/stompjs';
-import { newPost} from '../../actions';
-import {useLocation} from 'react-router-dom';
+import { newPost } from '../../actions';
+import { useLocation } from 'react-router-dom';
 
-const WebSocketsPrivatMessages = ({unsubscribe, currentIdLocation, newPost }) => {
-    const location=useLocation();
-    const[connected, setConnected]=useState();
-  
-    const posts=useMemo(()=>{
+const WebSocketsPrivatMessages = ({ unsubscribe, currentIdLocation, newPost }) => {
+
+    const location = useLocation();
+
+    const [connected, setConnected] = useState();
+
+    const posts = useMemo(() => {
         const connect = new Client({
             connectHeaders: {},
             reconnectDelay: 5000,
@@ -18,73 +20,53 @@ const WebSocketsPrivatMessages = ({unsubscribe, currentIdLocation, newPost }) =>
             webSocketFactory: () => new SockJS('/ws/messages'),
         });
 
-        
         connect.activate()
-        
+
         connect.onConnect = (frame) => {
-            if(frame.command==="CONNECTED"){
+            setConnected(false)
+            if (frame.command === "CONNECTED") {
                 setConnected(true)
             }
-            
         }
-
-
         return connect
-
-    },[])
-
-    
+    }, [])
 
     posts.debug = function (str) {
         console.log(str);
     };
 
-    
-    const actionPost=(post)=>{
-        const postParse=JSON.parse(post.body);
-        console.log(postParse)
+    const actionPost = (post) => {
+        const postParse = JSON.parse(post.body);
         newPost(postParse)
     }
 
-   
-
-
-    const setSubscribePostsMessages=useCallback(()=>{
-        console.log("начинем подписку к постам")
-        if(location.pathname===`/${currentIdLocation}` || location.pathname===`/groups/${currentIdLocation}`){
-            console.log("ok")
-            console.log(currentIdLocation)
+    const setSubscribePostsMessages = useCallback(() => {
+        if ((location.pathname === `/${currentIdLocation}` && connected) ||
+            (location.pathname === `/groups/${currentIdLocation}` && connected)) {
             posts.unsubscribe()
             posts.subscribe('/topic/messageOnWall/' + currentIdLocation, actionPost)
         }
-    },[currentIdLocation])
+    }, [currentIdLocation, connected])
 
-    
-
-    useEffect(()=>{
-        if(connected){
+    useEffect(() => {
+        if (connected) {
             setSubscribePostsMessages()
         }
-    },[connected, currentIdLocation])
+    }, [connected, currentIdLocation])
 
-    
-
-    const setUnsubscribePrivatMessages=useCallback(()=>{
-        console.log("начинем отписку");
-        posts.unsubscribe();
+    const setUnsubscribePrivatMessages = useCallback(() => {
+        if (posts.connected !== undefined) {
+            posts.unsubscribe();
+        }
         posts.deactivate()
-    },[])
+    }, [])
 
-    
-
-    useEffect(()=>{
-        if(unsubscribe){
+    useEffect(() => {
+        if (unsubscribe) {
             setUnsubscribePrivatMessages()
         }
-    },[unsubscribe])
+    }, [unsubscribe])
 
-    
-   
     return (
         <div>
         </div>
@@ -97,7 +79,6 @@ const mapStateToProps = (state) => {
         outputMessage: state.outputMessage,
         unsubscribe: state.unsubscribe,
         currentIdLocation: state.currentIdLocation
-
     }
 }
 
@@ -105,5 +86,5 @@ const mapDispatchToProps = {
     newPost
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WebSocketsPrivatMessages);
+export default connect(mapStateToProps, mapDispatchToProps)(WebSocketsPrivatMessages)
 

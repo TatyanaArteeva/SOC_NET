@@ -1,7 +1,7 @@
 @import '../../variables';
 @import '../../mixins';
 
-.user-notifications-list{
+.user-notifications-list {
     width: 370px;
     height: 372px;
     display: block;
@@ -15,62 +15,79 @@
     border-radius: 10px;
     box-sizing: border-box;
     scrollbar-color: $background-color $main-color-light;
-    scrollbar-width: thin ; 
+    scrollbar-width: thin;
+
     &::-webkit-scrollbar {
         width: 5px;
         border-radius: 100%;
         background-color: $background-color;
     }
+
     &::-webkit-scrollbar-thumb {
         background-color: $main-color-light;
         border-radius: 4px;
         box-shadow: inset 1px 1px 3px $secondary-color-light;
     }
+
     &::-webkit-scrollbar-thumb:hover {
         background-color: $main-color;
     }
+
     &::-webkit-scrollbar-button:vertical:start:decrement {
         background: linear-gradient(to right, $background-color, #a7a7a7);
         width: 1px;
         height: 3px;
     }
+
     &::-webkit-scrollbar-button:vertical:end:increment {
         width: 1px;
         height: 3px;
         background-color: $background-color-modal-shadow;
     }
+
     &__wrapper {
         padding: 10px;
         height: 100%;
     }
-    &__list{
+
+    &__list {
         padding: 0px 15px 0px 15px;
-        &__item{
+
+        &__item {
             margin: 15px 0;
-            &__content{
+
+            &__content {
                 display: flex;
                 justify-content: start;
                 align-items: center;
                 width: 100%;
-                &__img{
+
+                &__img {
                     border-radius: 100%;
                     width: 35px;
                     height: 35px;
                     margin-right: 15px;
                     object-fit: cover;
                 }
-                &__name{
+
+                &__name {
                     display: flex;
                     flex-direction: column;
                     cursor: default;
                     width: 100%;
-                    &_name{
+
+                    &_name {
                         display: flex;
                         justify-content: flex-start;
                         color: $main-color;
                         font-weight: 700;
+
+                        & span {
+                            cursor: pointer;
+                        }
                     }
-                    &_message{
+
+                    &_message {
                         max-width: 100%;
                         display: flex;
                         justify-content: flex-start;
@@ -79,7 +96,8 @@
                     }
                 }
             }
-            &__time{
+
+            &__time {
                 display: flex;
                 justify-content: flex-end;
                 font-size: 10px;
@@ -87,17 +105,20 @@
             }
         }
     }
-    &__spinner-wrapper{
+
+    &__spinner-wrapper {
         width: 355px;
         height: 350px;
         display: flex;
         align-items: center;
     }
-    &__not-notifications{
+
+    &__not-notifications {
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+
         & img {
             width: 70px;
             height: 70px;
@@ -105,36 +126,42 @@
     }
 }
 
-@media (max-width: 1200px){
-    .user-notifications-list{
+@media (max-width: 1200px) {
+    .user-notifications-list {
         transform: translateX(-15px);
     }
 }
 
-@media (max-width: 992px){
-    .user-notifications-list{
+@media (max-width: 992px) {
+    .user-notifications-list {
         width: 300px;
         height: 300px;
+
         &__wrapper {
             padding: 7px;
         }
-        &__list{
+
+        &__list {
             padding: 0px 7px 0px 7px;
-            &__item{
+
+            &__item {
                 margin: 5px 0;
-                &__content{
-                    &__img{
+
+                &__content {
+                    &__img {
                         border-radius: 100%;
                         width: 30px;
                         height: 30px;
                         margin-right: 7px;
                     }
-                    &__name{
-                        &_name{
+
+                    &__name {
+                        &_name {
                             font-weight: 700;
                             font-size: 14px;
                         }
-                        &_message{
+
+                        &_message {
                             max-width: 100%;
                             display: flex;
                             justify-content: flex-start;
@@ -144,20 +171,24 @@
                         }
                     }
                 }
-                &__time{
+
+                &__time {
                     font-size: 9px;
                 }
             }
         }
-        &__spinner-wrapper{
+
+        &__spinner-wrapper {
             width: 285px;
             height: 285px;
         }
-        &__not-notifications{
+
+        &__not-notifications {
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+
             & img {
                 width: 50px;
                 height: 50px;
@@ -166,30 +197,36 @@
     }
 }
 
-@media (max-width: 576px){
-    .user-notifications-list{
+@media (max-width: 576px) {
+    .user-notifications-list {
         width: 300px;
         height: 300px;
+
         &__wrapper {
             padding: 0px;
         }
-        &__list{
+
+        &__list {
             padding: 0px 5px 0px 5px;
-            &__item{
+
+            &__item {
                 margin: 3px 0;
-                &__content{
-                    &__img{
+
+                &__content {
+                    &__img {
                         border-radius: 100%;
                         width: 30px;
                         height: 30px;
                         margin-right: 5px;
                     }
-                    &__name{
-                        &_name{
+
+                    &__name {
+                        &_name {
                             font-weight: 600;
                             font-size: 16px;
                         }
-                        &_message{
+
+                        &_message {
                             max-width: 100%;
                             display: flex;
                             justify-content: flex-start;
@@ -199,22 +236,26 @@
                         }
                     }
                 }
-                &__time{
+
+                &__time {
                     font-size: 11px;
                 }
             }
         }
-        &__spinner-wrapper{
+
+        &__spinner-wrapper {
             width: 300px;
             height: 285px;
             display: flex;
             align-items: center;
         }
-        &__not-notifications{
+
+        &__not-notifications {
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+
             & img {
                 width: 50px;
                 height: 50px;

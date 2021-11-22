@@ -1,13 +1,14 @@
 @import '../../variables';
 @import '../../mixins';
 
-.group{
+.group {
     width: 100%;
     display: grid;
     grid-template-columns: 698px 400px;
     grid-template-rows: 100%;
     column-gap: 40px;
-    &__photo-and-btns{
+
+    &__photo-and-btns {
         grid-column: 2;
         position: fixed;
         margin-left: 740px;
@@ -19,10 +20,12 @@
         height: 550px;
         border-radius: 10px;
         box-shadow: 1px 1px 1px 1px $secondary-color-light;
-        &__wrapper{
+
+        &__wrapper {
             position: fixed;
         }
-        &__photo{
+
+        &__photo {
             width: 368px;
             height: 350px;
             display: flex;
@@ -32,8 +35,8 @@
             border-radius: 5px;
             z-index: 2;
             box-shadow: 0 0 5px 2px $secondary-color;
-            // position: fixed;
-            &__wrapper{
+
+            &__wrapper {
                 width: 350px;
                 height: 330px;
                 position: relative;
@@ -41,78 +44,91 @@
                 z-index: 2;
                 border-radius: 5px;
             }
-            &__photo-group{
+
+            &__photo-group {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
         }
-        &__btns{
+
+        &__btns {
             display: flex;
-            // position: fixed;
             justify-content: space-around;
             align-items: center;
             margin: 20px;
             min-height: 150px;
-            &_actions{
+
+            &_actions {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
                 width: 160px;
-                & button{
+
+                & button {
                     margin: 12px 0;
                     @include btnMini;
                 }
             }
-            &__navigation{
+
+            &__navigation {
                 width: 160px;
-                display:flex;
+                display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
                 align-items: center;
-                &__wrapper{
+
+                &__wrapper {
                     width: 40px;
                     height: 40px;
                     padding: 0 5px;
-                    display:flex;
+                    display: flex;
                     justify-content: center;
                     align-items: center;
+
                     &:hover {
-                        .group__photo-and-btns__btns__navigation__item__label{
+                        .group__photo-and-btns__btns__navigation__item__label {
                             display: block;
-                            &__count{
+
+                            &__count {
                                 position: absolute;
                                 color: $secondary-color;
                                 margin-top: 12px;
                                 margin-left: -35px;
                             }
                         }
-                        .group__photo-and-btns__btns__navigation__item{
-                            display:none;
+
+                        .group__photo-and-btns__btns__navigation__item {
+                            display: none;
                         }
-                        .group__photo-and-btns__btns__navigation__item__count{
-                            display:none;
+
+                        .group__photo-and-btns__btns__navigation__item__count {
+                            display: none;
                         }
                     }
-                    & a{
+
+                    & a {
                         text-decoration: none;
                     }
                 }
-                &__item{
+
+                &__item {
                     width: 25px;
                     height: 25px;
-                    display:block;
+                    display: block;
                     cursor: pointer;
                     margin: auto;
-                    &__label{
-                        display:none;
+
+                    &__label {
+                        display: none;
                         color: $main-color;
                         cursor: pointer;
                         font-size: 14px;
                         font-weight: 600;
                         padding: 5px;
                     }
-                    &__count{
+
+                    &__count {
                         position: absolute;
                         color: $secondary-color;
                         font-weight: 800;
@@ -121,10 +137,11 @@
                         font-size: 15px;
                     }
                 }
-                &__main-btn{
-                    display:block;
+
+                &__main-btn {
+                    display: block;
                     margin: 12px 0;
-                    padding: 5px 3px;
+                    padding: 0 3px;
                     width: 152px;
                     height: 30px;
                     border-radius: 10px;
@@ -133,11 +150,13 @@
                     background: rgba(254, 249, 199, 0.3);
                     border: 2.5px solid $secondary-color;
                 }
-                &:hover{
-                    .group__photo-and-btns__btns__navigation__main-btn{
-                        display:none;
+
+                &:hover {
+                    .group__photo-and-btns__btns__navigation__main-btn {
+                        display: none;
                     }
-                    .group__photo-and-btns__btns__navigation__menu{
+
+                    .group__photo-and-btns__btns__navigation__menu {
                         display: flex;
                         justify-content: center;
                         flex-wrap: wrap;
@@ -145,7 +164,8 @@
                         opacity: 1;
                     }
                 }
-                &__menu{
+
+                &__menu {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-around;
@@ -156,9 +176,10 @@
                 }
             }
         }
-        
+
     }
-    &__information{
+
+    &__information {
         grid-column: 1;
         grid-row: 1;
         display: grid;
@@ -166,30 +187,35 @@
         row-gap: 30px;
         margin-top: 10px;
         margin-left: 2px;
-        &__data{
+
+        &__data {
             grid-row: 1;
             min-height: 200px;
             border-radius: 10px;
             box-shadow: 1px 1px 1px 1px $secondary-color-light;
             padding: 15px;
-            &__modification{
-                &__wrapper{
+
+            &__modification {
+                &__wrapper {
                     display: flex;
                     justify-content: flex-end;
                     margin-right: 5px;
                     margin-top: 7px;
                 }
-                &__btn{
+
+                &__btn {
                     @include btnMini;
                 }
             }
-            &__content{
+
+            &__content {
                 width: 100%;
                 font-size: 17px;
                 font-weight: 600;
                 color: $main-color;
                 display: flex;
-                &_title{
+
+                &_title {
                     width: 220px;
                     height: 20px;
                     margin: 5px 0;
@@ -197,7 +223,8 @@
                     font-weight: 500;
                     color: $main-color;
                 }
-                &_content{
+
+                &_content {
                     color: $input-text;
                     font-weight: 500;
                     word-wrap: break-word;
@@ -205,7 +232,8 @@
                     width: 420px;
                     margin: 5px 0;
                 }
-                &_name{
+
+                &_name {
                     width: 100%;
                     font-family: "Marck Script", sans-serif;
                     color: $main-color;
@@ -215,19 +243,22 @@
                     font-weight: 500;
                     padding-left: 3px;
                 }
-                &__wrapper{
+
+                &__wrapper {
                     margin: 15px 15px 15px 15px;
                     overflow: hidden;
                 }
             }
         }
-        &__participants{
+
+        &__participants {
             grid-row: 2;
             border-radius: 10px;
             box-shadow: 1px 1px 1px 1px $secondary-color-light;
             padding: 15px;
-            &__list{
-                &_mini{
+
+            &__list {
+                &_mini {
                     width: 100%;
                     background: rgba(254, 249, 199, .01);
                     padding: 0;
@@ -235,19 +266,22 @@
                     justify-content: space-around;
                     margin-top: 25px;
                 }
-                &__item{
+
+                &__item {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    & img{
+
+                    & img {
                         display: block;
                         width: 100px;
                         height: 100px;
                         border-radius: 100%;
                         object-fit: cover;
                     }
-                    & span{
+
+                    & span {
                         width: 100px;
                         height: 40px;
                         word-wrap: break-word;
@@ -256,29 +290,33 @@
                         text-align: center;
                         font-size: 15px;
                         font-weight: 500;
-                        color:$input-text;
-
+                        color: $input-text;
                     }
-                    & a{
+
+                    & a {
                         text-decoration: none;
                     }
                 }
             }
-            &__count-and-btn{
+
+            &__count-and-btn {
                 position: relative;
-                &_count{
-                    color:$main-color;
+
+                &_count {
+                    color: $main-color;
                     font-weight: 600;
                     font-size: 17;
                     display: flex;
-                    & span{
+
+                    & span {
                         font-weight: 500;
                         font-size: 17;
-                        color:$input-text;
+                        color: $input-text;
                         margin-left: 5px;
                     }
                 }
-                &_btn{
+
+                &_btn {
                     position: absolute;
                     right: 0;
                     top: 0;
@@ -286,137 +324,165 @@
                 }
             }
         }
-        &__posts{
+
+        &__posts {
             grid-row: 3;
             width: 100%;
             border-radius: 10px;
             box-shadow: 1px 1px 1px 1px $secondary-color-light;
             margin: 0 auto;
             min-height: 200px;
-            &_not-access{
+
+            &_not-access {
                 margin: 0 auto;
                 margin-top: 60px;
                 width: 320px;
                 height: 320px;
-                & img{
+
+                & img {
                     width: 320px;
                     height: 320px;
                 }
             }
         }
     }
-    &__overlay{
+
+    &__overlay {
         @include backgroundModal;
     }
-    &__modal{
+
+    &__modal {
         @include ModalWindow;
         width: 300px;
         height: 170px;
-        &_cancel{
+
+        &_cancel {
             position: relative;
-            & img{
+
+            & img {
                 position: absolute;
                 left: 90%;
-                &:hover{
+
+                &:hover {
                     transform: rotate(30deg) scale(1.1);
                 }
             }
         }
-        &_message{
+
+        &_message {
             text-align: center;
             margin-top: 45px;
         }
     }
 }
 
-@media (max-width: 1200px){
-    .group{
+@media (max-width: 1200px) {
+    .group {
         grid-template-columns: 635px 326px;
         column-gap: 30px;
-        &__photo-and-btns{
+
+        &__photo-and-btns {
             margin-left: 665px;
             margin-right: 26px;
             width: 300px;
             height: 450px;
-            &__wrapper{
+
+            &__wrapper {
                 position: fixed;
             }
-            &__photo{
+
+            &__photo {
                 width: 265px;
                 height: 250px;
-                &__wrapper{
+
+                &__wrapper {
                     width: 245px;
                     height: 230px;
                 }
             }
-            &__btns{
+
+            &__btns {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
                 margin: 20px;
                 min-height: 150px;
-                &_actions{
+
+                &_actions {
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
                     width: 120px;
-                    & button{
+
+                    & button {
                         margin: 12px 0;
                         @include btnMini;
                     }
                 }
-                &__navigation{
+
+                &__navigation {
                     width: 120px;
-                    display:flex;
+                    display: flex;
                     justify-content: center;
                     flex-wrap: wrap;
                     align-items: center;
-                    &__wrapper{
+
+                    &__wrapper {
                         width: 30px;
                         height: 30px;
                         padding: 0 5px;
-                        display:flex;
+                        display: flex;
                         justify-content: center;
                         align-items: center;
+
                         &:hover {
-                            .group__photo-and-btns__btns__navigation__item__label{
+                            .group__photo-and-btns__btns__navigation__item__label {
                                 display: none;
-                                &__count{
+
+                                &__count {
                                     position: absolute;
                                     color: $secondary-color;
                                     margin-top: 12px;
                                     margin-left: -35px;
                                 }
                             }
-                            .group__photo-and-btns__btns__navigation__item{
-                                display:block;
+
+                            .group__photo-and-btns__btns__navigation__item {
+                                display: block;
                             }
-                            .group__photo-and-btns__btns__navigation__item__count{
-                                display:block;
+
+                            .group__photo-and-btns__btns__navigation__item__count {
+                                display: block;
                             }
                         }
-                        & a{
+
+                        & a {
                             text-decoration: none;
                         }
                     }
-                    &__item{
+
+                    &__item {
                         width: 20px;
                         height: 20px;
-                        display:block;
-                        &__label{
-                            display:none;
+                        display: block;
+
+                        &__label {
+                            display: none;
                         }
                     }
-                    &__main-btn{
+
+                    &__main-btn {
                         display: none;
                         width: 120px;
-                        
+
                     }
-                    &:hover{
-                        .group__photo-and-btns__btns__navigation__main-btn{
-                            display:none;
+
+                    &:hover {
+                        .group__photo-and-btns__btns__navigation__main-btn {
+                            display: none;
                         }
-                        .group__photo-and-btns__btns__navigation__menu{
+
+                        .group__photo-and-btns__btns__navigation__menu {
                             display: flex;
                             justify-content: center;
                             flex-wrap: wrap;
@@ -424,87 +490,105 @@
                             opacity: 1;
                         }
                     }
-                    &__menu{
+
+                    &__menu {
                         display: flex;
                         width: 120px;
                         opacity: 1;
                     }
                 }
             }
-            
+
         }
-        &__information{
+
+        &__information {
             grid-template-rows: auto 210px auto;
             width: 609px;
             margin-left: 26px;
-            &__data{
-                &__modification{
+
+            &__data {
+                &__modification {
                     &__wrapper {
                         margin-right: 0;
                     }
-                    &__btn{
+
+                    &__btn {
                         @include btnMini;
                     }
                 }
-                &__content{
-                    &_title{
+
+                &__content {
+                    &_title {
                         width: 215px;
                     }
-                    &_content{
+
+                    &_content {
                         width: 338px;
                     }
-                    &__wrapper{
+
+                    &__wrapper {
                         margin: 15px 15px 15px 15px;
                     }
                 }
             }
-            &__participants{
-                &__list{
-                    &__item{
-                        & img{
+
+            &__participants {
+                &__list {
+                    &__item {
+                        & img {
                             width: 80px;
                             height: 80px;
                         }
-                        & span{
+
+                        & span {
                             width: 80px;
                         }
                     }
                 }
-                &__count-and-btn{
-                    &_btn{
+
+                &__count-and-btn {
+                    &_btn {
                         @include btnMini;
                     }
                 }
             }
-            &__posts{
-                &_not-access{
+
+            &__posts {
+                &_not-access {
                     width: 300px;
                     height: 300px;
-                    & img{
+
+                    & img {
                         width: 300px;
                         height: 300px;
                     }
                 }
             }
         }
-        &__overlay{
+
+        &__overlay {
             @include backgroundModal;
         }
-        &__modal{
+
+        &__modal {
             @include ModalWindow;
             width: 300px;
             height: 170px;
-            &_cancel{
+
+            &_cancel {
                 position: relative;
-                & img{
+
+                & img {
                     position: absolute;
                     left: 90%;
-                    &:hover{
+
+                    &:hover {
                         transform: rotate(30deg) scale(1.1);
                     }
                 }
             }
-            &_message{
+
+            &_message {
                 text-align: center;
                 margin-top: 45px;
             }
@@ -513,121 +597,141 @@
 }
 
 
-@media (max-width: 992px){
-    .group{
+@media (max-width: 992px) {
+    .group {
         width: 100%;
         display: block;
-        &__photo-and-btns{
+
+        &__photo-and-btns {
             position: relative;
             margin: 10px auto;
             width: 718px;
             height: 450px;
-            &__wrapper{
+
+            &__wrapper {
                 position: relative;
             }
-            &__photo{
+
+            &__photo {
                 width: 350px;
                 height: 350px;
                 display: block;
                 margin: 15px auto;
                 padding: 10px;
-                &__wrapper{
+
+                &__wrapper {
                     width: 330px;
                     height: 330px;
                     position: relative;
                 }
-                &__photo-group{
+
+                &__photo-group {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                 }
             }
-            &__btns{
+
+            &__btns {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin: 0px;
                 min-height: 40px;
-                &_actions{
+
+                &_actions {
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
                     width: 160px;
                     align-items: center;
-                    & button{
+
+                    & button {
                         margin: 12px 0;
                         @include btnMini;
                     }
                 }
-                &__navigation{
+
+                &__navigation {
                     display: none;
                 }
             }
-            
         }
-        &__information{
+
+        &__information {
             width: 718px;
             display: grid;
             grid-template-rows: auto 250px auto;
             row-gap: 30px;
             margin: 10px auto;
-            &__data{
+
+            &__data {
                 grid-row: 1;
                 min-height: 200px;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
-                &__modification{
-                    &__wrapper{
+
+                &__modification {
+                    &__wrapper {
                         display: flex;
                         justify-content: flex-end;
                         margin-right: 0;
                         margin-top: 7px;
                     }
-                    &__btn{
+
+                    &__btn {
                         @include btnMini;
                     }
                 }
-                &__content{
-                    &_title{
+
+                &__content {
+                    &_title {
                         width: 220px;
                     }
-                    &_content{
+
+                    &_content {
                         word-wrap: break-word;
                         white-space: pre-wrap;
                         width: 420px;
                     }
-                    &__wrapper{
+
+                    &__wrapper {
                         margin: 15px 15px 15px 15px;
                         overflow: hidden;
                     }
                 }
             }
-            &__participants{
+
+            &__participants {
                 grid-row: 2;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
                 padding: 15px;
-                &__list{
-                    &_mini{
+
+                &__list {
+                    &_mini {
                         width: 100%;
                         background: rgba(254, 249, 199, .01);
                         padding: 0;
                         display: flex;
                         justify-content: space-around;
                     }
-                    &__item{
+
+                    &__item {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
-                        & img{
+
+                        & img {
                             display: block;
                             width: 100px;
                             height: 100px;
                             border-radius: 100%;
                             object-fit: cover;
                         }
-                        & span{
+
+                        & span {
                             width: 100px;
                             height: 40px;
                             word-wrap: break-word;
@@ -636,70 +740,83 @@
                             text-align: center;
                             font-size: 15px;
                             font-weight: 500;
-                            color:$input-text;
-    
+                            color: $input-text;
                         }
-                        & a{
+
+                        & a {
                             text-decoration: none;
                         }
                     }
                 }
-                &__count-and-btn{
+
+                &__count-and-btn {
                     position: relative;
-                    &_count{
-                        color:$main-color;
+
+                    &_count {
+                        color: $main-color;
                         font-weight: 600;
                         font-size: 17px;
                         display: flex;
-                        & span{
+
+                        & span {
                             font-weight: 500;
                             font-size: 17px;
-                            color:$input-text;
+                            color: $input-text;
                             margin-left: 5px;
                         }
                     }
-                    &_btn{
+
+                    &_btn {
                         @include btnMini;
                     }
                 }
             }
-            &__posts{
+
+            &__posts {
                 grid-row: 3;
                 width: 100%;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
                 margin: 0 auto;
                 min-height: 200px;
-                &_not-access{
+
+                &_not-access {
                     margin: 0 auto;
                     margin-top: 60px;
                     width: 320px;
                     height: 320px;
-                    & img{
+
+                    & img {
                         width: 320px;
                         height: 320px;
                     }
                 }
             }
         }
-        &__overlay{
+
+        &__overlay {
             @include backgroundModal;
         }
-        &__modal{
+
+        &__modal {
             @include ModalWindow;
             width: 300px;
             height: 170px;
-            &_cancel{
+
+            &_cancel {
                 position: relative;
-                & img{
+
+                & img {
                     position: absolute;
                     left: 90%;
-                    &:hover{
+
+                    &:hover {
                         transform: rotate(30deg) scale(1.1);
                     }
                 }
             }
-            &_message{
+
+            &_message {
                 text-align: center;
                 margin-top: 45px;
             }
@@ -707,99 +824,116 @@
     }
 }
 
-@media (max-width: 768px){
-    .group{
+@media (max-width: 768px) {
+    .group {
         width: 100%;
         display: block;
-        &__photo-and-btns{
+
+        &__photo-and-btns {
             position: relative;
             margin: 10px auto;
             width: 538px;
             height: 450px;
-            &__wrapper{
+
+            &__wrapper {
                 position: relative;
             }
-            &__photo{
+
+            &__photo {
                 width: 320px;
                 height: 320px;
                 display: block;
                 margin: 15px auto;
                 padding: 10px;
-                &__wrapper{
+
+                &__wrapper {
                     width: 300px;
                     height: 300px;
                     position: relative;
                 }
             }
-            &__btns{
-                &_actions{
+
+            &__btns {
+                &_actions {
                     align-items: center;
                 }
             }
         }
-        &__information{
+
+        &__information {
             width: 538px;
             display: grid;
             grid-template-rows: auto 200px auto;
             row-gap: 30px;
             margin: 10px auto;
-            &__data{
+
+            &__data {
                 grid-row: 1;
                 min-height: 200px;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
-                &__modification{
-                    &__wrapper{
+
+                &__modification {
+                    &__wrapper {
                         display: flex;
                         justify-content: flex-end;
                         margin-right: 0;
                         margin-top: 7px;
                     }
-                    &__btn{
+
+                    &__btn {
                         @include btnMini;
                     }
                 }
-                &__content{
-                    &_title{
+
+                &__content {
+                    &_title {
                         width: 215px;
                     }
-                    &_content{
+
+                    &_content {
                         word-wrap: break-word;
                         white-space: pre-wrap;
                         width: 276px;
                         font-size: 14px;
                     }
-                    &__wrapper{
+
+                    &__wrapper {
                         margin: 15px 0px 15px 15px;
                     }
                 }
             }
-            &__participants{
+
+            &__participants {
                 grid-row: 2;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
                 padding: 15px;
-                &__list{
-                    &_mini{
+
+                &__list {
+                    &_mini {
                         width: 100%;
                         background: rgba(254, 249, 199, .01);
                         padding: 0;
                         display: flex;
                         justify-content: space-around;
                     }
-                    &__item{
+
+                    &__item {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
-                        & img{
+
+                        & img {
                             display: block;
                             width: 70px;
                             height: 70px;
                             border-radius: 100%;
                             object-fit: cover;
                         }
-                        & span{
+
+                        & span {
                             width: 70px;
                             height: 40px;
                             word-wrap: break-word;
@@ -808,70 +942,83 @@
                             text-align: center;
                             font-size: 13px;
                             font-weight: 500;
-                            color:$input-text;
-    
+                            color: $input-text;
                         }
-                        & a{
+
+                        & a {
                             text-decoration: none;
                         }
                     }
                 }
-                &__count-and-btn{
+
+                &__count-and-btn {
                     position: relative;
-                    &_count{
-                        color:$main-color;
+
+                    &_count {
+                        color: $main-color;
                         font-weight: 600;
                         font-size: 15px;
                         display: flex;
-                        & span{
+
+                        & span {
                             font-weight: 500;
                             font-size: 15px;
-                            color:$input-text;
+                            color: $input-text;
                             margin-left: 5px;
                         }
                     }
-                    &_btn{
+
+                    &_btn {
                         @include btnMini;
                     }
                 }
             }
-            &__posts{
+
+            &__posts {
                 grid-row: 3;
                 width: 100%;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
                 margin: 0 auto;
                 min-height: 200px;
-                &_not-access{
+
+                &_not-access {
                     margin: 0 auto;
                     margin-top: 60px;
                     width: 200px;
                     height: 200px;
-                    & img{
+
+                    & img {
                         width: 200px;
                         height: 200px;
                     }
                 }
             }
         }
-        &__overlay{
+
+        &__overlay {
             @include backgroundModal;
         }
-        &__modal{
+
+        &__modal {
             @include ModalWindow;
             width: 300px;
             height: 170px;
-            &_cancel{
+
+            &_cancel {
                 position: relative;
-                & img{
+
+                & img {
                     position: absolute;
                     left: 90%;
-                    &:hover{
+
+                    &:hover {
                         transform: rotate(30deg) scale(1.1);
                     }
                 }
             }
-            &_message{
+
+            &_message {
                 text-align: center;
                 margin-top: 45px;
             }
@@ -879,86 +1026,101 @@
     }
 }
 
-@media (max-width: 576px){
-    .group{
+@media (max-width: 576px) {
+    .group {
         width: 100%;
         display: block;
-        &__photo-and-btns{
+
+        &__photo-and-btns {
             position: relative;
             width: 300px;
             height: 330px;
-            &__wrapper{
+
+            &__wrapper {
                 position: relative;
             }
-            &__photo{
+
+            &__photo {
                 width: 250px;
                 height: 250px;
                 display: block;
                 margin: 10px auto;
                 padding: 10px;
-                &__wrapper{
+
+                &__wrapper {
                     width: 230px;
                     height: 230px;
                     position: relative;
                 }
             }
-            &__btns{
-                &_actions{
-                    align-items:center
+
+            &__btns {
+                &_actions {
+                    align-items: center
                 }
             }
         }
-        &__information{
+
+        &__information {
             width: 300px;
             display: grid;
             grid-template-rows: auto 300px auto;
             row-gap: 30px;
             margin: 10px auto;
-            &__data{
+
+            &__data {
                 grid-row: 1;
                 min-height: 200px;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
-                &__modification{
-                    &__wrapper{
+
+                &__modification {
+                    &__wrapper {
                         display: flex;
                         justify-content: flex-end;
                         margin-right: 0;
                         margin-top: 7px;
                     }
-                    &__btn{
+
+                    &__btn {
                         @include btnMini;
                     }
                 }
-                &__content{
-                    &_name{
+
+                &__content {
+                    &_name {
                         font-size: 26px;
                     }
-                    &_title{
+
+                    &_title {
                         width: 93px;
                         height: auto;
                         margin: 3px 0;
                         font-size: 12px;
                     }
-                    &_content{
+
+                    &_content {
                         word-wrap: break-word;
                         white-space: pre-wrap;
                         width: 162px;
                         font-size: 12px;
                         margin: 3px 0;
                     }
-                    &__wrapper{
+
+                    &__wrapper {
                         margin: 15px 0px 15px 15px;
                     }
                 }
             }
-            &__participants{
+
+            &__participants {
                 grid-row: 2;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
                 padding: 15px;
-                &__list{
-                    &_mini{
+
+                &__list {
+                    &_mini {
                         width: 100%;
                         background: rgba(254, 249, 199, .01);
                         padding: 0;
@@ -966,92 +1128,106 @@
                         justify-content: space-around;
                         flex-wrap: wrap;
                     }
-                    &__item{
+
+                    &__item {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
-                        & img{
+
+                        & img {
                             display: block;
                             width: 70px;
                             height: 70px;
                             border-radius: 100%;
                             object-fit: cover;
                         }
-                        & span{
+
+                        & span {
                             width: 70px;
                             height: 40px;
                             word-wrap: break-word;
                             overflow: hidden;
                             font-size: 10px;
                         }
-                        & a{
+
+                        & a {
                             text-decoration: none;
                         }
                     }
                 }
-                &__count-and-btn{
+
+                &__count-and-btn {
                     position: relative;
-                    &_count{
-                        color:$main-color;
+
+                    &_count {
+                        color: $main-color;
                         font-weight: 600;
                         font-size: 13px;
                         display: flex;
-                        & span{
+
+                        & span {
                             font-weight: 500;
                             font-size: 13px;
-                            color:$input-text;
+                            color: $input-text;
                             margin-left: 5px;
                         }
                     }
-                    &_btn{
+
+                    &_btn {
                         @include btnMini;
                     }
                 }
             }
-            &__posts{
+
+            &__posts {
                 grid-row: 3;
                 width: 100%;
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px 1px $secondary-color-light;
                 margin: 0 auto;
                 min-height: 200px;
-                &_not-access{
+
+                &_not-access {
                     margin: 0 auto;
                     margin-top: 30px;
                     width: 200px;
                     height: 200px;
-                    & img{
+
+                    & img {
                         width: 200px;
                         height: 200px;
                     }
                 }
             }
         }
-        &__overlay{
+
+        &__overlay {
             @include backgroundModal;
         }
-        &__modal{
+
+        &__modal {
             @include ModalWindow;
             width: 300px;
             height: 170px;
-            &_cancel{
+
+            &_cancel {
                 position: relative;
-                & img{
+
+                & img {
                     position: absolute;
                     left: 90%;
-                    &:hover{
+
+                    &:hover {
                         transform: rotate(30deg) scale(1.1);
                     }
                 }
             }
-            &_message{
+
+            &_message {
                 text-align: center;
                 margin-top: 45px;
             }
         }
     }
 }
-
-
-

@@ -2,18 +2,14 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import SockJS from 'sockjs-client';
 import { connect } from 'react-redux';
 import { Client } from '@stomp/stompjs';
-import { inputMessageObj} from '../../actions';
+import { inputMessageObj } from '../../actions';
 
-
-
-
-
-const WebSocketsPrivatMessages = ({ inputMessageObj, unsubscribe}) => {
+const WebSocketsPrivatMessages = ({ inputMessageObj, unsubscribe }) => {
     const idForSubscribe = localStorage.getItem("idUser")
-    
-    const[connected, setConnected]=useState();
-  
-    const client=useMemo(()=>{
+
+    const [connected, setConnected] = useState();
+
+    const client = useMemo(() => {
         const connect = new Client({
             connectHeaders: {},
             reconnectDelay: 5000,
@@ -22,64 +18,49 @@ const WebSocketsPrivatMessages = ({ inputMessageObj, unsubscribe}) => {
             webSocketFactory: () => new SockJS('/ws/messages'),
         });
 
-        
         connect.activate()
-        
+
         connect.onConnect = (frame) => {
-            if(frame.command==="CONNECTED"){
+            setConnected(false)
+            if (frame.command === "CONNECTED") {
                 setConnected(true)
             }
-            
         }
-
         return connect
-    },[])
-
-    
+    }, [])
 
     client.debug = function (str) {
         console.log(str);
     };
 
-    const actionMessage=(message)=>{
-        console.log(message.body)
-        const messageParse=JSON.parse(message.body)
-        console.log(messageParse)
+    const actionMessage = (message) => {
+        const messageParse = JSON.parse(message.body)
         inputMessageObj(messageParse)
-
     }
 
-  
-    const setSubscribePrivatMessages=useCallback(()=>{
-        console.log("начинем подписку")
+    const setSubscribePrivatMessages = useCallback(() => {
         client.subscribe('/queue/privateMessage/' + idForSubscribe, actionMessage)
-    },[])
+    }, [])
 
-    useEffect(()=>{
-        if(connected){
+    useEffect(() => {
+        if (connected) {
             setSubscribePrivatMessages()
-           
         }
-    },[connected])
+    }, [connected])
 
-    
-
-    const setUnsubscribePrivatMessages=useCallback(()=>{
-        console.log("начинем отписку");
-        client.unsubscribe();
+    const setUnsubscribePrivatMessages = useCallback(() => {
+        if (client.connected !== undefined) {
+            client.unsubscribe();
+        }
         client.deactivate()
-    },[])
+    }, [])
 
-    
-
-    useEffect(()=>{
-        if(unsubscribe){
+    useEffect(() => {
+        if (unsubscribe) {
             setUnsubscribePrivatMessages()
         }
-    },[unsubscribe])
+    }, [unsubscribe])
 
-    
-   
     return (
         <div>
         </div>
@@ -98,5 +79,5 @@ const mapDispatchToProps = {
     inputMessageObj
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WebSocketsPrivatMessages);
+export default connect(mapStateToProps, mapDispatchToProps)(WebSocketsPrivatMessages)
 

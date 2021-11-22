@@ -1,8 +1,17 @@
-import React, {Component} from 'react';
-import {  Link } from 'react-router-dom';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import WithService from '../hoc/hoc';
-import {logout, displayingLoginAndRegistrationPage, inputMessageObj, unsubscribe, inputNotificationObj, pathLink, openAndCloseDropDownMenu} from '../../actions';
+import {
+    logout,
+    displayingLoginAndRegistrationPage,
+    inputMessageObj,
+    unsubscribe,
+    inputNotificationObj,
+    pathLink,
+    openAndCloseDropDownMenu,
+    mouseLeaveNotificationsList
+} from '../../actions';
 import { withRouter } from "react-router";
 import './header.scss';
 import HeaderSearch from '../headerSearch/headerSearch';
@@ -17,196 +26,247 @@ import exit from './exit.svg';
 import sunflower from './sunflower.svg';
 import menu from './menu.svg';
 import menuNotNull from './menuNotNull.svg';
-import DropDownMenu from '../drop-down-menu-header/drop-down-menu-header';
+import DropDownMenu from '../dropDownMenuHeader/dropDownMenuHeader';
 
-
-
-class Header extends Component{
-
-    constructor(props){
+class Header extends Component {
+    _cleanupFunction = false;
+    constructor(props) {
         super(props);
-
-        this.state={
+        this.state = {
             openNotificationsList: false
         }
 
-        const {Service} = this.props;
+        const {
+            Service,
+            inputMessageObj,
+            inputNotificationObj,
+            mouseLeaveNotificationsList,
+            unsubscribe,
+            logout,
+            history,
+            openAndCloseDropDownMenu } = this.props;
 
-        this.exit=()=>{
-
-            Service.logoutRequest('api/logout')
-                .then(res=>{
-                    if(res.status===200){
-                        this.props.unsubscribe();
-                        localStorage.clear()
-                        this.props.logout();
-                    }
-                })
-        }
-
-        this.goToSettings=()=>{
-            this.props.history.push('/modificationEmailAndPassword')
-        }
-
-        this.componentDidMount=()=>{
+        this.componentDidMount = () => {
+            this._cleanupFunction = true;
             Service.getUnreadMessage('/api/message/get-unaccepted-messages')
-                .then(res=>{
-                    if(res.status===200){
-                        res.data.forEach(el=>{
-                            this.props.inputMessageObj(el)
-                        })
+                .then(res => {
+                    if (this._cleanupFunction) {
+                        if (res.status === 200) {
+                            res.data.forEach(el => {
+                                inputMessageObj(el)
+                            })
+                        }
                     }
                 })
             Service.getUnacceptedNotifications('/api/notification/getUnacceptedNotifications')
-                .then(res=>{
-                    if(res.status===200){
-                        res.data.forEach(el=>{
-                            this.props.inputNotificationObj(el)
-                        })
+                .then(res => {
+                    if (res.status === 200) {
+                        if (this._cleanupFunction) {
+                            res.data.forEach(el => {
+                                inputNotificationObj(el)
+                            })
+                        }
                     }
                 })
         }
 
-        this.openNotificationsList=()=>{
-            this.setState({
-                openNotificationsList: !this.state.openNotificationsList
-            })
-        }
-
-        this.componentDidUpdate=()=>{
-            if(this.props.mouseLeaveNotificationsListstate){
-                this.openNotificationsList()
+        this.componentDidUpdate = () => {
+            if (this.props.mouseLeaveNotificationsListstate && this.state.openNotificationsList) {
+                this.closeListNotifications()
             }
         }
 
-        this.toggleDropDownMenu=()=>{
-            this.props.openAndCloseDropDownMenu(!this.props.dropDownMenu)
+        this.componentWillUnmount = () => {
+            this._cleanupFunction = false;
         }
 
+        this.exit = () => {
+            Service.logoutRequest('api/logout')
+                .then(res => {
+                    if (res.status === 200) {
+                        if (this._cleanupFunction) {
+                            unsubscribe();
+                            localStorage.clear();
+                            logout();
+                            history.push('');
+                        }
+                    }
+                })
+        }
 
+        this.goToSettings = () => {
+            history.push('/modificationEmailAndPassword')
+        }
+
+        this.openNotificationsList = () => {
+            if(!this.state.openNotificationsList){
+                this.setState({
+                    openNotificationsList: true
+                })
+            }else{
+                this.setState({
+                    openNotificationsList: false
+                })
+            }
+        }
+
+        this.toggleDropDownMenu = () => {
+            openAndCloseDropDownMenu(!this.props.dropDownMenu)
+        }
+
+        this.closeListNotifications = () => {
+            this.setState({
+                openNotificationsList: false
+            })
+            mouseLeaveNotificationsList(false)
+        }
     }
-    
-    render(){
 
-        const {idUser}=this.props;
-        const id=`/${idUser}`;
+    render() {
 
-        let countMessage=null;
+        const {
+            idUser,
+            inputMessageCount,
+            inputNotificationObjCount,
+            dropDownMenu } = this.props;
 
-        let menuItem=menu;
+        const { openNotificationsList } = this.state;
 
-        if(this.props.inputMessageCount.length>0){
-            countMessage=this.props.inputMessageCount.length;
-            menuItem=menuNotNull;
+        const id = `/${idUser}`;
+        let countMessage = null;
+        let menuItem = menu;
+        let countNotifications = null;
+        let listNotifications = null;
+        let dropDownMenuBlock = null;
+
+        if (inputMessageCount.length > 0) {
+            countMessage = inputMessageCount.length;
+            menuItem = menuNotNull;
         }
 
-        let countNotifications=null;
-
-        if(this.props.inputNotificationObjCount.length>0){
-            countNotifications=this.props.inputNotificationObjCount.length
+        if (inputNotificationObjCount.length > 0) {
+            countNotifications = inputNotificationObjCount.length
         }
 
-        let listNotifications=null;
-
-        if(this.state.openNotificationsList){
-            listNotifications=<UserNotificationsList/>
+        if (openNotificationsList) {
+            listNotifications = <UserNotificationsList />
         }
 
-        if(this.props.mouseLeaveNotificationsList){
-            listNotifications=null;
+        if (dropDownMenu) {
+            dropDownMenuBlock = <DropDownMenu />
         }
 
-        let dropDownMenu=null;
-        if(this.props.dropDownMenu){
-            dropDownMenu=<DropDownMenu/>
-        }
-        
-        
         return (
             <header>
                 <nav className="header">
-                    <img src={sunflower} alt="logo" className="header__logo"/>
-
+                    <img src={sunflower}
+                        alt="logo"
+                        className="header__logo"
+                    />
                     <div className="header__menu__wrapper">
-                            <img className="header__menu__item" src={notifications} alt="notifications" onClick={this.openNotificationsList}/> 
-                            <span className="header__menu__item__count_notifications">
+                        <div className="header__menu__item" >
+                            <img src={notifications}
+                                alt="notifications"
+                                onClick={this.openNotificationsList}
+                            />
+                            <span className="header__menu__item__count_notifications"
+                                onClick={this.openNotificationsList}>
                                 {countNotifications}
                             </span>
                             <span className="header__menu__item__label">
                                 Уведомления
                             </span>
+                        </div>
                     </div>
-                        {listNotifications}
-
+                    {listNotifications}
                     <div className="header__menu">
                         <div className="header__menu__wrapper">
-                            <Link to={id}>
-                                <img className="header__menu__item" src={home} alt="Домой"/>
-                            </Link>
-                            <span className="header__menu__item__label">Домой</span>
+                            <div className="header__menu__item">
+                                <Link to={id}>
+                                    <img src={home}
+                                        alt="Домой"
+                                    />
+                                </Link>
+                                <span className="header__menu__item__label">Домой</span>
+                            </div>
                         </div>
                         <div className="header__menu__wrapper">
-                         <Link to="/friends/">
-                             <img className="header__menu__item" src={friends} alt="Друзья"/>
-                         </Link>
-                         <span className="header__menu__item__label">Друзья</span>
+                            <div className="header__menu__item">
+                                <Link to="/friends/">
+                                    <img src={friends}
+                                        alt="Друзья"
+                                    />
+                                </Link>
+                                <span className="header__menu__item__label">Друзья</span>
+                            </div>
                         </div>
                         <div className="header__menu__wrapper">
-                            <Link to="/dialogs">
-                                    <img className="header__menu__item" src={messages} alt="Письма"/> 
+                            <div className="header__menu__item">
+                                <Link to="/dialogs">
+                                    <img src={messages}
+                                        alt="Письма"
+                                    />
                                     <span className="header__menu__item__count">
                                         {countMessage}
                                     </span>
-                            </Link>
-                            <span className="header__menu__item__label">Письма</span>
+                                </Link>
+                                <span className="header__menu__item__label">Письма</span>
+                            </div>
                         </div>
-
                         <div className="header__menu__wrapper">
-                            <Link to="/groups/">
-                                <img className="header__menu__item" src={group} alt="Группы"/>
-                            </Link>
-                            <span className="header__menu__item__label">Группы</span>
+                            <div className="header__menu__item">
+                                <Link to="/groups/">
+                                    <img
+                                        src={group}
+                                        alt="Группы"
+                                    />
+                                </Link>
+                                <span className="header__menu__item__label">Группы</span>
+                            </div>
                         </div>
-
                     </div>
-
-                    <HeaderSearch/>
-
+                    <HeaderSearch />
                     <div className="header__menu__mini-size">
-                        <img className="header__menu__item" src={menuItem} alt="menu" onClick={this.toggleDropDownMenu}/>
-                        {dropDownMenu}
+                        <img className="header__menu__item"
+                            src={menuItem}
+                            alt="menu"
+                            onClick={()=>this.toggleDropDownMenu()}
+                        />
+                        {dropDownMenuBlock}
                     </div>
-
-
                     <div className="header__menu__settings-and-exit">
-                        
                         <div className="header__menu__settings-and-exit">
                             <div className="header__menu__wrapper">
-                                <img src={settings} alt="Настройки" onClick={()=>this.goToSettings()} className="header__menu__item"/>
-                                <span className="header__menu__item__label">
-                                    Настройки
+                                <div className="header__menu__item">
+                                    <img src={settings}
+                                        alt="Настройки"
+                                        onClick={() => this.goToSettings()}
+                                    />
+                                    <span className="header__menu__item__label">
+                                        Настройки
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="header__menu__wrapper">
+                            <div className="header__menu__item">
+                                <img src={exit}
+                                    alt="Выход"
+                                    onClick={() => this.exit()}
+                                />
+                                <span className="header__menu__item__label_last">
+                                    Выход
                                 </span>
                             </div>
                         </div>
-
-                        <div className="header__menu__wrapper">
-                            <img src={exit} alt="Выход" onClick={()=>this.exit()} className="header__menu__item"/>
-                            <span className="header__menu__item__label_last">
-                                Выход
-                            </span>
-                        </div>
                     </div>
-                    
                 </nav>
             </header>
         )
-
-
-        
     }
 }
 
-const mapStateToProps=(state)=>{
+const mapStateToProps = (state) => {
     return {
         idUser: state.userId,
         logoutStatus: state.logout,
@@ -218,14 +278,15 @@ const mapStateToProps=(state)=>{
     }
 }
 
-const mapDispatchToProps={
-        logout,
-        displayingLoginAndRegistrationPage,
-        inputMessageObj,
-        unsubscribe,
-        inputNotificationObj,
-        pathLink,
-        openAndCloseDropDownMenu
+const mapDispatchToProps = {
+    logout,
+    displayingLoginAndRegistrationPage,
+    inputMessageObj,
+    unsubscribe,
+    inputNotificationObj,
+    pathLink,
+    openAndCloseDropDownMenu,
+    mouseLeaveNotificationsList
 }
 
-export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Header)));
+export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(Header)))

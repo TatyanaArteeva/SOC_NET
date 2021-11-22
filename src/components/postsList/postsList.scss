@@ -1,13 +1,15 @@
 @import '../../variables';
 @import '../../mixins';
 
-.public-messages{
+.public-messages {
     margin-top: 7px;
     width: 100%;
-    &__input{
+
+    &__input {
         @include inputMessage
     }
-    &__wrapper{
+
+    &__wrapper {
         @include input;
         width: 650px;
         height: 150px;
@@ -15,17 +17,20 @@
         box-shadow: 1px 1px 1px 1px $main-color-light;
         border: none;
         position: relative;
-        background-color:white;
+        background-color: white;
         margin: 0 auto;
+
         &:hover {
             border-color: rgba(254, 249, 199, .01);
             box-shadow: 2px 2px 2px 2px $main-color;
         }
-        &:focus{
+
+        &:focus {
             border-color: rgba(254, 249, 199, .01);
             box-shadow: 2px 2px 2px 2px $main-color;
         }
     }
+
     &__send {
         width: 35px;
         height: 37px;
@@ -33,6 +38,7 @@
         right: 5px;
         bottom: 0px;
         transition: 1s all;
+
         & img {
             width: 100%;
             height: 100%;
@@ -40,17 +46,20 @@
             right: 1px;
             bottom: 0;
         }
-        &:hover{
+
+        &:hover {
             transform: scale(1.2);
             cursor: pointer;
         }
     }
-    &__list{
+
+    &__list {
         padding: 0;
         width: 650px;
         margin: 30px auto;
     }
-    &__item{
+
+    &__item {
         display: flex;
         justify-content: start;
         align-items: flex-start;
@@ -60,37 +69,45 @@
         padding: 20px;
         box-shadow: .5px .5px .5px .5px $background-color-modal-shadow;
         position: relative;
-        &__img{
+
+        &__img {
             width: 150px;
             height: 150px;
             margin-right: 25px;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
             }
-            & img{
+
+            & img {
                 width: 150px;
                 height: 150px;
                 object-fit: cover;
                 border-radius: 100%;
             }
         }
-        &__content{
+
+        &__content {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-start;
             width: 100%;
-            &__info{
+
+            &__info {
                 width: 100%;
-                &_name{
+
+                &_name {
                     font-size: 17px;
                     font-weight: 600;
                     color: $main-color;
-                    &:hover{
+
+                    &:hover {
                         cursor: pointer;
                     }
                 }
-                &_time{
+
+                &_time {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
@@ -102,7 +119,8 @@
                     margin-top: 5px;
                 }
             }
-            &__message{
+
+            &__message {
                 margin: 10px 0;
                 width: 435px;
                 font-size: 16px;
@@ -111,32 +129,37 @@
             }
         }
     }
-    &__total-size{
+
+    &__total-size {
         color: $main-color;
         font-size: 19px;
-        & span{
+
+        & span {
             color: $input-text;
         }
     }
-    &__null{
+
+    &__null {
         width: 320px;
         height: 320px;
         margin: 0 auto;
         margin-top: 30px;
-        & img{
+
+        & img {
             width: 320px;
             height: 320px;
         }
     }
 }
 
-@media (max-width: 1200px){
-    .public-messages{
-        &__input{
+@media (max-width: 1200px) {
+    .public-messages {
+        &__input {
             @include inputMessage;
             width: 515px;
         }
-        &__wrapper{
+
+        &__wrapper {
             @include input;
             width: 553px;
             height: 150px;
@@ -144,23 +167,27 @@
             box-shadow: 1px 1px 1px 1px $main-color-light;
             border: none;
             position: relative;
-            background-color:white;
+            background-color: white;
             margin: 0 auto;
+
             &:hover {
                 border-color: rgba(254, 249, 199, .01);
                 box-shadow: 2px 2px 2px 2px $main-color;
             }
-            &:focus{
+
+            &:focus {
                 border-color: rgba(254, 249, 199, .01);
                 box-shadow: 2px 2px 2px 2px $main-color;
             }
         }
-        &__list{
+
+        &__list {
             width: 553px;
         }
-        &__item{
-            &__content{
-                &__message{
+
+        &__item {
+            &__content {
+                &__message {
                     width: 340px;
                     margin: 10px 0;
                     font-size: 16px;
@@ -169,19 +196,23 @@
                 }
             }
         }
-        &__total-size{
+
+        &__total-size {
             color: $main-color;
             font-size: 19px;
-            & span{
+
+            & span {
                 color: $input-text;
             }
         }
-        &__null{
+
+        &__null {
             width: 280px;
             height: 280px;
             margin: 0 auto;
             margin-top: 30px;
-            & img{
+
+            & img {
                 width: 280px;
                 height: 280px;
             }
@@ -189,13 +220,14 @@
     }
 }
 
-@media (max-width: 992px){
-    .public-messages{
-        &__input{
+@media (max-width: 992px) {
+    .public-messages {
+        &__input {
             @include inputMessage;
             width: 585px;
         }
-        &__wrapper{
+
+        &__wrapper {
             @include input;
             width: 630px;
             height: 150px;
@@ -203,23 +235,27 @@
             box-shadow: 1px 1px 1px 1px $main-color-light;
             border: none;
             position: relative;
-            background-color:white;
+            background-color: white;
             margin: 0 auto;
+
             &:hover {
                 border-color: rgba(254, 249, 199, .01);
                 box-shadow: 2px 2px 2px 2px $main-color;
             }
-            &:focus{
+
+            &:focus {
                 border-color: rgba(254, 249, 199, .01);
                 box-shadow: 2px 2px 2px 2px $main-color;
             }
         }
-        &__list{
+
+        &__list {
             width: 630px;
         }
-        &__item{
-            &__content{
-                &__message{
+
+        &__item {
+            &__content {
+                &__message {
                     width: 415px;
                     margin: 10px 0;
                     font-size: 16px;
@@ -228,19 +264,23 @@
                 }
             }
         }
-        &__total-size{
+
+        &__total-size {
             color: $main-color;
             font-size: 19px;
-            & span{
+
+            & span {
                 color: $input-text;
             }
         }
-        &__null{
+
+        &__null {
             width: 280px;
             height: 280px;
             margin: 0 auto;
             margin-top: 30px;
-            & img{
+
+            & img {
                 width: 280px;
                 height: 280px;
             }
@@ -248,13 +288,14 @@
     }
 }
 
-@media (max-width: 768px){
-    .public-messages{
-        &__input{
+@media (max-width: 768px) {
+    .public-messages {
+        &__input {
             @include inputMessage;
             width: 463px;
         }
-        &__wrapper{
+
+        &__wrapper {
             @include input;
             width: 508px;
             height: 150px;
@@ -262,48 +303,59 @@
             box-shadow: 1px 1px 1px 1px $main-color-light;
             border: none;
             position: relative;
-            background-color:white;
+            background-color: white;
             margin: 0 auto;
+
             &:hover {
                 border-color: rgba(254, 249, 199, .01);
                 box-shadow: 2px 2px 2px 2px $main-color;
             }
-            &:focus{
+
+            &:focus {
                 border-color: rgba(254, 249, 199, .01);
                 box-shadow: 2px 2px 2px 2px $main-color;
             }
         }
-        &__send{
+
+        &__send {
             width: 33px;
             height: 35px;
         }
-        &__list{
+
+        &__list {
             width: 508px;
         }
-        &__total-size{
+
+        &__total-size {
             font-size: 17px;
         }
-        &__item{
+
+        &__item {
             margin-top: 20px;
-            &__img{
+
+            &__img {
                 width: 100px;
                 height: 100px;
                 margin-right: 20px;
-                & img{
+
+                & img {
                     width: 100px;
                     height: 100px;
                 }
             }
-            &__content{
-                &__info{
-                    &_name{
+
+            &__content {
+                &__info {
+                    &_name {
                         font-size: 15px;
                     }
-                    &_time{
+
+                    &_time {
                         font-size: 10px;
                     }
                 }
-                &__message{
+
+                &__message {
                     width: 355px;
                     margin: 5px 0;
                     font-size: 15px;
@@ -312,19 +364,23 @@
                 }
             }
         }
-        &__total-size{
+
+        &__total-size {
             color: $main-color;
             font-size: 19px;
-            & span{
+
+            & span {
                 color: $input-text;
             }
         }
-        &__null{
+
+        &__null {
             width: 200px;
             height: 200px;
             margin: 0 auto;
             margin-top: 30px;
-            & img{
+
+            & img {
                 width: 200px;
                 height: 200px;
             }
@@ -332,13 +388,14 @@
     }
 }
 
-@media (max-width: 576px){
-    .public-messages{
-        &__input{
+@media (max-width: 576px) {
+    .public-messages {
+        &__input {
             @include inputMessage;
             width: 250px;
         }
-        &__wrapper{
+
+        &__wrapper {
             @include input;
             width: 290px;
             height: 150px;
@@ -346,50 +403,61 @@
             box-shadow: 1px 1px 1px 1px $main-color-light;
             border: none;
             position: relative;
-            background-color:white;
+            background-color: white;
             margin: 0 auto;
+
             &:hover {
                 border-color: rgba(254, 249, 199, .01);
                 box-shadow: 2px 2px 2px 2px $main-color;
             }
-            &:focus{
+
+            &:focus {
                 border-color: rgba(254, 249, 199, .01);
                 box-shadow: 2px 2px 2px 2px $main-color;
             }
         }
-        &__send{
+
+        &__send {
             width: 30px;
             height: 32px;
         }
-        &__list{
+
+        &__list {
             width: 290px;
         }
-        &__total-size{
+
+        &__total-size {
             font-size: 15px;
             margin: 20px auto;
         }
-        &__item{
+
+        &__item {
             margin-top: 20px;
-            &__img{
+
+            &__img {
                 width: 50px;
                 height: 50px;
                 margin-right: 10px;
-                & img{
+
+                & img {
                     width: 50px;
                     height: 50px;
                 }
             }
-            &__content{
-                &__info{
-                    &_name{
+
+            &__content {
+                &__info {
+                    &_name {
                         font-size: 14px;
                     }
-                    &_time{
+
+                    &_time {
                         font-size: 9px;
                         right: 15px;
                     }
                 }
-                &__message{
+
+                &__message {
                     width: 200px;
                     margin: 5px 0;
                     font-size: 15px;
@@ -398,25 +466,26 @@
                 }
             }
         }
-        &__total-size{
+
+        &__total-size {
             color: $main-color;
             font-size: 17px;
-            & span{
+
+            & span {
                 color: $input-text;
             }
         }
-        &__null{
+
+        &__null {
             width: 200px;
             height: 200px;
             margin: 0 auto;
             margin-top: 30px;
-            & img{
+
+            & img {
                 width: 200px;
                 height: 200px;
             }
         }
     }
 }
-
-
-
