@@ -27,7 +27,7 @@ import SpinnerMini from '../spinnerMini/spinnerMini';
 import SpinnerMiniMini from '../spinnerMiniMini/spinnerMiniMini';
 import deletee from './delete.svg';
 let req = false;
-let listClass = "modification-account__family__list"
+let listClass = "modification-account__family__list";
 
 const Modification = (
     {
