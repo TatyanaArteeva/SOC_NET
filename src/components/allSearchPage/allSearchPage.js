@@ -417,7 +417,7 @@ class AllSearchPage extends Component {
         }
 
         this.goToUserPage = (id) => {
-            history.push(`/${id}`)
+            history.push(`/account/${id}`)
         }
 
         this.goToGroupsPage = (id) => {

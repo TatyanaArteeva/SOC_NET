@@ -7,14 +7,16 @@ import {
     deleteNotificationFromInputNotificationObj,
     mouseLeaveNotificationsList,
     checkingForAuthorization,
-    unsubscribe
+    unsubscribe,
 } from '../../actions';
 import 'moment/locale/ru';
 import Moment from 'react-moment';
 import SpinnerMini from '../spinnerMini/spinnerMini';
 import SpinnerMiniMini from '../spinnerMiniMini/spinnerMiniMini';
 import bell from './bell.svg';
-const localFormatDateByVersionLibMomentReact = 'lll'
+import { findDOMNode } from 'react-dom';
+const localFormatDateByVersionLibMomentReact = 'lll';
+
 
 class UserNotificationsList extends Component {
     _cleanupFunction = false;
@@ -28,7 +30,7 @@ class UserNotificationsList extends Component {
             renderItems: false,
             req: false,
             spinner: true,
-            spinnerMini:false,
+            spinnerMini: false,
             error: false
         }
 
@@ -37,12 +39,13 @@ class UserNotificationsList extends Component {
         const idUser = localStorage.getItem('idUser');
         this.refList = React.createRef();
 
+
         const {
             Service,
             checkingForAuthorization,
             unsubscribe,
             mouseLeaveNotificationsList,
-            history
+            history,
         } = this.props;
 
         this.getNotifications = () => {
@@ -73,7 +76,7 @@ class UserNotificationsList extends Component {
                                         req: false,
                                         spinner: false,
                                         renderItems: true,
-                                        spinnerMini:false
+                                        spinnerMini: false
                                     })
                                 }
                             }
@@ -81,15 +84,15 @@ class UserNotificationsList extends Component {
                             this.setState({
                                 spinner: false,
                                 error: true,
-                                spinnerMini:false
+                                spinnerMini: false
                             })
                             if (err.response.status === 401) {
                                 unsubscribe()
                                 checkingForAuthorization();
                             }
                         })
-                }else{
-                    end=this.props.inputNotificationObj.length
+                } else {
+                    end = this.props.inputNotificationObj.length
                     const objForGetNotificationsData = {
                         end: end,
                         start: start,
@@ -115,7 +118,7 @@ class UserNotificationsList extends Component {
                                         req: false,
                                         spinner: false,
                                         renderItems: true,
-                                        spinnerMini:false
+                                        spinnerMini: false
                                     })
                                 }
                             }
@@ -123,7 +126,7 @@ class UserNotificationsList extends Component {
                             this.setState({
                                 spinner: false,
                                 error: true,
-                                spinnerMini:false
+                                spinnerMini: false
                             })
                             if (err.response.status === 401) {
                                 unsubscribe()
@@ -157,7 +160,7 @@ class UserNotificationsList extends Component {
                                     req: false,
                                     spinner: false,
                                     renderItems: true,
-                                    spinnerMini:false
+                                    spinnerMini: false
                                 })
                             }
                         }
@@ -165,7 +168,7 @@ class UserNotificationsList extends Component {
                         this.setState({
                             spinner: false,
                             error: true,
-                            spinnerMini:false
+                            spinnerMini: false
                         })
                         if (err.response.status === 401) {
                             unsubscribe()
@@ -186,10 +189,23 @@ class UserNotificationsList extends Component {
             }, () => {
                 this.getNotifications()
             })
+            document.addEventListener("click", this.clickListNotifications)
+        }
+
+        this.clickListNotifications = (event) => {
+            const domNode = findDOMNode(this);
+            if(event.target.classList[0] !== "img__notifications" && domNode.contains(event.target) === false){
+                if(event.target.classList[0] !== "header__menu__item__count_notifications" && domNode.contains(event.target) === false){
+                    this.props.mouseLeaveNotificationsList(true)
+                }
+
+            }
+
         }
 
         this.componentWillUnmount = () => {
             window.removeEventListener('scroll', () => { })
+            document.removeEventListener('click', this.clickListNotifications)
             this._cleanupFunction = false;
         }
 
@@ -214,7 +230,7 @@ class UserNotificationsList extends Component {
                     if (this._cleanupFunction) {
                         this.setState({
                             req: true,
-                            renderItems: false, 
+                            renderItems: false,
                             spinnerMini: true
                         })
                     }
@@ -274,7 +290,9 @@ class UserNotificationsList extends Component {
         }
 
         this.goToUserPage = (id) => {
-            history.push({ pathname: `/${id}` })
+            this.props.mouseLeaveNotificationsList(true)
+            history.push({ pathname: `/account/${id}` })
+
         }
 
     }
@@ -371,7 +389,7 @@ class UserNotificationsList extends Component {
                 <SpinnerMini />
             </div> : notificationsContent
 
-        let spinnerMiniBlock=this.state.spinnerMini ? <SpinnerMiniMini/> : null;
+        let spinnerMiniBlock = this.state.spinnerMini ? <SpinnerMiniMini /> : null;
 
         return (
             <div className="user-notifications-list">
@@ -395,7 +413,7 @@ const mapDispatchToProps = {
     deleteNotificationFromInputNotificationObj,
     mouseLeaveNotificationsList,
     checkingForAuthorization,
-    unsubscribe
+    unsubscribe,
 }
 
 export default withRouter(WithService()(connect(mapStateToProps, mapDispatchToProps)(UserNotificationsList)))

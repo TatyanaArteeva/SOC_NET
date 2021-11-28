@@ -42,7 +42,7 @@ const Modification = (
         unsubscribe
     }
 ) => {
-    const idLink = `/${id}`;
+    const idLink = `/account/${id}`;
     const { push } = useHistory();
     registerLocale("ru", ru);
     const [firstName, setFirstName] = useState('');
@@ -306,6 +306,7 @@ const Modification = (
                 birthDate.getTime() - birthDate.getTimezoneOffset() * 60 * 1000
             ).toISOString().split('T')[0]
         }
+
         event.preventDefault();
         const modificationAccount = {
             birthDate: newFormatDate,
@@ -322,7 +323,9 @@ const Modification = (
             partnerId: selectPartner
         }
         for (let key in modificationAccount) {
-            if (modificationAccount[key] === null || modificationAccount[key].length === 0) {
+            if (modificationAccount[key] === null ||
+                modificationAccount[key] === undefined ||
+                modificationAccount[key].length === 0) {
                 modificationAccount[key] = null
             }
         }

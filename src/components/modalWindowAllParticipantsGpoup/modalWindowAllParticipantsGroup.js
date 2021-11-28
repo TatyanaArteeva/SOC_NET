@@ -30,7 +30,7 @@ class ModalWindowAllParticipantsGroup extends Component {
                     }}
                     path={(id) => {
                         closeModalAllParticipantsGroup()
-                        history.push(`/${id}`)
+                        history.push(`/account/${id}`)
                     }
                     }
                     renderItems={this.state.arr}

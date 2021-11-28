@@ -103,7 +103,8 @@ class DetailedInformationBlock extends Component {
             spinner } = this.state;
 
         if (partner !== null && partner.accepted === true) {
-            partnerName = <Link to={partner.id}>
+            const linkToPartnerPage=`/account/${partner.id}`
+            partnerName = <Link to={linkToPartnerPage}>
                 <div className="profile-information-detailed__content__partner">{partner.firstName} {partner.lastName}</div>
             </Link>
             partnerPrefix = "c"

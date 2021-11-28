@@ -27,13 +27,12 @@ class PhotoUser extends Component {
         this.state = {
             errorActionsWithFriends: false,
             errorMessageWithActionsFriends: '',
-            inBlockMessageError: false
+            inBlockMessageError: false,
         }
 
         const {
             Service,
             loadingPhotoProfile,
-            idForPhoto,
             match,
             photoUser,
             checkingForAuthorization,
@@ -51,8 +50,8 @@ class PhotoUser extends Component {
         }
 
         this.componentDidUpdate = (prevProps) => {
-            if (prevProps.idForPhoto !== idForPhoto || match.params.id) {
-                Service.getAccountPhoto(`/api/account/${idForPhoto}/photo`, {
+            if (prevProps.idForPhoto !== this.props.idForPhoto || match.params.id) {
+                Service.getAccountPhoto(`/api/account/${this.props.idForPhoto}/photo`, {
                     responseType: 'arraybuffer'
                 })
                     .then(response => {
@@ -69,7 +68,7 @@ class PhotoUser extends Component {
         }
 
         this.getPhoto = () => {
-            Service.getAccountPhoto(`/api/account/${idForPhoto}/photo`, {
+            Service.getAccountPhoto(`/api/account/${this.props.idForPhoto}/photo`, {
                 responseType: 'arraybuffer'
             })
                 .then(response => {
@@ -90,7 +89,7 @@ class PhotoUser extends Component {
             Service.postActionsFriends(path)
                 .then(res => {
                     if (res.status === 200) {
-                        Service.getAccountInfo(`/api/account/${idForPhoto}/page-info`)
+                        Service.getAccountInfo(`/api/account/${this.props.idForPhoto}/page-info`)
                             .then(res => {
                                 if (res.status === 200) {
                                     infoRelation(res.data.info);
@@ -107,7 +106,7 @@ class PhotoUser extends Component {
                             errorActionsWithFriends: true,
                             errorMessageWithActionsFriends: error
                         })
-                        Service.getAccountInfo(`/api/account/${idForPhoto}/page-info`)
+                        Service.getAccountInfo(`/api/account/${this.props.idForPhoto}/page-info`)
                             .then(res => {
                                 if (res.status === 200) {
                                     infoRelation(res.data.info);
@@ -118,24 +117,24 @@ class PhotoUser extends Component {
         }
 
         this.addFriends = () => {
-            this.actionsUserAndPageInfo(`/api/friend/addFriend/${idForPhoto}`)
+            this.actionsUserAndPageInfo(`/api/friend/addFriend/${this.props.idForPhoto}`)
         }
 
         this.cancelAddFriends = () => {
-            this.actionsUserAndPageInfo(`/api/friend/removeFriend/${idForPhoto}`)
+            this.actionsUserAndPageInfo(`/api/friend/removeFriend/${this.props.idForPhoto}`)
         }
 
         this.deleteFriends = () => {
-            this.actionsUserAndPageInfo(`/api/friend/removeFriend/${idForPhoto}`)
+            this.actionsUserAndPageInfo(`/api/friend/removeFriend/${this.props.idForPhoto}`)
         }
 
         this.rejectFriends = () => {
-            this.actionsUserAndPageInfo(`/api/friend/rejectFriend/${idForPhoto}`)
+            this.actionsUserAndPageInfo(`/api/friend/rejectFriend/${this.props.idForPhoto}`)
         }
 
         this.writeMessage = () => {
-            localStorage.setItem('idForDialogFriends', idForPhoto);
-            idForDialogFriends(idForPhoto);
+            localStorage.setItem('idForDialogFriends', this.props.idForPhoto);
+            idForDialogFriends(this.props.idForPhoto);
             history.push('/dialog')
         }
 
@@ -182,7 +181,7 @@ class PhotoUser extends Component {
 
         const { errorMessageWithActionsFriends } = this.state;
 
-        const id = `/${idUser}`;
+        const id = `/account/${idUser}`;
         let btnActionsElementsPage = null;
         let modalWindowForMainPhotoModification = null;
         let btnActionRejectFriend = null;

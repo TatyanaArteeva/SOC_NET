@@ -117,31 +117,35 @@ const PostsList = (
 
     function postRequest(e) {
         e.preventDefault();
-        const OneInvalidSymbol = ' ';
-        const oneCheck = newPost.indexOf(OneInvalidSymbol);
-        if (newPost.length > 0) {
-            if (oneCheck !== 0) {
-                const sendDate = new Date().toISOString()
-                const outputPost = {
-                    content: newPost,
-                    destinationId: currentIdLocation,
-                    messageOnWallType: messageOnWallType,
-                    sendDate: sendDate,
-                    sourceId: localStorage.getItem('idUser')
-                }
-                Service.postMessage('/api/message/sendMessageOnWall', outputPost)
-                    .then(res => {
-                        if (res.status === 200) {
-                            setNewPost('')
-                        }
-                    }).catch(err => {
-                        if (err.response.status === 401) {
-                            unsubscribe()
-                            checkingForAuthorization();
-                        }
-                    })
+        const valueNewMessage = getCleanUserMessage()
+        if (valueNewMessage !== undefined && valueNewMessage !== null && valueNewMessage.length > 0) {
+            const sendDate = new Date().toISOString()
+            const outputPost = {
+                content: valueNewMessage,
+                destinationId: currentIdLocation,
+                messageOnWallType: messageOnWallType,
+                sendDate: sendDate,
+                sourceId: localStorage.getItem('idUser')
             }
+            Service.postMessage('/api/message/sendMessageOnWall', outputPost)
+                .then(res => {
+                    if (res.status === 200) {
+                        setNewPost('')
+                    }
+                }).catch(err => {
+                    if (err.response.status === 401) {
+                        unsubscribe()
+                        checkingForAuthorization();
+                    }
+                })
         }
+    }
+
+    function getCleanUserMessage() {
+        if (newPost !== undefined && newPost !== null) {
+            return newPost.trim()
+        }
+        return newPost
     }
 
     useEffect(() => {
@@ -212,7 +216,7 @@ const PostsList = (
 
     function goToPageUser(id) {
         push({
-            pathname: `/${id}`
+            pathname: `/account/${id}`
         });
     }
 

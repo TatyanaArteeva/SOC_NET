@@ -102,7 +102,7 @@ class HeaderSearch extends Component {
             this.setState({
                 searchValue: ''
             })
-            history.push(`/${id}`)
+            history.push(`/account/${id}`)
             return <MyPage idInUrl={id} />
         }
 

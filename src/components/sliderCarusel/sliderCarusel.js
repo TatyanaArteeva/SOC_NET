@@ -14,12 +14,14 @@ import {
 } from '../../actions';
 import { withRouter } from "react-router";
 import SpinnerMini from '../spinnerMini/spinnerMini';
+import SpinnerMiniMini from '../spinnerMiniMini/spinnerMiniMini';
 import cancel from './cancel.svg';
 import download from './download.svg';
 import remove from './delete.svg';
 import noPhotos from './no-photos.svg';
 import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
 let startIndex = 0;
+
 
 class SliderCarusel extends Component {
     _cleanupFunction = false;
@@ -38,7 +40,9 @@ class SliderCarusel extends Component {
             spinner: true,
             indicatorofBeingInModalWindow: false,
             errorActionsSavePhotos: false,
-            errorActionsMessageSavePhotos: ''
+            errorActionsMessageSavePhotos: '',
+            blockedBtnAddPhotos: false,
+            blockedBtnRemovePhotos: false
         }
 
         let markingCloseModalWindowFromDeleteImage = false;
@@ -163,12 +167,16 @@ class SliderCarusel extends Component {
             const idDeleteImages = objDeleteImages.id;
             const arrIdDeleteImages = [];
             arrIdDeleteImages.push(idDeleteImages)
+            this.setState({
+                blockedBtnRemovePhotos: true
+            })
             Service.postDeleteImagesFromGallery(`/api/photo/${this.props.idForPhotos}/remove`, arrIdDeleteImages)
                 .then(res => {
                     if (res.status === 200) {
                         this.setState({
                             deleteImageSuccessfully: true,
                             deleteImageModalWindow: false,
+                            blockedBtnRemovePhotos: false
                         })
                         if (markingCloseModalWindowFromDeleteImage === false) {
                             setTimeout(this.closeModalWindowFromDeleteImageSuccessfully, 1000)
@@ -213,6 +221,9 @@ class SliderCarusel extends Component {
                     }
                 }).catch(err => {
                     if (err.response.status === 401) {
+                        this.setState({
+                            blockedBtnRemovePhotos: false
+                        })
                         this.props.unsubscribe()
                         this.props.checkingForAuthorization();
                     }
@@ -318,6 +329,9 @@ class SliderCarusel extends Component {
             for (let i = 0; i < this.state.newImage.length; i++) {
                 formData.append("photos", this.state.newImage[i])
             }
+            this.setState({
+                blockedBtnAddPhotos: true
+            })
             Service.postNewPhotoProfile(`/api/photo/${this.props.idForPhotos}/add`, formData)
                 .then(res => {
                     if (res.status === 200) {
@@ -325,7 +339,8 @@ class SliderCarusel extends Component {
                             addImageModalWindow: false,
                             addImageSuccessfully: true,
                             newImage: [],
-                            newImageName: []
+                            newImageName: [],
+                            blockedBtnAddPhotos: false
                         })
                         if (markingCloseModalWindowFromAddImage === false) {
                             setTimeout(this.closeModalWindowFromAddImageSuccessfully, 1000)
@@ -370,13 +385,18 @@ class SliderCarusel extends Component {
                     }
                 }).catch(err => {
                     if (err.response.status === 401) {
+                        this.setState({
+                            blockedBtnAddPhotos: false
+                        })
                         this.props.unsubscribe()
                         this.props.checkingForAuthorization();
+
                     } else {
                         const error = errorMessageForUser(err.response.data.code);
                         this.setState({
                             errorActionsSavePhotos: true,
-                            errorActionsMessageSavePhotos: error
+                            errorActionsMessageSavePhotos: error,
+                            blockedBtnAddPhotos: false
                         })
                         setTimeout(this.closeErrorSaveNewPhotos, 2000)
                     }
@@ -492,6 +512,14 @@ class SliderCarusel extends Component {
         let gallerySlider = null;
         let listNewImage = null;
         let errorSaveNewPhotos = null;
+        let blockBtnAddPhotos = <button onClick={this.postNewImages}
+            className="profile-photos__modal__actions-image__btn__item">
+            Загрузить фото
+        </button>
+        let blockBtnRemovePhotos = <button onClick={this.deleteImage}
+            className="profile-photos__modal__actions-image__btns__item">
+            Удалить фото
+        </button>
 
         const { listRights, arrImagesGallery } = this.props;
 
@@ -504,15 +532,30 @@ class SliderCarusel extends Component {
             newImageName,
             newImage,
             deleteImageModalWindow,
-            addImageModalWindow
+            addImageModalWindow,
+            blockedBtnAddPhotos,
+            blockedBtnRemovePhotos,
+            errorActionsSavePhotos
         } = this.state;
 
-        if (this.state.errorActionsSavePhotos) {
+        if (blockedBtnAddPhotos) {
+            blockBtnAddPhotos = <button className="profile-photos__modal__actions-image__btn__item">
+                <SpinnerMiniMini />
+            </button>
+        }
+
+        if (errorActionsSavePhotos) {
             errorSaveNewPhotos = <div className="profile-photos__modal__actions-image__invalid-file">
                 <div className="profile-photos__modal__actions-image__invalid-file__text">
                     {this.state.errorActionsMessageSavePhotos}
                 </div>
             </div>
+        }
+
+        if (blockedBtnRemovePhotos) {
+            blockBtnRemovePhotos = <button className="profile-photos__modal__actions-image__btns__item">
+                <SpinnerMiniMini/>
+            </button>
         }
 
         if (listRights.canModify) {
@@ -617,10 +660,7 @@ class SliderCarusel extends Component {
                 </ul>
 
                 <div className="profile-photos__modal__actions-image__btn">
-                    <button onClick={this.postNewImages}
-                        className="profile-photos__modal__actions-image__btn__item">
-                        Загрузить фото
-                    </button>
+                    {blockBtnAddPhotos}
                 </div>
                 {errorSaveNewPhotos}
             </div>
@@ -682,10 +722,7 @@ class SliderCarusel extends Component {
                     Вы уверены что хотите удалить данное фото?
                 </div>
                 <div className="profile-photos__modal__actions-image__btns">
-                    <button onClick={this.deleteImage}
-                        className="profile-photos__modal__actions-image__btns__item">
-                        Удалить фото
-                    </button>
+                    {blockBtnRemovePhotos}
                     <button onClick={this.cancelDeleteImage}
                         className="profile-photos__modal__actions-image__btns__item">
                         Отмена

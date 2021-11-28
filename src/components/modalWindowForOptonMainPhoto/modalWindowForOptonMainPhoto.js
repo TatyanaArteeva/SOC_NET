@@ -12,6 +12,7 @@ import WithService from '../hoc/hoc';
 import cancel from './cancel.svg';
 import download from './download.svg';
 import errorMessageForUser from '../errorMessagesForUser/errorMessagesForUser';
+import SpinnerMiniMini from '../spinnerMiniMini/spinnerMiniMini';
 
 class ModalWindowForOptonMainPhoto extends Component {
     constructor(props) {
@@ -25,7 +26,9 @@ class ModalWindowForOptonMainPhoto extends Component {
             modalWindowForMainPhotoRemove: false,
             messageInvalidFile: false,
             errorActionsSavePhoto: false,
-            errorActionsMessageSavePhoto: ''
+            errorActionsMessageSavePhoto: '',
+            blockedBtnAddPhoto: false,
+            blockedBtnRemovePhoto: false
         }
 
         const {
@@ -66,11 +69,17 @@ class ModalWindowForOptonMainPhoto extends Component {
             event.preventDefault();
             const formData = new FormData();
             formData.append("photo", this.state.valueNewPhoto)
+            this.setState({
+                blockedBtnAddPhoto: true
+            })
             Service.postNewPhotoProfile(`/api/account/${id}/change-photo`, formData)
                 .then(res => {
                     if (res.status === 200) {
                         rights(res.data.accesses)
                         this.getPhoto()
+                        this.setState({
+                            blockedBtnAddPhoto: false
+                        })
                     }
                 }).catch(err => {
                     if (err.response.status === 401) {
@@ -80,7 +89,8 @@ class ModalWindowForOptonMainPhoto extends Component {
                         const error = errorMessageForUser(err.response.data.code);
                         this.setState({
                             errorActionsSavePhoto: true,
-                            errorActionsMessageSavePhoto: error
+                            errorActionsMessageSavePhoto: error,
+                            blockedBtnAddPhoto: false
                         })
                         setTimeout(this.closeErrorSaveNewPhoto, 2000)
                     }
@@ -89,16 +99,25 @@ class ModalWindowForOptonMainPhoto extends Component {
 
         this.confirmationRemovePhoto = (event) => {
             event.preventDefault();
+            this.setState({
+                blockedBtnRemovePhoto: true
+            })
             Service.postRemovePhotoProfile(`/api/account/${id}/change-photo`, null)
                 .then(res => {
                     if (res.status === 200) {
                         rights(res.data.accesses);
                         this.getPhoto()
+                        this.setState({
+                            blockedBtnRemovePhoto: false
+                        })
                     }
                 }).catch(err => {
                     if (err.response.status === 401) {
                         unsubscribe()
                         checkingForAuthorization();
+                        this.setState({
+                            blockedBtnRemovePhoto: false
+                        })
                     }
                 })
         }
@@ -251,15 +270,23 @@ class ModalWindowForOptonMainPhoto extends Component {
             return modalWindowNotificationForModificationPhoto
         }
 
+        let savePhotoBtn = <button onClick={this.postNewPhotoProfile}
+            className="modal-window-for-opton-main-photo__btn">
+            Сохранить
+        </button>
+
+        if (this.state.blockedBtnAddPhoto) {
+            savePhotoBtn = <button className="modal-window-for-opton-main-photo__btn">
+                <SpinnerMiniMini />
+            </button>
+        }
+
         const blockSaveNewPhoto = <div className="modal-window-for-opton-main-photo">
             <div className="modal-window-for-opton-main-photo__text">
                 Вы выбрали новое фото: {this.state.nameNewPhoto}
             </div>
             <div className="modal-window-for-opton-main-photo__wrapper__btn">
-                <button onClick={this.postNewPhotoProfile}
-                    className="modal-window-for-opton-main-photo__btn">
-                    Сохранить
-                </button>
+                {savePhotoBtn}
                 <button onClick={this.cancelChoiceNewPhoto}
                     className="modal-window-for-opton-main-photo__btn">
                     Отменить
@@ -308,15 +335,23 @@ class ModalWindowForOptonMainPhoto extends Component {
             {ModalWindowMessageInvalidFile}
         </div>
 
+        let removePhotoBtnBlock = <button onClick={this.confirmationRemovePhoto}
+            className="modal-window-for-opton-main-photo__btn">
+            Удалить фото
+        </button>
+
+        if (this.state.blockedBtnRemovePhoto) {
+            removePhotoBtnBlock = <button className="modal-window-for-opton-main-photo__btn">
+                <SpinnerMiniMini />
+            </button>
+        }
+
         const modalQuestonRemovePhoto = <div className="modal-window-for-opton-main-photo">
             <div className="modal-window-for-opton-main-photo__text">
                 Вы уверены, что хотите удалить фото?
             </div>
             <div className="modal-window-for-opton-main-photo__wrapper__btn">
-                <button onClick={this.confirmationRemovePhoto}
-                    className="modal-window-for-opton-main-photo__btn">
-                    Удалить фото
-                </button>
+                {removePhotoBtnBlock}
                 <button onClick={this.modalWindowForQuestonRemovePhotoClose}
                     className="modal-window-for-opton-main-photo__btn">
                     Отмена

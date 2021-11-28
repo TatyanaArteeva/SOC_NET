@@ -13,7 +13,7 @@ class MyPage extends Component {
     render() {
 
         let postsContent = null;
-        let spinner = null;
+        let spinner = <Spinner />;
 
         const { info, idInUrl, loadingInfoProfile, loadingPhotoProfile } = this.props;
 
@@ -31,8 +31,8 @@ class MyPage extends Component {
             </div>;
         }
 
-        if (!loadingInfoProfile && !loadingPhotoProfile) {
-            spinner = <Spinner />
+        if (loadingInfoProfile && loadingPhotoProfile) {
+            spinner = null;
 
         }
 

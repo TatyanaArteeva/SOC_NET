@@ -362,7 +362,7 @@ class CreatingGroup extends Component {
         const notificationSelectedPhoto = <div className="creating-group__wrapper">
             <label className="creating-group__label">Фото группы:</label>
             <span className="creating-group__messages">
-                {photoName}
+                <span>{photoName}</span>
                 <img onClick={this.cancelSelectedPhoto} src={deletee} alt="delete" />
             </span>
         </div>

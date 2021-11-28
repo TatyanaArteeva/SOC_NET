@@ -59,7 +59,7 @@ const Group = (
     const [inBlockErrorMessage, setInBlockErrorMessage] = useState(false);
     const [errorReq, setErrorReq] = useState(false);
     const { push } = useHistory();
-    const idUserForUrl = `/${idUser}`;
+    const idUserForUrl = `/account/${idUser}`;
     let modalWindowAllParticipants = null;
     let btnModificationGroup = null;
     let btnActionGroup = null;
@@ -172,7 +172,7 @@ const Group = (
 
     function goToPageAdminGroup() {
         push({
-            pathname: `/${administratorGroup.id}`
+            pathname: `/account/${administratorGroup.id}`
         });
     }
 
@@ -414,7 +414,7 @@ const Group = (
                     {
                         userInGroup.map(el => {
                             const imgUser = "data:image/jpg;base64," + el.account.photo;
-                            const linkToPageUserGroup = `/${el.account.id}`
+                            const linkToPageUserGroup = `/account/${el.account.id}`
                             return <li key={el.account.id}
                                 className="group__information__participants__list__item">
                                 <Link to={linkToPageUserGroup}>

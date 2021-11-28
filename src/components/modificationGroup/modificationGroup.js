@@ -394,7 +394,7 @@ class ModificationGroup extends Component {
         const notificationSelectedPhoto = <div className="modification-group__wrapper">
             <label className="modification-group__label">Фото группы:</label>
             <span className="modification-group__message">
-                {photoName}
+                <span>{photoName}</span>
                 <img onClick={this.cancelSelectedPhoto} src={deletee} alt="delete" />
             </span>
         </div>

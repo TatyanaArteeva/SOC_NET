@@ -11,6 +11,7 @@ const WebSocketsPrivatMessages = ({ unsubscribe, currentIdLocation, newPost }) =
 
     const [connected, setConnected] = useState();
 
+
     const posts = useMemo(() => {
         const connect = new Client({
             connectHeaders: {},
@@ -40,11 +41,17 @@ const WebSocketsPrivatMessages = ({ unsubscribe, currentIdLocation, newPost }) =
         newPost(postParse)
     }
 
+    const newSubscribe = () => {
+        posts.unsubscribe('wall')
+        posts.subscribe('/topic/messageOnWall/' + currentIdLocation, actionPost, { id: 'wall' })
+    }
+
     const setSubscribePostsMessages = useCallback(() => {
-        if ((location.pathname === `/${currentIdLocation}` && connected) ||
-            (location.pathname === `/groups/${currentIdLocation}` && connected)) {
-            posts.unsubscribe()
-            posts.subscribe('/topic/messageOnWall/' + currentIdLocation, actionPost)
+        if (location.pathname === `/account/${currentIdLocation}` && connected) {
+            newSubscribe()
+        }
+        if (location.pathname === `/groups/${currentIdLocation}` && connected) {
+            newSubscribe()
         }
     }, [currentIdLocation, connected])
 
@@ -56,7 +63,7 @@ const WebSocketsPrivatMessages = ({ unsubscribe, currentIdLocation, newPost }) =
 
     const setUnsubscribePrivatMessages = useCallback(() => {
         if (posts.connected !== undefined) {
-            posts.unsubscribe();
+            posts.unsubscribe('wall');
         }
         posts.deactivate()
     }, [])

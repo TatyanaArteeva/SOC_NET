@@ -34,7 +34,7 @@ class IncomingFriends extends Component {
                         })
                     }}
                     path={(id) => {
-                        history.push(`/${id}`)
+                        history.push(`/account/${id}`)
                     }}
                     titleItem={(el, funcGoItem, btnAction) => {
                         return el.map(item => {

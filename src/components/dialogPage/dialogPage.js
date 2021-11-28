@@ -58,13 +58,17 @@ class DialogPage extends Component {
         this.componentDidMount = () => {
             this._cleanupFunction = true;
             const date = new Date().toISOString();
-            this.setState({
-                idFriends: idFriends,
-                date: date
-            }, () => {
-                this.getInfoUsers();
-                this.getOldMessages();
-            })
+            if (idFriends !== undefined && idFriends !== null && idUser !== undefined && idUser !== null) {
+                this.setState({
+                    idFriends: idFriends,
+                    date: date
+                }, () => {
+                    this.getInfoUsers();
+                    this.getOldMessages();
+                })
+            } else {
+                history.push('/dialogs')
+            }
         }
 
         this.componentDidUpdate = () => {
@@ -229,36 +233,41 @@ class DialogPage extends Component {
 
         this.postMessage = (e) => {
             e.preventDefault();
-            const OneInvalidSymbol = ' ';
-            const oneCheck = this.state.newMessage.indexOf(OneInvalidSymbol);
-            if (this.state.newMessage.length > 0) {
-                if (oneCheck !== 0) {
-                    const sendDate = new Date().toISOString()
-                    const outputMessage = {
-                        content: this.state.newMessage,
-                        sourceId: this.props.id,
-                        destinationId: this.state.idFriends,
-                        sendDate: sendDate
-                    }
-                    Service.postMessage('/api/message/sendMessage', outputMessage)
-                        .then(res => {
-                            if (res.status === 200) {
-                                this.setState({
-                                    newMessage: '',
-                                    allAndOutputMessage: [...this.state.allAndOutputMessage, res.data]
-                                }, () => {
-                                    const windowMessage = document.querySelector('.dialog__list__wrapper');
-                                    windowMessage.scrollTop = windowMessage.scrollHeight;
-                                })
-                            }
-                        }).catch(err => {
-                            if (err.response.status === 401) {
-                                unsubscribe()
-                                checkingForAuthorization();
-                            }
-                        })
+            const valueNewMessage = this.getCleanUserMessage()
+            if (valueNewMessage !== undefined && valueNewMessage !== null && valueNewMessage.length > 0) {
+                const sendDate = new Date().toISOString()
+                const outputMessage = {
+                    content: valueNewMessage,
+                    sourceId: this.props.id,
+                    destinationId: this.state.idFriends,
+                    sendDate: sendDate
                 }
+                Service.postMessage('/api/message/sendMessage', outputMessage)
+                    .then(res => {
+                        if (res.status === 200) {
+                            this.setState({
+                                newMessage: '',
+                                allAndOutputMessage: [...this.state.allAndOutputMessage, res.data]
+                            }, () => {
+                                const windowMessage = document.querySelector('.dialog__list__wrapper');
+                                windowMessage.scrollTop = windowMessage.scrollHeight;
+                            })
+                        }
+                    }).catch(err => {
+                        if (err.response.status === 401) {
+                            unsubscribe()
+                            checkingForAuthorization();
+                        }
+                    })
             }
+        }
+
+        this.getCleanUserMessage = () => {
+            let message = this.state.newMessage;
+            if (message !== undefined && message !== null) {
+                return message.trim()
+            }
+            return message
         }
 
         this.keyPressEnter = (e) => {
@@ -276,7 +285,7 @@ class DialogPage extends Component {
         }
 
         this.goToPageFriends = () => {
-            history.push(this.state.idFriends)
+            history.push(`/account/${this.state.idFriends}`)
         }
 
         this.valueMessage = (e) => {
@@ -304,9 +313,9 @@ class DialogPage extends Component {
             newMessage,
             photoFriends } = this.state;
 
-        const linkToFriendPage = `/${idFriends}`;
+        const linkToFriendPage = `/account/${idFriends}`;
 
-        const linkToMyPage = `/${id}`;
+        const linkToMyPage = `/account/${id}`;
 
         let messages = null;
 

@@ -22,7 +22,7 @@ class DropDownMenu extends Component {
         }
 
         this.goToHome = () => {
-            history.push(`/${idUser}`);
+            history.push(`/account/${idUser}`);
             openAndCloseDropDownMenu(false)
         }
 

@@ -32,7 +32,7 @@ class MainPage extends Component {
         const { idUser, location, history } = this.props;
 
         this.componentDidMount = () => {
-            const id = `${idUser}`;
+            const id = `account/${idUser}`;
             if (location.pathname === "/") {
                 history.push(id)
             }
@@ -43,10 +43,10 @@ class MainPage extends Component {
 
         const { idUser, location } = this.props;
 
-        if (location.pathname === "/") {
-            const id = `${idUser}`;
-            return <MyPage idInUrl={id} />
-        }
+        // if (location.pathname === "/") {
+        //     const id = `${idUser}`;
+        //     return <MyPage idInUrl={id} />
+        // }
 
         return (
             <>
@@ -56,12 +56,12 @@ class MainPage extends Component {
                 <WebSocketsPosts />
                 <WebSocketsNotifications />
                 <Switch>
-                    <Route path="/friends/" exact component={Friends} />
+                    <Route exact path="/friends/" component={Friends} />
                     <Route path="/friends/incoming" component={IncomingFriends} />
                     <Route path="/friends/output" component={OutputFriends} />
                     <Route path="/friends/allUsers" component={AllUsers} />
                     <Route path="/dialogs/" component={AllDialogsPage} />
-                    <Route path="/groups/" exact component={Groups} />
+                    <Route exact path="/groups/" component={Groups} />
                     <Route path="/groups/all" component={AllGroups} />
                     <Route path="/modification" component={Modification} />
                     <Route path="/search" component={AllSearchPage} />
@@ -73,7 +73,7 @@ class MainPage extends Component {
                         const id = match.params.id;
                         return <Group idInUrl={id} />
                     }} />
-                    <Route path="/:id" exact component={({ match }) => {
+                    <Route path="/account/:id" component={({ match }) => {
                         const id = match.params.id;
                         return <MyPage idInUrl={id} />
                     }} />

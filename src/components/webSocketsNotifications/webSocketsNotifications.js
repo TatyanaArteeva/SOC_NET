@@ -40,7 +40,7 @@ const WebSocketsNotifications = ({ inputNotificationObj, unsubscribe }) => {
     }
 
     const setSubscribePrivatMessages = useCallback(() => {
-        client.subscribe('/queue/notification/' + idForSubscribe, actionNotifications)
+        client.subscribe('/queue/notification/' + idForSubscribe, actionNotifications, { id: 'notifications' })
     }, [])
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const WebSocketsNotifications = ({ inputNotificationObj, unsubscribe }) => {
 
     const setUnsubscribePrivatMessages = useCallback(() => {
         if (client.connected !== undefined) {
-            client.unsubscribe();
+            client.unsubscribe('notifications');
         }
         client.deactivate()
     }, [])

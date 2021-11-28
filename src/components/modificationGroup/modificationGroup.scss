@@ -26,23 +26,33 @@
     &__message {
         position: relative;
         margin: 10px;
+        display: inline-block;
         background-color: rgba(137, 216, 194, .3);
         padding: 10px;
         border-radius: 10px;
         padding-right: 35px;
+        width: 320px;
+        vertical-align: middle;
 
         & img {
             width: 20px;
             height: 20px;
             position: absolute;
-            margin-left: 5px;
             transition: .5s all;
-            margin-top: 10px;
+            right: 10px;
+            bottom: 10px;
 
             &:hover {
                 cursor: pointer;
                 transform: scale(1.4);
             }
+        }
+
+        & span {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 
@@ -308,6 +318,13 @@
     .modification-group {
         &__title {
             font-size: 25px;
+        }
+
+        &__message {
+            margin-left: 0;
+            margin-top: 15px;
+            margin-right: 0;
+            width: 300px;
         }
 
         &__label {
@@ -584,6 +601,7 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
+            width: 260px;
 
             & img {
                 margin-top: 5px;

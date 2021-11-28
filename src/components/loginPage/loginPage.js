@@ -79,6 +79,7 @@ class LoginPage extends Component {
         }
 
         this.postFormLogin = (event) => {
+            localStorage.clear();
             if (this.state.password.length >= 5) {
                 event.preventDefault();
                 const formData = new FormData();

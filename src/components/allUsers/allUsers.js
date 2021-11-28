@@ -37,7 +37,7 @@ class AllUsers extends Component {
                         })
                     }}
                     path={(id) => {
-                        history.push(`/${id}`)
+                        history.push(`/account/${id}`)
                     }
                     }
                     titleItem={(el, funcGoItem, btnAction, writeMessageBtn) => {

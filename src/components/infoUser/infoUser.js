@@ -51,7 +51,7 @@ class InfoUser extends Component {
         }
 
         this.componentDidUpdate = (prevProps) => {
-            if (prevProps.idForInfo !== idForInfo && match.params.id) {
+            if (prevProps.idForInfo !== this.props.idForInfo && match.params.id) {
                 this.info()
             }
         }
@@ -61,12 +61,12 @@ class InfoUser extends Component {
         }
 
         this.info = () => {
-            Service.getUserAccountId(idForInfo)
+            Service.getUserAccountId(this.props.idForInfo)
                 .then(res => {
                     if (res.status === 200) {
                         if (this._cleanupFunction) {
                             userInformation(res.data)
-                            currentIdLocation(idForInfo)
+                            currentIdLocation(this.props.idForInfo)
                             loadingInfoProfile(true)
                         }
                     }
@@ -79,12 +79,13 @@ class InfoUser extends Component {
                         })
                     }
                 }).catch(err => {
+                    loadingInfoProfile(true)
                     if (err.response.status === 401) {
                         unsubscribe()
                         checkingForAuthorization();
                     }
                 })
-            Service.getAccountInfo(`/api/account/${idForInfo}/page-info`)
+            Service.getAccountInfo(`/api/account/${this.props.idForInfo}/page-info`)
                 .then(res => {
                     rights(res.data.accesses);
                     infoRelation(res.data.info);

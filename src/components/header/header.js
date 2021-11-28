@@ -132,7 +132,7 @@ class Header extends Component {
 
         const { openNotificationsList } = this.state;
 
-        const id = `/${idUser}`;
+        const id = `/account/${idUser}`;
         let countMessage = null;
         let menuItem = menu;
         let countNotifications = null;
@@ -168,6 +168,7 @@ class Header extends Component {
                             <img src={notifications}
                                 alt="notifications"
                                 onClick={this.openNotificationsList}
+                                className="img__notifications"
                             />
                             <span className="header__menu__item__count_notifications"
                                 onClick={this.openNotificationsList}>

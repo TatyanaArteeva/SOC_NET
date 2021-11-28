@@ -39,7 +39,7 @@ const WebSocketsPrivatMessages = ({ inputMessageObj, unsubscribe }) => {
     }
 
     const setSubscribePrivatMessages = useCallback(() => {
-        client.subscribe('/queue/privateMessage/' + idForSubscribe, actionMessage)
+        client.subscribe('/queue/privateMessage/' + idForSubscribe, actionMessage, { id: 'privatMessages' })
     }, [])
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const WebSocketsPrivatMessages = ({ inputMessageObj, unsubscribe }) => {
 
     const setUnsubscribePrivatMessages = useCallback(() => {
         if (client.connected !== undefined) {
-            client.unsubscribe();
+            client.unsubscribe('privatMessages');
         }
         client.deactivate()
     }, [])

@@ -138,7 +138,9 @@ const reducer = (state = initialState, action) => {
                 inputNotificationObj: [],
             }
         case 'USER_INFORMATION':
-            const information = action.information;
+            const informationObj = action.information;
+            const informationJSON = JSON.stringify(informationObj)
+            const information = JSON.parse(informationJSON)
             for (let key in information) {
                 if (information[key] === null || information[key] === undefined || information[key].length === 0) {
                     information[key] = ""
@@ -225,7 +227,9 @@ const reducer = (state = initialState, action) => {
                 photoUser: action.photo
             }
         case 'IMAGES_GALLERY':
-            let images = action.arrImages;;
+            const imagesObj = action.arrImages;
+            const imagesJSON = JSON.stringify(imagesObj);
+            const images = JSON.parse(imagesJSON)
             const start = action.startIndex;
             const end = action.endIndex;
             images.map(el => {
@@ -245,7 +249,9 @@ const reducer = (state = initialState, action) => {
                 imagesGallery: state.imagesGallery
             }
         case 'IMAGES_GALLERY_LOADING':
-            let imagesLoading = action.arrImages;
+            const imagesLoadingObj = action.arrImages;
+            const imagesLoadingJSON = JSON.stringify(imagesLoadingObj)
+            const imagesLoading = JSON.parse(imagesLoadingJSON)
             const startLoading = action.startIndex;
             const endLoading = action.endIndex;
             imagesLoading.map(el => {
@@ -262,10 +268,12 @@ const reducer = (state = initialState, action) => {
                 imagesGallery: state.imagesGallery
             }
         case 'IMAGES_GALLERY_DELETE_PHOTO':
-            state.imagesGallery.splice(action.idDeletePhoto, 1)
+            const newArrImagesGaleryObj = JSON.stringify(state.imagesGallery);
+            const newArrImagesGalery = JSON.parse(newArrImagesGaleryObj)
+            const newArrImages = newArrImagesGalery.splice(action.idDeletePhoto, 1)
             return {
                 ...state,
-                imagesGallery: state.imagesGallery
+                imagesGallery: newArrImages
             }
         case 'IMAGES_GALLERY_TOTAL_SIZE':
             const arrImages = []
@@ -322,8 +330,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 groupAccesses: action.groupAccesses,
-
-
             }
         case 'INFO_RELATION_GROUP':
             return {
@@ -346,14 +352,16 @@ const reducer = (state = initialState, action) => {
                 outputMessage: action.outputMessage
             }
         case 'INPUT_MESSAGE_OBJ':
+            const inputMessages = [...state.inputMessageObj, action.inputMessageObj]
             return {
                 ...state,
-                inputMessageObj: [...state.inputMessageObj, action.inputMessageObj]
+                inputMessageObj: inputMessages
             }
         case 'INPUT_NOTIFICATION_OBJ':
+            const inputNotifications = [...state.inputNotificationObj, action.inputNotificationObj]
             return {
                 ...state,
-                inputNotificationObj: [...state.inputNotificationObj, action.inputNotificationObj]
+                inputNotificationObj: inputNotifications
             }
         case 'DELETE_MESSAGE_FROM_INPUT_MESSAGE_OBJ':
             const index = state.inputMessageObj.findIndex(el => {
@@ -448,7 +456,6 @@ const reducer = (state = initialState, action) => {
                 popstate: action.popstate
             }
         case 'CHECKINGFORAUTORIZATION':
-            localStorage.clear();
             return {
                 ...state,
                 loginMainPage: false,
